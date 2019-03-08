@@ -1,0 +1,538 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/jquery.bsgrid-1.37/merged/bsgrid.all.min.css" rel="stylesheet" />
+    <link href="~/Content/jquery.bsgrid-1.37/css/skins/grid_bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/jquery.bsgrid-1.37/css/skins/grid_sky_blue.min.css" rel="stylesheet" />
+
+    <title>modeofpayment</title>
+    <style type="text/css">
+        .container {
+            width: 100%;
+            padding: 20px 40px 0 35px;
+            margin: 0;
+        }
+
+        .panel-heading span {
+            font-size: 18px;
+        }
+
+        .form-horizontal label {
+            font-weight: normal;
+        }
+
+        .reset {
+            padding-left: 5px;
+            padding-right: 5px;
+        }
+
+        .panel-body {
+            padding-left: 0;
+            background: #f4fcff;
+        }
+
+        td a {
+            color: blue !important;
+        }
+
+        th {
+            font-weight: normal;
+        }
+
+        .h4, td, th {
+            text-align: center;
+        }
+
+        .table tbody tr td {
+            padding: 4px;
+        }
+
+            .table tbody tr td button {
+                height: 24px;
+                padding: 2px 12px;
+            }
+
+        .modal-body {
+            background: #f4fcff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="containerid">
+        <div class="row">
+            <div class="panel panel-info">               
+                <div class="panel-body" style="padding-left:15px;">
+                    <div class="tab" role="tabpanel">
+                        <ul id="myTab" class="nav nav-tabs">
+                            <li role="presentation" class="active"><a href="#bulletin" aria-controls="home" role="tab" data-toggle="tab">已使用列表</a></li>
+                            <li role="presentation"><a href="#rule" role="tab" aria-controls="profile" data-toggle="tab" onclick="binreview()">支付管理</a></li>                     
+                        </ul>
+
+                        <div id="myTabContent" class="tab-content">
+                            <div class="tab-pane active" id="bulletin">
+                                <div class="row setPadding" style="background:#ffffff;">
+                                    <label class="col-md-12">已使用列表</label>                              
+                                </div>
+                                <table id="tabRechargeall">
+                                    <tr>                                       
+                                        <th w_index="PayTypeID" w_hidden="true"></th>
+                                        <th w_index="OpenDeny" w_hidden="true"></th>
+                                        <th w_index="Viewlogo" w_render="Viewlogo" width="25%" id="UimgPicture">支付logo</th>
+                                        <th w_index="PayTypeName" width="25%">支付名称</th>
+                                        <th w_index="PaySummary" width="25%">支付简介</th>
+                                        <th w_index="ToVoidNo" w_render="crearViewButton" width="25%">管理</th>                                      
+                                    </tr>
+                                  
+                                </table>                               
+                            </div>
+                            <div class="tab-pane" id="rule" style="visibility:hidden">
+                                <div class="row setPadding" style="background:#ffffff;margin-left:5px;">
+                                    <label>支付管理</label>  
+                                    <button type="button"id="insertpaytype">添加支付类型</button>                                                                                          
+                                </div>                              
+                                <table id="tabinreview">
+                                    <tr>
+                                        <th w_index="PayTypeID" w_hidden="true"></th>
+                                        <th w_index="AddDeny" w_hidden="true"></th>
+                                        <th w_index="OpenDeny" w_hidden="true"></th>
+                                        <th w_index="Viewlogo" w_render="zfViewlogo" width="25%" id="ZUimgPicture">支付logo</th>
+                                        <th w_index="PayTypeName" width="25%">支付名称</th>
+                                        <th w_index="PaySummary" width="25%">支付简介</th>
+                                        <th w_index="ToVoidNo" w_render="ViewButton" width="25%">管理</th>
+                                    </tr>
+                                </table>                               
+                            </div>                                                     
+                        </div>
+                    </div>
+                 
+                </div>
+                @*编辑*@
+                <div class="modal" id="modUpdateedit">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                <h5 class="modal-title">编辑支付管理</h5>
+                            </div>
+                            <div class="modal-body">
+                                <form class="form-horizontal" role="form" id="formUpdateExaminee"
+                                      action="/Fundsmanagement/management/UpdateStudent" method="post">
+                                    <!--隐藏域-->
+                                    <input type="hidden" name="PayTypeID"/>
+                                    <input type="hidden" name="OpenDeny" />
+                                    <input type="hidden" name="AddDeny" />
+                                    <div class="col-lg-3 col-md-3 col-sm-3 text-right" style="margin-top:20px;">
+                                        <label class="control-label">支付logo:</label>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="form-group col-lg-6 col-md-6 col-sm-6 img-box">
+                                            <img src="" alt="" width="150" height="60" id="UimgStudentPicture" />
+                                            <input type="file" style="margin-top:5px;" name="fileStudentImage" id="UStudentPicture" />
+                                        </div>
+                                    </div>                                  
+                                    <div class="form-group">
+                                        <div class="col-lg-3 col-md-3 col-sm-3 text-right">
+                                            <label class="control-label">支付名称:</label>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 col-sm-6 reset">
+                                            <input type="text" class="form-control" id="UsUniformAuthenticationCode" name="PayTypeName" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-lg-3 col-md-3 col-sm-3 text-right">
+                                            <label class="control-label">支付简介:</label>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 col-sm-6 reset">
+                                            <input type="text" class="form-control" id="UsStudentName" name="PaySummary" />
+                                        </div>
+                                    </div>                                                                                                                                                                     
+                                    <div class="form-group" style="padding:10px;">
+                                        <div class="col-lg-8 col-md-8 col-sm-8 pull-right">                                           
+                                            <button class="btn btn-primary" type="button" id="btnSaveUpdate">保存</button>
+                                            <button class="btn btn-danger" data-dismiss="modal">关闭</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal-dialog -->
+                </div>    
+                @*添加支付类型*@    
+                <div class="modal" id="modIpdateedit">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                <h5 class="modal-title">添加支付类型</h5>
+                            </div>
+                            <div class="modal-body">
+                                <form class="form-horizontal" role="form" id="formInsertExaminee"
+                                      action="/Fundsmanagement/management/InsertStudent" method="post">
+                                    <!--隐藏域-->
+                                    <input type="hidden" name="PayTypeID" />
+                                    <div class="col-lg-3 col-md-3 col-sm-3 text-right" style="margin-top:20px;">
+                                        <label class="control-label">支付logo:</label>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="img-box text-center">
+                                            <img src="" alt="" width="150" height="60" style="margin-right:270px;" id="IimgStudentPicture" />
+                                            <input type="file" style="margin-left:160px;margin-top:5px;" name="fileStudentImage" id="IPayTypePicture" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-lg-3 col-md-3 col-sm-3 text-right">
+                                            <label class="control-label">支付名称:</label>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 col-sm-6 reset">
+                                            <input type="text" class="form-control" id="PayTypeNameID" name="PayTypeName" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-lg-3 col-md-3 col-sm-3 text-right">
+                                            <label class="control-label">支付简介:</label>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 col-sm-6 reset">
+                                            <input type="text" class="form-control" id="PaySummaryID" name="PaySummary" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group" style="padding:10px;">
+                                        <div class="col-lg-8 col-md-8 col-sm-8 pull-right">
+                                            <button class="btn btn-primary" type="button" id="btnSaveInsert">保存</button>
+                                            <button class="btn btn-danger" data-dismiss="modal">关闭</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal-dialog -->
+                </div>    
+            </div>
+        </div>
+    </div>
+
+    <script src="~/Content/bootstrap-3.3.7-dist/js/jquery-2.0.3.min.js"></script>
+    <script src="~/Content/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <script src="~/Content/jquery.bsgrid-1.37/merged/bsgrid.all.min.js"></script>
+    <script src="~/Content/jquery.bsgrid-1.37/js/lang/grid.zh-CN.min.js"></script>
+    <script src="~/Content/layer/layer.js"></script>
+    <script src="~/Content/jss/jquery.form.js"></script>@*异步自动提交*@
+    <script src="~/Content/jss/customfunction.js"></script>
+   
+    <script>
+        var tabRechargeall;
+        var tabinreview;
+        
+        $(document).ready(function () {
+            tabRechargeall = $.fn.bsgrid.init('tabRechargeall', {
+                url: '/Fundsmanagement/management/modeopaytype',
+                autoLoad: true,//自动加载数据
+                stripeRows: true,//隔行变色
+                rowHoverColor: true,//划过行变色
+                rowSelectedColor: true,//是否显示选中行背景色
+                pageSize: 8,//默认页面大小
+                pageSizeSelect: true,//是否选择分页页数下拉框
+                pagingLittleToolbar: true,//精简的图标按钮分页工具条
+                pagingToolbarAlign: "left"//分页工具条的显示位置              
+            });
+            $("#insertpaytype").hide();
+        });
+
+        function binreview() {
+            document.getElementById("rule").style.visibility = "visible"        
+            if (tabinreview == null) {
+                tabinreview = $.fn.bsgrid.init('tabinreview', {
+                    url: '/Fundsmanagement/management/addeopaytype',
+                    autoLoad: true,//自动加载数据
+                    stripeRows: true,//隔行变色
+                    rowHoverColor: true,//划过行变色
+                    rowSelectedColor: true,//是否显示选中行背景色
+                    pageSize: 8,//默认页面大小
+                    pageSizeSelect: true,//是否选择分页页数下拉框
+                    pagingLittleToolbar: true,//精简的图标按钮分页工具条
+                    pagingToolbarAlign: "left"//分页工具条的显示位置
+                });
+            }
+            else {
+                tabinreview = tabinreview;
+            }
+            $(".bsgridPagingOutTab").css("min-width", "98%");
+        }
+        //绑定图片
+        function Viewlogo(record, rowIndex, colIndex, options) {
+            var PayTypeID = tabRechargeall.getColumnValue(rowIndex, "PayTypeID");
+            $("#UimgPicture").attr("src", "/Fundsmanagement/management/GetImage");
+            return '<img src="/Fundsmanagement/management/GetImage?PayTypeID=' + PayTypeID + '" alt="" width="120" height="50" id="UimgPicture" />';            
+        }
+        //支付管理绑定图片
+        function zfViewlogo(record, rowIndex, colIndex, options) {
+            var PayTypeID = tabinreview.getColumnValue(rowIndex, "PayTypeID");
+            $("#ZUimgPicture").attr("src", "/Fundsmanagement/management/GetImage");
+            return '<img src="/Fundsmanagement/management/GetImage?PayTypeID=' + PayTypeID + '" alt="" width="120" height="50" id="ZUimgPicture" />';
+        }
+        //自定义公告详情列
+        function crearViewButton(record, rowIndex, colIndex, options) {
+            var shenghe = tabRechargeall.getColumnValue(rowIndex, "OpenDeny");
+            if (shenghe==="true") {             
+                return '<button type="button" class="openUpdatas btn btn-primary hidden" onclick="openUpdata(' + record.PayTypeID + ')">编辑</button>'
+             + "&emsp;"
+             + '<button type="button" style=display:compact; class="strDelete btn btn-info hidden" onclick="Delete(' + record.PayTypeID + ')">删除</button>'
+             + "&emsp;"
+             + '<button type="button" style=display:compact; class="strUpclose btn btn-danger hidden" onclick="Upclose(' + record.PayTypeID + ')">关闭</button>';
+            } else {
+                return '<button type="button" class="openUpdatas btn btn-primary hidden" onclick="openUpdata(' + record.PayTypeID + ')">编辑</button>'
+              + "&emsp;"
+              + '<button type="button" style=display:compact; class="strDelete btn btn-info hidden" onclick="Delete(' + record.PayTypeID + ')">删除</button>'
+              + "&emsp;"
+              + '<button type="button" style=display:compact; class="strUpopen btn btn-warning hidden" onclick="Upopen(' + record.PayTypeID + ')">开启</button>';
+            }
+        }
+        function ViewButton(record, rowIndex, colIndex, options) {
+            var tianjiafou = tabinreview.getColumnValue(rowIndex, "AddDeny");       
+            if (tianjiafou == "true") {
+                return '<p>已添加</p>';
+            } else if (tianjiafou == "false") {
+                return '<button type="button" style=display:compact; class="strinsert btn btn-default hidden" onclick="insertopen(' + record.PayTypeID + ')">添加</button>';
+            } 
+        }
+
+        //权限访问
+        $("#containerid").mouseenter(function () {
+            $.post("/LoginMain/MoKuaiQuanXianOpTypeSelect", function (Data) {
+                for (var i = 0; i < Data.length; i++) {
+                    if (Data[i].Name == "支付方式管理" && Data[i].Optype == "编辑") {
+                        $(".openUpdatas").removeClass("hidden");
+                    }
+                    if (Data[i].Name == "支付方式管理" && Data[i].Optype == "开启") {
+                        $(".strUpopen").removeClass("hidden");
+                    }
+                    if (Data[i].Name == "支付方式管理" && Data[i].Optype == "关闭") {
+                     
+                        $(".strUpclose").removeClass("hidden");
+                    }
+                    if (Data[i].Name == "支付方式管理" && Data[i].Optype == "删除") {
+
+                        $(".strDelete").removeClass("hidden");
+                    }
+                    if (Data[i].Name == "支付方式管理" && Data[i].Optype == "新增") {
+                        $("#insertpaytype").show();
+                        $(".strinsert").removeClass("hidden");
+                    }
+                }
+            });
+        });
+
+        //关闭
+        function Upclose(PayTypeID) {
+            var layerIndex = layer.load(0);//显示 加载层
+            $.post("/Fundsmanagement/management/Updataclose", { PayTypeID: PayTypeID }, function (data) {
+                if (data == "success") {
+                    layer.alert('成功关闭！', { icon: 6, title: '提示' });
+                    tabRechargeall.refreshPage();                  
+                } else {
+                    layer.alert('关闭失败！', { icon: 5, title: '提示' });
+                }
+                layer.close(layerIndex);//关闭 加载层
+            });
+        }
+        //开启
+        function Upopen(PayTypeID) {
+            var layerIndex = layer.load(0);//显示 加载层
+            $.post("/Fundsmanagement/management/Updataopen", { PayTypeID: PayTypeID }, function (data) {
+                if (data == "success") {
+                    layer.alert('开启成功！', { icon: 6, title: '提示' });
+                    tabRechargeall.refreshPage();
+                  
+                } else {
+                    layer.alert('开启失败！', { icon: 5, title: '提示' });
+                }
+                layer.close(layerIndex);//关闭 加载层
+            });
+        }
+        //删除
+        function Delete(PayTypeID) {
+            layer.confirm("确定删除？", {
+                icon: 3,
+                btn: ['确定', '取消']
+                //按钮
+            }, function (layerIndex) {
+                var layerIndex = layer.load(0);//显示 加载层
+                $.post("/Fundsmanagement/management/deletepaytype", { PayTypeID: PayTypeID }, function (data) {
+                    if (data == "success") {
+                        layer.close(layerIndex);//关闭 加载层
+                        layer.alert('删除成功！', { icon: 6, title: '提示' });
+                        tabRechargeall.refreshPage();
+                        tabinreview.refreshPage();
+                    } else {
+                        layer.close(layerIndex);//关闭 加载层
+                        layer.alert('删除失败！', { icon: 5, title: '提示' });
+                    }
+                    layer.close(layerIndex);//关闭 加载层
+                });
+            });
+            //var layerIndex = layer.load(0);//显示 加载层       
+            //    $.post("/Fundsmanagement/management/deletepaytype", { PayTypeID: PayTypeID }, function (data) {
+            //        if (data == "success") {
+            //            layer.close(layerIndex);//关闭 加载层
+            //            layer.alert('删除成功！', { icon: 6, title: '提示' });
+            //            tabRechargeall.refreshPage();
+            //            tabinreview.refreshPage();
+                        
+
+
+
+            //        } else {
+            //            layer.close(layerIndex);//关闭 加载层
+            //            layer.alert('删除失败！', { icon: 5, title: '提示' });
+                      
+            //        }
+                   
+            //    });                     
+        }
+
+        //添加
+        function insertopen(PayTypeID) {
+            var layerIndex = layer.load(0);//显示 加载层
+            $.post("/Fundsmanagement/management/upadddeny", { PayTypeID: PayTypeID }, function (data) {
+                if (data == "success") {
+                    layer.alert('添加成功！', { icon: 6, title: '提示' });
+                    tabRechargeall.refreshPage();
+                    tabinreview.refreshPage();
+                } else {
+                    layer.alert('添加失败！', { icon: 5, title: '提示' });
+                }
+                layer.close(layerIndex);//关闭 加载层
+            });
+        }
+
+
+
+
+        //添加支付类型modal
+        $("#insertpaytype").click(function () {
+            $("#IimgStudentPicture").attr("src", "");//清空图片
+            $("#IPayTypePicture").val("");
+            $("#PayTypeNameID").val("");
+            $("#PaySummaryID").val("");
+            $("#modIpdateedit").modal("show");
+        });
+        //选择照片
+        var imgReaderI = new FileReader();
+        regexImageFilter = /^(?:image\/bmp|image\/png|image\/jpeg|image\/jpg)$/i;
+        //文件读取 onload事件
+        imgReaderI.onload = function (evt) {
+            $("#IimgStudentPicture").attr("src", evt.target.result);
+        }
+        $("#IPayTypePicture").change(function () {
+            //选取选择图片
+            var imgfFile = $("#IPayTypePicture").prop('files')[0];
+            //加载image标签中
+            if (!regexImageFilter.test(imgfFile.type)) {
+                //alert("选择的不是一个有效的图片文件");
+                layer.msg('选择的不是一个有效的图片文件', { icon: 0 });
+            }
+            imgReaderI.readAsDataURL(imgfFile);
+        })
+        //新增支付类型保存
+
+        $("#btnSaveInsert").click(function () {               
+            var PayTypeName = $('#formInsertExaminee [name="PayTypeName"]').val();//支付名称
+            var PaySummary = $('#formInsertExaminee [name="PaySummary"]').val();//支付简介
+            var PayTypePicture = $('#formInsertExaminee [name="PayTypePicture"]').prop('files');//照片
+            if ( PayTypeName != '' && PaySummary != '') {
+                var layerIndex = layer.load(0);//显示 加载层
+                //提交表单
+               $("#formInsertExaminee").ajaxSubmit(function (msg) {           
+                    layer.close(layerIndex);//关闭 加载层
+                                 
+                    if (msg == "success") {
+                        layer.alert('添加成功！', { icon: 1, title: '提示' });
+                        tabRechargeall.refreshPage();
+                        tabinreview.refreshPage();
+                        $("#modIpdateedit").modal("hide");//关闭 modal  
+                    } else if (msg == "exsit") {               
+                        $("#IPayTypePicture").val("");
+                        $("#PayTypeNameID").val("");                       
+                        $("#PaySummaryID").val("");
+                        layer.alert('该类型已经存在！', { icon: 5, title: '提示' });
+                        
+                    }
+                    else {
+                        layer.alert('新增失败！', { icon: 5, title: '提示' });
+                    }
+                   
+                });
+            } else {
+                layer.alert('请填写完整', { icon: 0, title: '提示' });
+            }
+        })
+
+
+        //修改编辑绑定
+        function openUpdata(PayTypeID) {
+            //表单绑定
+            $.post("/Fundsmanagement/management/selectbypaytypeID", { PayTypeID: PayTypeID }, function (data) {
+                loadDatatoForm("formUpdateExaminee", data);
+            });
+            //绑定图片
+            $("#UimgStudentPicture").attr("src", "");
+            $("#UimgStudentPicture").attr("src", "/Fundsmanagement/management/GetStudentImage?PayTypeID=" + PayTypeID);
+            $("#modUpdateedit").modal("show");
+        }
+
+        //编辑选择照片
+        var imgReaderU = new FileReader();
+        regexImageFilter = /^(?:image\/bmp|image\/png|image\/jpeg|image\/jpg)$/i;
+        //文件读取 onload事件
+        imgReaderU.onload = function (evt) {
+            $("#UimgStudentPicture").attr("src", evt.target.result);
+        }
+        $("#UStudentPicture").change(function () {
+            //选取选择图片
+            var imgfFile = $("#UStudentPicture").prop('files')[0];
+            //加载image标签中
+            if (!regexImageFilter.test(imgfFile.type)) {
+                //alert("选择的不是一个有效的图片文件");
+                layer.msg('选择的不是一个有效的图片文件', { icon: 0 });
+            }
+            imgReaderU.readAsDataURL(imgfFile);
+        });
+
+        //修改保存按钮
+        $("#btnSaveUpdate").click(function () {
+            var PayTypeID = $('#formUpdateExaminee [name="PayTypeID"]').val();//类型Id           
+            var PayTypeName = $('#formUpdateExaminee [name="PayTypeName"]').val();//支付名称
+            var PaySummary = $('#formUpdateExaminee [name="PaySummary"]').val();//支付简介
+            var PayTypePicture = $('#formUpdateExaminee [name="PayTypePicture"]').prop('files');//照片
+            if (PayTypeID > 0 && PayTypeName != '' && PaySummary != ''
+               ) {
+                var layerIndex = layer.load(0);//显示 加载层
+                //提交表单
+                $("#formUpdateExaminee").ajaxSubmit(function (msg) {                 
+                    layer.close(layerIndex);//关闭 加载层                 
+                    if (msg == "success") {
+                        layer.alert('修改成功', { icon: 1, title: '提示' });
+                        tabRechargeall.refreshPage();                                          
+                        location.reload();
+                        $("#modUpdateedit").modal("hide");//关闭 modal 
+                    } else if (msg == "exsit") {
+                        layer.alert('该类型已经存在！', { icon: 6, title: '提示' });
+                        $("#UsUniformAuthenticationCode").val("");
+                        $("#UsStudentName").val("");
+                    }
+                });
+            } else {
+                layer.alert('请填写完整', { icon: 0, title: '提示' });
+            }
+        })
+    </script>
+</body>
+</html>

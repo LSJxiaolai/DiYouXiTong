@@ -1,0 +1,604 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>帝友P2P借贷系统</title>
+    <link href="~/Content/ShouYe/iconfont.css" rel="stylesheet" />
+    <link href="~/Content/ShouYe/public.css" rel="stylesheet" />
+    <link href="~/Content/ShouYe/style.css" rel="stylesheet" />
+    <link href="~/Content/ShouYe/index.css" rel="stylesheet" />
+    <link href="~/Content/ShouYe/user.css" rel="stylesheet" />
+    <link href="~/Content/ShouYe/mall.css" rel="stylesheet" />
+    <link href="~/Content/lunbo/css/responsiveslides.css" rel="stylesheet" />
+    <script src="~/Content/lunbo/js/jquery-1.10.2.min.js"></script>
+    @*<script src="~/Content/ShouYe/jquery-1.8.2.min.js"></script>*@
+    <script src="~/Content/lunbo/js/responsiveslides.min.js"></script>
+
+    <script src="~/Content/ShouYe/diyou.js"></script>
+    <script src="~/Content/ShouYe/base.js"></script>
+    <script src="~/Content/layer/layer.js"></script>
+
+    <script>
+        var user_id = '';
+        var web_domain = "http://www.diyou.cc";
+        var js_web_name = "帝友P2P借贷系统V4.0演示站 - 中国最大最专业的借贷系统开发商";
+    </script>
+    <script type="text/javascript">
+$(function () {
+	// Slideshow
+	$("#slider").responsiveSlides({
+		auto: true,
+		pager: false,
+		nav: true,
+		speed: 500,
+		timeout:4000,
+		pager: true,
+		pauseControls: true,
+		namespace: "callbacks"
+	});
+});
+    </script>
+
+</head>
+<body>
+    <div class="header">
+        <div class="header_top ">
+            <div class="conbox fn_cle">
+                <div class="contact fn_left">
+                    <i class="telico"></i>
+                    <span class="tel">服务热线：<em>400-836-3969 </em></span>
+                    <a href="#" target="_blank">手机端下载</a>
+                </div>
+
+                <div class="top_rig fn_rig" id="yuanlaiID">
+                    <a href="/Main/ZhuCe" class="bor_none reg" id="zhuceID">免费注册</a>
+                    <a href="/Main/Login" class="login" id="Login">立即登录</a>
+                    <a href="" class="helpico">帮助中心</a>
+                    <a href="/Main/CounterIndex">利息计算器</a>
+                </div>
+
+                <div class="top_rig fn_rig" id="userviweID">
+                    <label id="userid" style="font-size:14px;">欢迎你：</label>
+                    <label id="UserName" style="color:#e4b022;font-size:15px;font-weight:700;">@ViewBag.User</label>
+                    <span>&nbsp;</span>
+                    <a href="" class="helpico">帮助中心</a>
+                    <a href="/Main/CounterIndex">利息计算器</a>
+                    <a href="/Main/Login">退出</a>
+                </div>
+            </div>
+
+        </div>
+        <div class="header_cont conbox fn_cle">
+            <h1 class="fn_left">
+                <a href="">
+                    <img src="~/Content/ShouYe/0_admin_upload_1407294921608.jpg" />
+                </a>
+            </h1>
+            <div class="navbar fn_left">
+                <ul>
+                    <li class="ui_nav_item  now">
+                        <a href="/Main/Index">首页</a>
+                    </li>
+                    <li class="ui_nav_item ">
+                        <a href="/Loan/Loan/BorrowIndex">我要借款</a>
+                    </li>
+                    <li class="ui_nav_item ">
+                        <a href="#" id="myInvest">我要投资</a>
+                    </li>
+                    <li class="ui_nav_item ">
+                        <a href="#" id="MyAccountID">我的账户</a>
+                    </li>
+                    <li class="ui_nav_item ">
+                        <a href="/Main/AboutOurIndex">关于我们</a>
+                    </li>
+                    <li class="ui_nav_item ">
+                        <a href="">新手帮助</a>
+                    </li>
+
+                </ul>
+            </div>
+            <div class="follow fn_rig">
+                <a href="" target="_blank">
+                    <div class="follow_list follow_sina "></div>
+                </a>
+                <div class="follow_list follow_wx">
+                    <div class="wx_ewm">
+                        <span class="arrow"></span>
+                        <div class="arrow_img">
+                            <img src="~/Content/ShouYe/0_admin_upload_1420791797782.jpg" height="73" width="73" />
+                        </div>
+                    </div>
+
+                </div>
+                <div class="follow_list follow_qq">
+                    <div class="qq_info">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="callbacks_container">
+        <ul class="rslides" id="slider">
+            <li><a href="#"><img src="~/Content/lunbo/images/1.png" alt="" /></a></li>
+            <li><a href="#"><img src="~/Content/lunbo/images/2.png" alt="" /></a></li>
+            <li><a href="#"><img src="~/Content/lunbo/images/3.jpg" alt="" /></a></li>
+            <li><a href="#"><img src="~/Content/lunbo/images/4.jpg" alt="" /></a></li>
+        </ul>
+    </div>
+
+
+    <!-- 数据统计 start -->
+    <div class="count">
+        <div class="conbox">
+            <ul class="fn_cle">
+                <li class="data_count">
+                    <i class="count_icon">@*<img src="~/Content/ShouYe/images/clock.png" style="margin-top:15px;"/>*@</i>
+                    <div class="count_r">
+                        <h3 class="font_c ml5">数据统计</h3>
+                        <p>更新于2017-12-20</p>
+                    </div>
+                </li>
+                <li class="trade_m">
+                    <i class="count_icon trade_m">
+                        @*<img src="~/Content/ShouYe/images/clock1.png" style="margin-top:15px;"/>*@
+                    </i>
+                    <div class="count_r">
+                        <h3>
+                            <em class="f_s20">￥</em>
+                            <span id="loans"></span>
+                            <em>元</em>
+                        </h3>
+                        <p>累计交易金额</p>
+                    </div>
+                </li>
+                <li class="make_m">
+                    <i class="count_icon get_m"></i>
+                    <div class="count_r">
+                        <h3>
+                            <em class="f_s20">￥</em>
+                            <span id="un_amount"></span>
+                            <em>元</em>
+                        </h3>
+                        <p>总待回收金额</p>
+                    </div>
+                </li>
+                <li class="r_rate">
+                    <i class="count_icon r_rate"></i>
+                    <div class="count_r">
+                        <h3>
+                            <span>0.00</span>
+                            <em>%</em>
+                        </h3>
+                        <p>近期利率指数</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- 新标预告 start -->
+    <div class="conbox fn_cle">
+        <div class="n_tender_l">
+            <div class="left_ico"></div>
+            <div class="top_title fn_cle">
+                <span class="the_name"><a href="">小智</a></span>
+            </div>
+            <div class="fn_cle">
+                <div class="two_box_l">
+                    <p class="ttl">借款标开始时间</p>
+                    <div class="clock">
+                        <em style="color:#000000;">18</em>&nbsp;年&nbsp;
+                        <em style="color:#000000;">03</em>&nbsp;月&nbsp;
+                        <em style="color:#000000;">23</em>&nbsp;日&nbsp;
+                    </div>
+                    <span class="st_box">还款方式：等额本息</span>
+                </div>
+                <div class="two_box_r">
+                    <ul>
+                        <li class="fn_cle">
+                            <span class="tl">借款金额：</span>
+                            <span class="cn yl_cl"><em class="f_s18">22222</em>元</span>
+                        </li>
+                        <li class="fn_cle">
+                            <span class="tl">
+                                利率：
+                            </span>
+                            <span class="cn"><em class="f_s18">22.00</em>%</span>
+                        </li>
+                        <li class="fn_cle">
+                            <span class="tl">期限：</span>
+                            <span class="cn"><em class="f_s18">3</em>个月</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="n_tender_r">
+            <div class="web_notice">
+                <div class="notice_tit">
+                    <h2 class="fn_left font_c">网站公告</h2>
+                    <a href="" class="fn_rig">更多</a>
+                </div>
+                <div class="notice_list">
+                    <ul class="">
+                        <li>
+                            <a href="" target="_blank" title="互联网金融能量汇聚厦门 资源共享助力行业发展">互联网金融能量汇聚厦门</a>
+                            <span class="fn_rig">05-25</span>
+                        </li>
+                        <li>
+                            <a href="" target="_blank" title="​p2p监管草案已成型 “证券化业务”或被叫停">​p2p监管草案已成型</a>
+                            <span class="fn_rig">05-25</span>
+                        </li>
+                        <li>
+                            <a href="" target="_blank" title="监管草案初定P2P信息中介 银行将作为托管机构">监管草案初定P2P信息中介</a>
+                            <span class="fn_rig">05-25</span>
+                        </li>
+                        <li>
+                            <a href="" target="_blank" title="帝友入选中国互联网金融投资机构最受关注企业榜单11">帝友入选中国互联网金融投资机构最</a>
+                            <span class="fn_rig">04-27</span>
+                        </li>
+                        <li>
+                            <a href="" target="_blank" title="中国首家接受电视媒体专访的互联网金融综合服务提供商">中国首家接受电视媒体专访的互联网</a>
+                            <span class="fn_rig">04-20</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 新标预告 end -->
+    <!-- 理财项目 start -->
+    <div class="tender_list conbox">
+        <h2>理财项目</h2>
+        <ul>
+            <li class="tit">
+                <span class="pro_tit"><i class="pro_tit_bg"></i><em>项目名称</em></span>
+                <span class="bor_m txt_lf"><i class="bor_m_bg"></i><em>借款金额</em></span>
+                <span class="y_rate"><i class="y_rate_bg"></i><em>年利率</em></span>
+                <span class="bor_date"><i class="bor_date_bg"></i><em>借款期限</em></span>
+                <span class="t_pro"><i class="t_pro_bg"></i><em>投标进度</em></span>
+                <span class="t_status txt_cent"><i class="t_statu_bg"></i><em>操作</em></span>
+            </li>
+
+            <li style="height:auto;">
+                <div class="mt10" id="tbModular">
+
+                </div>
+            </li>
+
+            <li class="txt_cent more" id="gengdouid">
+                <a href="#">查看更多投资理财项目</a>
+            </li>
+        </ul>
+    </div>
+
+    <!-- 公司动态及公司新闻 start -->
+    <div class="conbox news fn_cle">
+        <div class="news_box fn_left">
+            <h2>行业动态</h2>
+            <ul>
+                <li>
+                    <span>2015-05-25</span>
+                    <a href="" target="_blank" title="互联网金融能量汇聚厦门 资源共享助力行业发展">互联网金融能量汇聚厦门</a>
+                </li>
+                <li>
+                    <span>2015-05-25</span>
+                    <a href="" target="_blank" title="​p2p监管草案已成型 “证券化业务”或被叫停">​p2p监管草案已成型</a>
+                </li>
+                <li>
+                    <span>2015-05-25</span>
+                    <a href="" target="_blank" title="监管草案初定P2P信息中介 银行将作为托管机构">监管草案初定P2P信息中介</a>
+                </li>
+                <li>
+                    <span>2015-04-27</span>
+                    <a href="" target="_blank" title="帝友入选中国互联网金融投资机构最受关注企业榜单11">帝友入选中国互联网金融投资机构</a>
+                </li>
+                <li class="txt_rg">
+                    <a href="" class="more">查看更多行业动态&gt;&gt;</a>
+                </li>
+            </ul>
+        </div>
+        <div class="news_box fn_rig">
+            <h2>常见问题</h2>
+            <ul>
+                <li>
+                    <span>2015-03-16</span>
+                    <a href="" target="_blank" title="关于第三方支付问题">关于第三方支付问题</a>
+                </li>
+                <li>
+                    <span>2015-02-27</span>
+                    <a href="" target="_blank" title="邮箱问题：邮箱激活收不到？">邮箱问题：邮箱激活收不到？</a>
+                </li>
+                <li>
+                    <span>2015-02-27</span>
+                    <a href="" target="_blank" title="短信问题：手机注册的时候，有时候收不到验证码？">短信问题：手机注册的时候，有时</a>
+                </li>
+                <li>
+                    <span>2015-02-09</span>
+                    <a href="" target="_blank" title="隐私和资料安全如何保证？">隐私和资料安全如何保证？</a>
+                </li>
+                <li class="txt_rg">
+                    <a href="" class="more">查看更多常见问题&gt;&gt;</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!-- footer start -->
+    <div class="footer">
+        <div class="conbox footer_top fn_cle">
+            <div class="fn_left f_top_left">
+                <div class="f_map">
+                    <ul class="fn_cle">
+                        <li>
+                            <a href="" target="_blank">关于我们</a>
+                        </li>
+                        <li>
+                            <a href="" target="_blank">安全保障</a>
+                        </li>
+                        <li>
+                            <a href="" target="_blank">媒体报道</a>
+                        </li>
+                        <li>
+                            <a href="" target="_blank">帮助中心</a>
+                        </li>
+                        <li>
+                            <a href="" target="_blank">联系我们</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="f_firends">
+                    <ul>
+                        <li>友情链接：</li>
+                        <li>
+                            <a href="" target="_blank">帝友官网</a>
+                        </li>
+                        <li>
+                            <em>|</em>
+                        </li>
+                        <li>
+                            <a href="" target="_blank">网贷天眼</a>
+                        </li>
+                        <li>
+                            <em>|</em>
+                        </li>
+                        <li>
+                            <a href="" target="_blank">禹州启惠</a>
+                        </li>
+                        <li>
+                            <em>|</em>
+                        </li>
+                        <li>
+                            <a href="" target="_blank">汇付天下</a>
+                        </li>
+                        <li>
+                            <em>|</em>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="fn_rig f_top_rig">
+                <h3>合作伙伴</h3>
+                <ul class="parther fn_cle">
+                    <li>
+                        <a href="" class="huifu" target="_blank">
+                            <img src="~/Content/ShouYe/0_admin_upload_1407294921608.jpg" title="帝友系统" width="100" height="60" />
+                        </a>
+                    </li>
+                    <li>
+                        <a href="" class="huifu" target="_blank">
+                            <img src="~/Content/ShouYe/1_admin_upload_1425105669802.png" title="测试合作伙伴" width="100" height="60" />
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer_bot">
+            <div class="conbox fn_cle">
+                <div class="verification fn_left">
+                    <a href="" title="诚信网站认证" target="_blank" class="credit"></a>
+                    <a href="" title="诺顿安全认证" target="_blank" class="norton"></a>
+                    <a href="http://www.diyou.cc/" title="公安网警平台" target="_blank" class="police"></a>
+                    <a href="http://www.diyou.cc/" title="工商网监" target="_blank" class="gongshang"></a>
+                </div>
+                <div class="fn_rig copyright">Copyright@2012-2014 闽ICP备12013734号-24 厦门帝网信息科技有限公司旗下 帝友系统</div>
+                <div class="fn_rig">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- footer end -->
+    <!-- 右侧联系我们 -->
+    <a id="ibangkf" href="http://www.ibangkf.com">客服系统</a>
+    <script type="text/javascript" src="http://c.ibangkf.com/i/c-youyou12355.js"></script>
+    <div class="diyoumask"></div>
+    <!-- 右侧联系我们 -->
+    <!-- 返回顶部 -->
+    <div class="back_right_box">
+        <a href="#" id="gotobtn" class="t_b_bor" title="返回顶部" style="display: inline;"></a>
+    </div>
+    <!-- 返回顶部 -->
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $.getJSON("/Main/SelectLoanList", function (data) {
+                $.each(data, function (i) {
+                    $("#tbModular").append("<div class='in_left' style='margin-top:10px;border-bottom:1px solid #ebebeb'>" + "<table class='invest_tab' border='0'>"
+                    + "<tr><td><span style='width:200px;'>" + data[i].Loantitle +"</span></td>"
+                    + "<td><span style='width:80px;'>" + data[i].LoanMoney + "元" + "</span></td>"
+                    + "<td><span style='width:220px;'>" + data[i].Rate + "%" + "</span></td>"
+                    + "<td><span style='width:90px;'>" + data[i].LoanDeadlineName + "</span></td>"
+                    + "<td><span style='width:400px;'>" + data[i].Scheduleinvestment + "%" + "<span class='t_status ver_top' style='width:180px;'><a class='mr_t10' href='#' id='MBuy3' onclick='loaanUPdata(" + data[i].LoanID + ")'>马上认购</a></span></span></td></tr></table></div>")
+                });
+            });
+
+            $.post("/Main/sesssinoselect", function (data) {
+                if (data == "success") {
+                    $("div").remove("#yuanlaiID");
+                }
+                else {
+                    $("div").remove("#userviweID");
+                }
+            });
+        });
+        //查询借款总额
+        $.post("/Main/SelectLoanMoney", function (data) {
+            $("#loans").text(data);
+        });
+        //查询待回收总额
+        $.post("/Main/SelectReturnMoney", function (data) {
+            $("#un_amount").text(data);
+        });
+        function loaanUPdata(LoanID) {
+            $.post("/Main/sesssinoselect", function (data) {
+                if (data == "success") {
+
+                    window.location.href ="/Invest/Invest/SubscribeIndex?LoanID=" + LoanID;
+                }
+                else {
+                    layer.confirm("请先登录？", {
+                        icon: 3,
+                        btn: ['确定', '取消']
+                        //按钮
+                    }, function (layerIndex) {
+                        var layerIndex = layer.load(0);//显示 加载层
+                        window.location.href = "/Main/Login";
+                    });
+                }
+            });
+
+
+        }
+        //我的账户
+        $("#MyAccountID").click(function () {
+            $.post("/Main/sesssinoselect", function (data) {
+                if (data == "success") {
+                    window.location.href = "/Personal/Personal/BaseIndex";
+                }
+                else {
+                    layer.confirm("请先登录？", {
+                        icon: 3,
+                        btn: ['确定', '取消']
+                        //按钮
+                    }, function (layerIndex) {
+                        var layerIndex = layer.load(0);//显示 加载层
+                        window.location.href = "/Main/Login";
+                    });
+                }
+            });
+        });
+        //我的投资
+        $("#myInvest").click(function () {
+            $.post("/Main/sesssinoselect", function (data) {
+                if (data == "success") {
+                    window.location.href = "/Invest/Invest/InvestIndex";
+                }
+                else {
+                    layer.confirm("请先登录？", {
+                        icon: 3,
+                        btn: ['确定', '取消']
+                        //按钮
+                    }, function (layerIndex) {
+                        var layerIndex = layer.load(0);//显示 加载层
+                        window.location.href = "/Main/Login";
+                    });
+                }
+            });
+        });
+        //马上认购
+        //$("#MBuy").click(function () {
+        //    $.post("/Main/sesssinoselect", function (data) {
+        //        if (data == "success") {
+        //            window.location.href = "/Invest/Invest/InvestIndex";
+        //        }
+        //        else {
+        //            layer.confirm("请先登录？", {
+        //                icon: 3,
+        //                btn: ['确定', '取消']
+        //                //按钮
+        //            }, function (layerIndex) {
+        //                var layerIndex = layer.load(0);//显示 加载层
+        //                window.location.href = "/Main/Login";
+        //            });
+        //        }
+        //    });
+        //});
+        //$("#MBuy1").click(function () {
+        //    $.post("/Main/sesssinoselect", function (data) {
+        //        if (data == "success") {
+        //            window.location.href = "/Invest/Invest/InvestIndex";
+        //        }
+        //        else {
+        //            layer.confirm("请先登录？", {
+        //                icon: 3,
+        //                btn: ['确定', '取消']
+        //                //按钮
+        //            }, function (layerIndex) {
+        //                var layerIndex = layer.load(0);//显示 加载层
+        //                window.location.href = "/Main/Login";
+        //            });
+        //        }
+        //    });
+        //});
+        //$("#MBuy2").click(function () {
+        //    $.post("/Main/sesssinoselect", function (data) {
+        //        if (data == "success") {
+        //            window.location.href = "/Invest/Invest/InvestIndex";
+        //        }
+        //        else {
+        //            layer.confirm("请先登录？", {
+        //                icon: 3,
+        //                btn: ['确定', '取消']
+        //                //按钮
+        //            }, function (layerIndex) {
+        //                var layerIndex = layer.load(0);//显示 加载层
+        //                window.location.href = "/Main/Login";
+        //            });
+        //        }
+        //    });
+        //});
+        //$("#MBuy3").click(function () {
+        //    $.post("/Main/sesssinoselect", function (data) {
+        //        if (data == "success") {
+        //            window.location.href = "/Invest/Invest/InvestIndex";
+        //        }
+        //        else {
+        //            layer.confirm("请先登录？", {
+        //                icon: 3,
+        //                btn: ['确定', '取消']
+        //                //按钮
+        //            }, function (layerIndex) {
+        //                var layerIndex = layer.load(0);//显示 加载层
+        //                window.location.href = "/Main/Login";
+        //            });
+        //        }
+        //    });
+        //});
+        $("#gengdouid").click(function () {
+            $.post("/Main/sesssinoselect", function (data) {
+                if (data == "success") {
+                    window.location.href = "/Invest/Invest/InvestIndex";
+                }
+                else {
+                    layer.confirm("请先登录？", {
+                        icon: 3,
+                        btn: ['确定', '取消']
+                        //按钮
+                    }, function (layerIndex) {
+                        var layerIndex = layer.load(0);//显示 加载层
+                        window.location.href = "/Main/Login";
+                    });
+                }
+            });
+        });
+
+
+    </script>
+</body>
+</html>

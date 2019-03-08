@@ -1,0 +1,216 @@
+.xdsoft_datetimepicker {
+	background: rgb(255, 255, 255); border-width: 1px; border-style: solid; border-color: rgb(204, 204, 204) rgb(204, 204, 204) rgb(187, 187, 187); padding: 2px 8px 8px 0px; color: rgb(51, 51, 51); font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif; display: none; position: absolute; z-index: 9999; box-sizing: border-box; box-shadow: 0px 5px 15px -5px rgba(0,0,0,0.506); -moz-box-sizing: border-box;
+}
+.xdsoft_datetimepicker iframe {
+	background: none; border: currentColor; border-image: none; left: 0px; top: 0px; width: 75px; height: 210px; position: absolute;
+}
+.xdsoft_datetimepicker button {
+	border: currentColor !important; border-image: none !important;
+}
+.xdsoft_noselect {
+	-ms-user-select: none; -webkit-user-select: none; -moz-user-select: none; user-select: none; -khtml-user-select: none; -webkit-touch-callout: none; -o-user-select: none;
+}
+.xdsoft_noselect::selection {
+	background: none;
+}
+.xdsoft_datetimepicker.xdsoft_inline {
+	display: inline-block; position: static; box-shadow: none;
+}
+.xdsoft_datetimepicker * {
+	margin: 0px; padding: 0px; box-sizing: border-box; -moz-box-sizing: border-box;
+}
+.xdsoft_datetimepicker .xdsoft_datepicker {
+	display: none;
+}
+.xdsoft_datetimepicker .xdsoft_timepicker {
+	display: none;
+}
+.xdsoft_datetimepicker .xdsoft_datepicker.active {
+	display: block;
+}
+.xdsoft_datetimepicker .xdsoft_timepicker.active {
+	display: block;
+}
+.xdsoft_datetimepicker .xdsoft_datepicker {
+	width: 224px; margin-left: 8px; float: left;
+}
+.xdsoft_datetimepicker .xdsoft_timepicker {
+	width: 58px; text-align: center; margin-top: 0px; margin-left: 8px; float: left;
+}
+.xdsoft_datetimepicker .xdsoft_datepicker.active + .xdsoft_timepicker {
+	margin-top: 8px; margin-bottom: 3px;
+}
+.xdsoft_datetimepicker .xdsoft_mounthpicker {
+	text-align: center; position: relative;
+}
+.xdsoft_datetimepicker .xdsoft_prev {
+	background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFoAAAAeCAYAAACsYQl4AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDozQjRCQjRGREU4MkNFMzExQjRDQkIyRDJDOTdBRUI1MCIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDpCQjg0OUYyNTZDODAxMUUzQjMwM0IwMERBNUU0ODQ5NSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDpCQjg0OUYyNDZDODAxMUUzQjMwM0IwMERBNUU0ODQ5NSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M2IChXaW5kb3dzKSI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkI5NzE3MjFBN0E2Q0UzMTFBQjJEQjgzMDk5RTNBNTdBIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjNCNEJCNEZERTgyQ0UzMTFCNENCQjJEMkM5N0FFQjUwIi8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+aQvATgAAAfVJREFUeNrsmr1OwzAQxzGtkPjYEAuvVGAvfQIGRKADE49gdLwDDwBiZ2RhQUKwICQkWLsgFiRQuIBTucFJ/XFp4+hO+quqnZ4uvzj2nV2RpukCW/22yAgYNINmc7du7DcghCjrkqgOKjF1znpt6rZ0AGWQj7TvCU8d9UM+QAGDrhdyc2Bnc1WVVPBev9V8lBnY+rDwncWZThG4xk4lmxtJy2AHgoY/FySgbSBPwPZ8mEXbQx3aDERb0EbYAYFC7pcAtAvkMWwC0D3NX58S9D/YnoGC7nPWr3Dg9JTbtuHhDShBT8D2CBSK/iIEvVXxpuxSgh7DdgwUTL4iA92zmJb6lKB/YTsECmV+IgK947AGDIqgQ/LojsO135Hn51l2cWlov0JdGNrPUceueXRwilSVgkUyom9Rd6gbLfYTDeO+1v6orn0InTogYDGUkYLO3/wc9BdqqTCKP1Tfi+oTIaCBIL2TES+GTyruT9S61p6BHam+99DFEAgLFklYsIBHwSI9QY80H5ta+1rB/6ovaKihBJeEJbgLbBlQgl+j3lDPqA2tfQV1j3pVn8s+oKHGTSVJ+FqDLeR5bCqJ2E/BCycsoLZETXaKGs7rhKVt+9HZScrZNMi88V8P7LlDbvOZYaJVpMMmBCT4n0o8dTBoNgbdWPsRYACs3r7XyNfbnAAAAABJRU5ErkJggg==");
+}
+.xdsoft_datetimepicker .xdsoft_next {
+	background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFoAAAAeCAYAAACsYQl4AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDozQjRCQjRGREU4MkNFMzExQjRDQkIyRDJDOTdBRUI1MCIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDpCQjg0OUYyNTZDODAxMUUzQjMwM0IwMERBNUU0ODQ5NSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDpCQjg0OUYyNDZDODAxMUUzQjMwM0IwMERBNUU0ODQ5NSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M2IChXaW5kb3dzKSI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkI5NzE3MjFBN0E2Q0UzMTFBQjJEQjgzMDk5RTNBNTdBIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjNCNEJCNEZERTgyQ0UzMTFCNENCQjJEMkM5N0FFQjUwIi8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+aQvATgAAAfVJREFUeNrsmr1OwzAQxzGtkPjYEAuvVGAvfQIGRKADE49gdLwDDwBiZ2RhQUKwICQkWLsgFiRQuIBTucFJ/XFp4+hO+quqnZ4uvzj2nV2RpukCW/22yAgYNINmc7du7DcghCjrkqgOKjF1znpt6rZ0AGWQj7TvCU8d9UM+QAGDrhdyc2Bnc1WVVPBev9V8lBnY+rDwncWZThG4xk4lmxtJy2AHgoY/FySgbSBPwPZ8mEXbQx3aDERb0EbYAYFC7pcAtAvkMWwC0D3NX58S9D/YnoGC7nPWr3Dg9JTbtuHhDShBT8D2CBSK/iIEvVXxpuxSgh7DdgwUTL4iA92zmJb6lKB/YTsECmV+IgK947AGDIqgQ/LojsO135Hn51l2cWlov0JdGNrPUceueXRwilSVgkUyom9Rd6gbLfYTDeO+1v6orn0InTogYDGUkYLO3/wc9BdqqTCKP1Tfi+oTIaCBIL2TES+GTyruT9S61p6BHam+99DFEAgLFklYsIBHwSI9QY80H5ta+1rB/6ovaKihBJeEJbgLbBlQgl+j3lDPqA2tfQV1j3pVn8s+oKHGTSVJ+FqDLeR5bCqJ2E/BCycsoLZETXaKGs7rhKVt+9HZScrZNMi88V8P7LlDbvOZYaJVpMMmBCT4n0o8dTBoNgbdWPsRYACs3r7XyNfbnAAAAABJRU5ErkJggg==");
+}
+.xdsoft_datetimepicker .xdsoft_today_button {
+	background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFoAAAAeCAYAAACsYQl4AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDozQjRCQjRGREU4MkNFMzExQjRDQkIyRDJDOTdBRUI1MCIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDpCQjg0OUYyNTZDODAxMUUzQjMwM0IwMERBNUU0ODQ5NSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDpCQjg0OUYyNDZDODAxMUUzQjMwM0IwMERBNUU0ODQ5NSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M2IChXaW5kb3dzKSI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkI5NzE3MjFBN0E2Q0UzMTFBQjJEQjgzMDk5RTNBNTdBIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjNCNEJCNEZERTgyQ0UzMTFCNENCQjJEMkM5N0FFQjUwIi8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+aQvATgAAAfVJREFUeNrsmr1OwzAQxzGtkPjYEAuvVGAvfQIGRKADE49gdLwDDwBiZ2RhQUKwICQkWLsgFiRQuIBTucFJ/XFp4+hO+quqnZ4uvzj2nV2RpukCW/22yAgYNINmc7du7DcghCjrkqgOKjF1znpt6rZ0AGWQj7TvCU8d9UM+QAGDrhdyc2Bnc1WVVPBev9V8lBnY+rDwncWZThG4xk4lmxtJy2AHgoY/FySgbSBPwPZ8mEXbQx3aDERb0EbYAYFC7pcAtAvkMWwC0D3NX58S9D/YnoGC7nPWr3Dg9JTbtuHhDShBT8D2CBSK/iIEvVXxpuxSgh7DdgwUTL4iA92zmJb6lKB/YTsECmV+IgK947AGDIqgQ/LojsO135Hn51l2cWlov0JdGNrPUceueXRwilSVgkUyom9Rd6gbLfYTDeO+1v6orn0InTogYDGUkYLO3/wc9BdqqTCKP1Tfi+oTIaCBIL2TES+GTyruT9S61p6BHam+99DFEAgLFklYsIBHwSI9QY80H5ta+1rB/6ovaKihBJeEJbgLbBlQgl+j3lDPqA2tfQV1j3pVn8s+oKHGTSVJ+FqDLeR5bCqJ2E/BCycsoLZETXaKGs7rhKVt+9HZScrZNMi88V8P7LlDbvOZYaJVpMMmBCT4n0o8dTBoNgbdWPsRYACs3r7XyNfbnAAAAABJRU5ErkJggg==");
+}
+.xdsoft_datetimepicker .xdsoft_prev {
+	background-position: -20px 0px; float: left;
+}
+.xdsoft_datetimepicker .xdsoft_today_button {
+	background-position: -70px 0px; margin-left: 5px; float: left;
+}
+.xdsoft_datetimepicker .xdsoft_next {
+	background-position: 0px 0px; float: right;
+}
+.xdsoft_datetimepicker .xdsoft_next:active {
+	
+}
+.xdsoft_datetimepicker .xdsoft_prev:active {
+	
+}
+.xdsoft_datetimepicker .xdsoft_next {
+	padding: 0px; outline: currentColor; border: 0px currentColor; border-image: none; width: 20px; height: 30px; text-indent: 100%; overflow: hidden; display: block; white-space: nowrap; position: relative; cursor: pointer; opacity: 0.3; background-repeat: no-repeat; background-color: transparent;
+}
+.xdsoft_datetimepicker .xdsoft_prev {
+	padding: 0px; outline: currentColor; border: 0px currentColor; border-image: none; width: 20px; height: 30px; text-indent: 100%; overflow: hidden; display: block; white-space: nowrap; position: relative; cursor: pointer; opacity: 0.3; background-repeat: no-repeat; background-color: transparent;
+}
+.xdsoft_datetimepicker .xdsoft_today_button {
+	padding: 0px; outline: currentColor; border: 0px currentColor; border-image: none; width: 20px; height: 30px; text-indent: 100%; overflow: hidden; display: block; white-space: nowrap; position: relative; cursor: pointer; opacity: 0.3; background-repeat: no-repeat; background-color: transparent;
+}
+.xdsoft_datetimepicker .xdsoft_timepicker .xdsoft_prev {
+	background-position: -40px -15px; width: 30px; height: 15px; margin-top: 7px; margin-left: 14px; float: none; display: block;
+}
+.xdsoft_datetimepicker .xdsoft_timepicker .xdsoft_next {
+	background-position: -40px -15px; width: 30px; height: 15px; margin-top: 7px; margin-left: 14px; float: none; display: block;
+}
+.xdsoft_datetimepicker .xdsoft_timepicker .xdsoft_prev {
+	background-position: -40px 0px; margin-top: 0px; margin-bottom: 7px;
+}
+.xdsoft_datetimepicker .xdsoft_timepicker .xdsoft_time_box {
+	height: 151px; overflow: hidden; border-bottom-color: rgb(221, 221, 221); border-bottom-width: 1px; border-bottom-style: solid;
+}
+.xdsoft_datetimepicker .xdsoft_timepicker .xdsoft_time_box > div > div {
+	background: rgb(245, 245, 245); height: 25px; text-align: center; color: rgb(102, 102, 102); line-height: 25px; font-size: 12px; border-top-color: rgb(221, 221, 221); border-top-width: 1px; border-bottom-width: 0px; border-top-style: solid; border-collapse: collapse; cursor: pointer;
+}
+.xdsoft_datetimepicker .xdsoft_timepicker .xdsoft_time_box > div > div:first-child {
+	border-top-width: 0px;
+}
+.xdsoft_datetimepicker .xdsoft_today_button:hover {
+	opacity: 1;
+}
+.xdsoft_datetimepicker .xdsoft_next:hover {
+	opacity: 1;
+}
+.xdsoft_datetimepicker .xdsoft_prev:hover {
+	opacity: 1;
+}
+.xdsoft_datetimepicker .xdsoft_label {
+	margin: 0px; padding: 5px 3px; width: 182px; text-align: center; line-height: 20px; font-size: 14px; font-weight: bold; float: left; display: inline; position: relative; z-index: 9999; cursor: pointer; background-color: rgb(255, 255, 255);
+}
+.xdsoft_datetimepicker .xdsoft_label:hover {
+	text-decoration: underline;
+}
+.xdsoft_datetimepicker .xdsoft_label > .xdsoft_select {
+	background: rgb(255, 255, 255); border: 1px solid rgb(204, 204, 204); border-image: none; top: 30px; right: 0px; display: none; position: absolute; z-index: 101; -ms-overflow-y: hidden; max-height: 160px;
+}
+.xdsoft_datetimepicker .xdsoft_label > .xdsoft_select.xdsoft_monthselect {
+	right: -7px;
+}
+.xdsoft_datetimepicker .xdsoft_label > .xdsoft_select.xdsoft_yearselect {
+	right: 2px;
+}
+.xdsoft_datetimepicker .xdsoft_label > .xdsoft_select > div > .xdsoft_option:hover {
+	background: rgb(255, 128, 0); color: rgb(255, 255, 255);
+}
+.xdsoft_datetimepicker .xdsoft_label > .xdsoft_select > div > .xdsoft_option {
+	padding: 2px 10px 2px 5px;
+}
+.xdsoft_datetimepicker .xdsoft_label > .xdsoft_select > div > .xdsoft_option.xdsoft_current {
+	background: rgb(51, 170, 255); color: rgb(255, 255, 255); font-weight: 700; box-shadow: inset 0px 1px 3px 0px #178fe5;
+}
+.xdsoft_datetimepicker .xdsoft_month {
+	width: 65px; text-align: right;
+}
+.xdsoft_datetimepicker .xdsoft_calendar {
+	clear: both;
+}
+.xdsoft_datetimepicker .xdsoft_year {
+	width: 56px;
+}
+.xdsoft_datetimepicker .xdsoft_calendar table {
+	width: 100%; border-collapse: collapse;
+}
+.xdsoft_datetimepicker .xdsoft_calendar td > div {
+	padding-right: 5px;
+}
+.xdsoft_datetimepicker .xdsoft_calendar th {
+	height: 25px;
+}
+.xdsoft_datetimepicker .xdsoft_calendar td {
+	background: rgb(245, 245, 245); padding: 0px; border: 1px solid rgb(221, 221, 221); border-image: none; width: 14.28%; height: 25px; text-align: right; color: rgb(102, 102, 102); font-size: 12px; border-collapse: collapse; cursor: pointer;
+}
+.xdsoft_datetimepicker .xdsoft_calendar th {
+	background: rgb(245, 245, 245); padding: 0px; border: 1px solid rgb(221, 221, 221); border-image: none; width: 14.28%; height: 25px; text-align: right; color: rgb(102, 102, 102); font-size: 12px; border-collapse: collapse; cursor: pointer;
+}
+.xdsoft_datetimepicker .xdsoft_calendar th {
+	background: rgb(241, 241, 241);
+}
+.xdsoft_datetimepicker .xdsoft_calendar td.xdsoft_today {
+	color: rgb(51, 170, 255);
+}
+.xdsoft_datetimepicker .xdsoft_calendar td.xdsoft_default {
+	background: rgb(51, 170, 255); color: rgb(255, 255, 255); font-weight: 700; box-shadow: inset 0px 1px 3px 0px #178fe5;
+}
+.xdsoft_datetimepicker .xdsoft_calendar td.xdsoft_current {
+	background: rgb(51, 170, 255); color: rgb(255, 255, 255); font-weight: 700; box-shadow: inset 0px 1px 3px 0px #178fe5;
+}
+.xdsoft_datetimepicker .xdsoft_timepicker .xdsoft_time_box > div > div.xdsoft_current {
+	background: rgb(51, 170, 255); color: rgb(255, 255, 255); font-weight: 700; box-shadow: inset 0px 1px 3px 0px #178fe5;
+}
+.xdsoft_datetimepicker .xdsoft_calendar td.xdsoft_other_month {
+	opacity: 0.5;
+}
+.xdsoft_datetimepicker .xdsoft_calendar td.xdsoft_disabled {
+	opacity: 0.5;
+}
+.xdsoft_datetimepicker .xdsoft_time_box > div > div.xdsoft_disabled {
+	opacity: 0.5;
+}
+.xdsoft_datetimepicker .xdsoft_calendar td.xdsoft_other_month.xdsoft_disabled {
+	opacity: 0.2;
+}
+.xdsoft_datetimepicker .xdsoft_calendar td:hover {
+	background: rgb(255, 128, 0) !important; color: rgb(255, 255, 255) !important; box-shadow: none !important;
+}
+.xdsoft_datetimepicker .xdsoft_timepicker .xdsoft_time_box > div > div:hover {
+	background: rgb(255, 128, 0) !important; color: rgb(255, 255, 255) !important; box-shadow: none !important;
+}
+.xdsoft_datetimepicker .xdsoft_calendar td.xdsoft_disabled:hover {
+	background: inherit !important; color: inherit !important; box-shadow: inherit !important;
+}
+.xdsoft_datetimepicker .xdsoft_timepicker .xdsoft_time_box > div > div.xdsoft_disabled:hover {
+	background: inherit !important; color: inherit !important; box-shadow: inherit !important;
+}
+.xdsoft_datetimepicker .xdsoft_calendar th {
+	text-align: center; color: rgb(153, 153, 153); font-weight: 700; cursor: default;
+}
+.xdsoft_datetimepicker .xdsoft_copyright {
+	color: rgb(204, 204, 204) !important; clear: both; font-size: 10px; margin-left: 8px; float: none;
+}
+.xdsoft_datetimepicker .xdsoft_copyright a {
+	color: rgb(238, 238, 238) !important;
+}
+.xdsoft_datetimepicker .xdsoft_copyright a:hover {
+	color: rgb(170, 170, 170) !important;
+}
+.xdsoft_time_box {
+	border: 1px solid rgb(204, 204, 204); border-image: none; position: relative;
+}
+.xdsoft_scrollbar > .xdsoft_scroller {
+	background: rgb(204, 204, 204) !important; border-radius: 3px; height: 20px;
+}
+.xdsoft_scrollbar {
+	top: 0px; width: 7px; right: 0px; bottom: 0px; position: absolute; cursor: pointer;
+}
+.xdsoft_scroller_box {
+	position: relative;
+}

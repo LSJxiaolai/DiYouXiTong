@@ -1,0 +1,745 @@
+﻿@charset "utf-8";
+/**************
+ style.css Document
+ Author:james;
+ Edited Time:2013-11-06;
+ Updated By:james;
+ Updated Time:2013-11-07;
+ Website:http://www.diyou.cn 
+***************/
+
+/*** header modules start ***/
+.header{border-bottom:1px solid #eaeaea;   box-shadow: 1px 1px 3px #E2E2E2;}
+.header .header_top{background:#f8f8f8;border-bottom:1px solid #eaeaea;height:40px;  }
+.header .header_top .contact span{font-size:12px;line-height:40px;color:#000000}
+.header .header_top .contact span.tel em{font-size:16px;margin-right:10px}
+.header .header_top .telico{background:url(images/tel_ico.png) no-repeat;width:18px;height:17px;display:inline-block;}
+.header .header_top .top_rig ul li{float:left;}
+.header .header_top .top_rig a{display:inline-block;line-height:40px;border-left: 1px solid #dddddd;padding:0px 10px;color:#333333;margin:0px; font-size:14px}
+    .header .header_top .top_rig a.helpico {
+        background: url('images/help_ico.png') no-repeat 8px 14px;
+        /*background:url(images/help_ico.png) no-repeat 8px 14px;*/
+        padding: 0 10px 0 30px;
+    }
+.header .header_top .top_rig a.helpico:hover{/*background:url(images/help_ico_hover.png) no-repeat 8px 14px #00bffc;*/color:#fff}
+.header .header_top .top_rig a.reg{color:#fb995c}
+.header .header_top .top_rig a.login{color:#349cd8}
+.header .header_top .top_rig a:hover{background:#00bffc;color:#fff}
+.header .header_cont{padding:15px 0px 25px 0px}
+.header .header_cont h1{}
+.header .header_cont .navbar{margin-top:15px;margin-left:50px;position:relative;}
+.header .header_cont .navbar li.ui_nav_item{float:left;display:inline;margin-left:40px;position:relative}
+.header .header_cont .navbar li.ui_nav_item a{font-size:16px;display:inline-block;line-height: 30px;color:#333;}
+.header .header_cont .navbar li.ui_nav_item a:hover{color:#ff9900}
+.header .header_cont .navbar li.now a{color:#ff9900}
+.header .header_cont .navbar li .nav_dropdown{display:none;position: absolute;left: 50%;margin-left: -60px; top:38px;padding: 5px 0;width:115px;background: #fff;border: 1px solid #e0e0e0;-webkit-box-shadow: 0 0 3px -1px #ccc;-moz-box-shadow: 0 0 3px -1px #ccc;box-shadow: 0 0 3px -1px #ccc;border-radius:5px}
+.header .header_cont .navbar li:hover .nav_dropdown{display:block}
+.header .header_cont .navbar li .nav_dropdown li{text-align:center;}
+.header .header_cont .navbar li .nav_dropdown li a{font-size:14px;line-height:30px;color:#333;}
+.header .header_cont .navbar li .nav_dropdown li.arrow{position: absolute;top: -10px;left: 0;}
+.header .header_cont .navbar li .nav_dropdown li.arrow span{display: block;width: 115px;height: 10px;/*background: url(images/nav_arrow.png) no-repeat center center;*/}
+.header .header_cont .follow {margin-top:20px}
+    .header .header_cont .follow .follow_list {
+        display: inline;
+        float: left;
+        width: 24px;
+        height: 24px;
+        border-radius: 12px;
+        line-height: 30px;
+        background: url('images/social_icons.png');
+        /*background-image: url("images/icons/social_icons.png");*/
+        background-repeat: no-repeat;
+        -webkit-transition: all .3s ease-in-out;
+        -moz-transition: all .3s ease-in-out;
+        -o-transition: all .3s ease-in-out;
+        -ms-transition: all .3s ease-in-out;
+        transition: all .3s ease-in-out;
+        margin-right: 5px;
+        cursor: pointer;
+        vertical-align: top;
+    }
+.header .header_cont .follow .follow_sina{background-position: -1px -192px;border: 1px solid #ddd;}
+.header .header_cont .follow .follow_sina:hover{background-position: -1px -216px;background-color:#d94a39;border:1px solid #d94a39;}
+.header .header_cont .follow .follow_sina .popover{left:990px;top:110px}
+.header .header_cont .follow .follow_qq{background-position: -49px -192px;border: 1px solid #ddd;position:relative; z-index:999;}
+.header .header_cont .follow .follow_qq:hover{background-position: -49px -216px;background-color:#2a9cd5;border:1px solid #2a9cd5;}
+.header .header_cont .follow .follow_wx{background-position: -24px -192px;border: 1px solid #ddd; position:relative; z-index:999;}
+.header .header_cont .follow .follow_wx:hover{background-position: -24px -216px;background-color:#00c500;border:1px solid #00c500;}
+.header .header_cont .follow .follow_wb{background-position: -97px -192px;border: 1px solid #ddd;}
+.header .header_cont .follow .follow_wb:hover{background-position: -97px -216px;background-color:#73cff1;border:1px solid #73cff1;}
+.header .header_cont .member{float:left;margin: 15px 0px 0px 15px;display:inline-block;padding-left:15px;font:24px/35px "Microsoft YaHei";border-left:2px solid #a0a0a0;color:#a0a0a0}
+.header .header_cont .follow .wx_ewm{width:92px; display:none; z-index:99;  position:absolute; top:25px; left:-36px;}
+.header .header_cont .follow_wx:hover .wx_ewm{ display:block;}
+.header .header_cont .follow .wx_ewm .arrow{ display:block; height:10px; /*background:url(images/nav_arrow.png) no-repeat scroll center 0;*/ position:relative;}
+.header .header_cont .follow .wx_ewm .arrow_img{background:#fff;border:1px solid #e2e2e2; margin-top:-1px;}
+.header .header_cont .follow .wx_ewm img{ width:90px; height:90px;}
+.header .header_cont .follow .qq_info .arrow{ display:block; height:10px; /*background:url(images/nav_arrow.png) no-repeat scroll center 0;*/ position:relative;}
+.header .header_cont .follow .qq_info{width:120px;display:none; z-index:99; position:absolute; top:25px; left:-48px;}
+.header .header_cont .follow_qq:hover .qq_info{ display:block;}
+.header .header_cont .follow .qq_info .arrow_qq{background:#fff;border:1px solid #e2e2e2; padding:5px; margin-top:-1px;}
+.arrow_qq .qqcall dt{ font:14px 'Microsoft yahei'; color:#333; text-align:center; margin-bottom:5px;}
+.arrow_qq .qqcall dd {font:12px/24px 'Microsoft yahei'; color:#333;}
+.arrow_qq .qqcall dd .full{color:#ccc; cursor: text; text-decoration: none; font-size:12px;}
+.arrow_qq .qqcall dd a{color:#349cd8; text-decoration: underline;}
+/*** header modules end   ***/
+
+/*** footer modules start ***/
+.footer{border-top:1px solid #e3e3e3;margin-top:50px}
+.footer_top {padding:15px 0px;}
+.f_top_left{width: 700px;}
+.f_top_left .f_map{padding-bottom:15px;border-bottom:1px dashed #e3e3e3}
+.f_top_left .f_map ul li{float:left}
+.f_top_left .f_map ul li a{font-size:14px;display:inline-block;border-radius:3px;padding:3px 10px;line-height:20px;margin-right:10px}
+.f_top_left .f_map ul li a:hover{background:#eeeeee;}
+.f_top_left .f_firends{padding:20px 0px}
+.f_top_left .f_firends ul li{float:left;}
+.f_top_left .f_firends ul li a.tit{color:#333333;font-weight:bold}
+.f_top_left .f_firends ul li em{margin:0px 8px;color:#999999;}
+.f_top_rig{width:220px;}
+.f_top_rig .parther{margin-top:10px}
+.f_top_rig .parther li{ float: left; display:inline;width: 100px; height: 35px;  margin-right:10px;margin-bottom:10px;} 
+.f_top_rig .parther li a{ display:inline-block; width: 100px; height: 35px;}
+.f_top_rig .parther li a img{width: 100px; height: 35px;}
+
+.footer_bot{background:#333333;padding:20px 0px}
+    .footer_bot .verification a {
+        display: block;
+        height: 50px;
+        margin: 0 10px;
+        background: url('images/footer_icons.png');
+        /*background: url(images/icons/footer_icons.png) no-repeat 0 0;*/
+        float: left;
+    }
+.footer_bot .verification a.credit{width: 96px;background-position: 0px -2px;}
+.footer_bot .verification a.credit:hover{background-position: 0px -52px;}
+.footer_bot .verification a.norton{width: 65px;background-position: -96px -2px;}
+.footer_bot .verification a.norton:hover{background-position: -96px -52px;}
+.footer_bot .verification a.police{width: 42px;background-position: -161px -2px;}
+.footer_bot .verification a.police:hover{width: 42px;background-position: -161px -52px;}
+.footer_bot .verification a.gongshang{width: 28px;background-position: -204px -2px;}
+.footer_bot .verification a.gongshang:hover{width: 28px;background-position: -204px -52px;}
+.footer_bot .copyright{color:#b0b0b0;font-size:14px;margin-top:15px}
+.footer_bot .copyright span{color:#ffffff;}
+/*** footer modules end   ***/
+
+
+
+
+/***** back to top and counter module start *****/
+.back_right_box {height: 50px;left: 50%;line-height: 20px;margin: 0 0 0 530px;
+position: fixed;_position: absolute;bottom: 88px;_top: expression(eval(document.documentElement.scrollTop+document.documentElement.clientHeight-this.offsetHeight-(parseInt(this.currentStyle.marginTop,10)||44)-(parseInt(this.currentStyle.marginBottom,10)||44)));z-index: 0;}
+.back_right_box .t_b_bor {height: 50px;width: 48px;position: absolute;display: none;
+background: url(images/go_Top.gif) no-repeat 0 0;cursor: pointer;z-index: 99;}
+/***** back to top and counter module end   *****/
+
+/****表单验证 错误样式  wqs***/
+label.error{
+    color: red;
+}
+span.error{
+    color: red;
+}
+
+/***** users dialogs form css modules start *****/
+.ui_buttons{text-align: center;margin-bottom: 30px;}
+.item{margin:15px 0px}
+label.u_label{display: inline-block;float: left;margin-right: 15px;text-align: right;width: 200px;font: 14px/24px "Microsoft YaHei";vertical-align: middle;}
+.u_radio {vertical-align: middle;}
+label.u_radio_label{vertical-align: middle;margin-right: 10px;font:14px/24px "Microsoft YaHei"}
+label.u_chebox_label{vertical-align: middle;margin-right: 10px;font:14px/24px "Microsoft YaHei"}
+.u_input{width: 230px;padding: 5px;height: 24px;font-size: 14px;font-family:"Microsoft YaHei";-moz-border-radius: 3px;-webkit-border-radius: 2px;border-radius: 2px;border: 1px solid #e0e0e0;color:#999999}
+.u_chebox{display:inline-block;vertical-align:middle}
+.u_textarea{width:450px;height:70px;padding:5px;border:1px solid #e2e2e2;}
+.u_span{display: inline-block;font: 14px/24px "Microsoft YaHei";vertical-align: middle;}
+.u_span img{vertical-align: middle;}
+.u_sel{border: #CDCDCD solid 1px;font-size: 13px;padding:4px 3px;border-radius: 3px;}
+.u_sub,.dialog_confirm{display: inline-block;overflow:visible;color: #fff;font: 18px/24px "Microsoft YaHei";padding: 6px 20px;margin: 10px 10px 0px 0px;border-radius: 3px;background: #0697DA;cursor: pointer;}
+.u_sub:hover,.dialog_confirm{background: #0073b6;}
+.dialog_cancel{display: inline-block;overflow:visible;color: #fff;font: 18px/24px "Microsoft YaHei";padding: 6px 20px;margin: 10px 10px 0px 0px;border-radius: 3px;background: #c4ccd1;cursor: pointer;}
+.form_box{padding:0px 10px;}
+.form_box h3{padding-left:165px;font:bold 16px/26px "Microsoft YaHei"}
+.form_box .notice{padding-left:50px;}
+.form_box .notice span{font:16px/40px "Microsoft YaHei";vertical-align:middle}
+.form_box .notice i.icon{width:40px;height:40px;margin:0px 10px;vertical-align:middle}
+.form_box .notice i.i_yes{background-position:0px -161px}
+.form_box .notice i.i_warn{background-position:-109px -77px}
+label.uf_label{display: inline-block;float: left;margin-right: 15px;text-align: right;width: 130px;font: 15px/26px "Microsoft YaHei";vertical-align: middle;}
+.uf_span{display: inline-block;font: 15px/26px "Microsoft YaHei";vertical-align: middle;}
+/***** users dialogs form css modules end   *****/
+
+/***** upload users avatar module start *****/
+.upload_avatar{min-width:350px;width:350px;padding:50px;}
+.upload_avatar .u_sub{padding:6px 25px}
+.upload_avatar .cancle{background:#c4ccd1}
+/***** upload users avatar module end   *****/
+
+
+/***** 流转标 普通标 投标弹窗页面的表格css start *****/
+.nor_tender_sub{color: #fff;font: 20px/30px "Microsoft YaHei";padding: 5px 35px;border-radius: 3px;cursor: pointer;overflow: visible;background: #0697DA;}
+.nor_tender_sub:hover{background: #0073b6;}
+.roam_tender_sub{color: #fff;font: 20px/30px "Microsoft YaHei";padding: 5px 35px;border-radius: 3px;cursor: pointer;overflow: visible;background: #f9a130;}
+.roam_tender_sub:hover{background: #ef931c;}
+.money_txt {position: relative;}
+.money_txt .basic_input{width:150px}
+.money_txt span.money_type {position: absolute;top: 7px;right: 5px;}
+span.money_type {font-size: 14px;font-family: "Microsoft YaHei";margin-left: -20px; display:inline-block; position:absolute; margin-top:8px; right:10;margin-top:5px\0; margin-right:5px;}
+a.approve_btn{display:inline-block;color: #fff;font: 20px/30px "Microsoft YaHei";padding: 5px 35px;border-radius: 3px;cursor: pointer;overflow: visible;background: #0697DA;}
+a.approve_btn:hover{background: #0073b6;}
+
+.roam_tender{}
+.dy_item_cont{padding:0px 20px}
+.dy_item{margin: 10px 0px;font-size: 12px;font-family:"simsun";}
+.roam_tender .notice{border-bottom:1px solid #e2e2e2;padding:0px 20px 10px 20px}
+.roam_tender .notice a.a_link{margin-left:20px}
+.roam_tender .tender_nums .tender_nums_tit{display: inline-block;float: left;margin-right: 5px;
+text-align: right;width: 100px;font: 20px/24px "Microsoft YaHei";vertical-align: middle;color:#000}
+.dy_item .increase,.dy_item .decrease {display: inline-block;background: #f1f1f1;border: 1px solid #c5c5c5;width: 40px;height: 40px;text-align: center;cursor: pointer;font:30px/35px "Microsoft YaHei";color:#333333}
+.dy_item input.nums {display: inline-block;border: 1px solid #c5c5c5;width: 100px;padding: 3px;
+height: 34px;text-align: center;font: 24px/34px "Microsoft YaHei";margin: 0px 10px;vertical-align: top;}
+.exp_return{margin-top:20px}
+.dy_item .exp_income span{font:16px/30px "Microsoft YaHei"}
+.dy_item .exp_income span em{color:#ff5c01}
+.dy_item .exp_account{margin-top:10px;border: #e9e9e9 solid 1px;padding: 20px;border-radius: 4px;box-shadow: 0 3px 2px #e4e4e4;border-bottom: #d5d5d5 solid 1px;}
+.dy_item .exp_account span{margin-right:20px}
+.trade_pwd{margin-top:35px}
+.trade_pwd span.warning_c{margin-left:10px}
+.sub_btn_cont{text-align:center;margin:40px 0px}
+/***** 流转标 普通标 投标弹窗页面的表格css end   *****/
+
+/***** 手机认证弹窗样式 start *****/
+.phone_app{padding:20px 50px }
+.phone_app .dy_item{margin:5px 0px;padding-left:30px;font:18px/30px "Microsoft YaHei"}
+.phone_app .dy_item span{font-size:14px}
+.phone_app .dy_item a.approve_btn{margin-top:10px}
+/***** 手机认证弹窗样式 end   *****/
+
+/***** recharge dialog modules start  *****/
+.recharge_box{width:350px;padding:30px;font:14px/26px "Microsoft YaHei"}
+.recharge_box p{font:14px/26px "Microsoft YaHei";text-indent:0px}
+.recharge_box .recharge_edit{margin:30px 0px;text-align:center;}
+.recharge_box .recharge_edit a{display:inline-block;height:24px;font:14px/24px "Microsoft YaHei";background:#f1f1f1;border:1px solid #e2e2e2;margin-right:10px;padding:2px 10px}
+/***** recharge dialog modules end    *****/
+
+/*********current position ********/
+.cur_pos{font:14px/30px "Microsoft YaHei";color:#333;}
+.cur_pos a{color:#999;}
+
+/****touzi_list****/
+.touzi_con{border:1px solid #E2E2E2;border-radius:3px;padding:10px;overflow:hidden;}
+.touzi_con .touzi_left{float:left}
+.touzi_con .touzi_left .xuxian{width:708px;overflow:hidden}
+.touzi_con .touzi_left .xuxian li{border:4px solid #eaeaea;padding:3px 10px;margin-right:3px;float:left;color:#3794ef;}
+.touzi_con .touzi_left .xuxian li a{color:#bcbcbc;}
+.touzi_con .touzi_left .xuxian li.fr{float:right!important;border:none!important;line-height:32px;}
+.touzi_con .touzi_left .xuxian li.fr a{color:#00a8e8!important;}
+.touzi_con .touzi_right{float:right;width:200px;padding-left:30px;border-left:1px solid #ddd;}
+.touzi_con .touzi_right h3{color:#0095cd;font:18px/40px "Microsoft YaHei";}
+.touzi_con .touzi_right .con_list a{font:13px/28px "Microsoft YaHei";color:#333; display:block}
+.touzi_con .touzi_right .con_list a:hover{color:#1795ce}
+.ui_filter{}
+.ui_filter dd {line-height: 23px;padding: 10px 5px;}
+.ui_filter dd.term{border:none}
+.ui_filter dd ul li{float:left;margin-right:10px;display:inline-block;font:14px/24px "Microsoft YaHei";color:#333333;cursor:pointer}
+.ui_filter_tag{padding:0px 10px;border-radius:4px}
+.ui_filter_tag:hover{background:#f0f0f0}
+.ui_filter_tag.active{background: #0697DA;}
+.ui_filter_tag.active span{color: #fff;}
+.ui_filter_tag input{display:none}
+.ui_filter_money input.money_put{border:1px solid #e0e0e0;font: 14px/20px "Microsoft YaHei";width:30px;padding:0px 5px;vertical-align:middle}
+.ui_filter_money span{margin-left:3px;vertical-align:middle}
+
+
+/*****detailed 详细内容页*******/
+.tender_detai{border:1px solid #e6e6e6;}
+.tender_detai .tender_detai_tit{border-bottom:1px solid #e6e6e6; background:#f7f7f7;height:55px;padding:0px 30px 0px 20px;}
+.tender_detai .tender_detai_tit h2{float:left;font:21px/55px "Microsoft YaHei";color:#0697da;}
+.tender_detai .tender_detai_tit h2 .the_num {font: 12px/40px 'Microsoft yahei';color: #968f8f;margin-top: 10px;}
+    .tender_detai .tender_detai_tit h2 .the_num .award {
+        background: #f00 url(images/award_ico.png) no-repeat scroll 2px 2px;
+        padding: 0 10px 0 0;
+        height: 22px;
+        text-indent: 23px;
+        color: #fff;
+        font: 14px/22px "microsoft Yahei";
+        display: inline-block;
+        border-radius: 15px;
+        -webkit-border-radius: 15px;
+        margin-left: 5px;
+        vertical-align: middle;
+    }
+.tender_detai .tender_detai_tit h2 img{vertical-align:middle}
+.tender_detai .tender_detai_tit h2 i{font-style:normal;}
+.tender_detai .tender_detai_tit span{float:right;font:12px/25px "microsoft Yahei";margin-top:15px}
+.tender_detai .tender_detai_cont{padding:10px 20px;overflow:hidden;width:940px;}
+.tender_detai .tender_detai_lf{float:left;width:600px;}
+.tender_detai_lf .top_dl{ width:100%;}
+.tender_detai_lf .top_dl dl{float:left; width:25%; padding-left:5%; border-right:1px solid #e2e2e2; margin:10px 0;}
+.tender_detai_lf .top_dl dl dt{ font:14px/30px 'Microsoft yahei'; color:#999;}
+.tender_detai_lf .top_dl dl dd{ font:bold 35px/50px 'Microsoft yahei'; margin-top:10px; color:#555;}
+.tender_detai_lf .top_dl dl dd em{ font-size:19px;}
+.tender_detai_lf .top_dl dl .red_cl{ color:#E25353;}
+.tender_detai_lf .btm_dl{ height:60px; margin:30px 0 20px; border-top:1px dashed #e2e2e2; border-bottom:1px dashed #e2e2e2;}
+.tender_detai_lf .btm_dl dl{ font:14px/60px 'Microsoft yahei'; color:#555;}
+.tender_detai_lf .btm_dl dl dt{ float:left; display:inline; color:#333;}
+.tender_detai_lf .btm_dl dl dd{float:left; display:inline; margin-right:35px;}
+.tender_detai .tender_detai_lf li{font:14px/55px "Microsoft YaHei";border-bottom:1px dashed #e2e2e2}
+.tender_detai .tender_detai_lf li span{display:inline-block;vertical-align:middle}
+.tender_detai .tender_detai_lf li span.basic_label{width:90px}
+.tender_detai .tender_detai_lf li span.basic_value{width:203px}
+.tender_detai .tender_detai_lf li span em{font-size:18px;font-weight:500}
+.tender_detai .tender_detai_lf li span em.repay_method{display:inline-block;width:15px;height:26px;background:url(images/tender_detai_icon.png) no-repeat -23px -28px;vertical-align: middle;margin-left:5px}
+.tender_detai .tender_detai_lf li span i.time{display:inline-block;width:20px;height:22px;background:url(images/tender_detai_icon.png) no-repeat 0px -30px;vertical-align: middle;}
+.tender_detai .tender_detai_lf .bar{float:left;display: inline-block;width: 133px;height: 12px;
+                                    background: url('images/pro_bg.gif') no-repeat;
+                                    /*background: url(images/progress/pro_bg.gif) no-repeat;*/
+                                    position: relative;margin-top: 25px;}
+.tender_detai .tender_detai_lf .bar_width{display: inline-block;width: 133px;height: 12px;/*background: url(images/progress/pro_bar.gif) repeat;*/position: absolute;left: 0px;top: 0px;}
+.tender_detai .tender_detai_lf .arrow{border:1px solid #e7e7e7;border-radius:3px;font-size:12px!important;height:26px;position:relative;padding:3px 2px;margin-left:10px;}
+.tender_detai .tender_detai_lf .arrow .jt{border-color:transparent #fff transparent transparent;border-style:solid ;border-width: 10px 10px 10px 0px;width: 0; height: 0;position:absolute;margin-top:5px;margin-left:-8px;}
+.tender_detai .tender_detai_lf .arrow .pop1-a {display: block; position: absolute;left: -16px;top:3px;  }
+.tender_detai .tender_detai_lf .arrow .pop1-a u{position:absolute; display:block; width:0; height:0; line-height:0; font-size:0; border:8px dashed transparent}
+.tender_detai .tender_detai_lf .arrow .pop1-a u {border-right: 8px solid #ddd;}
+.tender_detai .tender_detai_lf .arrow .pop1-a .c2 {border-right-color: #FFFFFF;left: 1px;}
+.tender_detai .tender_detai_lf .award {
+    background: url('images/tend_pic.png') no-repeat;
+    width: 70px;
+    height: 22px;
+    display: block;
+    text-indent: 23px;
+    color: #fff;
+    font: 14px/22px "microsoft Yahei";
+}
+
+.tender_detai .tender_detai_rig{float: right;margin-top: -10px;padding:10px 20px;width:280px;}
+.tender_detai .tender_detai_rig .item {font-family: "Microsoft YaHei";font-size: 12px;margin: 10px 0;position: relative;width: 295px;}
+.tender_detai .tender_detai_rig .item span.avail_money {color: #666;font-family: 'Microsoft YaHei';font-size: 30px;margin: 0 5px;}
+.tender_detai .tender_detai_rig .item input.money {border: 1px solid #E2E2E2;color: #999;font: 14px/22px "Microsoft YaHei";padding: 10px;width: 265px;background:#f0f0f0;}
+.tender_detai .tender_detai_rig .item .tender_sub_dis {background:#C4CCD1;border-radius: 3px;color: #FFF;display: inline-block;font: 18px/26px "Microsoft YaHei";    overflow: visible;
+    padding:10px 12px;text-align: center; width: 290px;}
+	
+.tender_detai .tender_detai_rig .tender_btn{ width:100%;background: #0697DA;font: 18px/40px "Microsoft YaHei"; height:40px; color:#fff; text-align:center; display:block; border-radius:5px;}
+.tender_detai .tender_detai_rig .tender_btn:hover{background:#0073b6}
+.tender_detai .tender_detai_rig .zq_sel{ font:12px/20px 'Microsoft yahei'; margin-bottom:10px;}
+.tender_detai .tender_detai_rig .zq_sel input{ vertical-align:middle; margin-right:3px;}
+.tender_detai .tender_detai_rig .zq_sel a{ color:#0697DA;}
+
+.tender_main .tender_main_tit{height:45px;}
+.tender_main .tender_main_tit dl dd{display:inline-block;float:left;padding:0px 40px;font:18px/44px "Microsoft YaHei";cursor:pointer;color:#999;border:1px solid #ddd;border-radius:8px 8px 0 0;border-bottom:none;margin-right:10px;background:#ededed;}
+.tender_main .tender_main_tit dl dd a{color:#999;}
+.tender_main .tender_main_tit dl dd.hover{background:#0697da;color:#fff;border-left:1px solid #0697da;border-right:1px solid #0697da;border-top:1px solid #0697da;position:relative;}
+.tender_main .tender_main_tit dl dd.hover a{color:#fff}
+.tender_main .tender_main_cont{border:1px solid #e2e2e2;overflow:hidden}
+.tender_main .tender_main_cont h3{color:#333;font:18px/50px "Microsoft YaHei";}
+.tender_main .tender_main_cont .personal_infor .per_infor_detai,.tender_main .tender_main_cont .tend_left{width:560px;}
+.tender_main .tender_main_cont .personal_infor .per_infor_detai li{font:14px/35px "Microsoft YaHei";}
+.tender_main .tender_main_cont .personal_infor .per_infor_detai li span{display:inline-block;}
+.tender_main .tender_main_cont .personal_infor .per_infor_detai li span.basic_label{width:100px;padding-left:10px;}
+.tender_main .tender_main_cont .personal_infor .per_infor_detai li span.basic_value{width:160px;color:#999999}
+.tender_main .tender_main_cont .personal_infor table{width:100%;border-collapse: collapse;}
+.tender_main .tender_main_cont .tend_left{border-right:1px solid #ddd;padding:15px 30px 30px;float: left;display: inline;}
+.tender_main .tender_main_cont .tend_left .tend_con{width: 540px; font:14px/28px "Microsoft YaHei";color:#666;overflow:hidden;line-height:30px;padding-left:20px; width:544px;}
+.tender_main .tender_main_cont .tend_left .tend_con img{max-width:100%;width:auto;height:auto;}
+.tender_main .tender_main_cont .tend_left .image_text{width:560px;overflow:hidden}
+.tender_main .tender_main_cont .tend_left .image_text ul{width:600px;padding-left:20px;}
+.tender_main .tender_main_cont .tend_left .image_text ul li{float:left;margin-right:12px;border:1px solid #ddd;padding:3px;margin-bottom:10px;display:inline;height:150px;}
+.tender_main .tender_main_cont .tend_left .image_text ul li img{width:150px;height:150px;}
+
+.tender_main .tender_main_cont .tend_right{width:320px;padding:10px 10px 20px 20px;float: left;display: inline;border-left: 1px solid #e2e2e2;margin-left: -1px;}
+.tender_main .tender_main_cont .tend_right .borrow_infor li{font:14px/30px "Microsoft YaHei";}
+.tender_main .tender_main_cont .tend_right .borrow_infor li span{display:inline-block;width:150px}
+.tender_main_cont .tend_right .borrow_infor .borrow_infor_tit_lf{float:left;width:78px;text-align:center;height:78px;}
+.tender_main_cont .tend_right .borrow_infor .borrow_infor_tit_lf a{display:inline-block;padding:1px;border:1px solid #c2c3cd;width:78px;height:78px}
+.tender_main_cont .tend_right .borrow_infor .user_name{color:#169edc}
+.tender_main_cont .tend_right .user_name_ul{width:140px;}
+    .tender_main_cont .tend_right .user_name_ul li {
+        float: left;
+        background: url('images/tend_pic.png')no-repeat;
+        /*background: url(images/icons/tend_pic.png) no-repeat;*/
+        width: 60px;
+        height: 26px;
+        text-indent: 26px;
+        color: #fff;
+        line-height: 26px !important;
+        font-size: 12px !important;
+        margin: 0 8px 6px 0;
+        cursor: pointer;
+    }
+.tender_main_cont .tend_right .user_name_ul li.sm{background-position:0 -24px;}
+.tender_main_cont .tend_right .user_name_ul li.sm.yes{background-position:0 -54px;}
+.tender_main_cont .tend_right .user_name_ul li.tel{background-position:-130px -24px;}
+.tender_main_cont .tend_right .user_name_ul li.tel.yes{background-position:-130px -54px;}
+.tender_main_cont .tend_right .user_name_ul li.mail{background-position:-66px -24px;}
+.tender_main_cont .tend_right .user_name_ul li.mail.yes{background-position:-66px -54px;}
+.tender_main_cont .tend_right .user_name_ul li.pay{background-position:-195px -24px;}
+.tender_main_cont .tend_right .user_name_ul li.pay.yes{background-position:-195px -54px;}
+.tender_main_cont .tend_right .sh_tab{border-collapse:collapse;width:100%;}
+.tender_main_cont .tend_right .sh_tab tr td{border-bottom:1px solid #eaeaea; font:14px/38px "Microsoft YaHei";}
+    .tender_main_cont .tend_right .sh_tab .rz {
+        background: url('images/tend_pic.png') no-repeat;
+        /*background: url(images/icons/tend_pic.png) no-repeat;*/
+        display: block;
+        padding-left: 18px;
+    }
+.tender_main_cont .tend_right .sh_tab .rz.no{background-position:-267px -13px;}
+.tender_main_cont .tend_right .sh_tab .rz.yes{background-position:-267px -43px;color:#18b160}
+.tender_main_cont .tend_right h4{font: 12px/20px "Microsoft YaHei";}
+.tender_main_cont .tend_right .item{margin:10px 0;overflow:hidden;}
+.tender_main_cont .tend_right .item img{float: left;margin: 0 10px;}
+.tender_main_cont .tend_right textarea{border: 1px solid #E2E2E2;height: 60px;padding: 4px 9px;width:90%;resize:none}
+.tender_main_cont .tend_right .input_text{border: 1px solid #E2E2E2;width:75px;height:34px;float:left;text-indent:4px;}
+.tender_main_cont .tend_right .code_img{float:left;margin:0 10px;}
+.tender_main_cont .tend_right .f_btn{background:#0697da;font:16px/34px "Microsoft YaHei";color:#fff;border:none;height:34px;cursor:pointer;border-radius:3px;float:left;width:97px;text-align:center}
+.tender_main_cont .tend_right .f_btn:hover{background:#0273a7;}
+.tender_main_cont .tend_right .mess_list{padding-left:12px;}
+.tender_main_cont .tend_right .mess_list li{border-bottom:1px dashed #ddd;padding:10px 0;overflow:hidden; width:280px;}
+.tender_main_cont .tend_right .mess_list li.clearb{border-bottom:none!important}
+.tender_main_cont .tend_right .mess_list .name{color: #169EDC; font:12px/30px "Microsoft YaHei";}
+.tender_main_cont .tend_right .mess_list .name a{color: #169EDC;}
+    .tender_main_cont .tend_right .mess_list .name .time {
+        color: #bababa !important;
+        float: right;
+        background: url('images/tend_pic.png') no-repeat;
+        padding-left: 20px;
+        background-position: -86px 6px;
+    }
+.tender_main_cont .tend_right .mess_list .cont{font: 12px/22px "Microsoft YaHei";height:44px;line-height:22px;overflow:hidden; color:#999}
+
+
+.tender_main_cont .personal_infor .borrow_infor .borrow_infor_tit_lf a img{width:78px;height:78px}
+.tender_main_cont .personal_infor .borrow_infor .borrow_infor_tit_rig{padding-left:100px;}
+.tender_main_cont .personal_infor .borrow_infor .borrow_infor_tit_rig p{font:14px/24px "Microsoft YaHei"}
+.tender_main_cont .borrow_infor_tit_rig p.approve{margin-top:5px;font-size:0px;letter-spacing:-4px}
+.tender_main_cont .borrow_infor_tit_rig p.approve a{display:inline-block;width:30px;height:30px;background:url(images/users_icon.png) no-repeat}
+.tender_main_cont .borrow_infor_tit_rig p.approve a.person{background-position: 2px -16px;}
+.tender_main_cont .borrow_infor_tit_rig p.approve a.person_yes{background-position:2px -46px}
+.tender_main_cont .borrow_infor_tit_rig p.approve a.email{background-position: -33px -16px;}
+.tender_main_cont .borrow_infor_tit_rig p.approve a.email_yes{background-position:-33px -45px}
+.tender_main_cont .borrow_infor_tit_rig p.approve a.phone{background-position: -68px -16px;}
+.tender_main_cont .borrow_infor_tit_rig p.approve a.phone_yes{background-position:-68px -45px}
+.tender_main_cont .borrow_infor_tit_rig p.approve a.pay_pwd{background-position: -102px -16px;}
+.tender_main_cont .borrow_infor_tit_rig p.approve a.pay_pwd_yes{background-position:-102px -45px}
+.tender_main_cont .trad_rec{padding:30px 30px;display:none}
+.tender_main_cont .comment .recent_comm h5{font:500 14px/20px "Microsoft YaHei"}
+.tender_main_cont .comment .recent_comm .rec_comm_tit{font:12px/22px "Microsoft YaHei";}
+.tender_main_cont .comment .recent_comm .rec_comm_tit span{font-size:12px;color:silver}
+.tender_main_cont .comment .recent_comm .rec_comm_cont{line-height: 18px;table-layout:fixed; word-break: break-all; overflow:hidden;}
+/*** 流转标右侧 ***/
+.tender_detai .tender_detai_rig .item .tender_sub{display: inline-block;color: #fff;
+font: 18px/26px "Microsoft YaHei";width: 290px;text-align: center;padding: 6px 12px;border-radius: 3px;cursor: pointer;overflow: visible;background: #0697DA;}
+.tender_detai .tender_detai_rig .item .tender_sub:hover{background:#0073b6}
+.tender_detai .tender_detai_rig .item .tender_sub_dis{display: inline-block;color: #fff;
+font: 18px/26px "Microsoft YaHei";width: 290px;text-align: center;padding: 6px 12px;border-radius: 3px;overflow: visible;background:#c4ccd1}
+.tender_detai .tender_detai_rig .item .tender_sub_dis:hover{background:#c4ccd1}
+.tender_detai .tender_detai_rig .item .tender_sub2{display: inline-block;color: #fff;
+font: 18px/26px "Microsoft YaHei";width: 290px;text-align: center;padding: 6px 12px;border-radius: 3px;cursor: pointer;overflow: visible;background: #f9a130;}
+.tender_detai .tender_detai_rig .item .tender_sub2:hover{background: #ef931c;}
+.tender_detai .tender_detai_rig .item .increase,.tender_detai .tender_detai_rig .item .decrease{display:inline-block;background:#f1f1f1;border:1px solid #e2e2e2;width:40px;height:40px;line-height:38px;text-align:center;cursor:pointer;font-size:30px;}
+.tender_detai .tender_detai_rig .item input.nums{display:inline-block;border:1px solid #e2e2e2;width:180px;padding:3px;height:34px;text-align:center;font:24px/24px "Microsoft YaHei";margin:0px 10px;vertical-align:top}
+
+/*** 流转标流转记录 ***/
+.roam_rec{}
+.roam_rec .roam_rec_tit{padding-left:40px;font: 22px/45px "Microsoft YaHei";
+color: #fff;background: #0697DA;}
+.roam_rec .roam_rec_cont{}
+.roam_rec table.lz_trad_rec{border-right: 1px solid #e2e2e2;border-bottom: 1px solid #e2e2e2;width:100%}
+.roam_rec table.lz_trad_rec th{background:#f6f6f6}
+.roam_rec table.lz_trad_rec td,.roam_rec table.lz_trad_rec th{border-left: 1px solid #e2e2e2;border-top: 1px solid #e2e2e2;text-align:center;padding:5px 0px;font-size:14px;font-family:"Microsoft YaHei"}
+
+
+/*** 流转标交易记录 ***/
+.tender_main_cont .trad_rec{padding:30px 50px;display:none}
+.tender_main_cont .trad_rec .trad_rec_lf{width:620px;float:left;}
+.tender_main_cont .trad_rec dt{font:14px/40px "Microsoft YaHei"}
+.tender_main_cont .trad_rec dd{border-bottom:1px solid #eeeeee;font:14px/40px "Microsoft YaHei"}
+.tender_main_cont .trad_rec dl span{display:inline-block;width:165px;text-align: center;
+margin: 0px 20px;}
+.tender_main_cont .trad_rec dl.zq_infor span{width:150px;margin:0px}
+.tender_main_cont .trad_rec dl.repay span{margin:0px}
+.tender_main_cont .trad_rec dl span.txt_lf{text-align:left;margin-left:20px}
+.tender_main_cont .trad_rec dl span em{font-size:12px}
+.tender_main_cont .trad_rec .trad_rec_rig{padding-left:700px;}
+.tender_main_cont .trad_rec .trad_rec_rig .trad_rig_item h4{font:18px/36px "Microsoft YaHei"}
+.tender_main_cont .trad_rec .trad_rec_rig .trad_rig_item p{font:28px/36px "Microsoft YaHei"}
+.tender_main_cont .trad_rec .trad_rec_rig .trad_rig_item p span{font-size:14px}
+
+/*债权转让*/
+.to_invest{}
+    .to_invest h2 {
+        font: 21px/25px "Microsoft YaHei";
+        color: #333;
+        background: url('images/want_list.png')no-repeat;
+        /*background:url(images/icons/want_list.png) no-repeat;*/
+        padding-left: 26px;
+        float: left;
+    }
+.to_invest .sort{background:#f7f7f7;border:1px solid #ededed;float:right;border-bottom:none;padding:5px 0 0 20px; height:30px;}
+.to_invest .sort li{float:left;width:100px;color:#666;cursor:pointer;position:relative}
+.to_invest .sort li i {
+        background: url('images/want_list.png') no-repeat;
+        /*background: url(images/icons/want_list.png) no-repeat;*/
+        width: 16px;
+        height: 19px;
+        display: inline-block;
+        float: left;
+    }
+.to_invest .sort li:hover{color:#00a8e8}
+.to_invest .sort li.on{color:#00a8e8}
+.to_invest .sort li .jt_up{border-color: #8a949c transparent transparent transparent;border-style: solid;border-width: 4px 4px 0px 4px; width: 0;height: 0;position:absolute;margin-top:13px;margin-left:4px;}
+.to_invest .sort li .jt_up:hover{border-color: #00a8e8 transparent transparent transparent;}
+.to_invest .sort li .jt_down{border-color:transparent transparent #8a949c transparent;border-style: solid;border-width: 4px 4px 4px 4px; width: 0;height: 0;position:absolute;top:0px;margin-left:4px;}
+.to_invest .sort li.on .jt_down{border-color:transparent transparent #00a8e8 transparent;}
+.to_invest .sort li .jt_down:hover{border-color:transparent transparent #00a8e8 transparent;}
+.to_invest .sort li.up .jt_down{border-color:transparent transparent #00a8e8 transparent;}
+.to_invest .sort li.up .jt_up{border-color:#8a949c transparent transparent transparent;}
+.to_invest .sort li.down .jt_down{border-color:transparent transparent #8a949c transparent;}
+.to_invest .sort li.down .jt_up{border-color:#00a8e8 transparent transparent transparent;}
+.to_invest .sort li i.paixu{background-position:0 -59px;}
+.to_invest .sort li:hover i.paixu,.to_invest .sort li.on i.paixu{background-position:0 -33px;}
+.to_invest .sort li i.jiage{background-position:-23px -59px;}
+    .to_invest .sort li i.jkqx {
+        background: url('images/tender_tit_icon.png') no-repeat;
+        /*background:url(images/icons/tender_tit_icon.png) no-repeat;*/
+        background-position: 0 -47px;
+    }
+.to_invest .sort li:hover i.jkqx,.to_invest .sort li.on i.jkqx{background-position:-18px -47px;}
+.to_invest .sort li i.tbjd{
+    background: url('images/tender_tit_icon.png') no-repeat;
+    /*background:url(images/icons/tender_tit_icon.png) no-repeat;*/
+    background-position:0 -64px;}
+.to_invest .sort li:hover i.tbjd,.to_invest .sort li.on i.tbjd{background-position:-18px -64px;}
+
+.to_invest .sort li:hover i.jiage,.to_invest .sort li.on i.jiage{background-position:-23px -33px;}
+.to_invest .sort li i.lv{background-position:-48px -58px;}
+.to_invest .sort li:hover i.lv,.to_invest .sort li.on i.lv{background-position:-48px -33px;}
+.to_invest .sort li.on i.lv{background-position:-48px -33px;}
+.to_invest .sort li span{float:left;margin:2px 0 0 2px;}
+
+.to_invest .invest_list li{border:1px solid #ededed;border-radius:3px;padding:10px 20px 12px 20px;overflow:hidden;margin-bottom:12px;}
+.to_invest .invest_list li .invest_tit{font:18px/30px "Microsoft YaHei";color:#333;}
+.to_invest .invest_list li .invest_tit img{vertical-align:middle}
+.to_invest .invest_list li .invest_tit .award{
+    /*background:#f00 url(images/award_ico.png) no-repeat scroll 2px 2px;*/
+    padding:0 10px 0 0;
+    height:22px;
+    text-indent:23px;
+    color:#fff;
+    font:14px/22px "microsoft Yahei";
+    display:inline-block; 
+    border-radius:15px; 
+    -webkit-border-radius:15px;
+
+}
+.to_invest .invest_list li .in_left{width:930px;float:left; border: 1px ridge #E2E2E2;}
+.to_invest .invest_list li .in_left .invest_tab{border-collapse:collapse;color:#666;}
+.to_invest .invest_list li .in_left .invest_tab tr td{width:200px;font:14px/38px "Microsoft YaHei";padding-left:20px;}
+.to_invest .invest_list li .in_left .invest_tab .middle{width:250px;}
+.to_invest .invest_list li .in_left .invest_tab .first{width:250px;}
+.to_invest .invest_list li .in_right{width:160px;float:right;}
+.to_invest .invest_list li .in_right .btn{width:160px;height:40px;font:20px/40px "Microsoft YaHei";color:#fff;display:block;border-radius:5px;margin-bottom:5px;text-align:center}
+.to_invest .invest_list li .in_right .btn.default{background:#c7c7c7;cursor:default}
+.to_invest .invest_list li .in_right .btn.yes{background:#fc8936;cursor:pointer}
+.to_invest .invest_list li .in_right .btn.yes:hover{background:#f06501;}
+.to_invest .invest_list li .in_right .btn.now{background:#0697da;cursor:pointer}
+.to_invest .invest_list li .in_right .btn.now:hover{background:#0587c3;cursor:pointer}
+
+.to_invest .invest_list li .progress{display:inline-block}
+.to_invest .invest_list li .progress .pro_nums{
+    position:absolute;
+    right:-29px;
+    top:-25px;
+    display:inline-block;
+    width:55px;
+    height:25px;
+    /*background:url(images/progress/pro_bar_num.png) no-repeat;*/
+    font-size:12px;
+    color:#323232;
+    font-style:normal;
+    line-height:20px;
+    text-align:center
+
+}
+    .to_invest .invest_list li .pro_bar {
+        display: inline-block;
+        width: 133px;
+        height: 12px;
+        background: url('images/pro_bg.gif') no-repeat;
+        /*background:url(images/progress/pro_bg.gif) no-repeat;*/
+        position: relative;
+        margin-top: 0px;
+        vertical-align: middle;
+    }
+.to_invest .invest_list li .pro_bar i{
+    display:inline-block;
+    width:130px;
+    height:12px;
+    /*background:url(images/progress/pro_bar.gif) repeat;*/
+    position:absolute;
+    left:0px;
+    top:0px;
+
+}
+
+.invest_top_li{}
+.invest_top_li li span i{width:20px;height:20px;background-position:-32px -80px; vertical-align:sub;}
+
+.icon {
+    display: inline-block;
+    background: url(images/users_icon.png) no-repeat ;
+     /*url('hoverbtnbg.png') no-repeat*/
+}
+
+.invest_top_li li{ background:#f7f7f7; height:50px;}
+.invest_top_li li span{ font:12px/50px 'Microsoft yahei'; float:left; display:inline; color:#666; text-align:center;}
+.invest_btm_li li{ border-bottom:1px solid #e2e2e2; padding:22px 0;}
+.invest_btm_li li:hover{ background:#f7f7f7;}
+.invest_btm_li li span{ font:14px/35px 'Microsoft yahei'; float:left; display:inline; color:#666; text-align:center;}
+.invest_btm_li li .invest_tit{color:#333; text-align:left; overflow:hidden;}
+.invest_btm_li li .invest_tit img{vertical-align:middle}
+.invest_btm_li li .btn{width:100%;height:35px;font:15px/35px "Microsoft YaHei";color:#fff;display:block;border-radius:3px;margin-bottom:3px;text-align:center}
+.invest_btm_li li .btn.default{background:#c7c7c7;cursor:default; display:inline-block;}
+.invest_btm_li li .btn.yes{background:#fc8936;cursor:pointer}
+.invest_btm_li li .btn.yes:hover{background:#f06501;}
+.invest_btm_li li .btn.now{background:#0697da;cursor:pointer}
+.invest_btm_li li .btn.now:hover{background:#0587c3;cursor:pointer}
+/*** 理财项目 start ***/
+.tender_list{margin-bottom:30px}
+    .tender_list h2 {
+        background: url('images/want_list.png') no-repeat scroll 0 0;
+        /*background: url("images/icons/want_list.png") no-repeat scroll 0 0;*/
+        color: #333;
+        font: 22px/30px "Microsoft YaHei";
+        margin-bottom: 10px;
+        padding-left: 30px;
+    }
+.tender_list li{height:65px;border-bottom:1px solid #ebebeb;}
+.tender_list li.tit{background:#f7f7f7;}
+.tender_list li:hover{background:#f7f7f7;}
+.tender_list li span{display:inline-block;font-size:18px;line-height:65px;text-align:center;vertical-align: middle;position:relative}
+
+.tender_list li .jt_up{border-color: #8a949c transparent transparent transparent;border-style: solid;border-width: 4px 4px 0px 4px; width: 0;height: 0;position:absolute;margin-top:33px;margin-left:4px;}
+.tender_list li .jt_up:hover{border-color: #00a8e8 transparent transparent transparent;}
+.tender_list li .jt_down{border-color:transparent transparent #8a949c transparent;border-style: solid;border-width: 4px 4px 4px 4px; width: 0;height: 0;position:absolute;top:23px;margin-left:4px;}
+.tender_list li.on .jt_down{border-color:transparent transparent #00a8e8 transparent;}
+.tender_list li .jt_down:hover{border-color:transparent transparent #00a8e8 transparent;}
+.tender_list li span em{font-size:12px;margin-left:5px}
+    .tender_list li.tit span i {
+        display: inline-block;
+        width: 15px;
+        height: 15px;
+        background: url('images/tender_tit_icon.png') no-repeat 0px 1px;
+        /*background:url(images/icons/tender_tit_icon.png) no-repeat 0px 1px;*/
+        vertical-align: middle;
+    }
+.tender_list li.tit span i.pro_tit_bg{background-position:0 1px}
+.tender_list li.tit span i.bor_m_bg{background-position:0 -15px}
+
+.tender_list li.tit span i.y_rate_bg{background-position:-1px -33px}
+
+.tender_list li.tit span i.bor_date_bg{background-position:0px -50px}
+
+.tender_list li.tit span i.t_pro_bg{background-position:-1px -67px}
+
+.tender_list li.tit span i.t_statu_bg{background-position:-1px -85px}
+
+.tender_list li.tit span em{vertical-align:middle;font-size:14px;}
+.tender_list li span.pro_tit{width:200px;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;}
+.tender_list li span.pro_tit img{vertical-align:middle;margin-right:5px;}
+.tender_list li span.pro_tit a{vertical-align:middle;margin-right:5px;}
+.tender_list li span.bor_m{width:120px;}
+.tender_list li span.y_rate{width:140px;}
+.tender_list li span.bor_date{width:170px;}
+.tender_list li span.t_pro{width:160px;height: 65px;vertical-align: top;}
+.tender_list li span.t_status{width:110px;text-align:right}
+.tender_list li span.t_status a{font-size: 16px;display:inline-block;line-height: 30px;height: 30px;width: 65px;border-radius: 15px;text-align: center;background-color:#0697da;text-decoration: none;vertical-align: middle;cursor: pointer;padding: 0 15px;color:#fff;}
+.tender_list li span.t_status span.income{line-height:20px;font-size:12px;color:#999999}
+.tender_list li span.t_status span.income font{color:#ff9f7f}
+.tender_list li span.t_status a.dis_btn{background:#c7c7c7;cursor:default}
+.tender_list li span.t_status a.rengou{background:#fc8936;}
+.tender_list li span.t_pro .progress{height:65px}
+    .tender_list li span.t_pro .progress .pro_nums {
+        position: absolute;
+        right: -29px;
+        top: -25px;
+        display: inline-block;
+        width: 55px;
+        height: 25px;
+       
+        /*background:url(images/progress/pro_bar_num.png) no-repeat;*/
+        font-size: 12px;
+        color: #323232;
+        font-style: normal;
+        line-height: 20px;
+    }
+    .tender_list li span.t_pro .pro_bar {
+        display: inline-block;
+        width: 133px;
+        height: 12px;
+        background: url('images/pro_bg.gif') no-repeat;
+        /*background:url(images/progress/pro_bg.gif) no-repeat;*/
+        position: relative;
+        margin-top: 30px;
+    }
+.tender_list li span.t_pro .pro_bar i{display:inline-block;
+                                      width:130px;
+                                      height:12px;
+                                      /*background:url(images/progress/pro_bar.gif) repeat;*/
+                                      position:absolute;
+                                      left:0px;
+                                      top:0px;
+
+}
+.tender_list li.more{text-align:center;border-bottom:2px solid #ebebeb}
+.tender_list li.more a{line-height:70px;font-size:16px;color:#999999}
+/*** 理财项目 end ***/
+
+
+/*联系我们*/
+.contactusdiyou{_position: absolute; _bottom: auto;_margin-bottom:0px; z-index:99999999999;
+_top: expression(eval(document.documentElement.scrollTop+document.documentElement.clientHeight-this.offsetHeight-(parseInt(this.currentStyle.marginTop,10)||0)-(parseInt(this.currentStyle.marginBottom,10)||0))); 
+ }
+.contactusdiyou{position:fixed; right:-230px; bottom:0px;_position:absolute; width:230px;height:100%; background:#2fa8d7; z-index:99999999999; font-family:'Microsoft yahei';}
+.contactusdiyou .hoverbtn{width:30px; height:109px; padding-top:23px; cursor: pointer; position:absolute; top:50%; margin-top:-66px; left:-30px; font-size:14px; color:#fff; background:#0085b8;
+ -webkit-border-radius: 4px 0px  0px 4px; -moz-border-radius: 4px 0px  0px 4px; -o-border-radius: 4px 0px  0px 4px;      border-radius: 4px 0px  0px 4px;
+ -moz-box-shadow: -1px -1px 6px 0px #999; -webkit-box-shadow: -1px -1px 6px 0px #999; box-shadow: -1px -1px 6px 0px #999;}
+.contactusdiyou .hoverbtn span{width:30px; height:18px; text-align: center; overflow:hidden; float:left;}
+.contactusdiyou .hoverbtn img{width:13px; height:9px; margin:10px 0px 0px 10px; float:left; display:inline;}
+.contactusdiyou .conter{width:186px; height:560px; margin-left:22px;   position:absolute; top:50%; margin-top:-280px;}
+.contactusdiyou .conter .con1{ border-bottom:1px solid #2c9ac5; padding-bottom:13px;}
+.contactusdiyou .conter .con1 dl dt{width:31px; height:31px; float:left;}
+.contactusdiyou .conter .con1 dl dd{width:142px; float:right; font-size:18px; color:#fff;}
+.contactusdiyou .conter .con1 dl dd .ph_num{ font:18px/25px 'Microsoft yahei'; color:#fff; height:25px;}
+.contactusdiyou .conter .con1 dl .f1{height:19px; line-height:16px; font-size:14px; vertical-align: top; font-weight: bold; }
+.contactusdiyou .conter .con2{ border-bottom:1px solid #2c9ac5; padding:13px 0;}
+.contactusdiyou .conter .con2 .a1{margin-right:10px;}
+.contactusdiyou .conter .con2 a{float:left; height:31px; line-height:31px; color:#f3e7b2; }
+.contactusdiyou .conter .con2 span{float:left;height:31px; line-height:31px; font-size:14px; color:#fff;}
+.contactusdiyou .qqcall{padding:13px 0px; border-bottom:1px solid #2c9ac5;}
+.contactusdiyou .qqcall dl dt{width:31px; height:31px; float:left;}
+.contactusdiyou .qqcall dl dd {width:142px; float:right; font-size:12px; color:#fff; height:22px; float:right;}
+.contactusdiyou .qqcall dl dd .full{color:#ccc; cursor: text; text-decoration: none; font-size:12px;}
+.contactusdiyou .qqcall dl dd a{color:#fcebaf; text-decoration: underline;}
+.contactusdiyou .weixincall{padding:13px 0; border-bottom:1px solid #2c9ac5;}
+.contactusdiyou .weixincall dl dt{width:31px; height:31px; float:left;}
+.contactusdiyou .weixincall dl dd {width:142px; float:right; font-size:12px; color:#fff; height:22px; float:right;}
+.contactusdiyou .weixincall .f1{height:25px; font-size:14px; vertical-align: top; color:#fff; font-weight: bold; }
+.contactusdiyou .weixincall .f3{width:73px; height:73px; margin-right:69px; display:inline;}
+.contactusdiyou .dytimer{width:177px; height:40px; padding:16px 0px 15px 26px; background:#2d9dc9; margin:20px 0px 0px -8px;}
+.contactusdiyou .dytimer span{display:block; height:20px; line-height:20px; font-size:14px; color:#0e6384;}
+.diyou{_position: absolute; _bottom: auto;_margin-bottom:0px; z-index:99999999999;
+_top: expression(eval(document.documentElement.scrollTop+document.documentElement.clientHeight-this.offsetHeight-(parseInt(this.currentStyle.marginTop,10)||0)-(parseInt(this.currentStyle.marginBottom,10)||0)));}
+.diyoumask { position:fixed; left: 0; top: 0; z-index: 100000; width:100%; height:100%; opacity:0.3;filter:alpha(Opacity=30); background:#000; display:none;}
+/***联系我们***/
+
+
+.tender_reword{
+    /*background:#f00 url(images/award_ico.png) no-repeat scroll 2px 2px;*/ 
+    padding:0 10px 0 0;
+    height:22px;text-indent:23px;color:#fff;font:14px/22px "microsoft Yahei";display:inline-block; vertical-align:middle; margin-left:5px; border-radius:15px; -webkit-border-radius:15px;}
+
+.baoling{ padding: 5px 18px; }
+.baoling .tit{ font-size: 16px; font-weight: 100; color: #000; height: 50px; line-height: 50px; }
+.baoling p{ color: #666; line-height: 2; }
+.baoling p img{ margin-left: 10px; display: block; }
+.baoling .down{ height: 100px; padding-top: 20px; }
+.baoling .down .btn{ width: 226px; height: 61px; display: inline-block; background: url(images/bl-down.png) no-repeat 0px 0px; margin: 0 35px; }
+.baoling .down .btn-android{ background-position: -298px 0px; }

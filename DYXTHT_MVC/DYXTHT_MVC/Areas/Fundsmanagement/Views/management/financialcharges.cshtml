@@ -1,0 +1,604 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/jquery.bsgrid-1.37/merged/bsgrid.all.min.css" rel="stylesheet" />
+    <link href="~/Content/jquery.bsgrid-1.37/css/skins/grid_bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/jquery.bsgrid-1.37/css/skins/grid_sky_blue.min.css" rel="stylesheet" />
+
+    <title>financialcharges</title>
+    <style type="text/css">
+        .container {
+            width: 100%;
+            padding: 20px 40px 0 35px;
+            margin: 0;
+        }
+
+        .panel-heading span {
+            font-size: 18px;
+        }
+
+        .form-horizontal label {
+            font-weight: normal;
+        }
+
+        .reset {
+            padding-left: 5px;
+            padding-right: 5px;
+        }
+
+        .panel-body {
+            padding-left: 0;
+            background: #f4fcff;
+        }
+
+        td a {
+            color: blue !important;
+        }
+
+        th {
+            font-weight: normal;
+        }
+
+        .h4, td, th {
+            text-align: center;
+        }
+
+        .table tbody tr td {
+            padding: 4px;
+        }
+
+            .table tbody tr td button {
+                height: 24px;
+                padding: 2px 12px;
+            }
+
+        .modal-body {
+            background: #f4fcff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="containerid">
+        <div class="row">
+            <div class="panel panel-info">
+                <div class="panel-body" style="padding-left:15px;">
+                    <div class="tab" role="tabpanel">
+                        <ul id="myTab" class="nav nav-tabs">
+                            <li role="presentation" class="active"><a href="#bulletin" aria-controls="home" role="tab" data-toggle="tab">资金费用</a></li>
+                            <li role="presentation"><a href="#rule" role="tab" aria-controls="profile" data-toggle="tab" onclick="binreview()">费用类型</a></li>
+                        </ul>
+
+                        <div id="myTabContent" class="tab-content">
+                            <div class="tab-pane active" id="bulletin">
+                                <div class="row setPadding" style="background:#ffffff;margin-left:10px;margin-bottom:5px;margin-top:5px;" id="Rechargeallid">
+                                    <label>所有资金费用</label><input type="button" name="name" id="insertzijinfeiyong" value="添加资金费用" />
+                                </div>
+                                <table id="tabRechargeall">
+                                    <tr>       
+                                        <th w_num="total_line" width="5%">序号</th>                            
+                                        <th w_index="FundCostID"w_hidden="true"  >ID</th>                                      
+                                        <th w_index="Name" width="15%">名称</th>
+                                        <th w_index="Identifier" width="15%">标识符</th>
+                                        <th w_index="CostTypeName" width="15%">类型</th>
+                                        <th w_index="StatusName" width="15%">状态</th>
+                                        <th w_index="PaymentRate" width="15%">扣费率</th>
+                                        <th w_index="ToVoidNo" w_render="crearViewButton" width="20%">操作</th>
+
+                                    </tr>
+
+                                </table>
+                            </div>
+                            <div class="tab-pane" id="rule" style="visibility:hidden">
+                                <div class="row setPadding" style="background:#ffffff;margin-left:10px;margin-bottom:5px;margin-top:5px;" id="binreviewid">
+                                    <label>资金费用类型</label><input type="button" name="name" id="zijinfeiyongtype" value="添加资金费用类型" />
+                                </div>
+                                <table id="tabinreview">
+                                    <tr>     
+                                        <th w_num="total_line" width="5%">序号</th>                                                                           
+                                        <th w_index="CostTypeID" w_hidden="true">ID</th>
+                                        <th w_index="CostTypeName" width="20%">名称</th>
+                                        <th w_index="Identifier" width="20%">标识符</th>
+                                        <th w_index="StatusName" width="20%">状态</th>                             
+                                        <th w_index="ToVoidNo" w_render="ViewButton" width="25%">操作</th>
+                                    </tr>
+                                </table>                               
+                            </div>
+                        </div>
+                    </div>
+
+                </div>              
+            </div>
+        </div>
+        @*添加资金费用*@
+        <div class="modal fade bs-example-modal-sm" id="modselect">
+            <div class="modal-dialog" style="width:600px;">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <h4 class="modal-title">添加资金费用</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <form class="form-horizontal" id="selectshuju">                                             
+                                <div class="form-group">
+                                    <label class="col-lg-5 col-md-5 col-sm-5 control-label">名称：</label>
+                                    <div class="col-lg-4 col-md-4 col-sm-4">
+                                         <input type="text" class="form-control" id="NameID" name="Name">
+                                    </div>                                                                   
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-lg-5 col-md-5 col-sm-5 control-label">标识符：</label>
+                                    <div class="col-lg-4 col-md-4 col-sm-4">
+                                         <input type="text" class="form-control col-md-8" id="IdentifierID" name="Identifier">
+                                   </div>    
+                                </div>
+                                <div class="form-group">
+                                    <label  class="col-lg-5 col-md-5 col-sm-5 control-label">类型：</label>
+                                    <div class="col-lg-4 col-md-4 col-sm-4">
+                                        <select class="form-control" name="CostTypeID" id="CostTypeID"></select>
+                                    </div>    
+                                    </div>
+                                <div class="form-group">
+                                    <label class="col-lg-5 col-md-5 col-sm-5 control-label">状态：</label>
+                                    <div class="col-lg-4 col-md-4 col-sm-4">
+                                        <select class="form-control" name="FundStatusID" id="FundStatusID"></select>
+                                    </div>
+                                </div>   
+                                <div class="form-group">
+                                        <label class="col-lg-5 col-md-5 col-sm-5 control-label">扣费率：</label>
+                                        <div class="col-lg-4 col-md-4 col-sm-4">
+                                            <input type="text" class="form-control" id="PaymentRateID" name="PaymentRate">
+                                        </div>
+                                    </div>  
+                             
+                                <button type="button" class="btn btn-info col-md-offset-5" id="InsertBaocun" style="margin-top:30px;">保存</button> 
+                                <button class="btn btn-danger" style="margin-top:30px;" data-dismiss="modal">关闭</button>                          
+                            </form>
+                        </div>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div>
+
+        @*修改资金费用*@
+        <div class="modal fade bs-example-modal-sm" id="modUpdata">
+            <div class="modal-dialog" style="width:600px;">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <h4 class="modal-title">修改资金费用</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <form class="form-horizontal" method="post" id="updataform">   
+                                <input type="hidden" name="FundCostID" />
+                                <div class="form-group">
+                                    <label class="col-lg-5 col-md-5 col-sm-5 control-label">名称：</label>
+                                    <div class="col-lg-4 col-md-4 col-sm-4">
+                                        <input type="text" class="form-control col-md-8" id="Nameid" name="Name">
+                                    </div>
+                                </div>  
+                                <div class="form-group">
+                                    <label class="col-lg-5 col-md-5 col-sm-5 control-label">标识符：</label>
+                                    <div class="col-lg-4 col-md-4 col-sm-4">
+                                        <input type="text" class="form-control col-md-8" id="Identifierid" name="Identifier">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-lg-5 col-md-5 col-sm-5 control-label">类型：</label>
+                                    <div class="col-lg-4 col-md-4 col-sm-4">
+                                        <select class="form-control" name="CostTypeID" id="UCostTypeID"></select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-lg-5 col-md-5 col-sm-5 control-label">状态：</label>
+                                    <div class="col-lg-4 col-md-4 col-sm-4">
+                                        <select class="form-control" name="FundStatusID" id="UFundStatusID"></select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-lg-5 col-md-5 col-sm-5 control-label">扣费率：</label>
+                                    <div class="col-lg-4 col-md-4 col-sm-4">
+                                        <input type="text" class="form-control" id="PaymentRateid" name="PaymentRate">
+                                    </div>
+                                </div>
+                                <button type="button" class="btn btn-info col-md-offset-5" id="updatabaocun" style="margin-top:30px;">保存</button>
+                                <button class="btn btn-danger" style="margin-top:30px;" data-dismiss="modal">关闭</button>
+                            </form>
+                        </div>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div>
+
+        @*添加资金费用类型*@
+        <div class="modal fade bs-example-modal-sm" id="modinsertype">
+            <div class="modal-dialog" style="width:600px;">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <h4 class="modal-title">添加资金费用类型</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <form class="form-horizontal" id="selectType">
+                                <div class="form-group">
+                                    <label class="col-lg-5 col-md-5 col-sm-5 control-label">类型名称：</label>
+                                    <div class="col-lg-4 col-md-4 col-sm-4">
+                                        <input type="text" class="form-control" id="CostTypeNameID" name="CostTypeName">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-lg-5 col-md-5 col-sm-5 control-label">标识名：</label>
+                                    <div class="col-lg-4 col-md-4 col-sm-4">
+                                        <input type="text" class="form-control" id="tyIdentifierID" name="Identifier">
+                                    </div>
+                                </div>                            
+                                <div class="form-group">
+                                    <label class="col-lg-5 col-md-5 col-sm-5 control-label">状态：</label>
+                                    <div class="col-lg-4 col-md-4 col-sm-4">
+                                        <select class="form-control" name="FundStatusID" id="typeFundStatusID"></select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-lg-5 col-md-5 col-sm-5 control-label">标备注说明：</label>
+                                    <div class="col-lg-4 col-md-4 col-sm-4">
+                                        <textarea class="form-control" rows="3" name="Remark" id="IRemark"></textarea>
+                                    </div>
+                                </div>
+                                <button type="button" class="btn btn-info col-md-offset-5" id="InserttypeBaocun" style="margin-top:30px;">保存</button>
+                                <button class="btn btn-danger" style="margin-top:30px;" data-dismiss="modal">关闭</button>
+                            </form>
+                        </div>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div>
+
+        @*修改资金费用类型*@
+        <div class="modal fade bs-example-modal-sm" id="modUpdatatype">
+            <div class="modal-dialog" style="width:600px;">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <h4 class="modal-title">修改资金费用类型</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <form class="form-horizontal" id="UPdataType">
+                                <input type="hidden" name="CostTypeID" />
+                                <div class="form-group">
+                                    <label class="col-lg-5 col-md-5 col-sm-5 control-label">类型名称：</label>
+                                    <div class="col-lg-4 col-md-4 col-sm-4">
+                                        <input type="text" class="form-control" id="UCostTypeNameID" name="CostTypeName">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-lg-5 col-md-5 col-sm-5 control-label">标识名：</label>
+                                    <div class="col-lg-4 col-md-4 col-sm-4">
+                                        <input type="text" class="form-control" id="UIdentifierID" name="Identifier">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-lg-5 col-md-5 col-sm-5 control-label">状态：</label>
+                                    <div class="col-lg-4 col-md-4 col-sm-4">
+                                        <select class="form-control" name="FundStatusID" id="UptypeFundStatusID"></select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-lg-5 col-md-5 col-sm-5 control-label">标备注说明：</label>
+                                    <div class="col-lg-4 col-md-4 col-sm-4">
+                                        <textarea class="form-control" rows="3" name="Remark" id="URemark"></textarea>
+                                    </div>
+                                </div>
+                                <button type="button" class="btn btn-info col-md-offset-5" id="Updatatypezijin" style="margin-top:30px;">保存</button>
+                                <button class="btn btn-danger" style="margin-top:30px;" data-dismiss="modal">关闭</button>
+                            </form>
+                        </div>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div>
+    </div>
+
+    <script src="~/Content/bootstrap-3.3.7-dist/js/jquery-2.0.3.min.js"></script>
+    <script src="~/Content/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <script src="~/Content/jquery.bsgrid-1.37/merged/bsgrid.all.min.js"></script>
+    <script src="~/Content/jquery.bsgrid-1.37/js/lang/grid.zh-CN.min.js"></script>
+    <script src="~/Content/layer/layer.js"></script>
+    <script src="~/Content/jss/customfunction.js"></script>  
+
+    <script>
+        var tabRechargeall;
+        var tabinreview;
+
+        $(document).ready(function () {
+            tabRechargeall = $.fn.bsgrid.init('tabRechargeall', {
+                url: '/Fundsmanagement/management/selectfinancialcharges',
+                autoLoad: true,//自动加载数据
+                stripeRows: true,//隔行变色
+                rowHoverColor: true,//划过行变色
+                rowSelectedColor: true,//是否显示选中行背景色
+                pageSize: 10,//默认页面大小
+                pageSizeSelect: true,//是否选择分页页数下拉框
+                pagingLittleToolbar: true,//精简的图标按钮分页工具条
+                pagingToolbarAlign: "left"//分页工具条的显示位置              
+            });
+            $("#Rechargeallid").hide();
+            $("#binreviewid").hide();
+        });
+
+        //权限访问
+        $("#containerid").mouseenter(function () {
+            $.post("/LoginMain/MoKuaiQuanXianOpTypeSelect", function (Data) {
+                for (var i = 0; i < Data.length; i++) {
+                    if (Data[i].Name == "资金费用" && Data[i].Optype == "新增") {
+                        $("#Rechargeallid").show();
+                        $("#binreviewid").show();
+                    }
+                    if (Data[i].Name == "资金费用" && Data[i].Optype == "删除") {
+                        $(".OPDeleteclass").removeClass("hidden");
+                        
+                    }
+                    if (Data[i].Name == "资金费用" && Data[i].Optype == "修改") {
+                        $(".OPUpdataclass").removeClass("hidden");
+                       
+                    }
+                }
+            });
+        });
+
+        function binreview() {
+            document.getElementById("rule").style.visibility = "visible"
+            if (tabinreview == null) {
+                tabinreview = $.fn.bsgrid.init('tabinreview', {
+                    url: '/Fundsmanagement/management/selectfinancialtype',
+                    autoLoad: true,//自动加载数据
+                    stripeRows: true,//隔行变色
+                    rowHoverColor: true,//划过行变色
+                    rowSelectedColor: true,//是否显示选中行背景色
+                    pageSize: 10,//默认页面大小
+                    pageSizeSelect: true,//是否选择分页页数下拉框
+                    pagingLittleToolbar: true,//精简的图标按钮分页工具条
+                    pagingToolbarAlign: "left"//分页工具条的显示位置
+                });
+            }
+            else {
+                tabinreview = tabinreview;
+            }
+            $(".bsgridPagingOutTab").css("min-width", "98%");
+        }
+
+        //自定义公告详情列
+        function crearViewButton(record, rowIndex, colIndex, options) {
+
+            return '<button type="button" class="OPUpdataclass btn btn-primary hidden" onclick="OPUpdata(' + record.FundCostID + ')">修改</button>'
+             + "&emsp;"
+             + '<button type="button" style=display:compact; class="OPDeleteclass btn btn-danger hidden" onclick="OPDelete(' + record.FundCostID + ')">删除</button>';
+           
+        }
+        function ViewButton(record, rowIndex, colIndex, options) {
+            return '<button type="button" class="OPUpdataclass btn btn-primary" onclick="openUpdata(' + record.CostTypeID + ')">修改</button>'
+            + "&emsp;"
+            + '<button type="button" style=display:compact; class="OPDeleteclass btn btn-danger" onclick="UpDelete(' + record.CostTypeID + ')">删除</button>';
+        }
+        //添加资金费用
+        $("#insertzijinfeiyong").click(function () {
+            $.post("/Fundsmanagement/management/Selctcost", function (jsonData) {
+                selectLoadData("CostTypeID", jsonData);
+            });
+            $.post("/Fundsmanagement/management/SelctFundStatus", function (jsonData) {
+                selectLoadData("FundStatusID", jsonData);
+            });
+            $("#NameID").val("");
+            $("#IdentifierID").val("");
+            $("#PaymentRateID").val("");
+            $("#modselect").modal("show");
+        });
+        //费率输入限制
+        $("#PaymentRateID").change(function () {
+            var feilv = parseFloat($("#PaymentRateID").val());
+            var reg = new RegExp(/^[0-9]+(.[0-9]{1,5})?$/);
+            var rg = reg.test(feilv);                 
+            if (rg == false) {
+                $("#PaymentRateID").val("");
+                layer.alert('费率输入有误！', { icon: 6, title: '提示' });
+            }
+        });
+        //资金费用新增保存
+        $("#InsertBaocun").click(function () {
+            if ($('#selectshuju [name="Name"]').val() != "" && $('#selectshuju [name="PaymentRate"]').val() != "" && $('#selectshuju [name="Identifier"]').val() != "")
+            {
+                var fromarray = $("#selectshuju").serializeArray();
+                $.post("/Fundsmanagement/management/insertzijinfeiyong", fromarray, function (data) {
+                    if (data == "success") {
+                        layer.alert('添加成功！', { icon: 1, title: '提示' });
+                        tabRechargeall.refreshPage();
+                        $("#modselect").modal("hide");//关闭 modal 
+                    } else if (data == "exsit") {
+                        $("#NameID").val("");
+                        $("#IdentifierID").val("");
+                        $("#PaymentRateID").val("");
+                        layer.alert('该资金费用已经存在！', { icon: 5, title: '提示' });
+                    } else {
+                        layer.alert('添加失败！', { icon: 2, title: '提示' });
+                    }
+                });
+            }
+            else
+            {
+                    layer.alert('请填写完整！', { icon: 6, title: '提示' });
+            }
+        });
+        //修改资金费用绑定
+        function OPUpdata(FundCostID) {
+            $.post("/Fundsmanagement/management/Selctcost", function (jsonData) {
+                selectLoadData("UCostTypeID", jsonData);
+            });
+            $.post("/Fundsmanagement/management/SelctFundStatus", function (jsonData) {
+                selectLoadData("UFundStatusID", jsonData);
+            });
+            //表单绑定
+            $.post("/Fundsmanagement/management/zijinfeiyongupdata", { FundCostID: FundCostID }, function (data) {
+                loadDatatoForm("updataform", data);                
+            });
+            $("#modUpdata").modal("show");
+        }
+
+        //修改费率输入限制
+        $("#PaymentRateid").change(function () {
+            var feilv = parseFloat($("#PaymentRateid").val());
+            var reg = new RegExp(/^[0-9]+(.[0-9]{1,5})?$/);
+            var rg = reg.test(feilv);
+            if (rg == false) {
+                $("#PaymentRateid").val("");
+                layer.alert('费率输入有误！', { icon: 6, title: '提示' });
+            }
+        });
+        //修改资金费用保存
+        $("#updatabaocun").click(function () {
+            if ($('#updataform [name="Name"]').val() != "" && $('#updataform [name="Identifier"]').val() != "" && $('#updataform [name="PaymentRate"]').val() != "") {
+                var fromarray = $("#updataform").serializeArray();
+                $.post("/Fundsmanagement/management/Updatazijinfeiyong", fromarray, function (data) {
+                    if (data == "success") {
+                        layer.alert('修改成功！', { icon: 1, title: '提示' });
+                        tabRechargeall.refreshPage();
+                        $("#modUpdata").modal("hide");//关闭 modal 
+                    } else if (data == "exsit") {
+                        $("#Nameid").val("");
+                        $("#Identifierid").val("");
+                        $("#PaymentRateid").val("");
+                        layer.alert('该资金费用已经存在！', { icon: 5, title: '提示' });
+                    } else {
+                        layer.alert('修改失败！', { icon: 2, title: '提示' });
+                    }
+                });
+            }
+            else {
+                layer.alert('请填写完整！', { icon: 6, title: '提示' });
+            }
+        });
+
+        //删除资金费用
+        function OPDelete(FundCostID) {
+            layer.confirm("确定删除？", {
+                icon: 3,
+                btn: ['确定', '取消']
+                //按钮
+            }, function (layerIndex) {
+                var layerIndex = layer.load(0);//显示 加载层
+                $.post("/Fundsmanagement/management/deletezijinfeiyong", { FundCostID: FundCostID }, function (data) {
+                    if (data == "success") {
+                        layer.alert('删除成功！', { icon: 6, title: '提示' });
+                        tabRechargeall.refreshPage();
+                    } else {
+                        layer.alert('删除失败！', { icon: 5, title: '提示' });
+                    }
+                    layer.close(layerIndex);//关闭 加载层
+                });
+            });
+
+            //var layerIndex = layer.load(0);//显示 加载层
+            //$.post("/Fundsmanagement/management/deletezijinfeiyong", { FundCostID: FundCostID }, function (data) {
+            //    if (data == "success") {
+            //        layer.alert('删除成功！', { icon: 6, title: '提示' });
+            //        tabRechargeall.refreshPage();            
+            //    } else {
+            //        layer.alert('删除失败！', { icon: 5, title: '提示' });
+            //    }
+            //    layer.close(layerIndex);//关闭 加载层
+            //});
+        }
+
+        //添加资金费用类型
+        $("#zijinfeiyongtype").click(function () {          
+            $.post("/Fundsmanagement/management/SelctFundStatus", function (jsonData) {
+                selectLoadData("typeFundStatusID", jsonData);
+            });
+            $("#CostTypeNameID").val("");
+            $("#tyIdentifierID").val("");
+            $("#IRemark").val("");
+            $("#modinsertype").modal("show");
+        });
+        //资金费用新增保存类型
+        $("#InserttypeBaocun").click(function () {
+            if ($('#selectType [name="CostTypeName"]').val() != "" && $('#selectType [name="Identifier"]').val() != "" ) {
+                var fromarray = $("#selectType").serializeArray();
+                $.post("/Fundsmanagement/management/inserttypezijinfeiyong", fromarray, function (data) {
+                    if (data == "success") {
+                        layer.alert('添加成功！', { icon: 1, title: '提示' });
+                        tabinreview.refreshPage();
+                        $("#modinsertype").modal("hide");//关闭 modal 
+                    } else if (data == "exsit") {
+                        $("#CostTypeNameID").val("");
+                        $("#tyIdentifierID").val("");
+                        $("#IRemark").val("");
+                        layer.alert('该资金费用类型已经存在！', { icon: 5, title: '提示' });
+                    } else {
+                        layer.alert('添加失败！', { icon: 2, title: '提示' });
+                    }
+                });
+            }
+            else {
+                layer.alert('请填写完整！', { icon: 6, title: '提示' });
+            }
+        });
+        //资金费用类型修改绑定
+        function openUpdata(CostTypeID) {
+            $.post("/Fundsmanagement/management/SelctFundStatus", function (jsonData) {
+                selectLoadData("UptypeFundStatusID", jsonData);
+            });
+            //表单绑定
+            $.post("/Fundsmanagement/management/zijinfeiyongupdatatype", { CostTypeID: CostTypeID }, function (data) {
+                loadDatatoForm("UPdataType", data);
+            });
+            $("#modUpdatatype").modal("show");
+        }
+
+        //修改资金费用类型保存
+        $("#Updatatypezijin").click(function () {
+            if ($('#UPdataType [name="CostTypeName"]').val() != "" && $('#UPdataType [name="Identifier"]').val() != "") {
+                var fromarray = $("#UPdataType").serializeArray();
+                $.post("/Fundsmanagement/management/Updatazijinfeiyongtype", fromarray, function (data) {
+                    if (data == "success") {
+                        layer.alert('修改成功！', { icon: 1, title: '提示' });
+                        tabinreview.refreshPage();
+                        $("#modUpdatatype").modal("hide");//关闭 modal 
+                    } else if (data == "exsit") {
+                        $("#UCostTypeNameID").val("");
+                        $("#UIdentifierID").val("");                
+                        layer.alert('该资金费用已经存在！', { icon: 5, title: '提示' });
+                    } else {
+                        layer.alert('修改失败！', { icon: 2, title: '提示' });
+                    }
+                });
+            }
+            else {
+                layer.alert('请填写完整！', { icon: 6, title: '提示' });
+            }
+        });
+        //删除资金费用类型
+        function UpDelete(CostTypeID) {
+            var layerIndex = layer.load(0);//显示 加载层
+            $.post("/Fundsmanagement/management/deletezijinfeiyongtype", { CostTypeID: CostTypeID }, function (data) {
+                if (data == "success") {
+                    layer.alert('删除成功！', { icon: 6, title: '提示' });
+                    tabinreview.refreshPage();
+                } else {
+                    layer.alert('删除失败！', { icon: 5, title: '提示' });
+                }
+                layer.close(layerIndex);//关闭 加载层
+            });
+        }
+    </script>
+</body>
+</html>

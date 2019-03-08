@@ -1,0 +1,392 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/jquery.bsgrid-1.37/merged/bsgrid.all.min.css" rel="stylesheet" />
+    <link href="~/Content/jquery.bsgrid-1.37/css/skins/grid_bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/jquery.bsgrid-1.37/css/skins/grid_sky_blue.min.css" rel="stylesheet" />
+    <title>materialtype</title>
+    <style type="text/css">
+        .container {
+            width: 100%;
+            padding: 20px 40px 0 35px;
+            margin: 0;
+        }
+
+        .panel-heading span {
+          font-size:15px;font-weight:700;
+        }
+
+        .reset {
+            padding-left: 5px;
+            padding-right: 5px;
+        }
+
+        .panel-body {
+            padding-left: 0;
+            background: #f4fcff;
+        }
+
+    
+
+        a, a:hover, a:active, a:visited, a:link {
+            color: white;
+            text-decoration: none;
+        }
+
+        td a {
+            color: blue !important;
+        }
+
+        .h4 {
+            margin: 0 0 4px 0;
+        }
+
+        th {
+            font-weight: normal;
+        }
+
+        .h4, td, th {
+            text-align: center;
+        }
+
+        .table tbody tr td {
+            padding: 4px;
+        }
+
+            .table tbody tr td button {
+                height: 24px;
+                padding: 2px 12px;
+            }
+
+        .titleInfor {
+            border: 1px ridge #e5dfdf;
+            background: #f4fcff;
+            /*width: 300px;*/
+            height:500px;
+            float: left;
+        }
+
+        .Baseinfor {
+            float: left;
+            background: #f4fcff;
+            /*width: 1000px;
+            height: 650px;
+            margin-left: 15px;*/
+        }
+
+        .modal-body {
+            background: #f4fcff;
+        }
+    </style>
+</head>
+<body> 
+    <div class="container" id="containerid">
+        <div class="row">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <div class="row">
+                        <span class="col-md-2">证明材料类型</span>
+                    </div>
+                </div>
+                <div class="panel-body" style="padding-left:15px;">                  
+                    <div class="titleInfor col-sm-3 col-md-3 col-lg-3">
+                        <div class="col-md-12" style="background-color:white;margin-bottom:10px;"><span>添加证明材料类型</span></div>
+                        <form class="form-horizontal" id="Insertfrom">            
+                                <div class="form-group">
+                                    <label class="col-sm-5 control-label">类型名称：</label>
+                                    <div class="col-sm-7">
+                                        <input class="form-control" type="text" name="ItemTypeName" id="ItemTypeNameID">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-5 control-label">标识名：</label>
+                                    <div class="col-sm-7">
+                                        <input class="form-control" type="text" name="Identifier" id="IdentifierID">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-5 control-label">描述：</label>
+                                    <div class="col-sm-7">
+                                        <textarea rows="4" class="form-control" name="Describe" id="DescribeID"></textarea>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-5 control-label">最大积分：</label>
+                                    <div class="col-sm-7">
+                                        <input class="form-control" type="text" name="Maxintegral" id="MaxintegralID">
+                                    </div>
+                                    
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-5 control-label">有效期：</label>
+                                    <div class="col-sm-7">
+                                        <input class="form-control" type="text" name="Termofvalidity" id="TermofvalidityID">
+                                    </div>
+                                    <p class="col-md-offset-6">月(0表示长期）</p>
+                                </div>                         
+                            <button class="btn btn-info col-md-offset-4" type="button" id="btnInsert" style="margin-top:20px;">确认提交</button>
+                        </form>
+                    </div>
+                    <div class="Baseinfor col-sm-9 col-md-9 col-lg-9">
+                        <div class="col-sm-12 col-md-12" style="background-color:white;">
+                            <div class="col-md-2"><span>证明材料列表</span></div>
+                            <div class="col-lg-10 col-md-10 col-sm-10 col-md-offset-2" style="margin-bottom:15px;margin-top:-20px;" id="Baseinforid">
+                                <form class="form-horizontal" role="form">
+                                    <div class="form-group" style="margin-bottom:0;">                                       
+                                        <label class="col-md-7 col-sm-7 control-label reset">证明材料名称：</label>
+                                        <div class="col-md-3 col-sm-3 reset">
+                                            <input type="text" class="form-control" name="ItemTypeName" id="ItemTypeNameid">
+                                        </div>
+                                        <button class="btn btn-primary" type="button" id="btnSousu"><span class="glyphicon glyphicon-search"></span> 搜索</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <table id="tabNoticeType">
+                            <tr>
+                                <th w_num="total_line" width="5%">序号</th>
+                                <th w_index="ItemTypeID" w_align="left" w_hidden="true">ID</th>
+                                <th w_index="ItemTypeName"  width="20%">名称</th>
+                                <th w_index="Identifier" width="10%">标识名</th>
+                                <th w_index="Maxintegral" width="13%">最大积分</th>
+                                <th w_index="Termofvalidity" width="10%">有效期</th>
+                                <th w_index="ReleaseTimeStr" width="20%">添加时间</th>
+                                <th w_index="ToVoidNo" w_render="crearViewButton" width="25%">操作</th>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                @*修改*@
+                <div class="modal fade bs-example-modal-sm" id="Updatamodal">
+                    <div class="modal-dialog" style="width:700px;">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                <h4 class="modal-title">修改证明材料类型</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row">
+                                    <form class="form-horizontal" id="Updatafrom">
+                                        <input name="ItemTypeID" hidden />
+                                        <div class="form-group form-group-lg">
+                                            <label class="col-sm-5 control-label">类型名称：</label>
+                                            <div class="col-sm-4">
+                                                <input class="form-control" type="text" name="ItemTypeName" id="ItemTypeNameid">
+                                            </div>
+                                        </div>
+                                        <div class="form-group form-group-lg">
+                                            <label class="col-sm-5 control-label">标识名：</label>
+                                            <div class="col-sm-4">
+                                                <input class="form-control" type="text" name="Identifier" id="Identifierid">
+                                            </div>
+                                        </div>
+                                        <div class="form-group form-group-lg">
+                                            <label class="col-sm-5 control-label">描述：</label>
+                                            <div class="col-sm-6">
+                                                <textarea style="width:210px;" rows="3" name="Describe" id="Describeid"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="form-group form-group-lg">
+                                            <label class="col-sm-5 control-label">最大积分：</label>
+                                            <div class="col-sm-4">
+                                                <input class="form-control" type="text" name="Maxintegral" id="Maxintegralid">
+                                            </div>
+
+                                        </div>
+                                        <div class="form-group form-group-lg">
+                                            <label class="col-sm-5 control-label">有效期：</label>
+                                            <div class="col-sm-4">
+                                                <input class="form-control" type="text" name="Termofvalidity" id="Termofvalidityid">
+                                            </div>
+                                            <label class="control-label">月(0表示长期）</label>
+                                        </div>
+                                        <button class="btn btn-info col-md-offset-5" type="button" id="QueRenupdata" style="margin-top:20px;">确认提交</button>
+                                    </form>                                    
+                                </div>
+                            </div>
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal-dialog -->
+                </div>
+              
+            </div>
+        </div>
+    </div>
+
+    <script src="~/Content/bootstrap-3.3.7-dist/js/jquery-2.0.3.min.js"></script>
+    <script src="~/Content/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <script src="~/Content/jquery.bsgrid-1.37/merged/bsgrid.all.min.js"></script>
+    <script src="~/Content/jquery.bsgrid-1.37/js/lang/grid.zh-CN.min.js"></script>
+    <script src="~/Content/layer/layer.js"></script>
+    <script src="~/Content/jss/customfunction.js"></script>
+    <script>
+       
+        var tabNoticeType;
+        $(document).ready(function () {
+            tabNoticeType = $.fn.bsgrid.init('tabNoticeType', {
+                url: '/AuthenticationManagement/Authentication/selctItemType',
+                autoLoad: true,//自动加载数据
+                stripeRows: true,//隔行变色
+                rowHoverColor: true,//划过行变色
+                rowSelectedColor: true,//是否显示选中行背景色
+                pageSize: 10,//默认页面大小
+                pageSizeSelect: true,//是否选择分页页数下拉框
+                pagingLittleToolbar: true,//精简的图标按钮分页工具条
+                pagingToolbarAlign: "left"//分页工具条的显示位置
+            });
+            tabNoticeSearch();
+
+            $("#btnInsert").hide();
+            $("#Baseinforid").hide();
+        });
+        //权限访问
+        $("#containerid").mouseenter(function () {
+            $.post("/LoginMain/MoKuaiQuanXianOpTypeSelect", function (Data) {
+                for (var i = 0; i < Data.length; i++) {
+                    if (Data[i].Name == "证明材料类型" && Data[i].Optype == "新增") {
+                        $("#btnInsert").show();                      
+                    }
+                    if (Data[i].Name == "证明材料类型" && Data[i].Optype == "查询") {                     
+                        $("#Baseinforid").show();
+                    }
+                    if (Data[i].Name == "证明材料类型" && Data[i].Optype == "删除") {
+                        $(".strDelete").removeClass("hidden");
+
+                    }
+                    if (Data[i].Name == "证明材料类型" && Data[i].Optype == "修改") {
+
+                        $(".strUpdata").removeClass("hidden");
+
+                    }
+                }
+            });
+        });
+
+        //自定义公告详情列
+        function crearViewButton(record, rowIndex, colIndex, options) {
+            return '<button type="button" style=display:compact; class="strUpdata btn btn-danger hidden" onclick="Updata(' + record.ItemTypeID + ')">修改</button>'
+            + "&emsp;"
+            + '<button type="button" style=display:compact; class="strDelete btn btn-info hidden" onclick="Delete(' + record.ItemTypeID + ')">删除</button>';
+        }
+
+        //多条件查询
+        function tabNoticeSearch() {
+            var ItemTypeNameid = $("#ItemTypeNameid").val();
+            tabNoticeType.search("ItemTypeNameid=" + ItemTypeNameid);
+        }
+
+        $("#btnSousu").click(function () {
+            tabNoticeSearch();
+        });
+            
+        //正则表达式验证月份
+        $("#TermofvalidityID").change(function () {
+            var shoujihaoma = parseFloat($("#TermofvalidityID").val());
+            var reg = new RegExp(/^(0?[0-9]|1[0-2])$/);
+            var rg = reg.test(shoujihaoma);
+            if (rg == false) {
+                $("#TermofvalidityID").val("");
+                layer.alert('输入数字即可，不能大于12！', { icon: 0, title: '提示' });
+            }
+        });
+        //手机认证新增
+        $("#btnInsert").click(function () {
+            if ($('#Insertfrom [name="ItemTypeName"]').val().trim() != "" && $('#Insertfrom [name="Identifier"]').val().trim() != "" &&
+                $('#Insertfrom [name="Maxintegral"]').val().trim() != "") {
+                var formDate = $("#Insertfrom").serializeArray();
+                $.post("/AuthenticationManagement/Authentication/insertItemType", formDate, function (msg) {
+                    if (msg == "success") {
+                        layer.alert('成功添加', { icon: 6, title: '提示' });
+                        $("#ItemTypeNameID").val("");
+                        $("#IdentifierID").val("");
+                        $("#DescribeID").val("");
+                        $("#MaxintegralID").val("");
+                        $("#TermofvalidityID").val(""); 
+                        //刷新table
+                        tabNoticeType.refreshPage();
+                    }                 
+                    else if (msg == "failUser") {
+                        layer.alert('材料证明类型已存在！', { icon: 5, title: '提示' });
+                    }
+                    else {
+                        layer.alert('添加失败！', { icon: 5, title: '提示' });
+                    }
+                });
+            }
+            else {
+                layer.alert('请完整填写！', { icon: 2, title: '提示' });
+            }
+
+        });
+        //正则表达式验证月份
+        $("#Termofvalidityid").change(function () {
+            var shoujihaoma = parseFloat($("#Termofvalidityid").val());
+            var reg = new RegExp(/^(0?[0-9]|1[0-2])$/);
+            var rg = reg.test(shoujihaoma);
+            if (rg == false) {
+                $("#Termofvalidityid").val("");
+                layer.alert('输入数字即可，不能大于12！', { icon: 0, title: '提示' });
+            }
+        });
+        //修改
+        function Updata(ItemTypeID) {
+            $.post("/AuthenticationManagement/Authentication/updatacailiaozhengming", { ItemTypeID: ItemTypeID }, function (data) {
+                loadDatatoForm("Updatafrom", data);
+            });
+            $("#Updatamodal").modal("show");
+        }
+        //修改实名认证保存
+        $("#QueRenupdata").click(function () {
+            if ($('#Updatafrom [name="ItemTypeName"]').val().trim() != "" && $('#Updatafrom [name="Identifier"]').val().trim() != "" &&
+                $('#Updatafrom [name="Maxintegral"]').val().trim() != "")
+             {
+                var fromarray = $("#Updatafrom").serializeArray();
+                $.post("/AuthenticationManagement/Authentication/UpdataItemTypebaoxun", fromarray, function (data) {
+                    if (data == "success") {
+                        layer.alert('修改成功！', { icon: 1, title: '提示' });
+                        tabNoticeType.refreshPage();
+                        $("#Updatamodal").modal("hide");//关闭 modal
+                    } else if (data == "faliItemtype") {
+                        layer.alert('材料证明类型已存在！', { icon: 5, title: '提示' });
+                    }
+                    else
+                    {
+                        layer.alert('修改失败！', { icon: 2, title: '提示' });
+                    }
+                });
+            }
+            else {
+                layer.alert('请填写完整！', { icon: 6, title: '提示' });
+            }
+        });
+      //删除类型
+        function Delete(ItemTypeID) {//通过主键删除角色
+            layer.confirm("确定删除？", {
+                icon: 3,
+                btn: ['确定', '取消']
+                //按钮
+            }, function (layerIndex) {
+                var layerIndex = layer.load(0);//显示 加载层
+                $.post("/AuthenticationManagement/Authentication/DeleteItemtype", { ItemTypeID: ItemTypeID }, function (data) {
+                    if (data == "success") {
+                        layer.alert('删除成功！', { icon: 6, title: '提示' });
+                        tabNoticeType.refreshPage();
+                    } else {
+                        layer.alert('删除失败！', { icon: 5, title: '提示' });
+                    }
+                    layer.close(layerIndex);//关闭 加载层
+                });
+            });
+        };
+    </script>
+
+</body>
+</html>

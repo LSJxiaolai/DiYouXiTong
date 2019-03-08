@@ -1,0 +1,425 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>帝友P2P借贷系统</title>
+    <link href="~/Content/ShouYe/iconfont.css" rel="stylesheet" />
+    <link href="~/Content/ShouYe/public.css" rel="stylesheet" />
+    <link href="~/Content/ShouYe/style.css" rel="stylesheet" />
+    <link href="~/Content/ShouYe/index.css" rel="stylesheet" />
+    <link href="~/Content/ShouYe/user.css" rel="stylesheet" />
+    <link href="~/Content/ShouYe/mall.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet" />
+
+    <script src="~/Content/ShouYe/jquery-1.8.2.min.js"></script>
+    <script src="~/Content/ShouYe/diyou.js"></script>
+    <script src="~/Content/ShouYe/base.js"></script>
+    <script src="~/Content/js/customfunction.js"></script>
+    <script src="~/Content/layer/layer.js"></script>
+    <script>
+var user_id = '';
+var web_domain = "http://www.diyou.cc";
+var js_web_name="我要投资 - 帝友P2P借贷系统V4.0演示站 - 中国最大最专业的借贷系统开发商";
+    </script>
+   
+</head>
+<body>
+    <div class="header">
+        <div class="header_top">
+            <div class="conbox fn_cle">
+                <div class="contact fn_left">
+                    <i class="telico"></i>
+                    <span class="tel">服务热线：<em>400-836-3969 </em></span>                				<a href="http://www.diyou.cc/app/index.html" target="_blank">手机端下载</a>
+                </div>
+
+                <div class="top_rig fn_rig" id="yuanlaiID">
+                    <a href="/Main/ZhuCe" class="bor_none reg" id="zhuceID">免费注册</a>
+                    <a href="/Main/Login" class="login" id="Login">立即登录</a>
+                    <a href="" class="helpico">帮助中心</a>
+                    <a href="/Main/CounterIndex">利息计算器</a>
+                </div>
+
+                <div class="top_rig fn_rig" id="userviweID">
+                    <label id="userid" style="font-size:14px;">欢迎你：</label><label id="UserName" style="color:#e4b022;font-size:15px;font-weight:700;">@ViewBag.User</label><span>&nbsp;</span>
+                    <a href="" class="helpico">帮助中心</a>
+                    <a href="/Main/CounterIndex">利息计算器</a>
+                </div>
+            </div>
+        </div>
+        <div class="header_cont conbox fn_cle">
+            <h1 class="fn_left">
+                <a href="">
+                    <img src="~/Content/ShouYe/0_admin_upload_1425018268932.png" alt="帝友P2P借贷系统V4.0演示站" />
+                </a>
+            </h1>
+            <div class="navbar fn_left">
+                <ul>
+                    <li class="ui_nav_item ">
+                        <a href="/Main/Index">首页</a>
+                    </li>
+                    <li class="ui_nav_item ">
+                        <a href="/Loan/Loan/BorrowIndex">我要借款</a>
+                    </li>
+                    <li class="ui_nav_item ">
+                        <a href="/Invest/Invest/InvestIndex">我要投资</a>
+                    </li>
+                    <li class="ui_nav_item ">
+                        <a href="#" id="MyAccountID">我的账户</a>
+                    </li>
+                    <li class="ui_nav_item ">
+                        <a href="/Main/AboutOurIndex">关于我们</a>
+                        <ul class="nav_dropdown">
+                            <li class="arrow"><span></span></li>
+                            <li><a href="/Main/CertificateIndex">证照资质</a></li>
+                        </ul>
+
+                    </li>
+                    <li class="ui_nav_item ">
+                        <a href="">新手帮助</a>
+                        <ul class="nav_dropdown">
+                            <li class="arrow"><span></span></li>
+                            <li><a href="">网站公告</a></li>
+                            <li><a href="">安全保障</a></li>
+                            <li><a href="">工作原理</a></li>
+                            <li><a href="">法律政策</a></li>
+                            <li><a href="">资费说明</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="follow fn_rig">
+                <a href="" target="_blank"><div class="follow_list follow_sina "></div></a>
+                <div class="follow_list follow_wx">
+                    <div class="wx_ewm">
+                        <span class="arrow"></span>
+                        <div class="arrow_img">
+                            <img src="~/Content/ShouYe/0_admin_upload_1420791797782.jpg" height="73" width="73" />
+                        </div>
+                    </div>
+
+                </div>
+                <div class="follow_list follow_qq">
+                    <div class="qq_info">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="conbox mt30 cur_pos">
+        您当前的位置是：<a href="" title="首页">首页</a> &gt; <a href="" title="我要投资">我要投资</a>
+    </div>
+    <input type="hidden" name="borrow_style" value="borrow">
+    <div class="conbox mt10">
+        <div class="touzi_con">
+            <div class="touzi_left">
+                <div class="ui_filter">
+                    <dl>
+                        <dd>
+                            <ul data="borrow_type">
+                               
+                                <li><b>类型：</b></li>
+                                <li class="ui_filter_tag active" id="borrow_type_li">
+                                    <input type="radio" name="borrow_type" value="" checked="">
+                                    <span>不限</span>
+                                </li>
+                                <li class="ui_filter_tag ">
+                                    <input type="radio" name="borrow_type" value="second">
+                                    <span>秒借贷</span>
+                                </li>
+                                <li class="ui_filter_tag ">
+                                    <input type="radio" name="borrow_type" value="credit">
+                                    <span>信用贷</span>
+                                </li>
+                                <li class="ui_filter_tag ">
+                                    <input type="radio" name="borrow_type" value="vouch">
+                                    <span>担保贷</span>
+                                </li>
+                                <li class="ui_filter_tag ">
+                                    <input type="radio" name="borrow_type" value="pawn">
+                                    <span>抵押贷</span>
+                                </li>
+                                <li class="ui_filter_tag ">
+                                    <input type="radio" name="borrow_type" value="worth">
+                                    <span>净值贷</span>
+                                </li>
+                                <li class="ui_filter_tag ">
+                                    <input type="radio" name="borrow_type" value="roam">
+                                    <span>流转标</span>
+                                </li>
+                            </ul>
+                        </dd>
+                        <dd>
+                            <ul>
+                                <li><b>金额：</b></li>
+                                <li class="ui_filter_tag active" id="account_status_li">
+                                    <input type="radio" name="account_status" value="" checked="">
+                                    <span>不限</span>
+                                </li>
+                                <li class="ui_filter_tag " id="tab">
+                                    <input type="radio" name="account_status" value="1">
+                                    <span>2000以下</span>
+                                </li>
+                                <li class="ui_filter_tag ">
+                                    <input type="radio" name="account_status" value="2">
+                                    <span>2000-5000</span>
+                                </li>
+                                <li class="ui_filter_tag ">
+                                    <input type="radio" name="account_status" value="3">
+                                    <span>5000-10000</span>
+                                </li>
+                                <li class="ui_filter_tag ">
+                                    <input type="radio" name="account_status" value="4">
+                                    <span>1万-3万</span>
+                                </li>
+                                <li class="ui_filter_tag ">
+                                    <input type="radio" name="account_status" value="5">
+                                    <span>3万-5万</span>
+                                </li>
+                                <li class="ui_filter_tag ">
+                                    <input type="radio" name="account_status" value="6">
+                                    <span>10万以上</span>
+                                </li>
+                            </ul>
+                        </dd>
+                        <dd>
+                            <ul>
+                                <li><b>利率：</b></li>
+                                <li class="ui_filter_tag active" id="borrow_interestrate_li">
+                                    <input type="radio" name="borrow_interestrate" value="" checked="">
+                                    <span>不限</span>
+                                </li>
+                                <li class="ui_filter_tag ">
+                                    <input type="radio" name="borrow_interestrate" value="1">
+                                    <span>0%-5%</span>
+                                </li>
+                                <li class="ui_filter_tag ">
+                                    <input type="radio" name="borrow_interestrate" value="2">
+                                    <span>5%-10%</span>
+                                </li>
+                                <li class="ui_filter_tag ">
+                                    <input type="radio" name="borrow_interestrate" value="3">
+                                    <span>10%-15%</span>
+                                </li>
+                                <li class="ui_filter_tag ">
+                                    <input type="radio" name="borrow_interestrate" value="4">
+                                    <span>15%-20%</span>
+                                </li>
+                                <li class="ui_filter_tag ">
+                                    <input type="radio" name="borrow_interestrate" value="5">
+                                    <span>20%-24%</span>
+                                </li>
+                                <li class="ui_filter_tag ">
+                                    <input type="radio" name="borrow_interestrate" value="6">
+                                    <span>24%以上</span>
+                                </li>
+                            </ul>
+                        </dd>
+                        <dd class="term">
+                            <ul>
+                                <li><b>期限：</b></li>
+                                <li class="ui_filter_tag active" id="spread_month_li">
+                                    <input type="radio" name="spread_month" value="" checked="">
+                                    <span>不限</span>
+                                </li>
+                                <li class="ui_filter_tag ">
+                                    <input type="radio" name="spread_month" value="1">
+                                    <span>1-3月</span>
+                                </li>
+                                <li class="ui_filter_tag ">
+                                    <input type="radio" name="spread_month" value="2">
+                                    <span>3-6月</span>
+                                </li>
+                                <li class="ui_filter_tag ">
+                                    <input type="radio" name="spread_month" value="3">
+                                    <span>6-12月</span>
+                                </li>
+                                <li class="ui_filter_tag ">
+                                    <input type="radio" name="spread_month" value="4">
+                                    <span>12月以上</span>
+                                </li>
+                            </ul>
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+            <div class="touzi_right mt10">
+                <h3>新手指引</h3>
+                <div class="con_list">
+                    <a href="">如何提现？</a>
+                    <a href="">什么是即时到账充值？</a>
+                    <a href="">如何充值？</a>
+                    <a href="">我在平台的资金安全吗？</a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="to_invest conbox mt60">
+        <div class="main_box">
+            <div class="main_box_tit fn_cle">
+                <h2>理财项目</h2>
+            </div>
+            <div class="main_box_cont">
+                <div class="invest_list">
+                    <ul>
+                        <li>
+                            <div class="mt10" id="tbModular" style="height:630px;overflow :auto;">
+
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                @*<div class="pagination" id="pages" data-page="0" data-total="126" data-epage="8">
+                    <div class="pagination">
+                        <span class="current prev">&lt;</span><span class="current">1</span><a href="">2</a><a href="">3</a><a href="">4</a><a href="">5</a><span>...</span><a href="" class="ep">7</a><a href="" class="ep">8</a><a href="" class="ep">9</a><a href="" class="ep">10</a><a href="" class="ep">11</a><a href="" class="ep">14</a><a href="" class="ep">16</a><a href="" class="next">&gt;</a>
+                    </div>
+                </div>*@
+            </div>
+        </div>
+    </div>
+
+
+    @*<script type="text/javascript">
+        diyou.use('tender',function(t){t.tender_list()})
+        diyou.use('users',function(u){u.check_block()})
+            </script>*@
+
+    <!-- footer start -->
+    <div class="footer">
+        <div class="conbox footer_top fn_cle">
+            <div class="fn_left f_top_left">
+                <div class="f_map">
+                    <ul class="fn_cle">
+                        <li><a href="" target="_blank">关于我们</a></li>
+                        <li><a href="" target="_blank">安全保障</a></li>
+                        <li><a href="" target="_blank">媒体报道</a></li>
+                        <li><a href="" target="_blank">帮助中心</a></li>
+                        <li><a href="" target="_blank">联系我们</a></li>
+                    </ul>
+                </div>
+                <div class="f_firends">
+                    <ul>
+                        <li>友情链接：</li>
+                        <li><a href="" target="_blank">帝友官网</a></li>
+                        <li><em>|</em></li>
+                        <li><a href="" target="_blank">网贷天眼</a></li>
+                        <li><em>|</em></li>
+                        <li><a href="" target="_blank">禹州启惠</a></li>
+                        <li><em>|</em></li>
+                        <li><a href="http:" target="_blank">汇付天下</a></li>
+                        <li><em>|</em></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="fn_rig f_top_rig">
+                <h3>合作伙伴</h3>
+                <ul class="parther fn_cle">
+                    
+                    <li><a href="" class="huifu" target="_blank"><img src="~/Content/ShouYe/0_admin_upload_1407294921608.jpg" title="帝友系统" width="100" height="60" /></a></li>
+                    <li><a href="" class="huifu" target="_blank"><img src="~/Content/ShouYe/1_admin_upload_1425105669802.png" title="测试合作伙伴" width="100" height="60" /></a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer_bot">
+            <div class="conbox fn_cle">
+                <div class="verification fn_left">                  
+                    <a href="" title="诚信网站认证" target="_blank" class="credit"></a>				<a href="" title="诺顿安全认证" target="_blank" class="norton"></a>				<a href="" title="公安网警平台" target="_blank" class="police"></a>				<a href="" title="工商网监" target="_blank" class="gongshang"></a>
+                </div>
+                <div class="fn_rig copyright">Copyright@2012-2014 闽ICP备12013734号-24 厦门帝网信息科技有限公司旗下 帝友系统</div>
+                <div class="fn_rig">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- footer end -->
+    <!-- 右侧联系我们 -->
+    <a id="ibangkf" href="http://www.ibangkf.com">在线客服</a>
+    <script type="text/javascript" src="http://c.ibangkf.com/i/c-youyou88.js"></script>
+
+    <div class="diyoumask"></div>
+    <!-- 右侧联系我们 -->
+    <!-- 返回顶部 -->
+    <div class="back_right_box">
+        <a href="#" id="gotobtn" class="t_b_bor" title="返回顶部" style="display: block;"></a>
+    </div>
+   
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $.post("/Main/sesssinoselect", function (data) {
+                if (data == "success") {
+                    $("div").remove("#yuanlaiID");
+                }
+                else {
+                    $("div").remove("#userviweID");
+                }
+            });
+         
+        });
+        //我的账户
+        $("#MyAccountID").click(function () {
+            $.post("/Main/sesssinoselect", function (data) {
+                if (data == "success") {
+                    window.location.href = "/Personal/Personal/BaseIndex";
+                }
+                else {
+                    layer.confirm("请先登录？", {
+                        icon: 3,
+                        btn: ['确定', '取消']
+                        //按钮
+                    }, function (layerIndex) {
+                        var layerIndex = layer.load(0);//显示 加载层
+                        window.location.href = "/Main/Login";
+                    });
+                }
+            });
+        });
+        $(function () {
+            $.getJSON("/Invest/Invest/SelectLoanList", function (data) {
+                $.each(data, function (i) {
+                    $("#tbModular").append("<div class='in_left' style='margin-top:10px;'>" + "<table class='invest_tab' style='width:100%;'>"
+                    + "<tr>" + "<td><span>" + data[i].Loantitle + "</span></td></tr>"           
+                    + "<tr>" + "<td><span>" + "借款总额：" + "<span style='color:#F9A130'>" + data[i].LoanMoney + "元" + "</span></span></td>"
+                    + "<td><span>" + "年化利率：" + data[i].Rate + "%" + "</span></td>"
+                    + "<td><span>" + "借款期限：" + data[i].LoanDeadlineName + "<input type=button class='btn btn-default' style='margin-left:30px;width:130px;height:35px;' id=" + data[i].LoanID + " value='关注' onclick=loaanUPdata1(" + data[i].LoanID + ") /></span></td></tr>"
+                    + "<tr>"
+                    + "<td><span>" + "最低投标金额：" + data[i].LowestTenderMoney + "元" + "</span></td>"
+                    + "<td><span>" + "还剩：" + data[i].SurplusLoan + "份" + "</span></td>"
+                    + "<td><span>" + "借款进度：" + data[i].Scheduleinvestment + "%" + "<button type='button' class='btn btn-warning btn-sm' style='margin-left:50px;color:#FFF;width:130px;height:35px;font-size:14px; font-family:'方正姚体';border-radius: 5px' onclick='loaanUPdata(" + data[i].LoanID + ")'>立即认购</button></span></td></tr></table></div>")
+                   
+                });
+            });
+        });
+        
+        function loaanUPdata(LoanID) {
+            window.open("/Invest/Invest/SubscribeIndex?LoanID=" + LoanID);
+        }
+       // 关注
+        function loaanUPdata1(LoanID) {
+            if (document.getElementById(LoanID).className == "btn btn-default") {
+                document.getElementById(LoanID).className = "btn btn-success";
+                $.post("/Invest/Invest/InsertFollow", { LoanID: LoanID }, function (data) {
+                    if (data == "Exist") {
+                        document.getElementById(LoanID).className = "btn btn-success";
+                    } else if (data == "success") {                   
+                        layer.alert("关注成功", { icon: 1, title: '提示' }, function (layerIndex) {
+                            layer.close(layerIndex);
+                            document.getElementById(LoanID).className = "btn btn-success";
+                        });
+                    }
+                });
+            } else {
+                document.getElementById(LoanID).className = "btn btn-default";
+
+            }
+        }
+    </script>
+
+  
+</body>
+</html>

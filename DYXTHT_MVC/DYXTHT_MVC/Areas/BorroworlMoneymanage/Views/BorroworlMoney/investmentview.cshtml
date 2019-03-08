@@ -1,0 +1,195 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/jquery.bsgrid-1.37/merged/bsgrid.all.min.css" rel="stylesheet" />
+    <link href="~/Content/jquery.bsgrid-1.37/css/skins/grid_bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/jquery.bsgrid-1.37/css/skins/grid_sky_blue.min.css" rel="stylesheet" />
+    <title>investmentview</title>
+    <style type="text/css">
+        .container {
+            width: 100%;
+            padding: 20px 40px 0 35px;
+            margin: 0;
+        }
+
+        .panel-heading span {
+           font-size:15px;font-weight:700;
+        }
+
+        .form-horizontal label {
+            font-weight: normal;
+        }
+
+        .reset {
+            padding-left: 5px;
+            padding-right: 5px;
+        }
+
+        .panel-body {
+            padding-left: 0;
+            background: #f4fcff;
+        }
+
+        /*span {
+            font-size: 17px;
+            font-weight: 700;
+        }*/
+
+        a, a:hover, a:active, a:visited, a:link {
+            color: white;
+            text-decoration: none;
+        }
+
+        td a {
+            color: blue !important;
+        }
+
+        .h4 {
+            margin: 0 0 4px 0;
+        }
+
+        th {
+            font-weight: normal;
+        }
+
+        .h4, td, th {
+            text-align: center;
+        }
+
+        .table tbody tr td {
+            padding: 4px;
+        }
+
+            .table tbody tr td button {
+                height: 24px;
+                padding: 2px 12px;
+            }
+
+        .modal-body {
+            background: #f4fcff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="containerid">
+        <div class="row">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <div class="row">
+                        <span class="col-md-2">投资信息</span>
+                    </div>
+                </div>
+                <div class="panel-body" style="padding-left:15px;">
+                    <div class="col-md-12 setPadding" style="background:#ffffff;margin-top:5px;">
+                        <label>投资管理</label>
+                    </div>             
+                    <table id="wholewithdrawdeposit">
+                        <tr>
+                            <th w_num="total_line" width="5%">序号</th>                       
+                            <th w_index="UserName" width="5%">投资人</th>
+                            <th w_index="InvestMoney" width="8%">投资金额</th>
+                            <th w_index="ReleaseTimeStr" width="12%">投资时间</th>
+                            <th w_index="StatusName" width="8%">投资状态</th>
+                            <th w_index="YESNo" width="5%">是否转让</th>
+                            <th w_index="InvestReason" width="12%">投资理由</th>
+                            <th w_index="Loantitle" width="12%">借款标</th>
+                            <th w_index="PaymentNumber" width="12%">借款标识名</th>
+                            <th w_index="LoanMoney" width="8%">借款总额</th>                          
+                        </tr>
+                    </table>
+                    <div class="col-md-12 setPadding  col-md-offset-3" style="background:#ffffff;margin-top:5px;" id="strdivID">
+                        <form class="form-horizontal" role="form">
+                            <div class="form-group" style="margin-bottom:0;">
+                                <label class="col-md-1 col-sm-1 control-label reset">标题：</label>
+                                <div class="col-md-1 col-sm-1 reset">
+                                    <input type="text" class="form-control" name="Loantitle" id="LoantitleID">
+                                </div>
+                                <label class="col-md-1 col-sm-1 control-label reset">用户名：</label>
+                                <div class="col-md-1 col-sm-1 reset">
+                                    <input type="text" class="form-control" name="UserName" id="UserNameID">
+                                </div>
+                                <label class="col-md-1 col-sm-1 control-label reset">货款号：</label>
+                                <div class="col-md-1 col-sm-1 reset">
+                                    <input type="text" class="form-control" name="PaymentNumber" id="PaymentNumberID">
+                                </div>
+                                <label class="col-md-1 col-sm-1 control-label reset">状态：</label>
+                                <div class="col-md-1 col-sm-1 reset">
+                                    <select class="form-control" id="StatusID" name="StatusID"></select>
+                                </div>
+                                <button class="btn btn-primary" type="button" id="btnSelect"><span class="glyphicon glyphicon-search"></span> 搜索</button>
+                            </div>
+                        </form>
+
+                    </div>         
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="~/Content/bootstrap-3.3.7-dist/js/jquery-2.0.3.min.js"></script>
+    <script src="~/Content/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <script src="~/Content/jquery.bsgrid-1.37/merged/bsgrid.all.min.js"></script>
+    <script src="~/Content/jquery.bsgrid-1.37/js/lang/grid.zh-CN.min.js"></script>
+    <script src="~/Content/layer/layer.js"></script>
+    <script src="~/Content/jss/customfunction.js"></script>
+    <script>
+        var LoantitleID = "";
+        var UserNameID = "";
+        var PaymentNumberID = "";
+        $(document).ready(function () {
+            $.post("/BorroworlMoneymanage/BorroworlMoney/SelcttbinvestmentStatus", function (jsonData) {
+                selectLoadData("StatusID", jsonData);
+            });
+            wholewithdrawdeposit = $.fn.bsgrid.init('wholewithdrawdeposit', {
+                url: '/BorroworlMoneymanage/BorroworlMoney/selecinvestmentxinxi',
+                autoLoad: true,//自动加载数据
+                stripeRows: true,//隔行变色
+                rowHoverColor: true,//划过行变色
+                rowSelectedColor: true,//是否显示选中行背景色
+                pageSize: 10,//默认页面大小
+                pageSizeSelect: true,//是否选择分页页数下拉框
+                pagingLittleToolbar: true,//精简的图标按钮分页工具条
+                pagingToolbarAlign: "left"//分页工具条的显示位置
+            });
+             StatusID = $("#StatusID").val();
+            if (StatusID == undefined || StatusID == "") {
+                StatusID = 0;
+            }
+            wholewithdrawdeposit.search("LoantitleID=" + LoantitleID + "&UserNameID=" + UserNameID + "&PaymentNumberID=" + PaymentNumberID + "&StatusID=" + StatusID);
+            $("#strdivID").hide();
+        });
+
+        //权限访问
+        $("#containerid").mouseenter(function () {
+            $.post("/LoginMain/MoKuaiQuanXianOpTypeSelect", function (Data) {
+                for (var i = 0; i < Data.length; i++) {
+                    if (Data[i].Name == "投资信息" && Data[i].Optype == "查询") {
+                        $("#strdivID").show();
+                    }
+                }
+            });
+        });
+
+        $("#btnSelect").click(function () {
+             LoantitleID = $("#LoantitleID").val();
+             UserNameID = $("#UserNameID").val();
+             PaymentNumberID = $("#PaymentNumberID").val();
+            var StatusID = $("#StatusID").val();
+            if (StatusID == undefined || StatusID == "") {
+                StatusID = 0;
+            }        
+            wholewithdrawdeposit.search("LoantitleID=" + LoantitleID + "&UserNameID=" + UserNameID + "&PaymentNumberID=" + PaymentNumberID + "&StatusID=" + StatusID);
+        });
+    </script>
+
+</body>
+</html>

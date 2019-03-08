@@ -1,0 +1,171 @@
+.animation.hinge {
+	animation:2s; -webkit-animation: 2s ease; -moz-animation: 2s ease; -o-animation: 2s ease;
+}
+.animation {
+	-webkit-animation-duration: 1s; -webkit-animation-delay: .2s; -webkit-animation-timing-function: ease; -webkit-animation-fill-mode: both; -moz-animation-duration: 1s; -moz-animation-delay: .2s; -moz-animation-timing-function: ease; -moz-animation-fill-mode: both;
+}
+.flash {
+	-webkit-animation-name: flash; -moz-animation-name: flash;
+}
+.shake {
+	-webkit-animation-name: shake; -moz-animation-name: shake;
+}
+.bounce {
+	-webkit-animation-name: bounce; -moz-animation-name: bounce;
+}
+.tada {
+	-webkit-animation-name: tada; -moz-animation-name: tada;
+}
+.swing {
+	-webkit-animation-name: swing; -moz-animation-name: swing; -webkit-transform-origin: top center; -moz-transform-origin: top center;
+}
+.wobble {
+	-webkit-animation-name: wobble; -moz-animation-name: wobble;
+}
+.pulse {
+	-webkit-animation-name: pulse; -moz-animation-name: pulse;
+}
+.flip {
+	-webkit-animation-name: flip; -moz-animation-name: flip; -webkit-backface-visibility: visible; -moz-backface-visibility: visible;
+}
+.flipInX {
+	-webkit-animation-name: flipInX; -moz-animation-name: flipInX; -webkit-backface-visibility: visible; -moz-backface-visibility: visible;
+}
+.flipOutX {
+	-webkit-animation-name: flipOutX; -moz-animation-name: flipOutX; -webkit-backface-visibility: visible; -moz-backface-visibility: visible;
+}
+.flipInY {
+	-webkit-animation-name: flipInY; -moz-animation-name: flipInY; -webkit-backface-visibility: visible; -moz-backface-visibility: visible;
+}
+.flipOutY {
+	-webkit-animation-name: flipOutY; -moz-animation-name: flipOutY; -webkit-backface-visibility: visible; -moz-backface-visibility: visible;
+}
+.fadeIn {
+	-webkit-animation-name: fadeIn; -moz-animation-name: fadeIn;
+}
+.fadeInUp {
+	-webkit-animation-name: fadeInUp; -moz-animation-name: fadeInUp;
+}
+.fadeInDown {
+	-webkit-animation-name: fadeInDown; -moz-animation-name: fadeInDown;
+}
+.fadeInLeft {
+	-webkit-animation-name: fadeInLeft; -moz-animation-name: fadeInLeft;
+}
+.fadeInRight {
+	-webkit-animation-name: fadeInRight; -moz-animation-name: fadeInRight;
+}
+.fadeInUpBig {
+	-webkit-animation-name: fadeInUpBig; -moz-animation-name: fadeInUpBig;
+}
+.fadeInDownBig {
+	-webkit-animation-name: fadeInDownBig; -moz-animation-name: fadeInDownBig;
+}
+.fadeInLeftBig {
+	-webkit-animation-name: fadeInLeftBig; -moz-animation-name: fadeInLeftBig;
+}
+.fadeInRightBig {
+	-webkit-animation-name: fadeInRightBig; -moz-animation-name: fadeInRightBig;
+}
+.fadeOut {
+	-webkit-animation-name: fadeOut; -moz-animation-name: fadeOut;
+}
+.fadeOutUp {
+	-webkit-animation-name: fadeOutUp; -moz-animation-name: fadeOutUp;
+}
+.fadeOutDown {
+	-webkit-animation-name: fadeOutDown; -moz-animation-name: fadeOutDown;
+}
+.fadeOutLeft {
+	-webkit-animation-name: fadeOutLeft; -moz-animation-name: fadeOutLeft;
+}
+.fadeOutRight {
+	-webkit-animation-name: fadeOutRight; -moz-animation-name: fadeOutRight;
+}
+.fadeOutUpBig {
+	-webkit-animation-name: fadeOutUpBig; -moz-animation-name: fadeOutUpBig;
+}
+.fadeOutDownBig {
+	-webkit-animation-name: fadeOutDownBig; -moz-animation-name: fadeOutDownBig;
+}
+.fadeOutLeftBig {
+	-webkit-animation-name: fadeOutLeftBig; -moz-animation-name: fadeOutLeftBig;
+}
+.fadeOutRightBig {
+	-webkit-animation-name: fadeOutRightBig; -moz-animation-name: fadeOutRightBig;
+}
+.bounceIn {
+	-webkit-animation-name: bounceIn; -moz-animation-name: bounceIn;
+}
+.bounceInUp {
+	-webkit-animation-name: bounceInUp; -moz-animation-name: bounceInUp;
+}
+.bounceInDown {
+	-webkit-animation-name: bounceInDown; -moz-animation-name: bounceInDown;
+}
+.bounceInLeft {
+	-webkit-animation-name: bounceInLeft; -moz-animation-name: bounceInLeft;
+}
+.bounceInRight {
+	-webkit-animation-name: bounceInRight; -moz-animation-name: bounceInRight;
+}
+.bounceOut {
+	-webkit-animation-name: bounceOut; -moz-animation-name: bounceOut;
+}
+.bounceOutUp {
+	-webkit-animation-name: bounceOutUp; -moz-animation-name: bounceOutUp;
+}
+.bounceOutDown {
+	-webkit-animation-name: bounceOutDown; -moz-animation-name: bounceOutDown;
+}
+.bounceOutLeft {
+	-webkit-animation-name: bounceOutLeft; -moz-animation-name: bounceOutLeft;
+}
+.bounceOutRight {
+	-webkit-animation-name: bounceOutRight; -moz-animation-name: bounceOutRight;
+}
+.rotateIn {
+	-webkit-animation-name: rotateIn; -moz-animation-name: rotateIn;
+}
+.rotateInUpLeft {
+	-webkit-animation-name: rotateInUpLeft; -moz-animation-name: rotateInUpLeft;
+}
+.rotateInDownLeft {
+	-webkit-animation-name: rotateInDownLeft; -moz-animation-name: rotateInDownLeft;
+}
+.rotateInUpRight {
+	-webkit-animation-name: rotateInUpRight; -moz-animation-name: rotateInUpRight;
+}
+.rotateInDownRight {
+	-webkit-animation-name: rotateInDownRight; -moz-animation-name: rotateInDownRight;
+}
+.rotateOut {
+	-webkit-animation-name: rotateOut; -moz-animation-name: rotateOut;
+}
+.rotateOutUpLeft {
+	-webkit-animation-name: rotateOutUpLeft; -moz-animation-name: rotateOutUpLeft;
+}
+.rotateOutDownLeft {
+	-webkit-animation-name: rotateOutDownLeft; -moz-animation-name: rotateOutDownLeft;
+}
+.rotateOutUpRight {
+	-webkit-animation-name: rotateOutUpRight; -moz-animation-name: rotateOutUpRight;
+}
+.rotateOutDownRight {
+	-webkit-animation-name: rotateOutDownRight; -moz-animation-name: rotateOutDownRight;
+}
+.hinge {
+	-webkit-animation-name: hinge; -moz-animation-name: hinge;
+}
+.rollIn {
+	-webkit-animation-name: rollIn; -moz-animation-name: rollIn;
+}
+.rollOut {
+	-webkit-animation-name: rollOut; -moz-animation-name: rollOut;
+}
+#GeneratedByCssGaga178 {
+	transform: rotate(20120814485504deg);
+}
+#GeneratedByCssGaga184 {
+	transform: rotate(20121212944384deg);
+}

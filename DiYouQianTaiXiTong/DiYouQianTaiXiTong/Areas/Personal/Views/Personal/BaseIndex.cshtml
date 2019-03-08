@@ -1,0 +1,570 @@
+﻿
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+
+
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>帝友P2P借贷系统</title>
+    <style>
+        .row, .reset-row.col-lg-2.col-md-2.col-sm-2 {
+            padding-left: 30px;
+            padding-right: 0;
+        }
+
+        .row, .reset-row {
+            margin-top: 5px;
+        }
+
+        .one {
+            margin-left: 500px;
+            margin-top: 20px;
+        }
+    </style>
+    <link href="~/content/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="/Content/ShouYe/iconfont.css" rel="stylesheet" />
+    <link href="/Content/ShouYe/public.css" rel="stylesheet" />
+    <link href="/Content/ShouYe/style.css" rel="stylesheet" />
+    <link href="/Content/ShouYe/index.css" rel="stylesheet" />
+    <link href="/Content/ShouYe/user.css" rel="stylesheet" />
+    <link href="/Content/ShouYe/mall.css" rel="stylesheet" />
+
+    <link href="~/Content/my1/global_site_base.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/my1/order_list.css" rel="stylesheet" type="text/css" />
+
+    <link href="~/Content/my1/leftmenu.css" rel="stylesheet" />
+
+
+</head>
+<body>
+    <div class="header">
+        <div class="header_top">
+            <div class="conbox fn_cle">
+                <div class="contact fn_left">
+                    <i class="telico"></i>
+                    <span class="tel">服务热线：<em>400-836-3969 </em></span>                				<a href="http://www.diyou.cc/app/index.html" target="_blank">手机端下载</a>
+                </div>
+
+                <div class="top_rig fn_rig" id="yuanlaiID">
+                    <a href="/Main/ZhuCe" class="bor_none reg" id="zhuceID">免费注册</a>
+                    <a href="/Main/Login" class="login" id="Login">立即登录</a>
+                    <a href="" class="helpico">帮助中心</a>
+                    <a href="/Main/CounterIndex">利息计算器</a>
+                </div>
+
+                <div class="top_rig fn_rig" id="userviweID">
+                    <label id="userid" style="font-size:14px;">欢迎你：</label><label id="UserName" style="color:#e4b022;font-size:15px;font-weight:700;">@ViewBag.User</label><span>&nbsp;</span>
+                    <a href="" class="helpico">帮助中心</a>
+                    <a href="/Main/CounterIndex">利息计算器</a>
+                </div>
+            </div>
+        </div>
+        <div class="header_cont conbox fn_cle">
+            <h1 class="fn_left">
+                <a href="">
+                    <img src="~/Content/ShouYe/0_admin_upload_1425018268932.png" alt="帝友P2P借贷系统V4.0演示站" />
+                </a>
+            </h1>
+            <div class="navbar fn_left">
+
+                <ul>
+                    <li class="ui_nav_item ">
+                        <a href="/Main/Index">首页</a>
+                    </li>
+                    <li class="ui_nav_item ">
+                        <a href="/Loan/Loan/BorrowIndex">我要借款</a>
+                    </li>
+                    <li class="ui_nav_item ">
+                        <a href="/Invest/Invest/InvestIndex">我要投资</a>
+                    </li>
+                    <li class="ui_nav_item ">
+                        <a href="/Personal/Personal/BaseIndex">我的账户</a>
+                    </li>
+                    <li class="ui_nav_item ">
+                        <a href="/Main/AboutOurIndex">关于我们</a>
+                        <ul class="nav_dropdown">
+                            <li class="arrow"><span></span></li>
+                            <li><a href="/Main/CertificateIndex">证照资质</a></li>
+                        </ul>
+
+                    </li>
+                    <li class="ui_nav_item ">
+                        <a href="">新手帮助</a>
+                        <ul class="nav_dropdown">
+                            <li class="arrow"><span></span></li>
+                            <li><a href="">网站公告</a></li>
+                            <li><a href="">安全保障</a></li>
+                            <li><a href="">工作原理</a></li>
+                            <li><a href="">法律政策</a></li>
+                            <li><a href="">资费说明</a></li>
+                        </ul>
+
+                    </li>
+
+                </ul>
+            </div>
+            <div class="follow fn_rig">
+                <a href="" target="_blank"><div class="follow_list follow_sina "></div></a>
+                <div class="follow_list follow_wx">
+                    <div class="wx_ewm">
+                        <span class="arrow"></span>
+                        <div class="arrow_img">
+                            <img src="~/Content/ShouYe/0_admin_upload_1420791797782.jpg" height="73" width="73" />
+                        </div>
+                    </div>
+
+                </div>
+                <div class="follow_list follow_qq">
+                    <div class="qq_info">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="layout_main" class="mpc_cont">
+        <div class="wrap clearfix">
+            <!-- sideNav -->
+            <div class="mpc_cont_sideNav">
+                <dl style="margin-bottom:-15px;">
+                    <dt>
+                        <i class="my_iconfont sidenav_icon"></i>
+                        <span style="margin-left:-10px;font-size:20px;">我的交易</span>
+                    </dt>
+                    <dd style="margin-top:10px;">
+                        <a href="/Personal/Personal/MyAccountIndex1">我的投标</a>
+                    </dd>
+                    <dd>
+                        <a href="/Personal/Personal/LoanManageIndex">我的借款</a>
+                    </dd>
+                    <dd>
+                        <a href="/Personal/Personal/GatheringIndex">我的收款</a>
+                    </dd>
+                </dl>
+                <dl style="margin-bottom:-10px;">
+                    <dt>
+                        <i class="my_iconfont sidenav_icon"></i>
+                        <span style="margin-left:-10px;font-size:20px;">基础资料</span>
+                    </dt>
+                    <dd style="margin-top:10px;">
+                        <a href="/Personal/Personal/BaseIndex" class="llw">个人资料</a>
+                    </dd>
+                    <dd>
+                        <a href="/Personal/Personal/PersonalIndex">填写资料</a>
+                    </dd>
+                    <dd>
+                        <a href="/Personal/Personal/RegisterMember">注册会员</a>
+                    </dd>
+                    <dd>
+                        <a href="/Personal/Personal/MemberDataIndex">会员资料</a>
+                    </dd>
+                    <dd>
+                        <a href="/Personal/Personal/AttestationIndex">我的认证</a>
+                    </dd>
+                </dl>
+                <dl style="margin-bottom:-10px;">
+                    <dt>
+                        <i class="my_iconfont sidenav_icon"></i>
+                        <span style="margin-left:-10px;font-size:20px;">我的资产</span>
+                    </dt>
+                    <dd style="margin-top:10px;">
+                        <a href="/Personal/Personal/AccountCentre">我的账户</a>
+                    </dd>
+                    <dd>
+                        <a href="/Personal/Personal/LimitIndex">额度申请</a>
+                    </dd>
+                    <dd>
+                        <a href="/Personal/Personal/CreditCardIndex">添加银行卡</a>
+                    </dd>
+                    <dd>
+                        <a href="/Personal/Personal/CreditCardMessage">银行卡信息</a>
+                    </dd>
+                    <dd>
+                        <a href="/Personal/Personal/RechargeIndex">充值和提现</a>
+                    </dd>
+                </dl>
+                <dl style="margin-bottom:-10px;">
+                    <dt>
+                        <i class="my_iconfont sidenav_icon"></i>
+                        <span style="margin-left:-10px;font-size:20px;">我的服务</span>
+                    </dt>
+                    <dd style="margin-top:10px;">
+                        <a href="/Personal/Personal/FollowIndex">我的关注</a>
+                    </dd>
+                    <dd>
+                        <a href="/Personal/Personal/SpreadIndex">我的推广</a>
+                    </dd>
+                </dl>
+            </div>
+
+
+            <div id="layout_main" class="mpc_cont_main layout_w1200">
+                <!--宽屏class名为layout_w1200，窄屏请修改class为layout_w980_g18-->
+                <!-- 左侧菜单导航 -->
+                <!-- <div id="grid_4" class="grid_4"></div>-->
+                <!-- 右侧主体内容-S -->
+
+                <div class="panel panel-default">
+                    <div class="panel-heading"><h4 class="panel-title">基本信息</h4></div>
+                    <div class="panel-body">
+                        <form class="form-horizontal" id="formContent">
+                            <input type="hidden" id="userID" />
+                            <div class="form-group">
+                                <div class="col-md-2"></div>
+                                <div class="col-md-3">
+                                    <label>用<span>&nbsp;&nbsp;</span>户<span>&nbsp;</span>名：</label>
+                                    <label id="Name" style="margin-left:15px;"></label>
+                                </div>
+                                <div class="col-md-3">
+                                    <label>真实姓名：</label>
+                                    <label id="TureName" style="margin-left:15px;"></label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-2"></div>
+                                <div class="col-md-3">
+                                    <label>身份证号：</label>
+                                    <label id="IDNumber" style="margin-left:15px;"></label>
+                                </div>
+                                <div class="col-md-3">
+                                    <label>手机号码：</label>
+                                    <label id="PhoneNumber" style="margin-left:15px;"></label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-2"></div>
+                                <div class="col-md-3">
+                                    <label>性<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>别：</label>
+                                    <label id="SexID" style="margin-left:15px;"></label>
+                                </div>
+                                <div class="col-md-3">
+                                    <label>出生日期：</label>
+                                    <label id="BirthDay" style="margin-left:15px;"></label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-2"></div>
+                                <div class="col-md-3">
+                                    <label>籍<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>贯：</label>
+                                    <label id="JiGuan" style="margin-left:15px;"></label>
+                                </div>
+                                <div class="col-md-3">
+                                    <label>婚姻状况：</label>
+                                    <label id="Marriage" style="margin-left:15px;"></label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-2"></div>
+                                <div class="col-md-3">
+                                    <label>学<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>历：</label>
+                                    <label id="EducationalBackground" style="margin-left:15px;"></label>
+                                </div>
+                                <div class="col-md-3">
+                                    <label>子<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>女：</label>
+                                    <label id="Family" style="margin-left:15px;"></label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-2"></div>
+                                <div class="col-md-3">
+                                    <label>社<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>保：</label>
+                                    <label id="Social" style="margin-left:15px;"></label>
+                                </div>
+                                <div class="col-md-3">
+                                    <label>月<span>&nbsp;&nbsp;</span>收<span>&nbsp;&nbsp;</span>入：</label>
+                                    <label id="Earning" style="margin-left:15px;"></label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-2"></div>
+                                <div class="col-md-3">
+                                    <label>住房条件：</label>
+                                    <label id="ZhuFang" style="margin-left:15px;"></label>
+                                </div>
+                                <div class="col-md-3">
+                                    <label>是否购车：</label>
+                                    <label id="BuyCar" style="margin-left:15px;"></label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-2"></div>
+                                <div class="col-md-2">
+                                    <button type="button" class="btn btn-primary" id="Update" style="margin-left:70px;">修改个人信息</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+
+                <!-- 右侧主体内容-E -->
+            </div>
+        </div>
+    </div>
+    <div class="ft_wrap">
+        <div id="globalBottomBrowseRelated" data-recordTracker="1"></div>
+
+        <div class="wrap ft_service_link clearfix">
+            <div id="bottomHelpLinkId" class="ft_help_list clearfix" data-tpa="YHD_GLOBAl_FOOTER_HELP">
+                <dl>
+                    <dt>新手入门</dt>
+                    <dd><a href="" target="_blank">购物流程</a></dd>
+                    <dd><a href="" target="_blank">会员制度</a></dd>
+                    <dd><a href="" target="_blank">订单查询</a></dd>
+                    <dd><a href="" target="_blank">发票制度</a></dd>
+                </dl>
+                <dl>
+                    <dt>支付方式</dt>
+                    <dd><a href="" target="_blank">货到付款</a></dd>
+                    <dd><a href="" target="_blank">网上支付</a></dd>
+                    <dd><a href="" target="_blank">银行转账</a></dd>
+                    <dd><a href="" target="_blank">礼品卡支付</a></dd>
+                    <dd><a href="" target="_blank">其它支付</a></dd>
+                </dl>
+                <dl>
+                    <dt>配送服务</dt>
+                    <dd><a href="" target="_blank">配送进度查询</a></dd>
+                    <dd><a href="" target="_blank">商品验货与签收</a></dd>
+                </dl>
+                <dl>
+                    <dt>售后保障</dt>
+                    <dd><a href="" target="_blank">退换货政策</a></dd>
+                    <dd><a href="" target="_blank">联系客服</a></dd>
+                </dl>
+            </div>
+            <!--footer 二维码 begin -->
+            <div class="ft_code_wrap clearfix" data-tpa="YHD_GLOBAl_HEADER_MOBILE" id="footerQRcode">
+                <div class="ft_mobile_code clearfix">
+                    <p>APP更优惠</p>
+                    <img src="~/Content/myaccount/images/qryhd.png" alt="APP更优惠二维码" />
+                    @*<img src="//img.yihaodianimg.com/front-homepage/index/images/qryhd.png?1=1" alt="APP更优惠二维码" />*@
+                </div>
+                <div class="ft_mobile_code clearfix">
+                    <p>加微信查订单</p>
+                    <img src="~/Content/myaccount/images/qryhd.png" alt="加微信查订单二维码" />
+                </div>
+            </div>
+        </div>
+    </div>
+    @*//修改模态窗体*@
+    <div class="modal fade" id="InsertInfor" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+        <div class="modal-dialog" style="width:1000px;">
+            <div class="modal-content" >
+                <form method="post" id="UpdateForm">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <div class="panel panel-default">
+                        <div class="panel-heading"><h4 class="panel-title">修改个人资料</h4></div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="row reset-row">
+                                    <div class="col-lg-2 col-md-2 col-sm-2"></div>
+                                    <div class="col-lg-2 col-md-2 col-sm-2" style="padding-left:30px;padding-right:0;"><label class="control-label ">用<span>&nbsp;&nbsp;</span>户<span>&nbsp;&nbsp;</span>名：</label></div>
+                                    <div class="col-lg-4 col-md-4 col-sm-4">
+                                        <input type="text" class="form-control" id="txtUserName" name="UserName" readonly="readonly" />
+                                    </div>
+                                </div>
+                                <div class="row reset-row" style="margin-top:15px;">
+                                    <div class="col-lg-2 col-md-2 col-sm-2"></div>
+                                    <div class="col-lg-2 col-md-2 col-sm-2" style="padding-left:30px;padding-right:0;"><label class="control-label">性<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>别：</label></div>
+                                    <div class="col-lg-4 col-md-4 col-sm-4">
+                                        <input type="text" class="form-control" id="txtSex" name="Sex" />
+                                    </div>
+                                    @*<div class="col-lg-2 col-md-2 col-sm-2"></div>*@
+                                </div>
+                                <div class="row reset-row" style="margin-top:15px;">
+                                    <div class="col-lg-2 col-md-2 col-sm-2"></div>
+                                    <div class="col-lg-2 col-md-2 col-sm-2" style="padding-left:30px;padding-right:0;"><label class="control-label">出生日期：</label></div>
+                                    <div class="col-lg-4 col-md-4 col-sm-4">
+                                        <input type="date" class="form-control" id="txtBornDate" name="BornDate" />
+                                    </div>
+                                    @*<div class="col-lg-2 col-md-2 col-sm-2"></div>*@
+                                </div>
+                                <div class="row reset-row" style="margin-top:15px;">
+                                    <div class="col-lg-2 col-md-2 col-sm-2"></div>
+                                    <div class="col-lg-2 col-md-2 col-sm-2" style="padding-left:30px;padding-right:0;"><label class="control-label">籍<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>贯：</label></div>
+                                    <div class="col-lg-4 col-md-4 col-sm-4">
+                                        <input type="text" class="form-control" id="txtNativePlace" name="NativePlace" />
+                                    </div>
+                                    @*<div class="col-lg-2 col-md-2 col-sm-2"></div>*@
+                                </div>
+                                <div class="row reset-row" style="margin-top:15px;">
+                                    <div class="col-lg-2 col-md-2 col-sm-2"></div>
+                                    <div class="col-lg-2 col-md-2 col-sm-2" style="padding-left:30px;padding-right:0;"><label class="control-label">婚姻状况：</label></div>
+                                    <div class="col-lg-4 col-md-4 col-sm-4">
+                                        <input type="text" class="form-control" id="txtMarriageState" name="MarriageState" />
+                                    </div>
+                                    @*<div class="col-lg-2 col-md-2 col-sm-2"></div>*@
+                                </div>
+                                <div class="row reset-row" style="margin-top:15px;">
+                                    <div class="col-lg-2 col-md-2 col-sm-2"></div>
+                                    <div class="col-lg-2 col-md-2 col-sm-2" style="padding-left:30px;padding-right:0;"><label class="control-label">子<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>女：</label></div>
+                                    <div class="col-lg-4 col-md-4 col-sm-4">
+                                        <input type="text" class="form-control" id="txtIssue" name="Issue" />
+                                    </div>
+                                    @*<div class="col-lg-2 col-md-2 col-sm-2"></div>*@
+                                </div>
+                                <div class="row reset-row" style="margin-top:15px;">
+                                    <div class="col-lg-2 col-md-2 col-sm-2"></div>
+                                    <div class="col-lg-2 col-md-2 col-sm-2" style="padding-left:30px;padding-right:0;"><label class="control-label">学<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>历：</label></div>
+                                    <div class="col-lg-4 col-md-4 col-sm-4">
+                                        <input type="text" class="form-control" id="txtEducationalBackground" name="EducationalBackground" />
+                                    </div>
+                                    @*<div class="col-lg-2 col-md-2 col-sm-2"></div>*@
+                                </div>
+                                <div class="row reset-row" style="margin-top:15px;">
+                                    <div class="col-lg-2 col-md-2 col-sm-2"></div>
+                                    <div class="col-lg-2 col-md-2 col-sm-2" style="padding-left:30px;padding-right:0;"><label class="control-label">月<span>&nbsp;&nbsp;</span>收<span>&nbsp;&nbsp;</span>入：</label></div>
+                                    <div class="col-lg-4 col-md-4 col-sm-4">
+                                        <input type="text" class="form-control" id="txtMonthIncome" name="MonthIncome" />
+                                    </div>
+                                    @*<div class="col-lg-2 col-md-2 col-sm-2"></div>*@
+                                </div>
+                                <div class="row reset-row" style="margin-top:15px;">
+                                    <div class="col-lg-2 col-md-2 col-sm-2"></div>
+                                    <div class="col-lg-2 col-md-2 col-sm-2" style="padding-left:30px;padding-right:0;"><label class="control-label">社<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>保：</label></div>
+                                    <div class="col-lg-4 col-md-4 col-sm-4">
+                                        <input type="text" class="form-control" id="txtSocialSecurity" name="SocialSecurity" />
+                                    </div>
+                                    @*<div class="col-lg-2 col-md-2 col-sm-2"></div>*@
+                                </div>
+                                <div class="row reset-row" style="margin-top:15px;">
+                                    <div class="col-lg-2 col-md-2 col-sm-2"></div>
+                                    <div class="col-lg-2 col-md-2 col-sm-2" style="padding-left:30px;padding-right:0;"><label class="control-label">住房条件：</label></div>
+                                    <div class="col-lg-4 col-md-4 col-sm-4">
+                                        <input type="text" class="form-control" id="txthousingCondition" name="housingCondition" />
+                                    </div>
+                                    @*<div class="col-lg-2 col-md-2 col-sm-2"></div>*@
+                                </div>
+                                <div class="row reset-row" style="margin-top:15px;">
+                                    <div class="col-lg-2 col-md-2 col-sm-2"></div>
+                                    <div class="col-lg-2 col-md-2 col-sm-2" style="padding-left:30px;padding-right:0;"><label class="control-label">是否购车：</label></div>
+                                    <div class="col-lg-4 col-md-4 col-sm-4">
+                                        <input type="text" class="form-control" id="txtWhetherBuyCar" name="WhetherBuyCar" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="one">
+                                <button class="btn btn-primary" type="button" id="Submit" style="margin-left:-50px;">确定</button>
+                                <button class="btn btn-primary" type="button" id="Back" style="margin-left:30px;">取消</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="/Content/ShouYe/jquery-1.8.2.min.js"></script>
+    <script src="/Content/ShouYe/diyou.js"></script>
+    <script src="/Content/ShouYe/base.js"></script>
+
+    <script src="~/Content/my1/jquery.min.js"></script>
+    <script src="~/Content/my1/leftmenu.js"></script>
+    <script src="~/Content/my1/order_list.js"></script>
+    <script src="~/Content/my1/synccookiepc.js"></script>
+
+    <script src="~/Content/bootstrap-3.3.7-dist/js/jquery-1.11.2.min.js"></script>
+    <script src="~/Content/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <script src="~/Content/jquery.bsgrid-1.37/merged/bsgrid.all.min.js"></script>
+    <script src="~/Content/jquery.bsgrid-1.37/js/lang/grid.zh-CN.min.js"></script>
+    <script src="~/Content/js/customfunction.js"></script>
+    <script src="~/Content/layer/layer.js"></script>@*对话框*@
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $.post("/Main/sesssinoselect", function (data) {
+                if (data == "success") {
+                    $("div").remove("#yuanlaiID");
+                }
+                else {
+                    $("div").remove("#userviweID");
+                }
+            });
+        });
+      
+        var UserID = 0;
+        //查询基本信息
+        $.post("/Personal/Personal/SelectMessage", function (data) {
+                $("#userID").text(data.UserID);
+                $("#Name").text(data.UserName);
+                $("#TureName").text(data.TrueName);
+                //$("#IDNumber").text(data.IDCardNo);
+                //$("#PhoneNumber").text(data.PhoneNumber);
+                $("#SexID").text(data.Sex);
+                $("#BirthDay").text(data.BornDate);
+                $("#JiGuan").text(data.NativePlace);
+                $("#Marriage").text(data.MarriageState);
+                $("#Family").text(data.Issue);
+                $("#EducationalBackground").text(data.EducationalBackground);
+                $("#Earning").text(data.MonthIncome);
+                $("#Social").text(data.SocialSecurity);
+                $("#ZhuFang").text(data.housingCondition);
+                $("#BuyCar").text(data.WhetherBuyCar);
+                var html = data.IDCardNo;
+                var uw = html.replace(/(\w)/g, function (a, b, c, d) { return ((c > 2 && c < 14) || c > (html.length - 5)) ? '*' : a });
+                $("#IDNumber").text(uw); //打印出来的字符串 12****789abcde**** 
+
+                var html = data.PhoneNumber;
+                var uw = html.replace(/(\w)/g, function (a, b, c, d) { return ((c > 2 && c < 7) || c > (html.length - 5)) ? '*' : a });
+                $("#PhoneNumber").text(uw); //打印出来的字符串 12****789abcde**** 
+            });
+
+        //传递修改个人信息
+        $("#Update").click(function () {
+            $("#userID").val($("#userID").text())
+            $("#txtUserName").val($("#Name").text());//txtUserName是窗体的ID，Name是传递的ID
+            $("#txtSex").val($("#SexID").text());
+            $("#txtBornDate").val($("#BirthDay").text());
+            $("#txtNativePlace").val($("#JiGuan").text());
+            $("#txtMarriageState").val($("#Marriage").text());
+            $("#txtIssue").val($("#Family").text());
+            $("#txtEducationalBackground").val($("#EducationalBackground").text());
+            $("#txtMonthIncome").val($("#Earning").text());
+            $("#txtSocialSecurity").val($("#Social").text());
+            $("#txthousingCondition").val($("#ZhuFang").text());
+            $("#txtWhetherBuyCar").val($("#BuyCar").text());
+            $("#InsertInfor").modal("show");
+            
+            //window.location.href = "/Personal/Personal/UpdateBaseIndex";
+
+        });
+        //修改保存
+        $("#Submit").click(function () {
+            var fordata = $("#UpdateForm").serializeArray();
+            $.post("/Personal/Personal/UpdateMessage", fordata, function (data) {
+                if (data == "success") {
+                    layer.alert("修改成功", { icon: 1, title: '提示' }, function (layerIndex) {
+                        layer.close(layerIndex);
+                        $("#InsertInfor").modal("hide");
+                        location.reload();
+                    });
+                }
+                else {
+                    layer.alert("修改失败", { icon: 2, title: '提示' }, function (layerIndex) {
+                        layer.close(layerIndex);
+                        $("#InsertInfor").modal("hide");
+                        location.reload();
+                    });
+                }
+            });
+        });
+        $("#Back").click(function () {
+            $("#InsertInfor").modal("hide");
+            window.location.href = "/Personal/Personal/BaseIndex";
+        });
+    </script>
+
+</body>
+</html>
+
+
+
+
+

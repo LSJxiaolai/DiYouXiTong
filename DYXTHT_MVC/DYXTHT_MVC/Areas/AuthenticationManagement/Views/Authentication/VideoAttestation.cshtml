@@ -1,0 +1,421 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/jquery.bsgrid-1.37/merged/bsgrid.all.min.css" rel="stylesheet" />
+    <link href="~/Content/jquery.bsgrid-1.37/css/skins/grid_bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/jquery.bsgrid-1.37/css/skins/grid_sky_blue.min.css" rel="stylesheet" />
+    <title>VideoAttestation</title>
+    <style type="text/css">
+        .container {
+            width: 100%;
+            padding: 20px 40px 0 35px;
+            margin: 0;
+        }
+
+        .panel-heading span {
+          font-size:15px;font-weight:700;
+        }
+
+        .reset {
+            padding-left: 5px;
+            padding-right: 5px;
+        }
+
+        .panel-body {
+            padding-left: 0;
+            background: #f4fcff;
+        }
+
+     
+
+        a, a:hover, a:active, a:visited, a:link {
+            color: white;
+            text-decoration: none;
+        }
+
+        td a {
+            color: blue !important;
+        }
+
+        .h4 {
+            margin: 0 0 4px 0;
+        }
+
+        th {
+            font-weight: normal;
+        }
+
+        .h4, td, th {
+            text-align: center;
+        }
+
+        .table tbody tr td {
+            padding: 4px;
+        }
+
+            .table tbody tr td button {
+                height: 24px;
+                padding: 2px 12px;
+            }
+
+        .titleInfor {
+            border: 1px ridge #e5dfdf;
+            background: #f4fcff;
+            /*width: 300px;*/
+            height: 500px;
+            float: left;
+        }
+
+        .Baseinfor {
+            float: left;
+            background: #f4fcff;
+            /*width: 1000px;
+            height: 650px;*/
+            
+        }
+
+        .modal-body {
+            background: #f4fcff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="containerid">
+        <div class="row">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <div class="row">
+                        <span class="col-md-2">视频认证</span>
+                    </div>
+                </div>
+                <div class="panel-body" style="padding-left:15px;">                 
+                    <div class="titleInfor col-sm-3 col-md-3 col-lg-3">
+                        <div class="col-md-12" style="background-color:white;"><span>查找用户</span></div>
+                        <form class="form-horizontal" id="Userfrom">
+                            <div style="margin-top:30px;">
+                                <div class="form-group">
+                                    <label class="col-md-5 col-sm-5 control-label">用户名：</label>
+                                    <div class="col-sm-6 col-md-6">
+                                        <input class="form-control" type="text" name="UserName" id="Usernameid">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-5 col-sm-5 control-label">用户ID：</label>
+                                    <div class="col-sm-6 col-md-6">
+                                        <input class="form-control" type="text" name="UserID" id="SEUserID">
+                                    </div>
+                                </div>                               
+                            </div>
+                            <button class="btn btn-info col-md-offset-4" type="button" id="btnselect" style="margin-top:20px;">确认提交</button>
+                        </form>
+                    </div>
+                    <div class="Baseinfor col-sm-9 col-md-9 col-lg-9">
+                        <div class="col-md-12" style="background-color:white;" id="Baseinforid">
+                            <div class="col-md-2"><span>视频认证列表</span></div>
+                            <div class="col-lg-10 col-md-10 col-sm-10 col-md-offset-2"  style="margin-bottom:15px;margin-top:-20px;">
+                                <form class="form-horizontal" role="form">
+                                    <div class="form-group" style="margin-bottom:0;">
+                                        <label class="col-md-2 col-sm-2 control-label">用户名：</label>
+                                        <div class="col-md-3 col-sm-3 reset">
+                                            <input type="text" class="form-control" name="UserName" id="SUserNameID">
+                                        </div>
+                                        <label class="col-md-2 col-sm-2 control-label">状态：</label>
+                                        <div class="col-md-3 col-sm-3">
+                                            <select class="form-control" id="StatusID" name="StatusID"></select>
+                                        </div>
+                                        <button class="btn btn-primary" type="button" id="btnSelectcelll"><span class="glyphicon glyphicon-search"></span> 搜索</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <table id="tabNoticeType">
+                            <tr>       
+                                <th w_index="VideoauthenticationID" w_hidden="true">ID</th>  
+                                <th w_index="UserID" w_hidden="true">ID</th>                     
+                                <th w_index="UserName" w_align="left" width="20%">用户</th>
+                                <th w_index="TrueName" width="20%">真实姓名</th>
+                                <th w_index="ReleaseTimeStr" width="25%">申请时间</th>
+                                <th w_index="StatusName" width="25%">状态</th>
+                                <th w_index="ToVoidNo" w_render="crearViewButton" width="20%">操作</th>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+                @* 审核 *@
+                <div class="modal fade bs-example-modal-sm" id="modUpdatashenhe">
+                    <div class="modal-dialog" style="width:700px;">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                <h3 class="modal-title">视频认证人工审核</h3>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row">
+                                    <form class="form-horizontal" method="post" id="Updatashenhe">
+                                        <input id="VideoauthenticationID" name="VideoauthenticationID" hidden />
+                                        <div class="form-group">
+                                            <label class="col-lg-5 col-md-5 col-sm-5 control-label">审核：</label>
+                                            <label>
+                                                <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1">
+                                                待审核
+                                            </label>
+                                            <label>
+                                                <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+                                                审核通过
+                                            </label>
+                                            <label>
+                                                <input type="radio" name="optionsRadios" id="optionsRadios3" value="option3">
+                                                审核不通过
+                                            </label>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-lg-5 col-md-5 col-sm-5 control-label">积分（可为空）：</label>
+                                            <div class="col-lg-4 col-md-4 col-sm-4">
+                                                <input type="text" class="form-control"  name="Integral" id="IntegralID" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-lg-5 col-md-5 col-sm-5 control-label">审核备注：</label>
+                                            <div class="col-lg-4 col-md-4 col-sm-4">
+                                                <textarea class="form-control" rows="4" name="ReviewRemarks" id="ReviewRemarksID"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="validCode" class="col-lg-5 col-md-5 col-sm-5 control-label">
+                                                验证码:
+                                            </label>
+                                            <div class="col-lg-4 col-md-4 col-sm-4">
+                                                <input type="text" class="form-control col-md-6" name="validCode" id="validCode" value="" style="width:132px;"/>
+                                                <span class="text" style="padding:0"><img src="/Fundsmanagement/management/validcode" id="ValidateCode" onclick="reloadValideImage()" /></span>
+                                            </div>
+                                        </div>
+
+                                        <button type="button" class="btn btn-info col-md-offset-5" id="updataShenhe" style="margin-top:30px;">确认审核</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal-dialog -->
+                </div>
+                @*修改*@
+                <div class="modal fade bs-example-modal-sm" id="Updatamodal">
+                    <div class="modal-dialog" style="width:700px;">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                <h4 class="modal-title">修改视频认证</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row">
+                                    <form class="form-horizontal" method="post" id="Updatashimingrenzheng">
+                                        <input id="VideoauthenticationID" name="VideoauthenticationID" hidden />                                      
+                                        <div class="form-group">
+                                            <label class="col-lg-5 col-md-5 col-sm-5 control-label">用户：</label>
+                                            <div class="col-lg-4 col-md-4 col-sm-4">
+                                                <input type="text" class="form-control" id="UserNameID" name="UserName" readonly="readonly">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-lg-5 col-md-5 col-sm-5 control-label">真实姓名：</label>
+                                            <div class="col-lg-4 col-md-4 col-sm-4">
+                                                <input type="text" class="form-control" id="TrueNameID" name="TrueName" readonly="readonly">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-lg-5 col-md-5 col-sm-5 control-label">申请时间：</label>
+                                            <div class="col-lg-4 col-md-4 col-sm-4">
+                                                <input type="text" class="form-control" id="ReleaseTimeStrID" name="ReleaseTimeStr">
+                                            </div>
+                                        </div>                                      
+                                        <div class="form-group">
+                                            <label class="col-lg-5 col-md-5 col-sm-5 control-label">状态：</label>
+                                            <div class="col-lg-4 col-md-4 col-sm-4">
+                                                <select class="form-control" id="UPStatusID" name="StatusID"></select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-lg-5 col-md-5 col-sm-5 control-label">积分：</label>
+                                            <div class="col-lg-4 col-md-4 col-sm-4">
+                                                <input type="text" class="form-control" id="IntegralID" name="Integral">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-lg-5 col-md-5 col-sm-5 control-label">审核备注：</label>
+                                            <div class="col-lg-4 col-md-4 col-sm-4">
+                                                <textarea class="form-control" rows="3" name="ReviewRemarks" id="ReviewRemarksID"></textarea>
+                                            </div>
+                                        </div>
+                                        <button type="button" class="btn btn-info col-md-offset-5" id="QueRenupdata" style="margin-top:30px;">确认修改</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal-dialog -->
+                </div>              
+            </div>
+        </div>
+    </div>
+
+    <script src="~/Content/bootstrap-3.3.7-dist/js/jquery-2.0.3.min.js"></script>
+    <script src="~/Content/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <script src="~/Content/jquery.bsgrid-1.37/merged/bsgrid.all.min.js"></script>
+    <script src="~/Content/jquery.bsgrid-1.37/js/lang/grid.zh-CN.min.js"></script>
+    <script src="~/Content/layer/layer.js"></script>
+    <script src="~/Content/jss/customfunction.js"></script>   
+    <script>
+        function reloadValideImage() {
+            $("#ValidateCode").attr("src", "/Fundsmanagement/management/validcode?ts=" + new Date().getTime());
+            // document.getElementById('ValidateCode').src = '/Main/validcode?ts=' + new Date().getTime();
+        }
+        var tabNoticeType;
+        $(document).ready(function () {
+            tabNoticeType = $.fn.bsgrid.init('tabNoticeType', {
+                url: '/AuthenticationManagement/Authentication/selectVideoauthenticationTable',
+                autoLoad: true,//自动加载数据
+                stripeRows: true,//隔行变色
+                rowHoverColor: true,//划过行变色
+                rowSelectedColor: true,//是否显示选中行背景色
+                pageSize: 10,//默认页面大小
+                pageSizeSelect: true,//是否选择分页页数下拉框
+                pagingLittleToolbar: true,//精简的图标按钮分页工具条
+                pagingToolbarAlign: "left"//分页工具条的显示位置
+
+            });
+            $.post("/AuthenticationManagement/Authentication/SelctStatustype", function (jsonData) {
+                selectLoadData("StatusID", jsonData);
+            });
+            $.post("/AuthenticationManagement/Authentication/SelctStatus", function (jsonData) {
+                selectLoadData("UPStatusID", jsonData);
+            });
+            tabNoticeSearch();
+
+            $("#btnselect").hide();
+            $("#Baseinforid").hide();
+        });
+
+        //权限访问
+        $("#containerid").mouseenter(function () {
+            $.post("/LoginMain/MoKuaiQuanXianOpTypeSelect", function (Data) {
+                for (var i = 0; i < Data.length; i++) {
+                    if (Data[i].Name == "视频认证" && Data[i].Optype == "查询") {
+                        $("#btnselect").show();
+                        $("#Baseinforid").show();
+                    }
+                    if (Data[i].Name == "视频认证" && Data[i].Optype == "审核") {
+                        $(".strShenHe").removeClass("hidden");
+
+                    }
+                    if (Data[i].Name == "视频认证" && Data[i].Optype == "修改") {
+
+                        $(".strUpdata").removeClass("hidden");
+
+                    }
+                }
+            });
+        });
+        //自定义公告详情列
+        function crearViewButton(record, rowIndex, colIndex, options) {
+            var shenghe = tabNoticeType.getColumnValue(rowIndex, "StatusName");
+            if (shenghe == "待审核") {
+                return '<button type="button" style=display:compact; class="strShenHe btn btn-danger hidden" onclick="ShenHe(' + record.VideoauthenticationID + ')">审核</button>'             
+            } else {
+                return '<button type="button" style=display:compact; class="strUpdata btn btn-info hidden" onclick="Updata(' + record.VideoauthenticationID + ')">修改</button>';
+            }
+        }
+
+        //多条件查询
+        function tabNoticeSearch() {
+            var Usernameid = $("#Usernameid").val();
+            var SUserNameID = $("#SUserNameID").val();          
+            var SEUserID = $("#SEUserID").val();
+            if (SEUserID == undefined || SEUserID == "") {
+                SEUserID = 0;
+            }
+            var StatusID = $("#StatusID").val();
+            if (StatusID == undefined || StatusID == "") {
+                StatusID = 0;
+            }
+            tabNoticeType.search("Usernameid=" + Usernameid + "&SUserNameID=" + SUserNameID + "&SEUserID=" + SEUserID + "&StatusID=" + StatusID);
+        }
+        $("#btnselect").click(function () {
+            tabNoticeSearch();
+        });
+        $("#btnSelectcelll").click(function () {
+            tabNoticeSearch();
+        });
+
+        function ShenHe(VideoauthenticationID) {
+            $.post("/AuthenticationManagement/Authentication/Shenhevideo", { VideoauthenticationID: VideoauthenticationID }, function (data) {
+                loadDatatoForm("Updatashenhe", data);
+            });
+            $("#ValidateCode").attr("src", "/Fundsmanagement/management/validcode?ts=" + new Date().getTime());
+            $("#IntegralID").val("");
+            $("#ExamineRemarksID").val("");
+            $("#validCode").val("");
+            $("#modUpdatashenhe").modal("show");
+        }
+        //审核保存
+        $("#updataShenhe").click(function () {
+            if ($("input[name='optionsRadios'][type='radio']:checked").val() != undefined && $('#Updatashenhe [name="ReviewRemarks"]').val().trim() != "" && $('#Updatashenhe [name="validCode"]').val().trim() != "") {
+                var formDate = $("#Updatashenhe").serializeArray();
+                $.post("/AuthenticationManagement/Authentication/Updatavideobaocun", formDate, function (msg) {
+                    if (msg == "success") {
+                        layer.alert('审核成功', { icon: 6, title: '提示' });
+                        //关闭公告类型模态窗体
+                        $("#modUpdatashenhe").modal("hide");
+                        //刷新table
+                        tabNoticeType.refreshPage();
+                    }
+                    else if (msg == "ValidCodeErro") {                     
+                        layer.alert('验证码错误！', { icon: 5, title: '提示' });
+                        $("#validCode").val("");
+                    }
+                    else {
+
+                        layer.alert('审核失败！', { icon: 5, title: '提示' });
+                    }
+                });
+            }
+            else {
+                layer.alert('请完整填写！', { icon: 2, title: '提示' });
+            }
+        });
+
+        //修改
+        function Updata(VideoauthenticationID) {
+            $.post("/AuthenticationManagement/Authentication/updataB_VideoauthenticationTable", { VideoauthenticationID: VideoauthenticationID }, function (data) {
+                loadDatatoForm("Updatashimingrenzheng", data);
+            });
+            $("#Updatamodal").modal("show");
+        }
+        //修改实名认证保存
+        $("#QueRenupdata").click(function () {
+            if ($('#Updatashimingrenzheng [name="UserName"]').val() != "" && $('#Updatashimingrenzheng [name="TrueName"]').val() != "" && $('#Updatashimingrenzheng [name="ReleaseTimeStr"]').val() != "") {
+                var fromarray = $("#Updatashimingrenzheng").serializeArray();
+                $.post("/AuthenticationManagement/Authentication/UpdataB_Videoauthentication", fromarray, function (data) {
+                    if (data == "success") {
+                        layer.alert('修改成功！', { icon: 1, title: '提示' });
+                        tabNoticeType.refreshPage();
+                        $("#Updatamodal").modal("hide");//关闭 modal 
+                    } else {
+                        layer.alert('修改失败！', { icon: 2, title: '提示' });
+                    }
+                });
+            }
+            else {
+                layer.alert('请填写完整！', { icon: 6, title: '提示' });
+            }
+        });
+    </script>
+</body>
+</html>

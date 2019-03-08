@@ -1,0 +1,141 @@
+.mall_bg{ background:#f4f4f4; overflow:hidden; padding-bottom:50px;}
+.mall_white{ background:#fff;}
+.mall_pro_sub { background: #FF8300;color: #FFFFFF;cursor: pointer;display: inline-block;font: 16px/36px "Microsoft YaHei";padding:0px 15px; height:36px;vertical-align: top;}
+.dy_s225{ width:250px; height:250px}
+.dy_text{width:60px;padding:5px;height: 24px;font-size: 14px;-moz-border-radius: 3px;-webkit-border-radius: 2px;border: 1px solid #e0e0e0;color: #999999; text-align:center}
+.mall_banner{ }
+.mall_cont{ width:100%;}
+
+/*** mall lef menu start ***/
+.mall_fl .mall_member{ background:#f5f5f5; padding:10px; border:1px dashed #e2e2e2; height:235px; margin-bottom:20px}
+.mall_fl .mall_member dd{ width:145px;float:left; margin-top:5px}
+.mall_fl .mall_member dt p img{ border-radius:50px; padding:5px; margin-left:20px; border:1px solid #e2e2e2; box-shadow:1px 1px 3px #cdcdcd; background:#fff; text-align:center}
+.mall_fl .mall_member dd,.mall_fl .mall_member dd h2{font:12px/24px "Microsoft YaHei";}
+.mall_fl .mall_member dd b{ color:#F60; font-size:14px}
+.mall_fl .mall_member dd h2 b{font:16px/24px "Microsoft YaHei"; color:#f60}
+.mall_fl .mall_member dd a.u_nameno{ width:28px; height:28px; float:left; font-size:0px; background:url(images/u_icono.png) no-repeat 0 bottom}
+.mall_fl .mall_member dd a.u_mailno{ width:28px; height:28px; float:left; font-size:0px; background:url(images/u_icono.png) no-repeat -28px bottom;}
+.mall_fl .mall_member dd a.u_phoneno{ width:28px; height:28px; float:left; font-size:0px; background:url(images/u_icono.png) no-repeat -56px bottom;}
+.mall_fl .mall_member dd a.u_spno{ width:28px; height:28px; float:left; font-size:0px; background:url(images/u_icono.png) no-repeat -84px bottom;}
+.mall_fl .mall_member dd a.u_name{ width:28px; height:28px; float:left; font-size:0px; background:url(images/u_ico.png) no-repeat 0 bottom}
+.mall_fl .mall_member dd a.u_mail{ width:28px; height:28px; float:left; font-size:0px; background:url(images/u_ico.png) no-repeat -28px bottom;}
+.mall_fl .mall_member dd a.u_phone{ width:28px; height:28px; float:left; font-size:0px; background:url(images/u_ico.png) no-repeat -56px bottom;}
+.mall_fl .mall_member dd a.u_sp{ width:28px; height:28px; float:left; font-size:0px; background:url(images/u_ico.png) no-repeat -84px bottom;}
+.mall_fl .mall_member dd a.mall_dh{font:14px/24px "Microsoft YaHei"; margin-top:10px; padding:3px 20px; float:left; background:#FBBC34; border-radius:15px; color:#fff}
+.mall_fl .mall_member dd a.mall_dh:hover{ background:#f3a601}
+
+.mall_cont .mall_fl{ width:165px; background:#FFFFFF; border:#e2e2e2 solid 1px; border-top:none;padding:20px 0;box-shadow:3px -1px 3px #E5E5E5; min-height:1200px}
+.mall_cont .mall_fl .exchange{ margin-top:25px;}
+.mall_cont .mall_fl .exchange .ex_tit{ height:50px; background:#f5f5f5; font:16px/50px 'Microsoft yahei'; color:#000;}
+.mall_cont .mall_fl .exchange .ex_ico{ width:19px; height:19px; background:url(images/exchange.png) no-repeat scroll 0 0; vertical-align:middle; display:inline-block; margin:0 5px 0 15px;}
+.mall_cont .mall_fl .exchange .ex_cont{ padding:0 20px;}
+.mall_cont .mall_fl .exchange .ex_cont .ex_info{font:12px/20px 'Microsoft yahei'; margin-top:15px;}
+.mall_cont .mall_fl .exchange .ex_cont .ex_info span{ display:block; color:#666;}
+.mall_cont .mall_fl .exchange .ex_cont .ex_info em{ display:block; color:#999;}
+.mall_cont .mall_fl ul{ padding:0 10px;}
+.mall_cont .mall_fr{ width:765px}
+.mall_cont .mall_fl li{ text-align: center;border-bottom: 1px solid #e6e6e6; padding:10px 0}
+.mall_cont .mall_fl li a{ font:16px/22px "Microsoft YaHei"; display:inline-block}
+.mall_cont .mall_fl li a:hover{ color:#44b5df;}
+.mall_cont .mall_fl li i{ background:url(images/gtms_ico.png) no-repeat 0px 0px; height:22px; width:30px;display: inline-block; padding-right:5px;vertical-align:middle;}
+.mall_cont .mall_fl li.cat_1 i{ background-position:0px 2px}
+.mall_cont .mall_fl li.cat_2 i{ background-position:0px -22px}
+.mall_cont .mall_fl li.cat_3 i{ background-position:0px -47px}
+.mall_cont .mall_fl li.cat_4 i{ background-position:0px -73px}
+.mall_cont .mall_fl li.cat_5 i{ background-position:0px -99px}
+.mall_cont .mall_fl li.cat_6 i{ background-position:0px -125px}
+.mall_cont .mall_fl li.cat_7 i{ background-position:0px -150px}
+.mall_cont .mall_fl li dl{ display:none}
+.mall_cont .mall_fl li dd{ margin-top:5px}
+.mall_cont .mall_fl li dd a {border-bottom: 1px solid #FFFFFF;;display: block;font:14px/30px "Microsoft YaHei";height:30px;padding-left:40px;}
+.mall_cont .mall_fl li dd a input {display: none;}
+.mall_cont .mall_fl li dd a:hover,.mall_cont .mall_fl li dd a.act{ background:#f7f7f7;color:#44b5df}
+/*** mall lef menu end ***/
+
+
+/*** mall index start ***/
+.mall_cont .mall_fr .integral_sta{ margin-top:20px; height:40px}
+.mall_cont .mall_fr .inte_fl{font:16px/30px "Microsoft YaHei";}
+.mall_cont .mall_fr .inte_fl .alink{ font-size:14px; color:#44b5df; margin-left:15px;}
+.mall_cont .mall_fr .inte_fl span{color:#FF8300; font-size:22px}
+.mall_cont .mall_fr .inte_expaln{ margin-top:15px; height:190px}
+.mall_cont .mall_fr .inte_expaln .explan_cont{ width:470px; background:#f7f7f7;border:#ebebeb solid 1px; padding:10px 20px; height:170px}
+.mall_cont .mall_fr .inte_expaln .explan_new{ width:200px; background:#f7f7f7; border:#ebebeb solid 1px; padding:10px 20px; height:170px}
+.mall_cont .mall_fr .inte_expaln .explan_cont h1{font:18px/30px "Microsoft YaHei";color:#ff8300; height:40px}
+.mall_cont .mall_fr .inte_expaln .explan_cont p{font:14px/26px "Microsoft YaHei"; color:#666666}
+.mall_cont .mall_fr .inte_expaln .explan_new .new_title{ height:40px}
+.mall_cont .mall_fr .inte_expaln .explan_new .new_title h1{font:18px/30px "Microsoft YaHei";color:#ff8300}
+.mall_cont .mall_fr .inte_expaln .explan_new .new_title span{font:14px/26px "Microsoft YaHei"; color:#666666}
+.mall_cont .mall_fr .inte_expaln .explan_new .new_cont li{ font-family:"ËÎÌו"; font-size:12px;color:#999999}
+.mall_cont .mall_fr .inte_expaln .explan_new .new_cont li a{font:14px/26px "Microsoft YaHei"; color:#666666}
+/*** mall index end ***/
+
+
+/*** mall products list start ***/
+.mall_cont .mall_fr .mall_products{ margin-top:10px}
+.mall_cont .mall_fr .mall_products ul{ width:775px}
+.mall_cont .mall_fr .mall_products li{ width:213px; float:left; margin:30px 30px 0 0;}
+.mall_cont .mall_fr .mall_products li .products_img{height:213x; border:1px solid #e2e2e2; text-align:center;}
+.mall_cont .mall_fr .mall_products li .products_img img{ width:210px; height:210px;}
+.mall_cont .mall_fr .mall_products li .products_title{}
+.mall_cont .mall_fr .mall_products li .products_title h3{font:13px/22px "Microsoft YaHei"; margin-top:5px; height:45px; overflow:hidden; color:#333}
+.mall_cont .mall_fr .mall_products li .products_title p{font:16px/30px "Microsoft YaHei";}
+.mall_cont .mall_fr .mall_products li .products_title em{font:18px  "Microsoft YaHei"; color:#FF8300}
+.mall_cont .mall_fr .mall_products li .products_title span{}
+.mall_cont .mall_fr .mall_products li .products_title span a{ background:#FF8300; padding:5px 10px; margin-top:5px; display:inline-block;font:12px/18px "Microsoft YaHei"; color:#ffffff; margin-top:12px}
+.mall_cont .mall_fr .mall_products li .buy_btn{ height:35px; display:block; font:16px/35px  'Microsoft yahei'; color:#fff; text-decoration:none; text-align:center; margin-top:5px; background:#44b5df; border-radius:3px;}
+/*** mall products list end ***/
+
+
+/*** mall money_excerpt start ***/
+.mall_cont .mall_fr .money_excerpt{ margin-top:30px;font:15px/30px "Microsoft YaHei" }
+.mall_cont .mall_fr .money_excerpt a{ padding:1px 6px; }
+.mall_cont .mall_fr .money_excerpt a:hover{background:#e5e5e5; color:#44B5DF;border-radius:3px;}
+.mall_cont .mall_fr .money_excerpt a.active{ background:#44b5df; color:#ffffff;border-radius:3px;}
+.mall_cont .mall_fr .money_excerpt input {display: none;}
+/*** mall money_excerpt end ***/
+
+
+/*** mall Detail start ***/
+.mall_cont .dy_summary{ margin-top:20px; width:770px}
+.mall_cont .dy_summary .dy_gallery{ width:276px;overflow: hidden;}
+.mall_cont .dy_summary .dy_gallery .dy_pic img{ padding:2px; border:#e2e2e2 solid 1px; width:245px; height:245px;}
+.mall_cont .dy_summary .dy_gallery .dy_thumb{margin-top:10px; position:relative;width:275px;}
+.mall_cont .dy_summary .dy_gallery .dy_thumb li{ float:left;width: 61px;height: 54px;overflow: hidden;}
+.mall_cont .dy_summary .dy_gallery .dy_thumb li img{cursor:pointer;cursor:hand; padding:1px; border:#e2e2e2 solid 1px;width:57px;height: 50px;}
+.mall_cont .dy_summary .dy_gallery .dy_thumb li.page_le{ position:absolute; left:0px}
+.dy_pic{width:296px;height: 250px;}
+.dy_pic ul li a img{display:inline-block;width: 245px!important;height:245px;}
+
+.mall_cont .dy_summary .dy_property{ width:440px}
+.mall_cont .dy_summary .dy_property .dy_title{font:16px/30px "Microsoft YaHei"; color:#333333}
+.mall_cont .dy_summary .dy_property .dy_title p{font:14px/30px "Microsoft YaHei"; color:#666666}
+.mall_cont .dy_summary .dy_property .dy_integral{font:16px/48px "Microsoft YaHei"; border-top:#dfdfdf dotted 1px; border-bottom:#dfdfdf dotted 1px; height:100px; margin-top:10px}
+.mall_cont .dy_summary .dy_property .dy_integral p.like_bg{ background:url(images/like_bg.gif) 3px 20px no-repeat; padding-left:22px}
+.mall_cont .dy_summary .dy_property .dy_integral span{ color:#FF8300; font-size:18px}
+.mall_cont .dy_summary .dy_property .dy_stock{ font-family:"Microsoft YaHei"}
+.mall_cont .dy_summary .dy_property .dy_btn_buy a{ background:#ffa600; padding:10px 60px; display:inline-block;font:18px/20px "Microsoft YaHei"; color:#ffffff;}
+.mall_cont .dy_summary .dy_property .dy_btn_buy a:hover{ background:#f59f00}
+.warn_error{ color:#f00;}
+.mall_cont .dy_summary .main_wrap{ margin-top:40px;}
+.mall_cont .dy_summary .main_wrap .main_wrap_tit{ border-bottom:#44b5df solid 2px}
+.mall_cont .dy_summary .main_wrap .main_wrap_box img{ display:block; margin-top:10px;max-width:100%;height:auto;width:auto;}
+.mall_cont .dy_summary .main_wrap .main_wrap_tit span{font:18px/48px "Microsoft YaHei"; color:#44b5df; background:url(images/mall_title_bg.gif) 2px 6px no-repeat; padding-left:30px}
+.mall_cont .dy_summary .main_wrap .main_wrap_tit font{font:14px/48px "Microsoft YaHei"; color:#999999;}
+.mall_cont .dy_summary .main_wrap .main_cont{ padding:20px 0 ;word-wrap:break-word;word-break:break-all;}
+.basic_btn{background: #44b5df; width:185px; height:40px;font: 18px/40px "Microsoft YaHei"; text-align:center;color: #ffffff;cursor:pointer}
+.basic_btn:hover{background: #3ea6cc;}
+.ex_btn{  background:#999; padding:10px 60px; display:inline-block;font:18px/20px "Microsoft YaHei"; color:#ffffff;border-radius:2px;cursor:pointer}
+/*** mall Detail end ***/
+
+/***** mall banner slide module start *****/
+.mall_banner{height:350px;position:relative;overflow:hidden}
+.mall_banner .mbanner_cont{min-width:980px;height:330px;position:relative;overflow:hidden}
+.mall_banner .mbanner_cont ul li{position:absolute;left:0;}
+.mall_banner .mbanner_cont ul li img{position:relative;left:0;display:none}
+.mall_banner .mbanner_cont .mbanner_btn{width:100%;position:absolute;bottom:15px;text-align:center;font-size:0;letter-spacing:-3px}
+.mall_banner .mbanner_cont .mbanner_btn a{display:inline-block;width:15px;height:15px;border-radius:15px;background:#f3a601;margin-right:10px}
+.mall_banner .mbanner_cont .mbanner_btn a.active{background:#fff}
+.mall_banner .mbanner_cont .mbanner_btn a:hover{background:#fff}
+/***** mall banner slide module end   *****/
+

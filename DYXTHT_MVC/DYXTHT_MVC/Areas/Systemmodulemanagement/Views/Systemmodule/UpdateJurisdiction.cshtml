@@ -1,0 +1,254 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet" />
+    <title>UpdateJurisdiction</title>
+    <style type="text/css">
+        .container {
+            width: 98%;
+            padding-top: 4px;
+        }
+
+        .panel-heading {
+            font-size: 16px;
+        }
+
+        .table th {
+            font-weight: normal;
+            font-size: 16px;
+        }
+
+        .table td {
+            font-size: 15px;
+        }
+
+        .table th, .table td {
+            text-align: center;
+        }
+
+        .panel-body {
+           
+            padding: 0;
+            height: 400px;
+            overflow: auto;
+        }
+
+        .row td button {
+            padding: 4px 8px;
+            margin-right: 5px;
+        }
+
+        .row > button {
+            font-size: 16px;
+            padding: 6px 18px;
+        }
+
+        .plhead {
+            height: 40px;
+            line-height: 40px;
+        }
+
+
+            .plhead label {
+                font-weight: normal;
+                font-size: 16px;
+            }
+
+            .plhead input {
+                height: 28px;
+                border-radius: 2px;
+            }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="plhead">
+                <div class="plrole">
+                    <div class="col-lg-2 col-md-2 col-sm-2 text-right">
+                        <label class="control-label">角色名称：</label>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-3 reset">
+                        <input type="text" class="form-control" id="Name" />
+                    </div>
+                    <div class="col-lg-1 col-md-1 col-sm-1 text-right">
+                        <label class="control-label">描述：</label>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-3 reset">
+                        <input type="text" class="form-control" id="Describe" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="panel panel-info">
+                <div class="panel-heading">权限修改</div>
+                <div class="panel-body">
+                    <table class="table table-bordered table-hover table-striped table-responsive" id="MoKuaiNeiRong">
+                        <tr>
+                            <th>序号</th>
+                            <th>模块名称</th>
+                            <th>操作</th>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 col-sm-4 col-xs-4 pull-right">
+                <button class="btn btn-primary" onclick="BaoCun()">保存</button>
+                <button class="btn btn-primary" onclick="ChongZhi()">复原</button>
+                <button class="btn btn-primary" onclick="ComeBack()">返回</button>
+            </div>
+        </div>
+    </div>
+    <script src="~/Content/bootstrap-3.3.7-dist/js/jquery-2.0.3.min.js"></script>
+    <script src="~/Content/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <script src="~/Content/layer/layer.js"></script>@*对话框*@
+    <script>
+        var XinZengshuzu = new Array;//新增操作按钮数组
+        var ShanChushuzu = new Array;//删除操作按钮数组
+        var thisurl = document.URL;//获取文档请求的url
+        var getval = thisurl.split('?')[1];//获取url的参数
+        var showvalid = getval.split('=')[1];//获取url的值，目的UserTypeID
+        var caozuoid;
+        var geshu = 1;
+
+        $(function () {
+
+            $.getJSON("/Systemmodulemanagement/Systemmodule/SelectModular?time=" + (new Date()).getTime(), function (dataMoKuai) {
+                $.each(dataMoKuai, function (i) {
+                    var xh = i + 1;
+                    caozuoid = "ca" + i;
+                    $("#MoKuaiNeiRong").append(
+                    "<tr onmouseover=this.style.backgroundColor='#eeeeee'; onmouseout=this.style.backgroundColor='#fff';>"
+                    + "<th><span>" + xh + "</span></th>"
+                    + "<td><span>" + dataMoKuai[i].Name + "</span></td>"
+                    + "<td id=" + caozuoid + "></td></tr>");
+                    SelectMoKuaiMingXi(dataMoKuai[i].ModuleID, caozuoid);
+                });
+                ShowL();
+            });
+        });
+        //查询模块明细信息
+        function SelectMoKuaiMingXi(ModuleID, caozuoid) {
+            $.ajax({
+                url: "/Systemmodulemanagement/Systemmodule/SelectModularDetail?ModuleID=" + encodeURI(ModuleID) + "&time=" + (new Date()).getTime(), //所需要的列表接口地址（控制器的方法）
+                async: false,
+                type: "get",//数据传输通道的类型
+                dataType: "json",//传输的数据的类型
+                success: function (data) {//直接理解为回调函数
+
+                    $.each(data, function (j) {
+                        //alert(data[j].ModularDetailID + "---" + data[j].Explain);
+                        $("#" + caozuoid).append(
+                            "<input type=button class='btn btn-primary btn-sm' id=" + data[j].ModularDetailID + " value=" + data[j].Optype
+                            + " onclick=DanJiLeiJi(" + data[j].ModularDetailID + ") />");
+                        geshu += 1;
+                    });
+                }
+            });
+        };
+
+
+        //根据请求的用户类型ID查询操作按钮并显示为黄色
+        function ShowL() {
+            $.getJSON("/Systemmodulemanagement/Systemmodule/SelectJurisdiction?UserTypeID=" + encodeURI(showvalid) + "&time=" + (new Date()).getTime(), function (Data) {
+                document.getElementById("Name").value = Data[0].UserTypeName;
+                document.getElementById("Describe").value = Data[0].Describe;
+                $.each(Data, function (i) {
+                    //alert(Data[i].ModularDetailID);
+                    document.getElementById(Data[i].ModularDetailID).className = "btn btn-warning btn-sm";
+                })
+            });
+        };
+
+        //累计删除和新增的按钮数组ID
+        function DanJiLeiJi(ID) {
+            //新增
+            //改变按钮样式
+            if (document.getElementById(ID).className == "btn btn-primary btn-sm") {
+                document.getElementById(ID).className = "btn btn-warning btn-sm";
+                //stringObject.indexOf(searchvalue必需。规定需检索的字符串值,fromindex可选的整数参数。规定在字符串中开始检索的位置。它的合法取值是 0 到 stringObject.length - 1。如省略该参数，则将从字符串的首字符开始检索。)
+                //如果找到一个 ID，则返回 ID 的第一次出现的位置
+                var ss = ShanChushuzu.indexOf(ID);
+                if (ss > -1) {
+                    for (var i = 0; i < ShanChushuzu.length; i++) {
+                        if (ShanChushuzu[i] == ID) {
+                            /*  splice() 方法向/从数组中添加/删除项目，然后返回被删除的项目。
+                             参数 描述
+                              index   必需。整数，规定添加/删除项目的位置，使用负数可从数组结尾处规定位置。,
+                              howmany 必需。要删除的项目数量。如果设置为 0，则不会删除项目。,
+                              item1,.....,itemX 可选。向数组添加的新项目。 */
+                            ShanChushuzu.splice(i, 1);
+                        }
+                    }
+                } else {
+                    //push() 方法可向数组的末尾添加一个或多个元素，并返回新的长度。
+                    /*
+                    参数 描述
+                        newelement1 必需。要添加到数组的第一个元素。
+                        newelement2 可选。要添加到数组的第二个元素。
+                        newelementX 可选。可添加多个元素。*/
+                    XinZengshuzu.push(ID);
+                }
+            }
+            else {
+                //黄色变成蓝色：删除
+                document.getElementById(ID).className = "btn btn-primary btn-sm";
+
+                //检索ID并返回位置：获取ID
+                var xx = XinZengshuzu.indexOf(ID);
+                if (xx > -1) {
+                    for (var i = 0; i < XinZengshuzu.length; i++) {
+                        if (XinZengshuzu[i] == ID) {
+                            //删除对应ID
+                            XinZengshuzu.splice(i, 1);
+                        }
+                    }
+                }
+                else {
+                    //添加对应ID
+                    ShanChushuzu.push(ID);
+                }
+            }
+            //alert("新增：" + XinZengshuzu + "" + "删除：" + ShanChushuzu);
+        }
+        //保存
+        function BaoCun() {
+            layer.confirm("确定保存？", {
+                icon: 3,
+                btn: ['确定', '取消']
+                //按钮
+            }, function (layerIndex) {
+                $.getJSON("/Systemmodulemanagement/Systemmodule/UpdateUserType?UserTypeID=" + encodeURI(showvalid) + "&UserType=" + encodeURI(document.getElementById("Name").value.trim()) + "&Describe="
+            + encodeURI(document.getElementById("Describe").value.trim()) + "&XinZengshuzu=" + encodeURI(XinZengshuzu) + "&ShanChushuzu=" + encodeURI(ShanChushuzu) + "&time=" + (new Date()).getTime(), function (data) {
+                if (data == "success") {
+                    document.location.href = "/Systemmodulemanagement/Systemmodule/Jurisdiction?time=" + (new Date()).getTime();
+                } else {
+                    layer.alert('数据异常！', { icon: 0, title: '提示' });
+                }
+            });
+
+            });
+        };
+        //重置
+        function ChongZhi() {
+            location = location;
+        };
+        //返回
+        function ComeBack() {
+            document.location.href = "/Systemmodulemanagement/Systemmodule/Jurisdiction?time=" + (new Date()).getTime();
+        };
+
+    </script>
+</body>
+</html>

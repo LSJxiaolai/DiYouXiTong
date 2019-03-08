@@ -1,0 +1,497 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/jquery.bsgrid-1.37/merged/bsgrid.all.min.css" rel="stylesheet" />
+    <link href="~/Content/jquery.bsgrid-1.37/css/skins/grid_bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/jquery.bsgrid-1.37/css/skins/grid_sky_blue.min.css" rel="stylesheet" />
+    <title>RealnameAuthentication</title>
+    <style type="text/css">
+        .container {
+            width: 100%;
+            padding: 20px 40px 0 35px;
+            margin: 0;
+        }
+
+        .panel-heading span {
+          font-size:15px;font-weight:700;
+        }     
+        .reset {
+            padding-left: 5px;
+            padding-right: 5px;
+        }
+
+        .panel-body {
+            padding-left: 0;
+            background: #f4fcff;
+        }
+
+      
+
+        a, a:hover, a:active, a:visited, a:link {
+            color: white;
+            text-decoration: none;
+        }
+
+        td a {
+            color: blue !important;
+        }
+
+        .h4 {
+            margin: 0 0 4px 0;
+        }
+
+        th {
+            font-weight: normal;
+        }
+
+        .h4, td, th {
+            text-align: center;
+        }
+
+        .table tbody tr td {
+            padding: 4px;
+        }
+
+            .table tbody tr td button {
+                height: 24px;
+                padding: 2px 12px;
+            }
+
+        .titleInfor {
+            border: 1px ridge #e5dfdf;
+            background: #f4fcff;
+            /*width: 260px;*/
+            height: 500px;           
+            float: left;
+        }
+
+        .Baseinfor {
+            float: left;
+            background: #f4fcff;
+            /*width: 1000px;*/
+            /*height: 650px;*/
+           
+        }
+
+        .modal-body {
+            background: #f4fcff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="containerid">
+        <div class="row">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <div class="row">
+                        <span class="col-md-2">实名认证</span>
+                    </div>
+                </div>
+                <div class="panel-body" style="padding-left:15px;">
+                    <div class="row" style="background-color:white;margin-bottom:20px;margin-left:10px;">
+                        <span>身份认证</span>  
+                    </div>
+                    <div class="titleInfor col-sm-3 col-md-3 col-lg-3">                                          
+                            <form class="form-horizontal" method="post" id="insertnocittype">
+                                <div class="col-md-12"style="margin-top:20px;">
+                                    <div class="form-group">
+                                        <label class="col-md-5 col-sm-5 control-label">用户名：</label>
+                                        <div class="col-sm-6 col-md-6">
+                                            <input type="text" class="form-control" id="SeUserName" name="UserName">
+                                        </div>    
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-5 col-sm-5 control-label">用户ID：</label>
+                                        <div class="col-sm-6 col-md-6">
+                                            <input type="text" class="form-control" id="SeUserID" name="UserID">
+                                        </div>
+                                    </div>     
+                                    <button type="button" class="btn btn-info col-md-offset-4" style="margin-top:30px;" id="selectqueren">查询</button>
+                                </div>
+                            </form>
+                    </div>
+                    <div class="Baseinfor col-sm-9 col-md-9 col-lg-9">
+                        <div class="row"style="background-color:white;">
+                            <div class="col-md-2"><span>实名认证列表</span></div>                          
+                            <div class="col-lg-10 col-md-10 col-sm-10 col-md-offset-2" style="margin-bottom:15px;margin-top:-20px;" id="Baseinforid">
+                                <form class="form-horizontal" role="form">
+                                    <div class="form-group row">
+                                        <label class="col-md-1 col-sm-1 control-label reset">用户：</label>
+                                        <div class="col-md-2 col-sm-2 reset">
+                                            <input type="text" class="form-control" name="UserName" id="SUserName">
+                                        </div>
+                                        <label class="col-md-2 col-sm-2 control-label reset">真实姓名：</label>
+                                        <div class="col-md-2 col-sm-2 reset">
+                                            <input type="text" class="form-control" name="TrueName" id="STrueName">
+                                        </div>
+                                        <label class="col-md-1 col-sm-1 control-label reset">证号：</label>
+                                        <div class="col-md-2 col-sm-2 reset">
+                                            <input type="text" class="form-control" name="IDCardNo" id="SIDCardNo">
+                                        </div>
+                                        <button class="btn btn-primary" type="button" id="btnSelect"><span class="glyphicon glyphicon-search"></span> 查询</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <table id="tabNoticeType">
+                            <tr>
+                                <th w_num="total_line" width="5%">序号</th>
+                                <th w_index="UserID" w_hidden="true">ID</th>
+                                <th w_index="UserName" w_align="left" width="10%">用户</th>
+                                <th w_index="TrueName" width="10%">真实姓名</th>
+                                <th w_index="IDCardNo" width="15%">身份证号</th>
+                                <th w_index="Sex" width="10%">性别</th>
+                                <th w_index="StatusName" width="10%">状态</th>
+                                <th w_index="ReleaseTimeStr" width="15%">时间</th>
+                                <th w_index="ToVoidNo" w_render="crearViewButton" width="20%">操作</th>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+                @* 审核 *@
+                <div class="modal fade bs-example-modal-sm" id="modUpdatashenhe">
+                    <div class="modal-dialog" style="width:700px;">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                <h3 class="modal-title">人工审核</h3>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row">
+                                    <form class="form-horizontal" method="post" id="Updatashenhe">
+                                        <input id="UserID"  name="UserID" hidden />                                                                              
+                                        <div class="form-group">
+                                            <label class="col-lg-5 col-md-5 col-sm-5 control-label">审核：</label>
+                                            <label class="col-md-2">
+                                                <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1">
+                                                通过
+                                            </label>
+                                            <label class="col-md-2">
+                                                <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+                                                不通过
+                                            </label>
+                                        </div>                                      
+                                        <div class="form-group">
+                                            <label class="col-lg-5 col-md-5 col-sm-5 control-label">审核备注：</label>
+                                            <div class="col-lg-4 col-md-4 col-sm-4">
+                                                <textarea class="form-control" rows="3" name="ExamineRemarks" id="ExamineRemarksID"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="validCode" class="col-lg-5 col-md-5 col-sm-5 control-label">
+                                                验证码:
+                                            </label>
+                                            <div class="col-lg-4 col-md-4 col-sm-4">
+                                                <input type="text" class="form-control col-md-7" name="validCode" id="validCode" value="" style="width:132px;" />
+                                                <span class="text" style="padding:0"><img src="/Fundsmanagement/management/validcode" id="ValidateCode" onclick="reloadValideImage()" /></span>
+                                            </div>
+                                        </div>
+
+                                        <button type="button" class="btn btn-info col-md-offset-5" id="updataShenhe" style="margin-top:30px;">确认审核</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal-dialog -->
+                </div>
+                @*修改*@
+                <div class="modal fade bs-example-modal-sm" id="Updatamodal">
+                    <div class="modal-dialog" style="width:700px;">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                <h4 class="modal-title">修改实名认证</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row">
+                                    <form class="form-horizontal" method="post" id="Updatashimingrenzheng">       
+                                        <input id="UserID" name="UserID" hidden />                                 
+                                        <div class="form-group">
+                                            <label class="col-lg-5 col-md-5 col-sm-5 control-label">用户：</label>
+                                            <div class="col-lg-4 col-md-4 col-sm-4">
+                                                <input type="text" class="form-control" id="UserNameID" name="UserName" readonly="readonly">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-lg-5 col-md-5 col-sm-5 control-label">真实姓名：</label>
+                                            <div class="col-lg-4 col-md-4 col-sm-4">
+                                                <input type="text" class="form-control" id="TrueNameID" name="TrueName" readonly="readonly">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-lg-5 col-md-5 col-sm-5 control-label">身份证号：</label>
+                                            <div class="col-lg-4 col-md-4 col-sm-4">
+                                                <input type="text" class="form-control" id="IDCardNoID" name="IDCardNo" readonly="readonly">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-lg-5 col-md-5 col-sm-5 control-label">性别：</label>
+                                            <div class="col-lg-4 col-md-4 col-sm-4">
+                                                <input type="text" class="form-control" id="SexID" name="Sex" readonly="readonly">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-lg-5 col-md-5 col-sm-5 control-label">状态：</label>
+                                            <div class="col-lg-4 col-md-4 col-sm-4">
+                                                <select class="form-control" id="StatusID" name="StatusID"></select>
+                                            </div>
+                                        </div>                                     
+                                        <div class="form-group">
+                                            <label class="col-lg-5 col-md-5 col-sm-5 control-label">时间：</label>
+                                            <div class="col-lg-4 col-md-4 col-sm-4">
+                                                <input type="text" class="form-control" id="ReleaseTimeStr" name="ReleaseTimeStr" readonly="readonly">
+                                            </div>
+                                        </div>                                                                      
+                                        <div class="form-group">
+                                            <label class="col-lg-5 col-md-5 col-sm-5 control-label">审核备注：</label>
+                                            <div class="col-lg-4 col-md-4 col-sm-4">
+                                                <textarea class="form-control" rows="4" name="ExamineRemarks" id="ExamineRemarksID"></textarea>
+                                            </div>
+                                        </div>
+                                        <button type="button" class="btn btn-info col-md-offset-5" id="QueRenupdata" style="margin-top:30px;">确认修改</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal-dialog -->
+                </div>
+                @*查看*@
+                <div class="modal fade bs-example-modal-sm" id="selectmodalchankan">
+                    <div class="modal-dialog" style="width:700px;">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                <h4 class="modal-title">查看实名认证</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row">
+                                    <form class="form-horizontal" method="post" id="selectshimingrenzheng">
+                                        <input id="UserID" name="UserID" hidden />
+                                        <div class="form-group">
+                                            <label class="col-lg-5 col-md-5 col-sm-5 control-label">用户：</label>
+                                            <div class="col-lg-4 col-md-4 col-sm-4">
+                                                <input type="text" class="form-control" id="UserNameID" name="UserName" readonly="readonly">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-lg-5 col-md-5 col-sm-5 control-label">真实姓名：</label>
+                                            <div class="col-lg-4 col-md-4 col-sm-4">
+                                                <input type="text" class="form-control" id="TrueNameID" name="TrueName" readonly="readonly">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-lg-5 col-md-5 col-sm-5 control-label">身份证号：</label>
+                                            <div class="col-lg-4 col-md-4 col-sm-4">
+                                                <input type="text" class="form-control" id="IDCardNoID" name="IDCardNo" readonly="readonly">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-lg-5 col-md-5 col-sm-5 control-label">性别：</label>
+                                            <div class="col-lg-4 col-md-4 col-sm-4">
+                                                <input type="text" class="form-control " id="SexID" name="Sex" readonly="readonly">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-lg-5 col-md-5 col-sm-5 control-label">状态：</label>
+                                            <div class="col-lg-4 col-md-4 col-sm-4">
+                                                <input type="text" class="form-control" id="StatusNameID" name="StatusName" readonly="readonly">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-lg-5 col-md-5 col-sm-5 control-label">时间：</label>
+                                            <div class="col-lg-4 col-md-4 col-sm-4">
+                                                <input type="text" class="form-control" id="ReleaseTimeStr" name="ReleaseTimeStr" readonly="readonly">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-lg-5 col-md-5 col-sm-5 control-label">审核备注：</label>
+                                            <div class="col-lg-4 col-md-4 col-sm-4">
+                                                <textarea class="form-control" rows="3" name="ExamineRemarks" id="ExamineRemarksID" readonly="readonly"></textarea>
+                                            </div>
+                                        </div>
+                                      </form>                                      
+                                </div>
+                            </div>
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal-dialog -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="~/Content/bootstrap-3.3.7-dist/js/jquery-2.0.3.min.js"></script>
+    <script src="~/Content/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <script src="~/Content/jquery.bsgrid-1.37/merged/bsgrid.all.min.js"></script>
+    <script src="~/Content/jquery.bsgrid-1.37/js/lang/grid.zh-CN.min.js"></script>
+    <script src="~/Content/layer/layer.js"></script>
+    <script src="~/Content/jss/customfunction.js"></script>
+    <script>
+        function reloadValideImage() {
+            $("#ValidateCode").attr("src", "/Fundsmanagement/management/validcode?ts=" + new Date().getTime());
+            // document.getElementById('ValidateCode').src = '/Main/validcode?ts=' + new Date().getTime();
+        }
+        var tabNoticeType;
+        $(document).ready(function () {
+            tabNoticeType = $.fn.bsgrid.init('tabNoticeType', {
+                url: '/AuthenticationManagement/Authentication/selectUser',
+                autoLoad: true,//自动加载数据
+                stripeRows: true,//隔行变色
+                rowHoverColor: true,//划过行变色
+                rowSelectedColor: true,//是否显示选中行背景色
+                pageSize: 10,//默认页面大小
+                pageSizeSelect: true,//是否选择分页页数下拉框
+                pagingLittleToolbar: true,//精简的图标按钮分页工具条
+                pagingToolbarAlign: "left"//分页工具条的显示位置
+
+            });
+            //var cardNo = "440981199709097250";
+            //$.post("/AuthenticationManagement/Authentication/IDCard?cardNo=" + cardNo, function (jsonData) {
+            //    var vardata = $.parseJSON(jsonData);
+            //    alert(vardata.result.area);
+            //});
+
+            $.post("/AuthenticationManagement/Authentication/SelctStatus", function (jsonData) {
+                selectLoadData("StatusID", jsonData);
+            });
+            tabNoticeSearch();
+            $("#selectqueren").hide();
+            $("#Baseinforid").hide();
+        });
+
+        //权限访问
+        $("#containerid").mouseenter(function () {
+            $.post("/LoginMain/MoKuaiQuanXianOpTypeSelect", function (Data) {
+                for (var i = 0; i < Data.length; i++) {
+                    if (Data[i].Name == "实名认证" && Data[i].Optype == "查询") {
+                        $("#selectqueren").show();
+                        $("#Baseinforid").show();
+                    }
+                    if (Data[i].Name == "实名认证" && Data[i].Optype == "审核") {
+                        $(".strShenHe").removeClass("hidden");
+                      
+                    }
+                    if (Data[i].Name == "实名认证" && Data[i].Optype == "修改") {
+
+                        $(".strUpdata").removeClass("hidden");
+                       
+                    }
+                }
+            });
+        });
+        //自定义公告详情列
+        function crearViewButton(record, rowIndex, colIndex, options) {
+            var shenghe = tabNoticeType.getColumnValue(rowIndex, "StatusName");
+            if (shenghe=="待审核") {
+                return '<button type="button" style=display:compact; class="strShenHe btn btn-danger hidden" onclick="ShenHe(' + record.UserID + ')">审核</button>'            
+            } else {
+                return '<button type="button" style=display:compact; class="btn btn-primary" onclick="chakan(' + record.UserID + ')">查看</button>'
+             + "&emsp;"
+             + '<button type="button" style=display:compact; class="strUpdata btn btn-info hidden" onclick="Updata(' + record.UserID + ')">修改</button>';
+            }
+           
+        }
+
+        //多条件查询
+        function tabNoticeSearch() {
+            var SUserName = $("#SUserName").val();
+            var STrueName = $("#STrueName").val();
+            var SIDCardNo = $("#SIDCardNo").val();
+            var SeUserName = $("#SeUserName").val();
+            var SeUserID = $("#SeUserID").val();
+            if (SeUserID == undefined || SeUserID == "") {
+                SeUserID = 0;
+            }
+            tabNoticeType.search("SUserName=" + SUserName + "&STrueName=" + STrueName + "&SIDCardNo=" + SIDCardNo + "&SeUserName=" + SeUserName + "&SeUserID=" + SeUserID);
+        }
+
+        $("#selectqueren").click(function () {
+            tabNoticeSearch();
+        });
+        $("#btnSelect").click(function () {
+            tabNoticeSearch();
+        });
+        //审核
+        function ShenHe(UserID) {
+            $.post("/AuthenticationManagement/Authentication/Shenhebangding", { UserID: UserID }, function (data) {
+                loadDatatoForm("Updatashenhe", data);
+            });
+            $("#ValidateCode").attr("src", "/Fundsmanagement/management/validcode?ts=" + new Date().getTime());
+            $("#ExamineRemarksID").val("");
+            $("#validCode").val("");          
+            $("#modUpdatashenhe").modal("show");
+        }
+      
+        //审核保存
+        $("#updataShenhe").click(function () {         
+            if ($("input[name='optionsRadios'][type='radio']:checked").val() != undefined && $('#Updatashenhe [name="ExamineRemarks"]').val().trim() != "") {
+                var formDate = $("#Updatashenhe").serializeArray();
+                $.post("/AuthenticationManagement/Authentication/Updatabaocun", formDate, function (msg) {
+                    if (msg == "success") {
+                        layer.alert('审核成功', { icon: 6, title: '提示' });
+                        //关闭公告类型模态窗体
+                        $("#modUpdatashenhe").modal("hide");
+                        //刷新table
+                        tabNoticeType.refreshPage();
+                    }
+                    else if (msg == "ValidCodeErro") {
+                        $("#ValidateCode").attr("src", "/Fundsmanagement/management/validcode?ts=" + new Date().getTime());
+                        layer.alert('验证码错误！', { icon: 5, title: '提示' });
+                        $("#validCode").val("");
+                    }                    
+                    else {
+
+                        layer.alert('审核失败！', { icon: 5, title: '提示' });
+                    }
+                });
+            }
+            else {
+                layer.alert('审核状态和备注不能为空！', { icon: 2, title: '提示' });
+            }
+        });
+        //修改
+        function Updata(UserID) {
+            $.post("/AuthenticationManagement/Authentication/updatabangding", { UserID: UserID }, function (data) {
+                loadDatatoForm("Updatashimingrenzheng", data);
+            });
+            $("#Updatamodal").modal("show");
+        }
+        //修改实名认证保存
+        $("#QueRenupdata").click(function () {
+            if ($('#Updatashimingrenzheng [name="UserName"]').val() != "" && $('#Updatashimingrenzheng [name="TrueName"]').val() != "" && $('#Updatashimingrenzheng [name="Sex"]').val() != "") {
+                var fromarray = $("#Updatashimingrenzheng").serializeArray();
+                $.post("/AuthenticationManagement/Authentication/Updatayonghurenzheng", fromarray, function (data) {
+                    if (data == "success") {
+                        layer.alert('修改成功！', { icon: 1, title: '提示' });
+                        tabNoticeType.refreshPage();
+                        $("#Updatamodal").modal("hide");//关闭 modal 
+                    } else {
+                        layer.alert('修改失败！', { icon: 2, title: '提示' });
+                    }
+                });
+            }
+            else {
+                layer.alert('请填写完整！', { icon: 6, title: '提示' });
+            }
+        });
+        //查看
+        function chakan(UserID) {
+            $.post("/AuthenticationManagement/Authentication/selectrenzhengbangding", { UserID: UserID }, function (data) {
+                loadDatatoForm("selectshimingrenzheng", data);
+            });            
+            $("#selectmodalchankan").modal("show");
+        }
+
+    </script>
+
+</body>
+</html>

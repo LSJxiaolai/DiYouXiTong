@@ -1,0 +1,290 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>帝友P2P借贷系统</title>
+    <link href="~/Content/ShouYe/iconfont.css" rel="stylesheet" />
+    <link href="~/Content/ShouYe/public.css" rel="stylesheet" />
+    <link href="~/Content/ShouYe/style.css" rel="stylesheet" />
+    <link href="~/Content/ShouYe/index.css" rel="stylesheet" />
+    <link href="~/Content/ShouYe/user.css" rel="stylesheet" />
+    <link href="~/Content/ShouYe/mall.css" rel="stylesheet" />
+    <script src="~/Content/ShouYe/jquery-1.8.2.min.js"></script>
+    <script src="~/Content/ShouYe/diyou.js"></script>
+    <script src="~/Content/ShouYe/base.js"></script>
+    <script src="~/Content/js/customfunction.js"></script>
+    <script src="~/Content/layer/layer.js"></script>
+    <script>
+var user_id = '';
+var web_domain = "http://www.diyou.cc";
+var js_web_name="关于我们 - 帝友P2P借贷系统V4.0演示站 - 中国最大最专业的借贷系统开发商";
+    </script>
+  
+</head>
+<body>
+    <div class="header">
+        <div class="header_top">
+            <div class="conbox fn_cle">
+                <div class="contact fn_left">
+                    <i class="telico"></i>
+                    <span class="tel">服务热线：<em>400-836-3969 </em></span>                				<a href="http://www.diyou.cc/app/index.html" target="_blank">手机端下载</a>
+                </div>
+
+                <div class="top_rig fn_rig" id="yuanlaiID">
+                    <a href="/Main/ZhuCe" class="bor_none reg" id="zhuceID">免费注册</a>
+                    <a href="/Main/Login" class="login" id="Login">立即登录</a>
+                    <a href="" class="helpico">帮助中心</a>
+                    <a href="/Main/CounterIndex">利息计算器</a>
+                </div>
+
+                <div class="top_rig fn_rig" id="userviweID">
+                    <label id="userid" style="font-size:14px;">欢迎你：</label><label id="UserName" style="color:#e4b022;font-size:15px;font-weight:700;">@ViewBag.User</label><span>&nbsp;</span>
+                    <a href="" class="helpico">帮助中心</a>
+                    <a href="/Main/CounterIndex">利息计算器</a>
+                </div>
+            </div>
+        </div>
+        <div class="header_cont conbox fn_cle">
+            <h1 class="fn_left">
+                <a href="">
+                    <img src="~/Content/ShouYe/0_admin_upload_1425018268932.png" alt="帝友P2P借贷系统V4.0演示站" />
+                </a>
+            </h1>
+            <div class="navbar fn_left">
+
+                <ul>
+                    <li class="ui_nav_item ">
+                        <a href="/Main/Index">首页</a>
+                    </li>
+                    <li class="ui_nav_item">
+                        <a href="/Loan/Loan/BorrowIndex">我要借款</a>
+                    </li>
+                    <li class="ui_nav_item">
+                        <a href="#" id="myInvest">我要投资</a>
+                    </li>
+                    <li class="ui_nav_item ">
+                        <a href="#" id="MyAccountID">我的账户</a>
+                    </li>
+                    <li class="ui_nav_item ">
+                        <a href="/Main/AboutOurIndex">关于我们</a>
+                        <ul class="nav_dropdown">
+                            <li class="arrow"><span></span></li>
+                            <li><a href="/Main/CertificateIndex">证照资质</a></li>
+                        </ul>
+
+                    </li>
+                    <li class="ui_nav_item ">
+                        <a href="">新手帮助</a>
+                        <ul class="nav_dropdown">
+                            <li class="arrow"><span></span></li>
+                            <li><a href="">网站公告</a></li>
+                            <li><a href="">安全保障</a></li>
+                            <li><a href="">工作原理</a></li>
+                            <li><a href="">法律政策</a></li>
+                            <li><a href="">资费说明</a></li>
+                        </ul>
+
+                    </li>
+
+                </ul>
+            </div>
+            <div class="follow fn_rig">
+                <a href="" target="_blank"><div class="follow_list follow_sina "></div></a>
+                <div class="follow_list follow_wx">
+                    <div class="wx_ewm">
+                        <span class="arrow"></span>
+                        <div class="arrow_img">
+                            <img src="~/Content/ShouYe/0_admin_upload_1420791797782.jpg" height="73" width="73" />
+                        </div>
+                    </div>
+
+                </div>
+                <div class="follow_list follow_qq">
+                    <div class="qq_info">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    @*<script type="text/javascript">
+diyou.use('index',function(i){i.judge_log()})
+    </script>*@
+
+    <div class="conbox article">
+        <div class="art_menu">
+            <h2>关于我们</h2>
+            <ul>
+                <li>
+                    <a href="/Main/CertificateIndex" class="now">证照资质</a>
+                </li>
+                <li>
+                    <a href="">顾问团队</a>
+                </li>
+                <li>
+                    <a href="">合作伙伴</a>
+                </li>
+                <li>
+                    <a href="">联系我们</a>
+                </li>
+            </ul>
+        </div>
+        <div class="art_detail">
+            <div class="about_us">
+                <h3>证照资质</h3>
+                <div class="au_item">
+                    <p align="left">
+                        <span>厦门帝网信息科技有限公司创立于2010年，专注于行业网站技术的研究和开发，以“<span>帝友系统</span>”为核心产品，目前公司旗下产品主要有：帝友<strong>P2P借贷系统</strong>、帝友O2O电子商务管理系统、帝友CMS内容管理系统等。<span>针对不同行业、不同规模、不同应用的提供针对性的产品服务和解决方</span></span>
+                    </p>
+                    <p align="center">
+                        <br />
+                    </p>
+                    <p align="center">
+                        <br />
+                        <span><span></span></span>
+                    </p>
+                    <p align="center">
+                        <span>
+                            <span>
+                                <br />
+                            </span>
+                        </span>
+                    </p>
+                    <p align="center">
+                        <br />
+                    </p>
+                    <p align="center">
+                        <br />
+                        <span><span></span><span></span></span>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="cle"></div>
+    </div>
+
+    <!-- footer start -->
+    <div class="footer">
+        <div class="conbox footer_top fn_cle">
+            <div class="fn_left f_top_left">
+                <div class="f_map">
+                    <ul class="fn_cle">
+                        <li><a href="" target="_blank">关于我们</a></li>
+                        <li><a href="" target="_blank">安全保障</a></li>
+                        <li><a href="" target="_blank">媒体报道</a></li>
+                        <li><a href="" target="_blank">帮助中心</a></li>
+                        <li><a href="" target="_blank">联系我们</a></li>
+                    </ul>
+                </div>
+                <div class="f_firends">
+                    <ul>
+                        <li>友情链接：</li>
+                        <li><a href="" target="_blank">帝友官网</a></li>
+                        <li><em>|</em></li>
+                        <li><a href="" target="_blank">网贷天眼</a></li>
+                        <li><em>|</em></li>
+                        <li><a href="" target="_blank">禹州启惠</a></li>
+                        <li><em>|</em></li>
+                        <li><a href="http://" target="_blank">汇付天下</a></li>
+                        <li><em>|</em></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="fn_rig f_top_rig">
+                <h3>合作伙伴</h3>
+                <ul class="parther fn_cle">
+                    <li><a href="" class="huifu" target="_blank">
+                            <img src="~/Content/ShouYe/0_admin_upload_1407294921608.jpg" title="帝友系统" width="100" height="60" />
+                        </a></li>
+                    <li><a href="" class="huifu" target="_blank">
+                            <img src="~/Content/ShouYe/1_admin_upload_1425105669802.png" title="测试合作伙伴" width="100" height="60" />
+                        </a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer_bot">
+            <div class="conbox fn_cle">
+                <div class="verification fn_left">
+                    <a href="" title="诚信网站认证" target="_blank" class="credit"></a><a href="" title="诺顿安全认证" target="_blank" class="norton"></a>				<a href="http://www.diyou.cc" title="公安网警平台" target="_blank" class="police"></a>				<a href="http://www.diyou.cc" title="工商网监" target="_blank" class="gongshang"></a>
+                </div>
+                <div class="fn_rig copyright">Copyright@2012-2014 闽ICP备12013734号-24 厦门帝网信息科技有限公司旗下 帝友系统</div>
+                <div class="fn_rig">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- footer end -->
+    <!-- 右侧联系我们 -->
+    <a id="ibangkf" href="http://www.ibangkf.com">在线客服</a>
+    <script type="text/javascript" src="http://c.ibangkf.com/i/c-youyou88.js"></script>
+
+    <div class="diyoumask"></div>
+    <!-- 右侧联系我们 -->
+    <!-- 返回顶部 -->
+    <div class="back_right_box">
+        <a href="#" id="gotobtn" class="t_b_bor" title="返回顶部" style="display: inline;"></a>
+    </div>
+    <!-- 返回顶部 -->
+    <script type="text/javascript">
+       $(document).ready(function () {
+           $.post("/Main/sesssinoselect", function (data) {
+               if (data == "success") {
+                   $("div").remove("#yuanlaiID");
+               }
+               else {
+                   $("div").remove("#userviweID");
+               }
+           });
+       });
+       //我的账户
+       $("#MyAccountID").click(function () {
+           $.post("/Main/sesssinoselect", function (data) {
+               if (data == "success") {
+                   window.location.href = "/Personal/Personal/BaseIndex";
+               }
+               else {
+                   layer.confirm("请先登录？", {
+                       icon: 3,
+                       btn: ['确定', '取消']
+                       //按钮
+                   }, function (layerIndex) {
+                       var layerIndex = layer.load(0);//显示 加载层
+                       window.location.href = "/Main/Login";
+                   });
+               }
+           });
+       });
+       //我的投资
+       $("#myInvest").click(function () {
+           $.post("/Main/sesssinoselect", function (data) {
+               if (data == "success") {
+                   window.location.href = "/Invest/Invest/InvestIndex";
+               }
+               else {
+                   layer.confirm("请先登录？", {
+                       icon: 3,
+                       btn: ['确定', '取消']
+                       //按钮
+                   }, function (layerIndex) {
+                       var layerIndex = layer.load(0);//显示 加载层
+                       window.location.href = "/Main/Login";
+                   });
+               }
+           });
+       });
+    </script>
+ 
+
+</body>
+</html>
+
+
+
+

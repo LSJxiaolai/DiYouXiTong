@@ -1,0 +1,2685 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="DYXTModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="B_AccountTable">
+          <Key>
+            <PropertyRef Name="AccountID" />
+          </Key>
+          <Property Name="AccountID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="User" Type="nchar" MaxLength="100" />
+          <Property Name="Password" Type="nchar" MaxLength="100" />
+          <Property Name="Cancel" Type="bit" />
+        </EntityType>
+        <EntityType Name="B_AuthenticationTable">
+          <Key>
+            <PropertyRef Name="AuthenticationID" />
+          </Key>
+          <Property Name="AuthenticationID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserID" Type="int" />
+          <Property Name="Institutions" Type="nchar" MaxLength="100" />
+          <Property Name="Specialty" Type="nchar" MaxLength="100" />
+          <Property Name="EducationalBackground" Type="nchar" MaxLength="100" />
+          <Property Name="EnrolTime" Type="date" />
+          <Property Name="GraduationTime" Type="date" />
+          <Property Name="Diploma" Type="image" />
+          <Property Name="StatusID" Type="int" />
+          <Property Name="ReviewRemarks" Type="nchar" MaxLength="100" />
+          <Property Name="Checktime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="B_CapitalrecordTable">
+          <Key>
+            <PropertyRef Name="CapitalrecordID" />
+          </Key>
+          <Property Name="CapitalrecordID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserID" Type="int" />
+          <Property Name="OperateTypeID" Type="int" />
+          <Property Name="OpFare" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Income" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Expend" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="PropertyAmounts" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Remarks" Type="nchar" MaxLength="100" />
+          <Property Name="operatetime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="B_CostTypeTable">
+          <Key>
+            <PropertyRef Name="CostTypeID" />
+          </Key>
+          <Property Name="CostTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CostTypeName" Type="char" MaxLength="50" />
+          <Property Name="Identifier" Type="char" MaxLength="50" />
+          <Property Name="FundStatusID" Type="int" />
+          <Property Name="Remark" Type="nchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="B_CreditorAttornTable">
+          <Key>
+            <PropertyRef Name="CreditorAttornID" />
+          </Key>
+          <Property Name="CreditorAttornID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserID" Type="int" />
+          <Property Name="TenderTitle" Type="char" MaxLength="30" />
+          <Property Name="Rate" Type="char" MaxLength="20" />
+          <Property Name="WaitPeriods" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="AttornPeriods" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="AllPeriods" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="WaitCapital" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="WaitAccrual" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="AttornPrice" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="SubmitTime" Type="datetime" />
+          <Property Name="PurchaserUserID" Type="int" />
+          <Property Name="PurchaseTime" Type="datetime" />
+          <Property Name="StatusID" Type="int" />
+        </EntityType>
+        <EntityType Name="B_Deductexpenses">
+          <Key>
+            <PropertyRef Name="DeductexpensesID" />
+          </Key>
+          <Property Name="DeductexpensesID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserID" Type="int" />
+          <Property Name="ItemTypeID" Type="int" />
+          <Property Name="Amountmoney" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Remarks" Type="nchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="B_ExchangeTreetopLoan">
+          <Key>
+            <PropertyRef Name="ExchangeTreetopID" />
+          </Key>
+          <Property Name="ExchangeTreetopID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PaymentNumber" Type="char" MaxLength="20" />
+          <Property Name="UserID" Type="int" />
+          <Property Name="Loantitle" Type="char" MaxLength="20" />
+          <Property Name="ExchangeMoney" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Rate" Type="char" MaxLength="20" />
+          <Property Name="EArrearagePrincipal" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="ERepayPrincipal" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="EAlreadyPrincipal" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="EPayableInterest" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="RepaymentWayID" Type="int" />
+          <Property Name="LoanDeadlineID" Type="int" />
+          <Property Name="LeastUnit" Type="char" MaxLength="20" />
+          <Property Name="AllExchangePortion" Type="char" MaxLength="20" />
+          <Property Name="stopExchangePortion" Type="nchar" MaxLength="20" />
+          <Property Name="WaitExchangePortion" Type="char" MaxLength="20" />
+          <Property Name="AlreadyBuyBackPortion" Type="char" MaxLength="20" />
+          <Property Name="AddTime" Type="datetime" />
+          <Property Name="StatusID" Type="int" />
+          <Property Name="ExamineRemarks" Type="nchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="B_ExpensestypeTable">
+          <Key>
+            <PropertyRef Name="ExpensestypeID" />
+          </Key>
+          <Property Name="ExpensestypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ExpensestypeName" Type="nchar" MaxLength="100" />
+          <Property Name="Identifier" Type="nchar" MaxLength="100" />
+          <Property Name="UserTypeID" Type="int" />
+          <Property Name="FundStatusID" Type="int" />
+          <Property Name="LoanexpensesTypeID" Type="int" />
+          <Property Name="bucklemoney" Type="nchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="B_FollowTable">
+          <Key>
+            <PropertyRef Name="FollowID" />
+          </Key>
+          <Property Name="FollowID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LoanID" Type="int" />
+          <Property Name="UserID" Type="int" />
+          <Property Name="Title" Type="char" MaxLength="20" />
+          <Property Name="Money" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="YearRate" Type="char" MaxLength="20" />
+          <Property Name="Deadline" Type="char" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="B_InvestTable">
+          <Key>
+            <PropertyRef Name="InvestID" />
+          </Key>
+          <Property Name="InvestID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserID" Type="int" />
+          <Property Name="ReceivablePrincipal" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="InvestMoney" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="ReceivableInterest" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="CountermandPrincipal" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="NotRetrievePrincipal" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="InvestTime" Type="datetime" />
+          <Property Name="StatusID" Type="int" />
+          <Property Name="WhetherAttorn" Type="bit" />
+          <Property Name="InvestReason" Type="char" MaxLength="50" />
+          <Property Name="LoanTreetop" Type="char" MaxLength="30" />
+          <Property Name="LoanID" Type="int" />
+          <Property Name="ExchangeTreetopID" Type="int" />
+        </EntityType>
+        <EntityType Name="B_Jurisdictio">
+          <Key>
+            <PropertyRef Name="Jurisdictio" />
+          </Key>
+          <Property Name="Jurisdictio" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserTypeID" Type="int" />
+          <Property Name="ModularDetailID" Type="int" />
+        </EntityType>
+        <EntityType Name="B_LimitApplicationTable">
+          <Key>
+            <PropertyRef Name="LimitApplicationID" />
+          </Key>
+          <Property Name="LimitApplicationID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserID" Type="int" />
+          <Property Name="LimitTypeID" Type="int" />
+          <Property Name="limitkindID" Type="int" />
+          <Property Name="limitoperateID" Type="int" />
+          <Property Name="ApplicationMoney" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="PassLimit" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="ApplicationRemark" Type="char" MaxLength="500" />
+          <Property Name="StatusID" Type="int" />
+          <Property Name="ApplicationTime" Type="datetime" />
+          <Property Name="ExamineTime" Type="datetime" />
+          <Property Name="LoanPurpose" Type="char" MaxLength="500" />
+          <Property Name="AuditingRemark" Type="nchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="B_limitrecordTable">
+          <Key>
+            <PropertyRef Name="limitrecordID" />
+          </Key>
+          <Property Name="limitrecordID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserID" Type="int" />
+          <Property Name="LimitTypeID" Type="int" />
+          <Property Name="limitkindID" Type="int" />
+          <Property Name="limitoperateID" Type="int" />
+          <Property Name="Summoney" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Remark" Type="nchar" MaxLength="100" />
+          <Property Name="Time" Type="datetime" />
+        </EntityType>
+        <EntityType Name="B_LoanDetailTable">
+          <Key>
+            <PropertyRef Name="LoanDetailID" />
+          </Key>
+          <Property Name="LoanDetailID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LoanID" Type="int" />
+          <Property Name="ExchangeTreetopID" Type="int" />
+          <Property Name="OverdueLoanID" Type="int" />
+          <Property Name="CreditorAttornID" Type="int" />
+          <Property Name="RepayPrincipal" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="AlreadyPrincipal" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="ArrearagePrincipal" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="SeveralIssues" Type="char" MaxLength="20" />
+          <Property Name="PayableDate" Type="date" />
+          <Property Name="PayableInterest" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="OverdueDay" Type="char" MaxLength="20" />
+          <Property Name="StatusID" Type="int" />
+          <Property Name="CurrentCouponRepay" Type="decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="B_LoanTable">
+          <Key>
+            <PropertyRef Name="LoanID" />
+          </Key>
+          <Property Name="LoanID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PaymentNumber" Type="char" MaxLength="20" />
+          <Property Name="UserID" Type="int" />
+          <Property Name="Loantitle" Type="char" MaxLength="30" />
+          <Property Name="LoanPurpose" Type="char" MaxLength="20" />
+          <Property Name="LoanMoney" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="ArrearagePrincipal" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="PayableInterest" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="AlreadyPrincipal" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="RepayPrincipal" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="LoanPeriods" Type="char" MaxLength="30" />
+          <Property Name="AlreadyLoanMoney" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Rate" Type="char" MaxLength="20" />
+          <Property Name="TreetoptypeID" Type="int" />
+          <Property Name="RepaymentWayID" Type="int" />
+          <Property Name="LoanDescribe" Type="char" MaxLength="100" />
+          <Property Name="ManageRemark" Type="char" MaxLength="100" />
+          <Property Name="RemoveTreetopTime" Type="datetime" />
+          <Property Name="Endtime" Type="datetime" />
+          <Property Name="SubmitTime" Type="datetime" />
+          <Property Name="sichuantime" Type="datetime" />
+          <Property Name="LoanDeadlineID" Type="int" />
+          <Property Name="recallaccount" Type="nchar" MaxLength="100" />
+          <Property Name="InvestTime" Type="char" MaxLength="50" />
+          <Property Name="Raisestandardday" Type="nchar" MaxLength="100" />
+          <Property Name="Raisestandard" Type="datetime" />
+          <Property Name="Scheduleinvestment" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="AlreadyLoan" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="SurplusLoan" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="stopbuyback" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Grossscore" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="LowestTenderMoney" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="HighestTenderMoney" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="StatusID" Type="int" />
+        </EntityType>
+        <EntityType Name="B_ManagerRecord">
+          <Key>
+            <PropertyRef Name="RecordID" />
+          </Key>
+          <Property Name="RecordID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserID" Type="int" />
+          <Property Name="Content" Type="char" MaxLength="100" />
+          <Property Name="BearFruit" Type="nchar" MaxLength="50" />
+          <Property Name="LoginTime" Type="datetime" />
+          <Property Name="LoginIP" Type="nchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="B_MaterialAttestationTable">
+          <Key>
+            <PropertyRef Name="MaterialAttestationID" />
+          </Key>
+          <Property Name="MaterialAttestationID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserID" Type="int" />
+          <Property Name="ItemTypeID" Type="int" />
+          <Property Name="Picture" Type="image" />
+          <Property Name="Integral" Type="nchar" MaxLength="20" />
+          <Property Name="StatusID" Type="int" />
+          <Property Name="AddTime" Type="datetime" />
+          <Property Name="Remarks" Type="nchar" MaxLength="100" />
+          <Property Name="ReviewRemarks" Type="nchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="B_ModuleTable">
+          <Key>
+            <PropertyRef Name="ModuleID" />
+          </Key>
+          <Property Name="ModuleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserID" Type="int" />
+          <Property Name="identificationName" Type="char" MaxLength="20" />
+          <Property Name="Byname" Type="char" MaxLength="20" />
+          <Property Name="Name" Type="char" MaxLength="20" />
+          <Property Name="Edition" Type="nchar" MaxLength="20" />
+          <Property Name="UpdateTime" Type="date" />
+          <Property Name="Describe" Type="char" MaxLength="100" />
+          <Property Name="ModuleStatusID" Type="int" />
+        </EntityType>
+        <EntityType Name="B_NoticeTable">
+          <Key>
+            <PropertyRef Name="NoticeID" />
+          </Key>
+          <Property Name="NoticeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar(max)" />
+          <Property Name="NoticeContent" Type="nvarchar(max)" />
+          <Property Name="AccountID" Type="int" />
+          <Property Name="NoticeTypeID" Type="int" />
+          <Property Name="NoticeStatusID" Type="int" />
+          <Property Name="IssueTime" Type="datetime" />
+          <Property Name="ArticleLabel" Type="char" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="B_NoticeTypeTable">
+          <Key>
+            <PropertyRef Name="NoticeTypeID" />
+          </Key>
+          <Property Name="NoticeTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NoticeTypeName" Type="char" MaxLength="30" />
+          <Property Name="Byname" Type="char" MaxLength="20" />
+          <Property Name="Content" Type="nchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="B_OfflineRechargeTable">
+          <Key>
+            <PropertyRef Name="OfflineRechargeID" />
+          </Key>
+          <Property Name="OfflineRechargeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserID" Type="int" />
+          <Property Name="RemitMoney" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="RemitBank" Type="char" MaxLength="20" />
+          <Property Name="OpenName" Type="char" MaxLength="20" />
+          <Property Name="RemitDate" Type="datetime" />
+          <Property Name="Describe" Type="char" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="B_OverdueLoanTable">
+          <Key>
+            <PropertyRef Name="OverdueLoanID" />
+          </Key>
+          <Property Name="OverdueLoanID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LoanID" Type="int" />
+          <Property Name="PayableTime" Type="date" />
+          <Property Name="PayablePrincipal" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="OverdueDay" Type="int" />
+          <Property Name="WebsiteWhetherPayStatusID" Type="int" />
+          <Property Name="WebsiteWhetherPaymoney" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="WebsiteWhetherPayTime" Type="datetime" />
+          <Property Name="StatusID" Type="int" />
+          <Property Name="RealityRepaymentTime" Type="date" />
+        </EntityType>
+        <EntityType Name="B_PersonalSpreadMessage">
+          <Key>
+            <PropertyRef Name="PersonalSpreadID" />
+          </Key>
+          <Property Name="PersonalSpreadID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SpreadUserID" Type="int" />
+          <Property Name="SpreadPeople" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="InvestTime" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="InvestAmount" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="InvestTiCheng" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="RepaymentTime" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="RepaymentAmount" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="RepaymentTiCheng" Type="decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="B_phoneauthenticationTable">
+          <Key>
+            <PropertyRef Name="PhoneauID" />
+          </Key>
+          <Property Name="PhoneauID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserID" Type="int" />
+          <Property Name="Cellnumber" Type="nchar" MaxLength="20" />
+          <Property Name="StatusID" Type="int" />
+          <Property Name="Addtime" Type="date" />
+          <Property Name="TransitTime" Type="date" />
+          <Property Name="ReviewRemarks" Type="nchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="B_SentTable">
+          <Key>
+            <PropertyRef Name="SentID" />
+          </Key>
+          <Property Name="SentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserID" Type="int" />
+          <Property Name="Cellnumber" Type="nchar" MaxLength="500" />
+          <Property Name="SendstatusID" Type="int" />
+          <Property Name="Timeofdeparture" Type="datetime" />
+          <Property Name="DepartureContent" Type="nchar" MaxLength="600" />
+        </EntityType>
+        <EntityType Name="B_SpreadRecordTable">
+          <Key>
+            <PropertyRef Name="SpreadRecordID" />
+          </Key>
+          <Property Name="SpreadRecordID" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SpreadUserID" Type="int" />
+          <Property Name="SpreadCustomID" Type="int" />
+          <Property Name="SpreadTypeID" Type="int" />
+          <Property Name="FundType" Type="char" MaxLength="20" />
+          <Property Name="SpreadAmount" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="SubmitTime" Type="datetime" />
+          <Property Name="Remark" Type="char" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="B_SpreadTypeTable">
+          <Key>
+            <PropertyRef Name="SpreadTypeID" />
+          </Key>
+          <Property Name="SpreadTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="char" MaxLength="30" />
+          <Property Name="Title" Type="char" MaxLength="30" />
+          <Property Name="IdentificationName" Type="char" MaxLength="30" />
+          <Property Name="FundStatusID" Type="int" />
+          <Property Name="CapitalType" Type="char" MaxLength="30" />
+          <Property Name="Scale" Type="char" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="B_SpreadUserTable">
+          <Key>
+            <PropertyRef Name="SpreadUserID" />
+          </Key>
+          <Property Name="SpreadUserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserID" Type="int" />
+          <Property Name="SpreadTypeID" Type="int" />
+          <Property Name="StatusID" Type="int" />
+          <Property Name="SpreadRenID" Type="int" />
+          <Property Name="RelevanceTime" Type="date" />
+        </EntityType>
+        <EntityType Name="B_UserCashRecordTable">
+          <Key>
+            <PropertyRef Name="UserCashID" />
+          </Key>
+          <Property Name="UserCashID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserID" Type="int" />
+          <Property Name="PayTypeID" Type="int" />
+          <Property Name="Subbranch" Type="char" MaxLength="20" />
+          <Property Name="ProID" Type="int" />
+          <Property Name="CityID" Type="int" />
+          <Property Name="CashAccountNumber" Type="char" MaxLength="20" />
+          <Property Name="CashAmount" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="AccountMoney" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Poundage" Type="char" MaxLength="20" />
+          <Property Name="CashTime" Type="datetime" />
+          <Property Name="StatusID" Type="int" />
+          <Property Name="IP" Type="nchar" MaxLength="30" />
+          <Property Name="ExamineRemarks" Type="nchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="B_UserExpensesTable">
+          <Key>
+            <PropertyRef Name="UserExpensesID" />
+          </Key>
+          <Property Name="UserExpensesID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserID" Type="int" />
+          <Property Name="OperateTypeID" Type="int" />
+          <Property Name="OperateMoney" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Balance" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Earning" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Expenses" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Remark" Type="char" MaxLength="100" />
+          <Property Name="OperateTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="B_UserlimitTable">
+          <Key>
+            <PropertyRef Name="UserlimitID" />
+          </Key>
+          <Property Name="UserlimitID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserID" Type="int" />
+          <Property Name="Creditlimetl" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Cavailable" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Cfreeze" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Warrantlimetl" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Wavailable" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Wfreeze" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Mortgagelimitli" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Mavailable" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Mfreeze" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Roamlitil" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Ravailable" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Rfreeze" Type="decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="B_UserLoginDetailTable">
+          <Key>
+            <PropertyRef Name="UserLoginDetailID" />
+          </Key>
+          <Property Name="UserLoginDetailID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AccountID" Type="int" />
+          <Property Name="PostBox" Type="nchar" MaxLength="50" />
+          <Property Name="LoginFrequency" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="RegisterTime" Type="datetime" />
+          <Property Name="lastLoginTime" Type="datetime" />
+          <Property Name="lastLoginIP" Type="nchar" MaxLength="100" />
+          <Property Name="EndLoginTime" Type="datetime" />
+          <Property Name="EndLogin" Type="nchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="B_UserRechargeRecordTable">
+          <Key>
+            <PropertyRef Name="RechargeRecordID" />
+          </Key>
+          <Property Name="RechargeRecordID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserID" Type="int" />
+          <Property Name="RechargeTypeID" Type="int" />
+          <Property Name="PayTypeID" Type="int" />
+          <Property Name="TradeNumber" Type="char" MaxLength="20" />
+          <Property Name="RechargeMoney" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="RechargePoundage" Type="char" MaxLength="20" />
+          <Property Name="RealityAccountMoney" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="StatusID" Type="int" />
+          <Property Name="OperateTime" Type="datetime" />
+          <Property Name="ExamineRemarks" Type="char" MaxLength="100" />
+          <Property Name="operateIP" Type="char" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="B_UserTable">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AccountID" Type="int" />
+          <Property Name="UserTypeID" Type="int" />
+          <Property Name="UserName" Type="char" MaxLength="100" />
+          <Property Name="PostBox" Type="nchar" MaxLength="100" />
+          <Property Name="PayPassword" Type="char" MaxLength="100" />
+          <Property Name="TrueName" Type="char" MaxLength="100" />
+          <Property Name="IDCardNo" Type="char" MaxLength="100" />
+          <Property Name="PhoneNumber" Type="char" MaxLength="100" />
+          <Property Name="Sex" Type="char" MaxLength="50" />
+          <Property Name="BornDate" Type="date" />
+          <Property Name="NativePlace" Type="char" MaxLength="100" />
+          <Property Name="MarriageState" Type="char" MaxLength="100" />
+          <Property Name="Issue" Type="char" MaxLength="100" />
+          <Property Name="EducationalBackground" Type="char" MaxLength="100" />
+          <Property Name="ItemTypeID" Type="int" />
+          <Property Name="MonthIncome" Type="char" MaxLength="100" />
+          <Property Name="SocialSecurity" Type="char" MaxLength="100" />
+          <Property Name="housingCondition" Type="char" MaxLength="100" />
+          <Property Name="WhetherBuyCar" Type="char" MaxLength="100" />
+          <Property Name="PropertyAmounts" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="UsableMoney" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="FreezeMoney" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="WaitMoney" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="CompensatoryMoney" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="PayTypeID" Type="int" />
+          <Property Name="ProID" Type="int" />
+          <Property Name="CityID" Type="int" />
+          <Property Name="Subbranch" Type="char" MaxLength="100" />
+          <Property Name="BankAccount" Type="char" MaxLength="100" />
+          <Property Name="StatusID" Type="int" />
+          <Property Name="Time" Type="datetime" />
+          <Property Name="ExamineRemarks" Type="nchar" MaxLength="100" />
+          <Property Name="Integral" Type="decimal" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="B_VideoauthenticationTable">
+          <Key>
+            <PropertyRef Name="VideoauthenticationID" />
+          </Key>
+          <Property Name="VideoauthenticationID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserID" Type="int" />
+          <Property Name="ApplicationDate" Type="datetime" />
+          <Property Name="StatusID" Type="int" />
+          <Property Name="Integral" Type="nchar" MaxLength="20" />
+          <Property Name="ReviewRemarks" Type="nchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="B_VIPUserTable">
+          <Key>
+            <PropertyRef Name="VIPUserID" />
+          </Key>
+          <Property Name="VIPUserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserID" Type="int" />
+          <Property Name="UserTypeID" Type="int" />
+          <Property Name="VipDeadline" Type="char" MaxLength="20" />
+          <Property Name="StartTime" Type="date" />
+          <Property Name="EndTime" Type="date" />
+          <Property Name="StatusID" Type="int" />
+          <Property Name="WhetherPayment" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="ExamineRemarks" Type="nchar" MaxLength="100" />
+          <Property Name="ExamineTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="B_WebLiuYan">
+          <Key>
+            <PropertyRef Name="WebliuyanID" />
+          </Key>
+          <Property Name="WebliuyanID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AccountID" Type="int" />
+          <Property Name="LiuYanTime" Type="datetime" />
+          <Property Name="Callnumber" Type="nchar" MaxLength="500" />
+          <Property Name="QQ" Type="nchar" MaxLength="500" />
+          <Property Name="MailBox" Type="nchar" MaxLength="500" />
+          <Property Name="Content" Type="nchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="B_WebsiteExpensesTable">
+          <Key>
+            <PropertyRef Name="WebsiteExpensesID" />
+          </Key>
+          <Property Name="WebsiteExpensesID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AccountID" Type="int" />
+          <Property Name="OperateTypeID" Type="int" />
+          <Property Name="OperateMoney" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Earning" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Expenses" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Remark" Type="char" MaxLength="100" />
+          <Property Name="OperateTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="B_WebsiteReceivableDetail">
+          <Key>
+            <PropertyRef Name="WebsiteReceivableDetailID" />
+          </Key>
+          <Property Name="WebsiteReceivableDetailID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OverdueLoanID" Type="int" />
+          <Property Name="Loantitle" Type="nchar" MaxLength="500" />
+          <Property Name="ReceivableDate" Type="date" />
+          <Property Name="UserID" Type="int" />
+          <Property Name="GatheringMoney" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="ReceivableCapital" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="ReceivableAccrual" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="OverdueDays" Type="int" />
+          <Property Name="RealityTime" Type="date" />
+          <Property Name="RealityAmount" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="StatusID" Type="int" />
+        </EntityType>
+        <EntityType Name="S_ExamineTable">
+          <Key>
+            <PropertyRef Name="ExamineID" />
+          </Key>
+          <Property Name="ExamineID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ExamineName" Type="char" MaxLength="20" />
+          <Property Name="ExamineRemark" Type="char" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="S_FundCostTable">
+          <Key>
+            <PropertyRef Name="FundCostID" />
+          </Key>
+          <Property Name="FundCostID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="char" MaxLength="50" />
+          <Property Name="Identifier" Type="char" MaxLength="50" />
+          <Property Name="CostTypeID" Type="int" />
+          <Property Name="FundStatusID" Type="int" />
+          <Property Name="PaymentRate" Type="char" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="S_FundStatustable">
+          <Key>
+            <PropertyRef Name="FundStatusID" />
+          </Key>
+          <Property Name="FundStatusID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FundStatusName" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="S_ItemTypeTable">
+          <Key>
+            <PropertyRef Name="ItemTypeID" />
+          </Key>
+          <Property Name="ItemTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ItemTypeName" Type="char" MaxLength="100" />
+          <Property Name="Identifier" Type="nchar" MaxLength="50" />
+          <Property Name="Describe" Type="nchar" MaxLength="200" />
+          <Property Name="Maxintegral" Type="nchar" MaxLength="20" />
+          <Property Name="Termofvalidity" Type="nchar" MaxLength="20" />
+          <Property Name="AddTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="S_limitkindTable">
+          <Key>
+            <PropertyRef Name="limitkindID" />
+          </Key>
+          <Property Name="limitkindID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="limitkindName" Type="nchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="S_limitoperateTable">
+          <Key>
+            <PropertyRef Name="limitoperateID" />
+          </Key>
+          <Property Name="limitoperateID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="limitoperateName" Type="nchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="S_LimitTypeTable">
+          <Key>
+            <PropertyRef Name="LimitTypeID" />
+          </Key>
+          <Property Name="LimitTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LimitType" Type="nvarchar(max)" />
+          <Property Name="IdentificationName" Type="nvarchar(max)" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="FundStatusID" Type="int" />
+          <Property Name="Remark" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="S_LoanDeadlineTable">
+          <Key>
+            <PropertyRef Name="LoanDeadlineID" />
+          </Key>
+          <Property Name="LoanDeadlineID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LoanDeadlineName" Type="nchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="S_LoanexpensesType">
+          <Key>
+            <PropertyRef Name="LoanexpensesTypeID" />
+          </Key>
+          <Property Name="LoanexpensesTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LoanexpensesName" Type="nchar" MaxLength="100" />
+          <Property Name="Identifier" Type="nchar" MaxLength="100" />
+          <Property Name="FundStatusID" Type="int" />
+        </EntityType>
+        <EntityType Name="S_ModularDetailITable">
+          <Key>
+            <PropertyRef Name="ModularDetailID" />
+          </Key>
+          <Property Name="ModularDetailID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OpTypeID" Type="int" />
+          <Property Name="ModuleID" Type="int" />
+        </EntityType>
+        <EntityType Name="S_ModuleStatusTable">
+          <Key>
+            <PropertyRef Name="ModuleStatusID" />
+          </Key>
+          <Property Name="ModuleStatusID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ModuleStatus" Type="char" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="S_NoticeStatusTable">
+          <Key>
+            <PropertyRef Name="NoticeStatusID" />
+          </Key>
+          <Property Name="NoticeStatusID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NoticeStatusName" Type="char" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="S_OperateTypeTable">
+          <Key>
+            <PropertyRef Name="OperateTypeID" />
+          </Key>
+          <Property Name="OperateTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OperateTypeName" Type="char" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="S_OpTypeTable">
+          <Key>
+            <PropertyRef Name="OpTypeID" />
+          </Key>
+          <Property Name="OpTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Optype" Type="nchar" MaxLength="100" />
+          <Property Name="Explan" Type="nchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="S_PayTypeTable">
+          <Key>
+            <PropertyRef Name="PayTypeID" />
+          </Key>
+          <Property Name="PayTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PayTypePicture" Type="image" />
+          <Property Name="PayTypeName" Type="char" MaxLength="50" />
+          <Property Name="PaySummary" Type="char" MaxLength="50" />
+          <Property Name="OpenDeny" Type="bit" />
+          <Property Name="AddDeny" Type="bit" />
+        </EntityType>
+        <EntityType Name="S_RechargeTypeTable">
+          <Key>
+            <PropertyRef Name="RechargeTypeID" />
+          </Key>
+          <Property Name="RechargeTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RechargeTypeName" Type="char" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="S_RepaymentWayTable">
+          <Key>
+            <PropertyRef Name="RepaymentWayID" />
+          </Key>
+          <Property Name="RepaymentWayID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdentificationName" Type="char" MaxLength="100" />
+          <Property Name="RepaymentWayName" Type="char" MaxLength="200" />
+          <Property Name="Title" Type="nchar" MaxLength="200" />
+          <Property Name="FundStatusID" Type="int" />
+          <Property Name="AlgorithmMessage" Type="char" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="S_SendstatusTable">
+          <Key>
+            <PropertyRef Name="SendstatusID" />
+          </Key>
+          <Property Name="SendstatusID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SendstatusName" Type="nchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="S_StatusTable">
+          <Key>
+            <PropertyRef Name="StatusID" />
+          </Key>
+          <Property Name="StatusID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StatusName" Type="char" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="S_Transmitstatus">
+          <Key>
+            <PropertyRef Name="TransmitstatusID" />
+          </Key>
+          <Property Name="TransmitstatusID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TransmitstatusName" Type="nchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="S_Treetoptypetalbe">
+          <Key>
+            <PropertyRef Name="TreetoptypeID" />
+          </Key>
+          <Property Name="TreetoptypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Treetoptype" Type="char" MaxLength="500" />
+          <Property Name="TreetopName" Type="char" MaxLength="500" />
+          <Property Name="Identifier" Type="char" MaxLength="500" />
+          <Property Name="Describe" Type="nchar" MaxLength="500" />
+          <Property Name="FundStatusID" Type="int" />
+          <Property Name="LimitTypeID" Type="int" />
+          <Property Name="LoanDeadlineID" Type="int" />
+          <Property Name="YearRate" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="ExamineTime" Type="nchar" MaxLength="500" />
+          <Property Name="LowestTenderMoney" Type="char" MaxLength="500" />
+          <Property Name="HighestTenderMoney" Type="char" MaxLength="500" />
+          <Property Name="Overduefatalism" Type="nchar" MaxLength="500" />
+          <Property Name="FreezeBail" Type="char" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="S_UserTypeTable">
+          <Key>
+            <PropertyRef Name="UserTypeID" />
+          </Key>
+          <Property Name="UserTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserTypeName" Type="nvarchar(max)" />
+          <Property Name="Describe" Type="ntext" />
+          <Property Name="FoundTime" Type="ntext" />
+          <Property Name="ToVoidNo" Type="bit" />
+        </EntityType>
+        <EntityType Name="T_City">
+          <Key>
+            <PropertyRef Name="CityID" />
+          </Key>
+          <Property Name="CityID" Type="int" Nullable="false" />
+          <Property Name="CityName" Type="nvarchar" MaxLength="255" />
+          <Property Name="ProID" Type="float" />
+          <Property Name="CitySort" Type="float" />
+        </EntityType>
+        <EntityType Name="T_District">
+          <Key>
+            <PropertyRef Name="DisID" />
+          </Key>
+          <Property Name="DisID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DisName" Type="nvarchar" MaxLength="255" />
+          <Property Name="CityID" Type="float" />
+          <Property Name="DisSort" Type="float" />
+        </EntityType>
+        <EntityType Name="T_Province">
+          <Key>
+            <PropertyRef Name="ProID" />
+          </Key>
+          <Property Name="ProID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProName" Type="nvarchar" MaxLength="255" />
+          <Property Name="ProSort" Type="float" />
+          <Property Name="ProRemark" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityContainer Name="DYXTModelStoreContainer">
+          <EntitySet Name="B_AccountTable" EntityType="Self.B_AccountTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="B_AuthenticationTable" EntityType="Self.B_AuthenticationTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="B_CapitalrecordTable" EntityType="Self.B_CapitalrecordTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="B_CostTypeTable" EntityType="Self.B_CostTypeTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="B_CreditorAttornTable" EntityType="Self.B_CreditorAttornTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="B_Deductexpenses" EntityType="Self.B_Deductexpenses" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="B_ExchangeTreetopLoan" EntityType="Self.B_ExchangeTreetopLoan" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="B_ExpensestypeTable" EntityType="Self.B_ExpensestypeTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="B_FollowTable" EntityType="Self.B_FollowTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="B_InvestTable" EntityType="Self.B_InvestTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="B_Jurisdictio" EntityType="Self.B_Jurisdictio" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="B_LimitApplicationTable" EntityType="Self.B_LimitApplicationTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="B_limitrecordTable" EntityType="Self.B_limitrecordTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="B_LoanDetailTable" EntityType="Self.B_LoanDetailTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="B_LoanTable" EntityType="Self.B_LoanTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="B_ManagerRecord" EntityType="Self.B_ManagerRecord" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="B_MaterialAttestationTable" EntityType="Self.B_MaterialAttestationTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="B_ModuleTable" EntityType="Self.B_ModuleTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="B_NoticeTable" EntityType="Self.B_NoticeTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="B_NoticeTypeTable" EntityType="Self.B_NoticeTypeTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="B_OfflineRechargeTable" EntityType="Self.B_OfflineRechargeTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="B_OverdueLoanTable" EntityType="Self.B_OverdueLoanTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="B_PersonalSpreadMessage" EntityType="Self.B_PersonalSpreadMessage" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="B_phoneauthenticationTable" EntityType="Self.B_phoneauthenticationTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="B_SentTable" EntityType="Self.B_SentTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="B_SpreadRecordTable" EntityType="Self.B_SpreadRecordTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="B_SpreadTypeTable" EntityType="Self.B_SpreadTypeTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="B_SpreadUserTable" EntityType="Self.B_SpreadUserTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="B_UserCashRecordTable" EntityType="Self.B_UserCashRecordTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="B_UserExpensesTable" EntityType="Self.B_UserExpensesTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="B_UserlimitTable" EntityType="Self.B_UserlimitTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="B_UserLoginDetailTable" EntityType="Self.B_UserLoginDetailTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="B_UserRechargeRecordTable" EntityType="Self.B_UserRechargeRecordTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="B_UserTable" EntityType="Self.B_UserTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="B_VideoauthenticationTable" EntityType="Self.B_VideoauthenticationTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="B_VIPUserTable" EntityType="Self.B_VIPUserTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="B_WebLiuYan" EntityType="Self.B_WebLiuYan" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="B_WebsiteExpensesTable" EntityType="Self.B_WebsiteExpensesTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="B_WebsiteReceivableDetail" EntityType="Self.B_WebsiteReceivableDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="S_ExamineTable" EntityType="Self.S_ExamineTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="S_FundCostTable" EntityType="Self.S_FundCostTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="S_FundStatustable" EntityType="Self.S_FundStatustable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="S_ItemTypeTable" EntityType="Self.S_ItemTypeTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="S_limitkindTable" EntityType="Self.S_limitkindTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="S_limitoperateTable" EntityType="Self.S_limitoperateTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="S_LimitTypeTable" EntityType="Self.S_LimitTypeTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="S_LoanDeadlineTable" EntityType="Self.S_LoanDeadlineTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="S_LoanexpensesType" EntityType="Self.S_LoanexpensesType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="S_ModularDetailITable" EntityType="Self.S_ModularDetailITable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="S_ModuleStatusTable" EntityType="Self.S_ModuleStatusTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="S_NoticeStatusTable" EntityType="Self.S_NoticeStatusTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="S_OperateTypeTable" EntityType="Self.S_OperateTypeTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="S_OpTypeTable" EntityType="Self.S_OpTypeTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="S_PayTypeTable" EntityType="Self.S_PayTypeTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="S_RechargeTypeTable" EntityType="Self.S_RechargeTypeTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="S_RepaymentWayTable" EntityType="Self.S_RepaymentWayTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="S_SendstatusTable" EntityType="Self.S_SendstatusTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="S_StatusTable" EntityType="Self.S_StatusTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="S_Transmitstatus" EntityType="Self.S_Transmitstatus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="S_Treetoptypetalbe" EntityType="Self.S_Treetoptypetalbe" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="S_UserTypeTable" EntityType="Self.S_UserTypeTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="T_City" EntityType="Self.T_City" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="T_District" EntityType="Self.T_District" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="T_Province" EntityType="Self.T_Province" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DYXTModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="B_AccountTable">
+          <Key>
+            <PropertyRef Name="AccountID" />
+          </Key>
+          <Property Name="AccountID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="User" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="Cancel" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="B_AuthenticationTable">
+          <Key>
+            <PropertyRef Name="AuthenticationID" />
+          </Key>
+          <Property Name="AuthenticationID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="Int32" />
+          <Property Name="Institutions" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="Specialty" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="EducationalBackground" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="EnrolTime" Type="DateTime" Precision="0" />
+          <Property Name="GraduationTime" Type="DateTime" Precision="0" />
+          <Property Name="Diploma" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="StatusID" Type="Int32" />
+          <Property Name="ReviewRemarks" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="Checktime" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="B_CapitalrecordTable">
+          <Key>
+            <PropertyRef Name="CapitalrecordID" />
+          </Key>
+          <Property Name="CapitalrecordID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="Int32" />
+          <Property Name="OperateTypeID" Type="Int32" />
+          <Property Name="OpFare" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Income" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Expend" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="PropertyAmounts" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Remarks" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="operatetime" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="B_CostTypeTable">
+          <Key>
+            <PropertyRef Name="CostTypeID" />
+          </Key>
+          <Property Name="CostTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CostTypeName" Type="String" MaxLength="50" FixedLength="true" Unicode="false" />
+          <Property Name="Identifier" Type="String" MaxLength="50" FixedLength="true" Unicode="false" />
+          <Property Name="FundStatusID" Type="Int32" />
+          <Property Name="Remark" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="B_CreditorAttornTable">
+          <Key>
+            <PropertyRef Name="CreditorAttornID" />
+          </Key>
+          <Property Name="CreditorAttornID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="Int32" />
+          <Property Name="TenderTitle" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+          <Property Name="Rate" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
+          <Property Name="WaitPeriods" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="AttornPeriods" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="AllPeriods" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="WaitCapital" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="WaitAccrual" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="AttornPrice" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="SubmitTime" Type="DateTime" Precision="3" />
+          <Property Name="PurchaserUserID" Type="Int32" />
+          <Property Name="PurchaseTime" Type="DateTime" Precision="3" />
+          <Property Name="StatusID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="B_Deductexpenses">
+          <Key>
+            <PropertyRef Name="DeductexpensesID" />
+          </Key>
+          <Property Name="DeductexpensesID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="Int32" />
+          <Property Name="ItemTypeID" Type="Int32" />
+          <Property Name="Amountmoney" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Remarks" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="B_ExchangeTreetopLoan">
+          <Key>
+            <PropertyRef Name="ExchangeTreetopID" />
+          </Key>
+          <Property Name="ExchangeTreetopID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PaymentNumber" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
+          <Property Name="UserID" Type="Int32" />
+          <Property Name="Loantitle" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
+          <Property Name="ExchangeMoney" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Rate" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
+          <Property Name="EArrearagePrincipal" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="ERepayPrincipal" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="EAlreadyPrincipal" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="EPayableInterest" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="RepaymentWayID" Type="Int32" />
+          <Property Name="LoanDeadlineID" Type="Int32" />
+          <Property Name="LeastUnit" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
+          <Property Name="AllExchangePortion" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
+          <Property Name="stopExchangePortion" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="WaitExchangePortion" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
+          <Property Name="AlreadyBuyBackPortion" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
+          <Property Name="AddTime" Type="DateTime" Precision="3" />
+          <Property Name="StatusID" Type="Int32" />
+          <Property Name="ExamineRemarks" Type="String" MaxLength="200" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="B_ExpensestypeTable">
+          <Key>
+            <PropertyRef Name="ExpensestypeID" />
+          </Key>
+          <Property Name="ExpensestypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ExpensestypeName" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="Identifier" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="UserTypeID" Type="Int32" />
+          <Property Name="FundStatusID" Type="Int32" />
+          <Property Name="LoanexpensesTypeID" Type="Int32" />
+          <Property Name="bucklemoney" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="B_FollowTable">
+          <Key>
+            <PropertyRef Name="FollowID" />
+          </Key>
+          <Property Name="FollowID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LoanID" Type="Int32" />
+          <Property Name="UserID" Type="Int32" />
+          <Property Name="Title" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
+          <Property Name="Money" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="YearRate" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
+          <Property Name="Deadline" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
+        </EntityType>
+        <EntityType Name="B_InvestTable">
+          <Key>
+            <PropertyRef Name="InvestID" />
+          </Key>
+          <Property Name="InvestID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="Int32" />
+          <Property Name="ReceivablePrincipal" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="InvestMoney" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="ReceivableInterest" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="CountermandPrincipal" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="NotRetrievePrincipal" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="InvestTime" Type="DateTime" Precision="3" />
+          <Property Name="StatusID" Type="Int32" />
+          <Property Name="WhetherAttorn" Type="Boolean" />
+          <Property Name="InvestReason" Type="String" MaxLength="50" FixedLength="true" Unicode="false" />
+          <Property Name="LoanTreetop" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+          <Property Name="LoanID" Type="Int32" />
+          <Property Name="ExchangeTreetopID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="B_Jurisdictio">
+          <Key>
+            <PropertyRef Name="Jurisdictio" />
+          </Key>
+          <Property Name="Jurisdictio" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserTypeID" Type="Int32" />
+          <Property Name="ModularDetailID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="B_LimitApplicationTable">
+          <Key>
+            <PropertyRef Name="LimitApplicationID" />
+          </Key>
+          <Property Name="LimitApplicationID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="Int32" />
+          <Property Name="LimitTypeID" Type="Int32" />
+          <Property Name="limitkindID" Type="Int32" />
+          <Property Name="limitoperateID" Type="Int32" />
+          <Property Name="ApplicationMoney" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="PassLimit" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="ApplicationRemark" Type="String" MaxLength="500" FixedLength="true" Unicode="false" />
+          <Property Name="StatusID" Type="Int32" />
+          <Property Name="ApplicationTime" Type="DateTime" Precision="3" />
+          <Property Name="ExamineTime" Type="DateTime" Precision="3" />
+          <Property Name="LoanPurpose" Type="String" MaxLength="500" FixedLength="true" Unicode="false" />
+          <Property Name="AuditingRemark" Type="String" MaxLength="500" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="B_limitrecordTable">
+          <Key>
+            <PropertyRef Name="limitrecordID" />
+          </Key>
+          <Property Name="limitrecordID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="Int32" />
+          <Property Name="LimitTypeID" Type="Int32" />
+          <Property Name="limitkindID" Type="Int32" />
+          <Property Name="limitoperateID" Type="Int32" />
+          <Property Name="Summoney" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Remark" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="Time" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="B_LoanDetailTable">
+          <Key>
+            <PropertyRef Name="LoanDetailID" />
+          </Key>
+          <Property Name="LoanDetailID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LoanID" Type="Int32" />
+          <Property Name="ExchangeTreetopID" Type="Int32" />
+          <Property Name="OverdueLoanID" Type="Int32" />
+          <Property Name="CreditorAttornID" Type="Int32" />
+          <Property Name="RepayPrincipal" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="AlreadyPrincipal" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="ArrearagePrincipal" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="SeveralIssues" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
+          <Property Name="PayableDate" Type="DateTime" Precision="0" />
+          <Property Name="PayableInterest" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="OverdueDay" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
+          <Property Name="StatusID" Type="Int32" />
+          <Property Name="CurrentCouponRepay" Type="Decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="B_MaterialAttestationTable">
+          <Key>
+            <PropertyRef Name="MaterialAttestationID" />
+          </Key>
+          <Property Name="MaterialAttestationID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="Int32" />
+          <Property Name="ItemTypeID" Type="Int32" />
+          <Property Name="Picture" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Integral" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="StatusID" Type="Int32" />
+          <Property Name="AddTime" Type="DateTime" Precision="3" />
+          <Property Name="Remarks" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="ReviewRemarks" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="B_ModuleTable">
+          <Key>
+            <PropertyRef Name="ModuleID" />
+          </Key>
+          <Property Name="ModuleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="Int32" />
+          <Property Name="identificationName" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
+          <Property Name="Byname" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
+          <Property Name="Name" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
+          <Property Name="Edition" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="UpdateTime" Type="DateTime" Precision="0" />
+          <Property Name="Describe" Type="String" MaxLength="100" FixedLength="true" Unicode="false" />
+          <Property Name="ModuleStatusID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="B_NoticeTable">
+          <Key>
+            <PropertyRef Name="NoticeID" />
+          </Key>
+          <Property Name="NoticeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NoticeContent" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AccountID" Type="Int32" />
+          <Property Name="NoticeTypeID" Type="Int32" />
+          <Property Name="NoticeStatusID" Type="Int32" />
+          <Property Name="IssueTime" Type="DateTime" Precision="3" />
+          <Property Name="ArticleLabel" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+        </EntityType>
+        <EntityType Name="B_NoticeTypeTable">
+          <Key>
+            <PropertyRef Name="NoticeTypeID" />
+          </Key>
+          <Property Name="NoticeTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NoticeTypeName" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+          <Property Name="Byname" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
+          <Property Name="Content" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="B_OfflineRechargeTable">
+          <Key>
+            <PropertyRef Name="OfflineRechargeID" />
+          </Key>
+          <Property Name="OfflineRechargeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="Int32" />
+          <Property Name="RemitMoney" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="RemitBank" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
+          <Property Name="OpenName" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
+          <Property Name="RemitDate" Type="DateTime" Precision="3" />
+          <Property Name="Describe" Type="String" MaxLength="50" FixedLength="true" Unicode="false" />
+        </EntityType>
+        <EntityType Name="B_OverdueLoanTable">
+          <Key>
+            <PropertyRef Name="OverdueLoanID" />
+          </Key>
+          <Property Name="OverdueLoanID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LoanID" Type="Int32" />
+          <Property Name="PayableTime" Type="DateTime" Precision="0" />
+          <Property Name="PayablePrincipal" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="OverdueDay" Type="Int32" />
+          <Property Name="WebsiteWhetherPayStatusID" Type="Int32" />
+          <Property Name="WebsiteWhetherPaymoney" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="WebsiteWhetherPayTime" Type="DateTime" Precision="3" />
+          <Property Name="StatusID" Type="Int32" />
+          <Property Name="RealityRepaymentTime" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="B_PersonalSpreadMessage">
+          <Key>
+            <PropertyRef Name="PersonalSpreadID" />
+          </Key>
+          <Property Name="PersonalSpreadID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SpreadUserID" Type="Int32" />
+          <Property Name="SpreadPeople" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="InvestTime" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="InvestAmount" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="InvestTiCheng" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="RepaymentTime" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="RepaymentAmount" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="RepaymentTiCheng" Type="Decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="B_phoneauthenticationTable">
+          <Key>
+            <PropertyRef Name="PhoneauID" />
+          </Key>
+          <Property Name="PhoneauID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="Int32" />
+          <Property Name="Cellnumber" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="StatusID" Type="Int32" />
+          <Property Name="Addtime" Type="DateTime" Precision="0" />
+          <Property Name="TransitTime" Type="DateTime" Precision="0" />
+          <Property Name="ReviewRemarks" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="B_SentTable">
+          <Key>
+            <PropertyRef Name="SentID" />
+          </Key>
+          <Property Name="SentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="Int32" />
+          <Property Name="Cellnumber" Type="String" MaxLength="500" FixedLength="true" Unicode="true" />
+          <Property Name="SendstatusID" Type="Int32" />
+          <Property Name="Timeofdeparture" Type="DateTime" Precision="3" />
+          <Property Name="DepartureContent" Type="String" MaxLength="600" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="B_SpreadRecordTable">
+          <Key>
+            <PropertyRef Name="SpreadRecordID" />
+          </Key>
+          <Property Name="SpreadRecordID" Type="Decimal" Precision="18" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SpreadUserID" Type="Int32" />
+          <Property Name="SpreadCustomID" Type="Int32" />
+          <Property Name="SpreadTypeID" Type="Int32" />
+          <Property Name="FundType" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
+          <Property Name="SpreadAmount" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="SubmitTime" Type="DateTime" Precision="3" />
+          <Property Name="Remark" Type="String" MaxLength="500" FixedLength="true" Unicode="false" />
+        </EntityType>
+        <EntityType Name="B_SpreadTypeTable">
+          <Key>
+            <PropertyRef Name="SpreadTypeID" />
+          </Key>
+          <Property Name="SpreadTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+          <Property Name="Title" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+          <Property Name="IdentificationName" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+          <Property Name="FundStatusID" Type="Int32" />
+          <Property Name="CapitalType" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+          <Property Name="Scale" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+        </EntityType>
+        <EntityType Name="B_SpreadUserTable">
+          <Key>
+            <PropertyRef Name="SpreadUserID" />
+          </Key>
+          <Property Name="SpreadUserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="Int32" />
+          <Property Name="SpreadTypeID" Type="Int32" />
+          <Property Name="StatusID" Type="Int32" />
+          <Property Name="SpreadRenID" Type="Int32" />
+          <Property Name="RelevanceTime" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="B_UserCashRecordTable">
+          <Key>
+            <PropertyRef Name="UserCashID" />
+          </Key>
+          <Property Name="UserCashID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="Int32" />
+          <Property Name="PayTypeID" Type="Int32" />
+          <Property Name="Subbranch" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
+          <Property Name="ProID" Type="Int32" />
+          <Property Name="CityID" Type="Int32" />
+          <Property Name="CashAccountNumber" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
+          <Property Name="CashAmount" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="AccountMoney" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Poundage" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
+          <Property Name="CashTime" Type="DateTime" Precision="3" />
+          <Property Name="StatusID" Type="Int32" />
+          <Property Name="IP" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
+          <Property Name="ExamineRemarks" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="B_UserExpensesTable">
+          <Key>
+            <PropertyRef Name="UserExpensesID" />
+          </Key>
+          <Property Name="UserExpensesID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="Int32" />
+          <Property Name="OperateTypeID" Type="Int32" />
+          <Property Name="OperateMoney" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Balance" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Earning" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Expenses" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Remark" Type="String" MaxLength="100" FixedLength="true" Unicode="false" />
+          <Property Name="OperateTime" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="B_UserlimitTable">
+          <Key>
+            <PropertyRef Name="UserlimitID" />
+          </Key>
+          <Property Name="UserlimitID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="Int32" />
+          <Property Name="Creditlimetl" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Cavailable" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Cfreeze" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Warrantlimetl" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Wavailable" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Wfreeze" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Mortgagelimitli" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Mavailable" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Mfreeze" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Roamlitil" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Ravailable" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Rfreeze" Type="Decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="B_UserRechargeRecordTable">
+          <Key>
+            <PropertyRef Name="RechargeRecordID" />
+          </Key>
+          <Property Name="RechargeRecordID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="Int32" />
+          <Property Name="RechargeTypeID" Type="Int32" />
+          <Property Name="PayTypeID" Type="Int32" />
+          <Property Name="TradeNumber" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
+          <Property Name="RechargeMoney" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="RechargePoundage" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
+          <Property Name="RealityAccountMoney" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="StatusID" Type="Int32" />
+          <Property Name="OperateTime" Type="DateTime" Precision="3" />
+          <Property Name="ExamineRemarks" Type="String" MaxLength="100" FixedLength="true" Unicode="false" />
+          <Property Name="operateIP" Type="String" MaxLength="100" FixedLength="true" Unicode="false" />
+        </EntityType>
+        <EntityType Name="B_UserTable">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AccountID" Type="Int32" />
+          <Property Name="UserTypeID" Type="Int32" />
+          <Property Name="UserName" Type="String" MaxLength="100" FixedLength="true" Unicode="false" />
+          <Property Name="PostBox" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="PayPassword" Type="String" MaxLength="100" FixedLength="true" Unicode="false" />
+          <Property Name="TrueName" Type="String" MaxLength="100" FixedLength="true" Unicode="false" />
+          <Property Name="IDCardNo" Type="String" MaxLength="100" FixedLength="true" Unicode="false" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="100" FixedLength="true" Unicode="false" />
+          <Property Name="Sex" Type="String" MaxLength="50" FixedLength="true" Unicode="false" />
+          <Property Name="BornDate" Type="DateTime" Precision="0" />
+          <Property Name="NativePlace" Type="String" MaxLength="100" FixedLength="true" Unicode="false" />
+          <Property Name="MarriageState" Type="String" MaxLength="100" FixedLength="true" Unicode="false" />
+          <Property Name="Issue" Type="String" MaxLength="100" FixedLength="true" Unicode="false" />
+          <Property Name="EducationalBackground" Type="String" MaxLength="100" FixedLength="true" Unicode="false" />
+          <Property Name="ItemTypeID" Type="Int32" />
+          <Property Name="MonthIncome" Type="String" MaxLength="100" FixedLength="true" Unicode="false" />
+          <Property Name="SocialSecurity" Type="String" MaxLength="100" FixedLength="true" Unicode="false" />
+          <Property Name="housingCondition" Type="String" MaxLength="100" FixedLength="true" Unicode="false" />
+          <Property Name="WhetherBuyCar" Type="String" MaxLength="100" FixedLength="true" Unicode="false" />
+          <Property Name="PropertyAmounts" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="UsableMoney" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="FreezeMoney" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="WaitMoney" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="CompensatoryMoney" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="PayTypeID" Type="Int32" />
+          <Property Name="ProID" Type="Int32" />
+          <Property Name="CityID" Type="Int32" />
+          <Property Name="Subbranch" Type="String" MaxLength="100" FixedLength="true" Unicode="false" />
+          <Property Name="BankAccount" Type="String" MaxLength="100" FixedLength="true" Unicode="false" />
+          <Property Name="StatusID" Type="Int32" />
+          <Property Name="Time" Type="DateTime" Precision="3" />
+          <Property Name="ExamineRemarks" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="Integral" Type="Decimal" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="B_VideoauthenticationTable">
+          <Key>
+            <PropertyRef Name="VideoauthenticationID" />
+          </Key>
+          <Property Name="VideoauthenticationID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="Int32" />
+          <Property Name="ApplicationDate" Type="DateTime" Precision="3" />
+          <Property Name="StatusID" Type="Int32" />
+          <Property Name="Integral" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="ReviewRemarks" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="B_VIPUserTable">
+          <Key>
+            <PropertyRef Name="VIPUserID" />
+          </Key>
+          <Property Name="VIPUserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="Int32" />
+          <Property Name="UserTypeID" Type="Int32" />
+          <Property Name="VipDeadline" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
+          <Property Name="StartTime" Type="DateTime" Precision="0" />
+          <Property Name="EndTime" Type="DateTime" Precision="0" />
+          <Property Name="StatusID" Type="Int32" />
+          <Property Name="WhetherPayment" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="ExamineRemarks" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="ExamineTime" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="B_WebsiteExpensesTable">
+          <Key>
+            <PropertyRef Name="WebsiteExpensesID" />
+          </Key>
+          <Property Name="WebsiteExpensesID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AccountID" Type="Int32" />
+          <Property Name="OperateTypeID" Type="Int32" />
+          <Property Name="OperateMoney" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Earning" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Expenses" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Remark" Type="String" MaxLength="100" FixedLength="true" Unicode="false" />
+          <Property Name="OperateTime" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="B_WebsiteReceivableDetail">
+          <Key>
+            <PropertyRef Name="WebsiteReceivableDetailID" />
+          </Key>
+          <Property Name="WebsiteReceivableDetailID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OverdueLoanID" Type="Int32" />
+          <Property Name="Loantitle" Type="String" MaxLength="500" FixedLength="true" Unicode="true" />
+          <Property Name="ReceivableDate" Type="DateTime" Precision="0" />
+          <Property Name="UserID" Type="Int32" />
+          <Property Name="GatheringMoney" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="ReceivableCapital" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="ReceivableAccrual" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="OverdueDays" Type="Int32" />
+          <Property Name="RealityTime" Type="DateTime" Precision="0" />
+          <Property Name="RealityAmount" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="StatusID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="S_ExamineTable">
+          <Key>
+            <PropertyRef Name="ExamineID" />
+          </Key>
+          <Property Name="ExamineID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ExamineName" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
+          <Property Name="ExamineRemark" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+        </EntityType>
+        <EntityType Name="S_FundCostTable">
+          <Key>
+            <PropertyRef Name="FundCostID" />
+          </Key>
+          <Property Name="FundCostID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="true" Unicode="false" />
+          <Property Name="Identifier" Type="String" MaxLength="50" FixedLength="true" Unicode="false" />
+          <Property Name="CostTypeID" Type="Int32" />
+          <Property Name="FundStatusID" Type="Int32" />
+          <Property Name="PaymentRate" Type="String" MaxLength="50" FixedLength="true" Unicode="false" />
+        </EntityType>
+        <EntityType Name="S_FundStatustable">
+          <Key>
+            <PropertyRef Name="FundStatusID" />
+          </Key>
+          <Property Name="FundStatusID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FundStatusName" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="S_ItemTypeTable">
+          <Key>
+            <PropertyRef Name="ItemTypeID" />
+          </Key>
+          <Property Name="ItemTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ItemTypeName" Type="String" MaxLength="100" FixedLength="true" Unicode="false" />
+          <Property Name="Identifier" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="Describe" Type="String" MaxLength="200" FixedLength="true" Unicode="true" />
+          <Property Name="Maxintegral" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="Termofvalidity" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="AddTime" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="S_limitkindTable">
+          <Key>
+            <PropertyRef Name="limitkindID" />
+          </Key>
+          <Property Name="limitkindID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="limitkindName" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="S_limitoperateTable">
+          <Key>
+            <PropertyRef Name="limitoperateID" />
+          </Key>
+          <Property Name="limitoperateID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="limitoperateName" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="S_LimitTypeTable">
+          <Key>
+            <PropertyRef Name="LimitTypeID" />
+          </Key>
+          <Property Name="LimitTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LimitType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IdentificationName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FundStatusID" Type="Int32" />
+          <Property Name="Remark" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="S_LoanDeadlineTable">
+          <Key>
+            <PropertyRef Name="LoanDeadlineID" />
+          </Key>
+          <Property Name="LoanDeadlineID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LoanDeadlineName" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="S_LoanexpensesType">
+          <Key>
+            <PropertyRef Name="LoanexpensesTypeID" />
+          </Key>
+          <Property Name="LoanexpensesTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LoanexpensesName" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="Identifier" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="FundStatusID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="S_ModularDetailITable">
+          <Key>
+            <PropertyRef Name="ModularDetailID" />
+          </Key>
+          <Property Name="ModularDetailID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OpTypeID" Type="Int32" />
+          <Property Name="ModuleID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="S_ModuleStatusTable">
+          <Key>
+            <PropertyRef Name="ModuleStatusID" />
+          </Key>
+          <Property Name="ModuleStatusID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ModuleStatus" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
+        </EntityType>
+        <EntityType Name="S_NoticeStatusTable">
+          <Key>
+            <PropertyRef Name="NoticeStatusID" />
+          </Key>
+          <Property Name="NoticeStatusID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NoticeStatusName" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
+        </EntityType>
+        <EntityType Name="S_OperateTypeTable">
+          <Key>
+            <PropertyRef Name="OperateTypeID" />
+          </Key>
+          <Property Name="OperateTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OperateTypeName" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+        </EntityType>
+        <EntityType Name="S_OpTypeTable">
+          <Key>
+            <PropertyRef Name="OpTypeID" />
+          </Key>
+          <Property Name="OpTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Optype" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="Explan" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="S_PayTypeTable">
+          <Key>
+            <PropertyRef Name="PayTypeID" />
+          </Key>
+          <Property Name="PayTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PayTypePicture" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="PayTypeName" Type="String" MaxLength="50" FixedLength="true" Unicode="false" />
+          <Property Name="PaySummary" Type="String" MaxLength="50" FixedLength="true" Unicode="false" />
+          <Property Name="OpenDeny" Type="Boolean" />
+          <Property Name="AddDeny" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="S_RechargeTypeTable">
+          <Key>
+            <PropertyRef Name="RechargeTypeID" />
+          </Key>
+          <Property Name="RechargeTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RechargeTypeName" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
+        </EntityType>
+        <EntityType Name="S_RepaymentWayTable">
+          <Key>
+            <PropertyRef Name="RepaymentWayID" />
+          </Key>
+          <Property Name="RepaymentWayID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdentificationName" Type="String" MaxLength="100" FixedLength="true" Unicode="false" />
+          <Property Name="RepaymentWayName" Type="String" MaxLength="200" FixedLength="true" Unicode="false" />
+          <Property Name="Title" Type="String" MaxLength="200" FixedLength="true" Unicode="true" />
+          <Property Name="FundStatusID" Type="Int32" />
+          <Property Name="AlgorithmMessage" Type="String" MaxLength="500" FixedLength="true" Unicode="false" />
+        </EntityType>
+        <EntityType Name="S_SendstatusTable">
+          <Key>
+            <PropertyRef Name="SendstatusID" />
+          </Key>
+          <Property Name="SendstatusID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SendstatusName" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="S_StatusTable">
+          <Key>
+            <PropertyRef Name="StatusID" />
+          </Key>
+          <Property Name="StatusID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StatusName" Type="String" MaxLength="50" FixedLength="true" Unicode="false" />
+        </EntityType>
+        <EntityType Name="S_Transmitstatus">
+          <Key>
+            <PropertyRef Name="TransmitstatusID" />
+          </Key>
+          <Property Name="TransmitstatusID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TransmitstatusName" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="S_Treetoptypetalbe">
+          <Key>
+            <PropertyRef Name="TreetoptypeID" />
+          </Key>
+          <Property Name="TreetoptypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Treetoptype" Type="String" MaxLength="500" FixedLength="true" Unicode="false" />
+          <Property Name="TreetopName" Type="String" MaxLength="500" FixedLength="true" Unicode="false" />
+          <Property Name="Identifier" Type="String" MaxLength="500" FixedLength="true" Unicode="false" />
+          <Property Name="Describe" Type="String" MaxLength="500" FixedLength="true" Unicode="true" />
+          <Property Name="FundStatusID" Type="Int32" />
+          <Property Name="LimitTypeID" Type="Int32" />
+          <Property Name="LoanDeadlineID" Type="Int32" />
+          <Property Name="YearRate" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="ExamineTime" Type="String" MaxLength="500" FixedLength="true" Unicode="true" />
+          <Property Name="LowestTenderMoney" Type="String" MaxLength="500" FixedLength="true" Unicode="false" />
+          <Property Name="HighestTenderMoney" Type="String" MaxLength="500" FixedLength="true" Unicode="false" />
+          <Property Name="Overduefatalism" Type="String" MaxLength="500" FixedLength="true" Unicode="true" />
+          <Property Name="FreezeBail" Type="String" MaxLength="500" FixedLength="true" Unicode="false" />
+        </EntityType>
+        <EntityType Name="S_UserTypeTable">
+          <Key>
+            <PropertyRef Name="UserTypeID" />
+          </Key>
+          <Property Name="UserTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserTypeName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Describe" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FoundTime" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ToVoidNo" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="T_City">
+          <Key>
+            <PropertyRef Name="CityID" />
+          </Key>
+          <Property Name="CityID" Type="Int32" Nullable="false" />
+          <Property Name="CityName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ProID" Type="Double" />
+          <Property Name="CitySort" Type="Double" />
+        </EntityType>
+        <EntityType Name="T_District">
+          <Key>
+            <PropertyRef Name="DisID" />
+          </Key>
+          <Property Name="DisID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DisName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="CityID" Type="Double" />
+          <Property Name="DisSort" Type="Double" />
+        </EntityType>
+        <EntityType Name="T_Province">
+          <Key>
+            <PropertyRef Name="ProID" />
+          </Key>
+          <Property Name="ProID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ProSort" Type="Double" />
+          <Property Name="ProRemark" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityContainer Name="DYXTEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="B_AccountTable" EntityType="Self.B_AccountTable" />
+          <EntitySet Name="B_AuthenticationTable" EntityType="Self.B_AuthenticationTable" />
+          <EntitySet Name="B_CapitalrecordTable" EntityType="Self.B_CapitalrecordTable" />
+          <EntitySet Name="B_CostTypeTable" EntityType="Self.B_CostTypeTable" />
+          <EntitySet Name="B_CreditorAttornTable" EntityType="Self.B_CreditorAttornTable" />
+          <EntitySet Name="B_Deductexpenses" EntityType="Self.B_Deductexpenses" />
+          <EntitySet Name="B_ExchangeTreetopLoan" EntityType="Self.B_ExchangeTreetopLoan" />
+          <EntitySet Name="B_ExpensestypeTable" EntityType="Self.B_ExpensestypeTable" />
+          <EntitySet Name="B_FollowTable" EntityType="Self.B_FollowTable" />
+          <EntitySet Name="B_InvestTable" EntityType="Self.B_InvestTable" />
+          <EntitySet Name="B_Jurisdictio" EntityType="Self.B_Jurisdictio" />
+          <EntitySet Name="B_LimitApplicationTable" EntityType="Self.B_LimitApplicationTable" />
+          <EntitySet Name="B_limitrecordTable" EntityType="Self.B_limitrecordTable" />
+          <EntitySet Name="B_LoanDetailTable" EntityType="Self.B_LoanDetailTable" />
+          <EntitySet Name="B_MaterialAttestationTable" EntityType="Self.B_MaterialAttestationTable" />
+          <EntitySet Name="B_ModuleTable" EntityType="Self.B_ModuleTable" />
+          <EntitySet Name="B_NoticeTable" EntityType="Self.B_NoticeTable" />
+          <EntitySet Name="B_NoticeTypeTable" EntityType="Self.B_NoticeTypeTable" />
+          <EntitySet Name="B_OfflineRechargeTable" EntityType="Self.B_OfflineRechargeTable" />
+          <EntitySet Name="B_OverdueLoanTable" EntityType="Self.B_OverdueLoanTable" />
+          <EntitySet Name="B_PersonalSpreadMessage" EntityType="Self.B_PersonalSpreadMessage" />
+          <EntitySet Name="B_phoneauthenticationTable" EntityType="Self.B_phoneauthenticationTable" />
+          <EntitySet Name="B_SentTable" EntityType="Self.B_SentTable" />
+          <EntitySet Name="B_SpreadRecordTable" EntityType="Self.B_SpreadRecordTable" />
+          <EntitySet Name="B_SpreadTypeTable" EntityType="Self.B_SpreadTypeTable" />
+          <EntitySet Name="B_SpreadUserTable" EntityType="Self.B_SpreadUserTable" />
+          <EntitySet Name="B_UserCashRecordTable" EntityType="Self.B_UserCashRecordTable" />
+          <EntitySet Name="B_UserExpensesTable" EntityType="Self.B_UserExpensesTable" />
+          <EntitySet Name="B_UserlimitTable" EntityType="Self.B_UserlimitTable" />
+          <EntitySet Name="B_UserRechargeRecordTable" EntityType="Self.B_UserRechargeRecordTable" />
+          <EntitySet Name="B_UserTable" EntityType="Self.B_UserTable" />
+          <EntitySet Name="B_VideoauthenticationTable" EntityType="Self.B_VideoauthenticationTable" />
+          <EntitySet Name="B_VIPUserTable" EntityType="Self.B_VIPUserTable" />
+          <EntitySet Name="B_WebsiteExpensesTable" EntityType="Self.B_WebsiteExpensesTable" />
+          <EntitySet Name="B_WebsiteReceivableDetail" EntityType="Self.B_WebsiteReceivableDetail" />
+          <EntitySet Name="S_ExamineTable" EntityType="Self.S_ExamineTable" />
+          <EntitySet Name="S_FundCostTable" EntityType="Self.S_FundCostTable" />
+          <EntitySet Name="S_FundStatustable" EntityType="Self.S_FundStatustable" />
+          <EntitySet Name="S_ItemTypeTable" EntityType="Self.S_ItemTypeTable" />
+          <EntitySet Name="S_limitkindTable" EntityType="Self.S_limitkindTable" />
+          <EntitySet Name="S_limitoperateTable" EntityType="Self.S_limitoperateTable" />
+          <EntitySet Name="S_LimitTypeTable" EntityType="Self.S_LimitTypeTable" />
+          <EntitySet Name="S_LoanDeadlineTable" EntityType="Self.S_LoanDeadlineTable" />
+          <EntitySet Name="S_LoanexpensesType" EntityType="Self.S_LoanexpensesType" />
+          <EntitySet Name="S_ModularDetailITable" EntityType="Self.S_ModularDetailITable" />
+          <EntitySet Name="S_ModuleStatusTable" EntityType="Self.S_ModuleStatusTable" />
+          <EntitySet Name="S_NoticeStatusTable" EntityType="Self.S_NoticeStatusTable" />
+          <EntitySet Name="S_OperateTypeTable" EntityType="Self.S_OperateTypeTable" />
+          <EntitySet Name="S_OpTypeTable" EntityType="Self.S_OpTypeTable" />
+          <EntitySet Name="S_PayTypeTable" EntityType="Self.S_PayTypeTable" />
+          <EntitySet Name="S_RechargeTypeTable" EntityType="Self.S_RechargeTypeTable" />
+          <EntitySet Name="S_RepaymentWayTable" EntityType="Self.S_RepaymentWayTable" />
+          <EntitySet Name="S_SendstatusTable" EntityType="Self.S_SendstatusTable" />
+          <EntitySet Name="S_StatusTable" EntityType="Self.S_StatusTable" />
+          <EntitySet Name="S_Transmitstatus" EntityType="Self.S_Transmitstatus" />
+          <EntitySet Name="S_Treetoptypetalbe" EntityType="Self.S_Treetoptypetalbe" />
+          <EntitySet Name="S_UserTypeTable" EntityType="Self.S_UserTypeTable" />
+          <EntitySet Name="T_City" EntityType="Self.T_City" />
+          <EntitySet Name="T_District" EntityType="Self.T_District" />
+          <EntitySet Name="T_Province" EntityType="Self.T_Province" />
+          <EntitySet Name="B_ManagerRecord" EntityType="DYXTModel.B_ManagerRecord" />
+          <EntitySet Name="B_WebLiuYan" EntityType="DYXTModel.B_WebLiuYan" />
+          <EntitySet Name="B_UserLoginDetailTable" EntityType="DYXTModel.B_UserLoginDetailTable" />
+          <EntitySet Name="B_LoanTable" EntityType="DYXTModel.B_LoanTable" />
+        </EntityContainer>
+        <EntityType Name="B_ManagerRecord">
+          <Key>
+            <PropertyRef Name="RecordID" />
+          </Key>
+          <Property Name="RecordID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="Int32" />
+          <Property Name="Content" Type="String" MaxLength="100" FixedLength="true" Unicode="false" />
+          <Property Name="BearFruit" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="LoginTime" Type="DateTime" Precision="3" />
+          <Property Name="LoginIP" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="B_WebLiuYan">
+          <Key>
+            <PropertyRef Name="WebliuyanID" />
+          </Key>
+          <Property Name="WebliuyanID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AccountID" Type="Int32" />
+          <Property Name="LiuYanTime" Type="DateTime" Precision="3" />
+          <Property Name="Callnumber" Type="String" MaxLength="500" FixedLength="true" Unicode="true" />
+          <Property Name="QQ" Type="String" MaxLength="500" FixedLength="true" Unicode="true" />
+          <Property Name="MailBox" Type="String" MaxLength="500" FixedLength="true" Unicode="true" />
+          <Property Name="Content" Type="String" MaxLength="500" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="B_UserLoginDetailTable">
+          <Key>
+            <PropertyRef Name="UserLoginDetailID" />
+          </Key>
+          <Property Name="UserLoginDetailID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AccountID" Type="Int32" />
+          <Property Name="PostBox" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="LoginFrequency" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="RegisterTime" Type="DateTime" Precision="3" />
+          <Property Name="lastLoginTime" Type="DateTime" Precision="3" />
+          <Property Name="lastLoginIP" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="EndLoginTime" Type="DateTime" Precision="3" />
+          <Property Name="EndLogin" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="B_LoanTable">
+          <Key>
+            <PropertyRef Name="LoanID" />
+          </Key>
+          <Property Name="LoanID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PaymentNumber" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
+          <Property Name="UserID" Type="Int32" />
+          <Property Name="Loantitle" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+          <Property Name="LoanPurpose" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
+          <Property Name="LoanMoney" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="ArrearagePrincipal" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="PayableInterest" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="AlreadyPrincipal" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="RepayPrincipal" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="LoanPeriods" Type="String" MaxLength="30" FixedLength="true" Unicode="false" />
+          <Property Name="AlreadyLoanMoney" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Rate" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
+          <Property Name="TreetoptypeID" Type="Int32" />
+          <Property Name="RepaymentWayID" Type="Int32" />
+          <Property Name="LoanDescribe" Type="String" MaxLength="100" FixedLength="true" Unicode="false" />
+          <Property Name="ManageRemark" Type="String" MaxLength="100" FixedLength="true" Unicode="false" />
+          <Property Name="RemoveTreetopTime" Type="DateTime" Precision="3" />
+          <Property Name="Endtime" Type="DateTime" Precision="3" />
+          <Property Name="SubmitTime" Type="DateTime" Precision="3" />
+          <Property Name="sichuantime" Type="DateTime" Precision="3" />
+          <Property Name="LoanDeadlineID" Type="Int32" />
+          <Property Name="recallaccount" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="InvestTime" Type="String" MaxLength="50" FixedLength="true" Unicode="false" />
+          <Property Name="Raisestandardday" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="Raisestandard" Type="DateTime" Precision="3" />
+          <Property Name="Scheduleinvestment" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="AlreadyLoan" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="SurplusLoan" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="stopbuyback" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Grossscore" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="LowestTenderMoney" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="HighestTenderMoney" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="StatusID" Type="Int32" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DYXTModelStoreContainer" CdmEntityContainer="DYXTEntities">
+          <EntitySetMapping Name="B_AccountTable">
+            <EntityTypeMapping TypeName="DYXTModel.B_AccountTable">
+              <MappingFragment StoreEntitySet="B_AccountTable">
+                <ScalarProperty Name="AccountID" ColumnName="AccountID" />
+                <ScalarProperty Name="User" ColumnName="User" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Cancel" ColumnName="Cancel" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="B_AuthenticationTable">
+            <EntityTypeMapping TypeName="DYXTModel.B_AuthenticationTable">
+              <MappingFragment StoreEntitySet="B_AuthenticationTable">
+                <ScalarProperty Name="AuthenticationID" ColumnName="AuthenticationID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="Institutions" ColumnName="Institutions" />
+                <ScalarProperty Name="Specialty" ColumnName="Specialty" />
+                <ScalarProperty Name="EducationalBackground" ColumnName="EducationalBackground" />
+                <ScalarProperty Name="EnrolTime" ColumnName="EnrolTime" />
+                <ScalarProperty Name="GraduationTime" ColumnName="GraduationTime" />
+                <ScalarProperty Name="Diploma" ColumnName="Diploma" />
+                <ScalarProperty Name="StatusID" ColumnName="StatusID" />
+                <ScalarProperty Name="ReviewRemarks" ColumnName="ReviewRemarks" />
+                <ScalarProperty Name="Checktime" ColumnName="Checktime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="B_CapitalrecordTable">
+            <EntityTypeMapping TypeName="DYXTModel.B_CapitalrecordTable">
+              <MappingFragment StoreEntitySet="B_CapitalrecordTable">
+                <ScalarProperty Name="CapitalrecordID" ColumnName="CapitalrecordID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="OperateTypeID" ColumnName="OperateTypeID" />
+                <ScalarProperty Name="OpFare" ColumnName="OpFare" />
+                <ScalarProperty Name="Income" ColumnName="Income" />
+                <ScalarProperty Name="Expend" ColumnName="Expend" />
+                <ScalarProperty Name="PropertyAmounts" ColumnName="PropertyAmounts" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="operatetime" ColumnName="operatetime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="B_CostTypeTable">
+            <EntityTypeMapping TypeName="DYXTModel.B_CostTypeTable">
+              <MappingFragment StoreEntitySet="B_CostTypeTable">
+                <ScalarProperty Name="CostTypeID" ColumnName="CostTypeID" />
+                <ScalarProperty Name="CostTypeName" ColumnName="CostTypeName" />
+                <ScalarProperty Name="Identifier" ColumnName="Identifier" />
+                <ScalarProperty Name="FundStatusID" ColumnName="FundStatusID" />
+                <ScalarProperty Name="Remark" ColumnName="Remark" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="B_CreditorAttornTable">
+            <EntityTypeMapping TypeName="DYXTModel.B_CreditorAttornTable">
+              <MappingFragment StoreEntitySet="B_CreditorAttornTable">
+                <ScalarProperty Name="CreditorAttornID" ColumnName="CreditorAttornID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="TenderTitle" ColumnName="TenderTitle" />
+                <ScalarProperty Name="Rate" ColumnName="Rate" />
+                <ScalarProperty Name="WaitPeriods" ColumnName="WaitPeriods" />
+                <ScalarProperty Name="AttornPeriods" ColumnName="AttornPeriods" />
+                <ScalarProperty Name="AllPeriods" ColumnName="AllPeriods" />
+                <ScalarProperty Name="WaitCapital" ColumnName="WaitCapital" />
+                <ScalarProperty Name="WaitAccrual" ColumnName="WaitAccrual" />
+                <ScalarProperty Name="AttornPrice" ColumnName="AttornPrice" />
+                <ScalarProperty Name="SubmitTime" ColumnName="SubmitTime" />
+                <ScalarProperty Name="PurchaserUserID" ColumnName="PurchaserUserID" />
+                <ScalarProperty Name="PurchaseTime" ColumnName="PurchaseTime" />
+                <ScalarProperty Name="StatusID" ColumnName="StatusID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="B_Deductexpenses">
+            <EntityTypeMapping TypeName="DYXTModel.B_Deductexpenses">
+              <MappingFragment StoreEntitySet="B_Deductexpenses">
+                <ScalarProperty Name="DeductexpensesID" ColumnName="DeductexpensesID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="ItemTypeID" ColumnName="ItemTypeID" />
+                <ScalarProperty Name="Amountmoney" ColumnName="Amountmoney" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="B_ExchangeTreetopLoan">
+            <EntityTypeMapping TypeName="DYXTModel.B_ExchangeTreetopLoan">
+              <MappingFragment StoreEntitySet="B_ExchangeTreetopLoan">
+                <ScalarProperty Name="ExchangeTreetopID" ColumnName="ExchangeTreetopID" />
+                <ScalarProperty Name="PaymentNumber" ColumnName="PaymentNumber" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="Loantitle" ColumnName="Loantitle" />
+                <ScalarProperty Name="ExchangeMoney" ColumnName="ExchangeMoney" />
+                <ScalarProperty Name="Rate" ColumnName="Rate" />
+                <ScalarProperty Name="EArrearagePrincipal" ColumnName="EArrearagePrincipal" />
+                <ScalarProperty Name="ERepayPrincipal" ColumnName="ERepayPrincipal" />
+                <ScalarProperty Name="EAlreadyPrincipal" ColumnName="EAlreadyPrincipal" />
+                <ScalarProperty Name="EPayableInterest" ColumnName="EPayableInterest" />
+                <ScalarProperty Name="RepaymentWayID" ColumnName="RepaymentWayID" />
+                <ScalarProperty Name="LoanDeadlineID" ColumnName="LoanDeadlineID" />
+                <ScalarProperty Name="LeastUnit" ColumnName="LeastUnit" />
+                <ScalarProperty Name="AllExchangePortion" ColumnName="AllExchangePortion" />
+                <ScalarProperty Name="stopExchangePortion" ColumnName="stopExchangePortion" />
+                <ScalarProperty Name="WaitExchangePortion" ColumnName="WaitExchangePortion" />
+                <ScalarProperty Name="AlreadyBuyBackPortion" ColumnName="AlreadyBuyBackPortion" />
+                <ScalarProperty Name="AddTime" ColumnName="AddTime" />
+                <ScalarProperty Name="StatusID" ColumnName="StatusID" />
+                <ScalarProperty Name="ExamineRemarks" ColumnName="ExamineRemarks" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="B_ExpensestypeTable">
+            <EntityTypeMapping TypeName="DYXTModel.B_ExpensestypeTable">
+              <MappingFragment StoreEntitySet="B_ExpensestypeTable">
+                <ScalarProperty Name="ExpensestypeID" ColumnName="ExpensestypeID" />
+                <ScalarProperty Name="ExpensestypeName" ColumnName="ExpensestypeName" />
+                <ScalarProperty Name="Identifier" ColumnName="Identifier" />
+                <ScalarProperty Name="UserTypeID" ColumnName="UserTypeID" />
+                <ScalarProperty Name="FundStatusID" ColumnName="FundStatusID" />
+                <ScalarProperty Name="LoanexpensesTypeID" ColumnName="LoanexpensesTypeID" />
+                <ScalarProperty Name="bucklemoney" ColumnName="bucklemoney" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="B_FollowTable">
+            <EntityTypeMapping TypeName="DYXTModel.B_FollowTable">
+              <MappingFragment StoreEntitySet="B_FollowTable">
+                <ScalarProperty Name="FollowID" ColumnName="FollowID" />
+                <ScalarProperty Name="LoanID" ColumnName="LoanID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Money" ColumnName="Money" />
+                <ScalarProperty Name="YearRate" ColumnName="YearRate" />
+                <ScalarProperty Name="Deadline" ColumnName="Deadline" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="B_InvestTable">
+            <EntityTypeMapping TypeName="DYXTModel.B_InvestTable">
+              <MappingFragment StoreEntitySet="B_InvestTable">
+                <ScalarProperty Name="InvestID" ColumnName="InvestID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="ReceivablePrincipal" ColumnName="ReceivablePrincipal" />
+                <ScalarProperty Name="InvestMoney" ColumnName="InvestMoney" />
+                <ScalarProperty Name="ReceivableInterest" ColumnName="ReceivableInterest" />
+                <ScalarProperty Name="CountermandPrincipal" ColumnName="CountermandPrincipal" />
+                <ScalarProperty Name="NotRetrievePrincipal" ColumnName="NotRetrievePrincipal" />
+                <ScalarProperty Name="InvestTime" ColumnName="InvestTime" />
+                <ScalarProperty Name="StatusID" ColumnName="StatusID" />
+                <ScalarProperty Name="WhetherAttorn" ColumnName="WhetherAttorn" />
+                <ScalarProperty Name="InvestReason" ColumnName="InvestReason" />
+                <ScalarProperty Name="LoanTreetop" ColumnName="LoanTreetop" />
+                <ScalarProperty Name="LoanID" ColumnName="LoanID" />
+                <ScalarProperty Name="ExchangeTreetopID" ColumnName="ExchangeTreetopID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="B_Jurisdictio">
+            <EntityTypeMapping TypeName="DYXTModel.B_Jurisdictio">
+              <MappingFragment StoreEntitySet="B_Jurisdictio">
+                <ScalarProperty Name="Jurisdictio" ColumnName="Jurisdictio" />
+                <ScalarProperty Name="UserTypeID" ColumnName="UserTypeID" />
+                <ScalarProperty Name="ModularDetailID" ColumnName="ModularDetailID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="B_LimitApplicationTable">
+            <EntityTypeMapping TypeName="DYXTModel.B_LimitApplicationTable">
+              <MappingFragment StoreEntitySet="B_LimitApplicationTable">
+                <ScalarProperty Name="LimitApplicationID" ColumnName="LimitApplicationID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="LimitTypeID" ColumnName="LimitTypeID" />
+                <ScalarProperty Name="limitkindID" ColumnName="limitkindID" />
+                <ScalarProperty Name="limitoperateID" ColumnName="limitoperateID" />
+                <ScalarProperty Name="ApplicationMoney" ColumnName="ApplicationMoney" />
+                <ScalarProperty Name="PassLimit" ColumnName="PassLimit" />
+                <ScalarProperty Name="ApplicationRemark" ColumnName="ApplicationRemark" />
+                <ScalarProperty Name="StatusID" ColumnName="StatusID" />
+                <ScalarProperty Name="ApplicationTime" ColumnName="ApplicationTime" />
+                <ScalarProperty Name="ExamineTime" ColumnName="ExamineTime" />
+                <ScalarProperty Name="LoanPurpose" ColumnName="LoanPurpose" />
+                <ScalarProperty Name="AuditingRemark" ColumnName="AuditingRemark" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="B_limitrecordTable">
+            <EntityTypeMapping TypeName="DYXTModel.B_limitrecordTable">
+              <MappingFragment StoreEntitySet="B_limitrecordTable">
+                <ScalarProperty Name="limitrecordID" ColumnName="limitrecordID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="LimitTypeID" ColumnName="LimitTypeID" />
+                <ScalarProperty Name="limitkindID" ColumnName="limitkindID" />
+                <ScalarProperty Name="limitoperateID" ColumnName="limitoperateID" />
+                <ScalarProperty Name="Summoney" ColumnName="Summoney" />
+                <ScalarProperty Name="Remark" ColumnName="Remark" />
+                <ScalarProperty Name="Time" ColumnName="Time" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="B_LoanDetailTable">
+            <EntityTypeMapping TypeName="DYXTModel.B_LoanDetailTable">
+              <MappingFragment StoreEntitySet="B_LoanDetailTable">
+                <ScalarProperty Name="LoanDetailID" ColumnName="LoanDetailID" />
+                <ScalarProperty Name="LoanID" ColumnName="LoanID" />
+                <ScalarProperty Name="ExchangeTreetopID" ColumnName="ExchangeTreetopID" />
+                <ScalarProperty Name="OverdueLoanID" ColumnName="OverdueLoanID" />
+                <ScalarProperty Name="CreditorAttornID" ColumnName="CreditorAttornID" />
+                <ScalarProperty Name="RepayPrincipal" ColumnName="RepayPrincipal" />
+                <ScalarProperty Name="AlreadyPrincipal" ColumnName="AlreadyPrincipal" />
+                <ScalarProperty Name="ArrearagePrincipal" ColumnName="ArrearagePrincipal" />
+                <ScalarProperty Name="SeveralIssues" ColumnName="SeveralIssues" />
+                <ScalarProperty Name="PayableDate" ColumnName="PayableDate" />
+                <ScalarProperty Name="PayableInterest" ColumnName="PayableInterest" />
+                <ScalarProperty Name="OverdueDay" ColumnName="OverdueDay" />
+                <ScalarProperty Name="StatusID" ColumnName="StatusID" />
+                <ScalarProperty Name="CurrentCouponRepay" ColumnName="CurrentCouponRepay" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="B_MaterialAttestationTable">
+            <EntityTypeMapping TypeName="DYXTModel.B_MaterialAttestationTable">
+              <MappingFragment StoreEntitySet="B_MaterialAttestationTable">
+                <ScalarProperty Name="MaterialAttestationID" ColumnName="MaterialAttestationID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="ItemTypeID" ColumnName="ItemTypeID" />
+                <ScalarProperty Name="Picture" ColumnName="Picture" />
+                <ScalarProperty Name="Integral" ColumnName="Integral" />
+                <ScalarProperty Name="StatusID" ColumnName="StatusID" />
+                <ScalarProperty Name="AddTime" ColumnName="AddTime" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="ReviewRemarks" ColumnName="ReviewRemarks" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="B_ModuleTable">
+            <EntityTypeMapping TypeName="DYXTModel.B_ModuleTable">
+              <MappingFragment StoreEntitySet="B_ModuleTable">
+                <ScalarProperty Name="ModuleID" ColumnName="ModuleID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="identificationName" ColumnName="identificationName" />
+                <ScalarProperty Name="Byname" ColumnName="Byname" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Edition" ColumnName="Edition" />
+                <ScalarProperty Name="UpdateTime" ColumnName="UpdateTime" />
+                <ScalarProperty Name="Describe" ColumnName="Describe" />
+                <ScalarProperty Name="ModuleStatusID" ColumnName="ModuleStatusID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="B_NoticeTable">
+            <EntityTypeMapping TypeName="DYXTModel.B_NoticeTable">
+              <MappingFragment StoreEntitySet="B_NoticeTable">
+                <ScalarProperty Name="NoticeID" ColumnName="NoticeID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="NoticeContent" ColumnName="NoticeContent" />
+                <ScalarProperty Name="AccountID" ColumnName="AccountID" />
+                <ScalarProperty Name="NoticeTypeID" ColumnName="NoticeTypeID" />
+                <ScalarProperty Name="NoticeStatusID" ColumnName="NoticeStatusID" />
+                <ScalarProperty Name="IssueTime" ColumnName="IssueTime" />
+                <ScalarProperty Name="ArticleLabel" ColumnName="ArticleLabel" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="B_NoticeTypeTable">
+            <EntityTypeMapping TypeName="DYXTModel.B_NoticeTypeTable">
+              <MappingFragment StoreEntitySet="B_NoticeTypeTable">
+                <ScalarProperty Name="NoticeTypeID" ColumnName="NoticeTypeID" />
+                <ScalarProperty Name="NoticeTypeName" ColumnName="NoticeTypeName" />
+                <ScalarProperty Name="Byname" ColumnName="Byname" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="B_OfflineRechargeTable">
+            <EntityTypeMapping TypeName="DYXTModel.B_OfflineRechargeTable">
+              <MappingFragment StoreEntitySet="B_OfflineRechargeTable">
+                <ScalarProperty Name="OfflineRechargeID" ColumnName="OfflineRechargeID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="RemitMoney" ColumnName="RemitMoney" />
+                <ScalarProperty Name="RemitBank" ColumnName="RemitBank" />
+                <ScalarProperty Name="OpenName" ColumnName="OpenName" />
+                <ScalarProperty Name="RemitDate" ColumnName="RemitDate" />
+                <ScalarProperty Name="Describe" ColumnName="Describe" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="B_OverdueLoanTable">
+            <EntityTypeMapping TypeName="DYXTModel.B_OverdueLoanTable">
+              <MappingFragment StoreEntitySet="B_OverdueLoanTable">
+                <ScalarProperty Name="OverdueLoanID" ColumnName="OverdueLoanID" />
+                <ScalarProperty Name="LoanID" ColumnName="LoanID" />
+                <ScalarProperty Name="PayableTime" ColumnName="PayableTime" />
+                <ScalarProperty Name="PayablePrincipal" ColumnName="PayablePrincipal" />
+                <ScalarProperty Name="OverdueDay" ColumnName="OverdueDay" />
+                <ScalarProperty Name="WebsiteWhetherPayStatusID" ColumnName="WebsiteWhetherPayStatusID" />
+                <ScalarProperty Name="WebsiteWhetherPaymoney" ColumnName="WebsiteWhetherPaymoney" />
+                <ScalarProperty Name="WebsiteWhetherPayTime" ColumnName="WebsiteWhetherPayTime" />
+                <ScalarProperty Name="StatusID" ColumnName="StatusID" />
+                <ScalarProperty Name="RealityRepaymentTime" ColumnName="RealityRepaymentTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="B_PersonalSpreadMessage">
+            <EntityTypeMapping TypeName="DYXTModel.B_PersonalSpreadMessage">
+              <MappingFragment StoreEntitySet="B_PersonalSpreadMessage">
+                <ScalarProperty Name="PersonalSpreadID" ColumnName="PersonalSpreadID" />
+                <ScalarProperty Name="SpreadUserID" ColumnName="SpreadUserID" />
+                <ScalarProperty Name="SpreadPeople" ColumnName="SpreadPeople" />
+                <ScalarProperty Name="InvestTime" ColumnName="InvestTime" />
+                <ScalarProperty Name="InvestAmount" ColumnName="InvestAmount" />
+                <ScalarProperty Name="InvestTiCheng" ColumnName="InvestTiCheng" />
+                <ScalarProperty Name="RepaymentTime" ColumnName="RepaymentTime" />
+                <ScalarProperty Name="RepaymentAmount" ColumnName="RepaymentAmount" />
+                <ScalarProperty Name="RepaymentTiCheng" ColumnName="RepaymentTiCheng" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="B_phoneauthenticationTable">
+            <EntityTypeMapping TypeName="DYXTModel.B_phoneauthenticationTable">
+              <MappingFragment StoreEntitySet="B_phoneauthenticationTable">
+                <ScalarProperty Name="PhoneauID" ColumnName="PhoneauID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="Cellnumber" ColumnName="Cellnumber" />
+                <ScalarProperty Name="StatusID" ColumnName="StatusID" />
+                <ScalarProperty Name="Addtime" ColumnName="Addtime" />
+                <ScalarProperty Name="TransitTime" ColumnName="TransitTime" />
+                <ScalarProperty Name="ReviewRemarks" ColumnName="ReviewRemarks" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="B_SentTable">
+            <EntityTypeMapping TypeName="DYXTModel.B_SentTable">
+              <MappingFragment StoreEntitySet="B_SentTable">
+                <ScalarProperty Name="SentID" ColumnName="SentID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="Cellnumber" ColumnName="Cellnumber" />
+                <ScalarProperty Name="SendstatusID" ColumnName="SendstatusID" />
+                <ScalarProperty Name="Timeofdeparture" ColumnName="Timeofdeparture" />
+                <ScalarProperty Name="DepartureContent" ColumnName="DepartureContent" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="B_SpreadRecordTable">
+            <EntityTypeMapping TypeName="DYXTModel.B_SpreadRecordTable">
+              <MappingFragment StoreEntitySet="B_SpreadRecordTable">
+                <ScalarProperty Name="SpreadRecordID" ColumnName="SpreadRecordID" />
+                <ScalarProperty Name="SpreadUserID" ColumnName="SpreadUserID" />
+                <ScalarProperty Name="SpreadCustomID" ColumnName="SpreadCustomID" />
+                <ScalarProperty Name="SpreadTypeID" ColumnName="SpreadTypeID" />
+                <ScalarProperty Name="FundType" ColumnName="FundType" />
+                <ScalarProperty Name="SpreadAmount" ColumnName="SpreadAmount" />
+                <ScalarProperty Name="SubmitTime" ColumnName="SubmitTime" />
+                <ScalarProperty Name="Remark" ColumnName="Remark" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="B_SpreadTypeTable">
+            <EntityTypeMapping TypeName="DYXTModel.B_SpreadTypeTable">
+              <MappingFragment StoreEntitySet="B_SpreadTypeTable">
+                <ScalarProperty Name="SpreadTypeID" ColumnName="SpreadTypeID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="IdentificationName" ColumnName="IdentificationName" />
+                <ScalarProperty Name="FundStatusID" ColumnName="FundStatusID" />
+                <ScalarProperty Name="CapitalType" ColumnName="CapitalType" />
+                <ScalarProperty Name="Scale" ColumnName="Scale" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="B_SpreadUserTable">
+            <EntityTypeMapping TypeName="DYXTModel.B_SpreadUserTable">
+              <MappingFragment StoreEntitySet="B_SpreadUserTable">
+                <ScalarProperty Name="SpreadUserID" ColumnName="SpreadUserID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="SpreadTypeID" ColumnName="SpreadTypeID" />
+                <ScalarProperty Name="StatusID" ColumnName="StatusID" />
+                <ScalarProperty Name="SpreadRenID" ColumnName="SpreadRenID" />
+                <ScalarProperty Name="RelevanceTime" ColumnName="RelevanceTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="B_UserCashRecordTable">
+            <EntityTypeMapping TypeName="DYXTModel.B_UserCashRecordTable">
+              <MappingFragment StoreEntitySet="B_UserCashRecordTable">
+                <ScalarProperty Name="UserCashID" ColumnName="UserCashID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="PayTypeID" ColumnName="PayTypeID" />
+                <ScalarProperty Name="Subbranch" ColumnName="Subbranch" />
+                <ScalarProperty Name="ProID" ColumnName="ProID" />
+                <ScalarProperty Name="CityID" ColumnName="CityID" />
+                <ScalarProperty Name="CashAccountNumber" ColumnName="CashAccountNumber" />
+                <ScalarProperty Name="CashAmount" ColumnName="CashAmount" />
+                <ScalarProperty Name="AccountMoney" ColumnName="AccountMoney" />
+                <ScalarProperty Name="Poundage" ColumnName="Poundage" />
+                <ScalarProperty Name="CashTime" ColumnName="CashTime" />
+                <ScalarProperty Name="StatusID" ColumnName="StatusID" />
+                <ScalarProperty Name="IP" ColumnName="IP" />
+                <ScalarProperty Name="ExamineRemarks" ColumnName="ExamineRemarks" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="B_UserExpensesTable">
+            <EntityTypeMapping TypeName="DYXTModel.B_UserExpensesTable">
+              <MappingFragment StoreEntitySet="B_UserExpensesTable">
+                <ScalarProperty Name="UserExpensesID" ColumnName="UserExpensesID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="OperateTypeID" ColumnName="OperateTypeID" />
+                <ScalarProperty Name="OperateMoney" ColumnName="OperateMoney" />
+                <ScalarProperty Name="Balance" ColumnName="Balance" />
+                <ScalarProperty Name="Earning" ColumnName="Earning" />
+                <ScalarProperty Name="Expenses" ColumnName="Expenses" />
+                <ScalarProperty Name="Remark" ColumnName="Remark" />
+                <ScalarProperty Name="OperateTime" ColumnName="OperateTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="B_UserlimitTable">
+            <EntityTypeMapping TypeName="DYXTModel.B_UserlimitTable">
+              <MappingFragment StoreEntitySet="B_UserlimitTable">
+                <ScalarProperty Name="UserlimitID" ColumnName="UserlimitID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="Creditlimetl" ColumnName="Creditlimetl" />
+                <ScalarProperty Name="Cavailable" ColumnName="Cavailable" />
+                <ScalarProperty Name="Cfreeze" ColumnName="Cfreeze" />
+                <ScalarProperty Name="Warrantlimetl" ColumnName="Warrantlimetl" />
+                <ScalarProperty Name="Wavailable" ColumnName="Wavailable" />
+                <ScalarProperty Name="Wfreeze" ColumnName="Wfreeze" />
+                <ScalarProperty Name="Mortgagelimitli" ColumnName="Mortgagelimitli" />
+                <ScalarProperty Name="Mavailable" ColumnName="Mavailable" />
+                <ScalarProperty Name="Mfreeze" ColumnName="Mfreeze" />
+                <ScalarProperty Name="Roamlitil" ColumnName="Roamlitil" />
+                <ScalarProperty Name="Ravailable" ColumnName="Ravailable" />
+                <ScalarProperty Name="Rfreeze" ColumnName="Rfreeze" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="B_UserRechargeRecordTable">
+            <EntityTypeMapping TypeName="DYXTModel.B_UserRechargeRecordTable">
+              <MappingFragment StoreEntitySet="B_UserRechargeRecordTable">
+                <ScalarProperty Name="RechargeRecordID" ColumnName="RechargeRecordID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="RechargeTypeID" ColumnName="RechargeTypeID" />
+                <ScalarProperty Name="PayTypeID" ColumnName="PayTypeID" />
+                <ScalarProperty Name="TradeNumber" ColumnName="TradeNumber" />
+                <ScalarProperty Name="RechargeMoney" ColumnName="RechargeMoney" />
+                <ScalarProperty Name="RechargePoundage" ColumnName="RechargePoundage" />
+                <ScalarProperty Name="RealityAccountMoney" ColumnName="RealityAccountMoney" />
+                <ScalarProperty Name="StatusID" ColumnName="StatusID" />
+                <ScalarProperty Name="OperateTime" ColumnName="OperateTime" />
+                <ScalarProperty Name="ExamineRemarks" ColumnName="ExamineRemarks" />
+                <ScalarProperty Name="operateIP" ColumnName="operateIP" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="B_UserTable">
+            <EntityTypeMapping TypeName="DYXTModel.B_UserTable">
+              <MappingFragment StoreEntitySet="B_UserTable">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="AccountID" ColumnName="AccountID" />
+                <ScalarProperty Name="UserTypeID" ColumnName="UserTypeID" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="PostBox" ColumnName="PostBox" />
+                <ScalarProperty Name="PayPassword" ColumnName="PayPassword" />
+                <ScalarProperty Name="TrueName" ColumnName="TrueName" />
+                <ScalarProperty Name="IDCardNo" ColumnName="IDCardNo" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="Sex" ColumnName="Sex" />
+                <ScalarProperty Name="BornDate" ColumnName="BornDate" />
+                <ScalarProperty Name="NativePlace" ColumnName="NativePlace" />
+                <ScalarProperty Name="MarriageState" ColumnName="MarriageState" />
+                <ScalarProperty Name="Issue" ColumnName="Issue" />
+                <ScalarProperty Name="EducationalBackground" ColumnName="EducationalBackground" />
+                <ScalarProperty Name="ItemTypeID" ColumnName="ItemTypeID" />
+                <ScalarProperty Name="MonthIncome" ColumnName="MonthIncome" />
+                <ScalarProperty Name="SocialSecurity" ColumnName="SocialSecurity" />
+                <ScalarProperty Name="housingCondition" ColumnName="housingCondition" />
+                <ScalarProperty Name="WhetherBuyCar" ColumnName="WhetherBuyCar" />
+                <ScalarProperty Name="PropertyAmounts" ColumnName="PropertyAmounts" />
+                <ScalarProperty Name="UsableMoney" ColumnName="UsableMoney" />
+                <ScalarProperty Name="FreezeMoney" ColumnName="FreezeMoney" />
+                <ScalarProperty Name="WaitMoney" ColumnName="WaitMoney" />
+                <ScalarProperty Name="CompensatoryMoney" ColumnName="CompensatoryMoney" />
+                <ScalarProperty Name="PayTypeID" ColumnName="PayTypeID" />
+                <ScalarProperty Name="ProID" ColumnName="ProID" />
+                <ScalarProperty Name="CityID" ColumnName="CityID" />
+                <ScalarProperty Name="Subbranch" ColumnName="Subbranch" />
+                <ScalarProperty Name="BankAccount" ColumnName="BankAccount" />
+                <ScalarProperty Name="StatusID" ColumnName="StatusID" />
+                <ScalarProperty Name="Time" ColumnName="Time" />
+                <ScalarProperty Name="ExamineRemarks" ColumnName="ExamineRemarks" />
+                <ScalarProperty Name="Integral" ColumnName="Integral" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="B_VideoauthenticationTable">
+            <EntityTypeMapping TypeName="DYXTModel.B_VideoauthenticationTable">
+              <MappingFragment StoreEntitySet="B_VideoauthenticationTable">
+                <ScalarProperty Name="VideoauthenticationID" ColumnName="VideoauthenticationID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="ApplicationDate" ColumnName="ApplicationDate" />
+                <ScalarProperty Name="StatusID" ColumnName="StatusID" />
+                <ScalarProperty Name="Integral" ColumnName="Integral" />
+                <ScalarProperty Name="ReviewRemarks" ColumnName="ReviewRemarks" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="B_VIPUserTable">
+            <EntityTypeMapping TypeName="DYXTModel.B_VIPUserTable">
+              <MappingFragment StoreEntitySet="B_VIPUserTable">
+                <ScalarProperty Name="VIPUserID" ColumnName="VIPUserID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="UserTypeID" ColumnName="UserTypeID" />
+                <ScalarProperty Name="VipDeadline" ColumnName="VipDeadline" />
+                <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+                <ScalarProperty Name="EndTime" ColumnName="EndTime" />
+                <ScalarProperty Name="StatusID" ColumnName="StatusID" />
+                <ScalarProperty Name="WhetherPayment" ColumnName="WhetherPayment" />
+                <ScalarProperty Name="ExamineRemarks" ColumnName="ExamineRemarks" />
+                <ScalarProperty Name="ExamineTime" ColumnName="ExamineTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="B_WebsiteExpensesTable">
+            <EntityTypeMapping TypeName="DYXTModel.B_WebsiteExpensesTable">
+              <MappingFragment StoreEntitySet="B_WebsiteExpensesTable">
+                <ScalarProperty Name="WebsiteExpensesID" ColumnName="WebsiteExpensesID" />
+                <ScalarProperty Name="AccountID" ColumnName="AccountID" />
+                <ScalarProperty Name="OperateTypeID" ColumnName="OperateTypeID" />
+                <ScalarProperty Name="OperateMoney" ColumnName="OperateMoney" />
+                <ScalarProperty Name="Earning" ColumnName="Earning" />
+                <ScalarProperty Name="Expenses" ColumnName="Expenses" />
+                <ScalarProperty Name="Remark" ColumnName="Remark" />
+                <ScalarProperty Name="OperateTime" ColumnName="OperateTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="B_WebsiteReceivableDetail">
+            <EntityTypeMapping TypeName="DYXTModel.B_WebsiteReceivableDetail">
+              <MappingFragment StoreEntitySet="B_WebsiteReceivableDetail">
+                <ScalarProperty Name="WebsiteReceivableDetailID" ColumnName="WebsiteReceivableDetailID" />
+                <ScalarProperty Name="OverdueLoanID" ColumnName="OverdueLoanID" />
+                <ScalarProperty Name="Loantitle" ColumnName="Loantitle" />
+                <ScalarProperty Name="ReceivableDate" ColumnName="ReceivableDate" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="GatheringMoney" ColumnName="GatheringMoney" />
+                <ScalarProperty Name="ReceivableCapital" ColumnName="ReceivableCapital" />
+                <ScalarProperty Name="ReceivableAccrual" ColumnName="ReceivableAccrual" />
+                <ScalarProperty Name="OverdueDays" ColumnName="OverdueDays" />
+                <ScalarProperty Name="RealityTime" ColumnName="RealityTime" />
+                <ScalarProperty Name="RealityAmount" ColumnName="RealityAmount" />
+                <ScalarProperty Name="StatusID" ColumnName="StatusID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="S_ExamineTable">
+            <EntityTypeMapping TypeName="DYXTModel.S_ExamineTable">
+              <MappingFragment StoreEntitySet="S_ExamineTable">
+                <ScalarProperty Name="ExamineID" ColumnName="ExamineID" />
+                <ScalarProperty Name="ExamineName" ColumnName="ExamineName" />
+                <ScalarProperty Name="ExamineRemark" ColumnName="ExamineRemark" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="S_FundCostTable">
+            <EntityTypeMapping TypeName="DYXTModel.S_FundCostTable">
+              <MappingFragment StoreEntitySet="S_FundCostTable">
+                <ScalarProperty Name="FundCostID" ColumnName="FundCostID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Identifier" ColumnName="Identifier" />
+                <ScalarProperty Name="CostTypeID" ColumnName="CostTypeID" />
+                <ScalarProperty Name="FundStatusID" ColumnName="FundStatusID" />
+                <ScalarProperty Name="PaymentRate" ColumnName="PaymentRate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="S_FundStatustable">
+            <EntityTypeMapping TypeName="DYXTModel.S_FundStatustable">
+              <MappingFragment StoreEntitySet="S_FundStatustable">
+                <ScalarProperty Name="FundStatusID" ColumnName="FundStatusID" />
+                <ScalarProperty Name="FundStatusName" ColumnName="FundStatusName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="S_ItemTypeTable">
+            <EntityTypeMapping TypeName="DYXTModel.S_ItemTypeTable">
+              <MappingFragment StoreEntitySet="S_ItemTypeTable">
+                <ScalarProperty Name="ItemTypeID" ColumnName="ItemTypeID" />
+                <ScalarProperty Name="ItemTypeName" ColumnName="ItemTypeName" />
+                <ScalarProperty Name="Identifier" ColumnName="Identifier" />
+                <ScalarProperty Name="Describe" ColumnName="Describe" />
+                <ScalarProperty Name="Maxintegral" ColumnName="Maxintegral" />
+                <ScalarProperty Name="Termofvalidity" ColumnName="Termofvalidity" />
+                <ScalarProperty Name="AddTime" ColumnName="AddTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="S_limitkindTable">
+            <EntityTypeMapping TypeName="DYXTModel.S_limitkindTable">
+              <MappingFragment StoreEntitySet="S_limitkindTable">
+                <ScalarProperty Name="limitkindID" ColumnName="limitkindID" />
+                <ScalarProperty Name="limitkindName" ColumnName="limitkindName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="S_limitoperateTable">
+            <EntityTypeMapping TypeName="DYXTModel.S_limitoperateTable">
+              <MappingFragment StoreEntitySet="S_limitoperateTable">
+                <ScalarProperty Name="limitoperateID" ColumnName="limitoperateID" />
+                <ScalarProperty Name="limitoperateName" ColumnName="limitoperateName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="S_LimitTypeTable">
+            <EntityTypeMapping TypeName="DYXTModel.S_LimitTypeTable">
+              <MappingFragment StoreEntitySet="S_LimitTypeTable">
+                <ScalarProperty Name="LimitTypeID" ColumnName="LimitTypeID" />
+                <ScalarProperty Name="LimitType" ColumnName="LimitType" />
+                <ScalarProperty Name="IdentificationName" ColumnName="IdentificationName" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="FundStatusID" ColumnName="FundStatusID" />
+                <ScalarProperty Name="Remark" ColumnName="Remark" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="S_LoanDeadlineTable">
+            <EntityTypeMapping TypeName="DYXTModel.S_LoanDeadlineTable">
+              <MappingFragment StoreEntitySet="S_LoanDeadlineTable">
+                <ScalarProperty Name="LoanDeadlineID" ColumnName="LoanDeadlineID" />
+                <ScalarProperty Name="LoanDeadlineName" ColumnName="LoanDeadlineName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="S_LoanexpensesType">
+            <EntityTypeMapping TypeName="DYXTModel.S_LoanexpensesType">
+              <MappingFragment StoreEntitySet="S_LoanexpensesType">
+                <ScalarProperty Name="LoanexpensesTypeID" ColumnName="LoanexpensesTypeID" />
+                <ScalarProperty Name="LoanexpensesName" ColumnName="LoanexpensesName" />
+                <ScalarProperty Name="Identifier" ColumnName="Identifier" />
+                <ScalarProperty Name="FundStatusID" ColumnName="FundStatusID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="S_ModularDetailITable">
+            <EntityTypeMapping TypeName="DYXTModel.S_ModularDetailITable">
+              <MappingFragment StoreEntitySet="S_ModularDetailITable">
+                <ScalarProperty Name="ModularDetailID" ColumnName="ModularDetailID" />
+                <ScalarProperty Name="OpTypeID" ColumnName="OpTypeID" />
+                <ScalarProperty Name="ModuleID" ColumnName="ModuleID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="S_ModuleStatusTable">
+            <EntityTypeMapping TypeName="DYXTModel.S_ModuleStatusTable">
+              <MappingFragment StoreEntitySet="S_ModuleStatusTable">
+                <ScalarProperty Name="ModuleStatusID" ColumnName="ModuleStatusID" />
+                <ScalarProperty Name="ModuleStatus" ColumnName="ModuleStatus" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="S_NoticeStatusTable">
+            <EntityTypeMapping TypeName="DYXTModel.S_NoticeStatusTable">
+              <MappingFragment StoreEntitySet="S_NoticeStatusTable">
+                <ScalarProperty Name="NoticeStatusID" ColumnName="NoticeStatusID" />
+                <ScalarProperty Name="NoticeStatusName" ColumnName="NoticeStatusName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="S_OperateTypeTable">
+            <EntityTypeMapping TypeName="DYXTModel.S_OperateTypeTable">
+              <MappingFragment StoreEntitySet="S_OperateTypeTable">
+                <ScalarProperty Name="OperateTypeID" ColumnName="OperateTypeID" />
+                <ScalarProperty Name="OperateTypeName" ColumnName="OperateTypeName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="S_OpTypeTable">
+            <EntityTypeMapping TypeName="DYXTModel.S_OpTypeTable">
+              <MappingFragment StoreEntitySet="S_OpTypeTable">
+                <ScalarProperty Name="OpTypeID" ColumnName="OpTypeID" />
+                <ScalarProperty Name="Optype" ColumnName="Optype" />
+                <ScalarProperty Name="Explan" ColumnName="Explan" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="S_PayTypeTable">
+            <EntityTypeMapping TypeName="DYXTModel.S_PayTypeTable">
+              <MappingFragment StoreEntitySet="S_PayTypeTable">
+                <ScalarProperty Name="PayTypeID" ColumnName="PayTypeID" />
+                <ScalarProperty Name="PayTypePicture" ColumnName="PayTypePicture" />
+                <ScalarProperty Name="PayTypeName" ColumnName="PayTypeName" />
+                <ScalarProperty Name="PaySummary" ColumnName="PaySummary" />
+                <ScalarProperty Name="OpenDeny" ColumnName="OpenDeny" />
+                <ScalarProperty Name="AddDeny" ColumnName="AddDeny" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="S_RechargeTypeTable">
+            <EntityTypeMapping TypeName="DYXTModel.S_RechargeTypeTable">
+              <MappingFragment StoreEntitySet="S_RechargeTypeTable">
+                <ScalarProperty Name="RechargeTypeID" ColumnName="RechargeTypeID" />
+                <ScalarProperty Name="RechargeTypeName" ColumnName="RechargeTypeName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="S_RepaymentWayTable">
+            <EntityTypeMapping TypeName="DYXTModel.S_RepaymentWayTable">
+              <MappingFragment StoreEntitySet="S_RepaymentWayTable">
+                <ScalarProperty Name="RepaymentWayID" ColumnName="RepaymentWayID" />
+                <ScalarProperty Name="IdentificationName" ColumnName="IdentificationName" />
+                <ScalarProperty Name="RepaymentWayName" ColumnName="RepaymentWayName" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="FundStatusID" ColumnName="FundStatusID" />
+                <ScalarProperty Name="AlgorithmMessage" ColumnName="AlgorithmMessage" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="S_SendstatusTable">
+            <EntityTypeMapping TypeName="DYXTModel.S_SendstatusTable">
+              <MappingFragment StoreEntitySet="S_SendstatusTable">
+                <ScalarProperty Name="SendstatusID" ColumnName="SendstatusID" />
+                <ScalarProperty Name="SendstatusName" ColumnName="SendstatusName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="S_StatusTable">
+            <EntityTypeMapping TypeName="DYXTModel.S_StatusTable">
+              <MappingFragment StoreEntitySet="S_StatusTable">
+                <ScalarProperty Name="StatusID" ColumnName="StatusID" />
+                <ScalarProperty Name="StatusName" ColumnName="StatusName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="S_Transmitstatus">
+            <EntityTypeMapping TypeName="DYXTModel.S_Transmitstatus">
+              <MappingFragment StoreEntitySet="S_Transmitstatus">
+                <ScalarProperty Name="TransmitstatusID" ColumnName="TransmitstatusID" />
+                <ScalarProperty Name="TransmitstatusName" ColumnName="TransmitstatusName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="S_Treetoptypetalbe">
+            <EntityTypeMapping TypeName="DYXTModel.S_Treetoptypetalbe">
+              <MappingFragment StoreEntitySet="S_Treetoptypetalbe">
+                <ScalarProperty Name="TreetoptypeID" ColumnName="TreetoptypeID" />
+                <ScalarProperty Name="Treetoptype" ColumnName="Treetoptype" />
+                <ScalarProperty Name="TreetopName" ColumnName="TreetopName" />
+                <ScalarProperty Name="Identifier" ColumnName="Identifier" />
+                <ScalarProperty Name="Describe" ColumnName="Describe" />
+                <ScalarProperty Name="FundStatusID" ColumnName="FundStatusID" />
+                <ScalarProperty Name="LimitTypeID" ColumnName="LimitTypeID" />
+                <ScalarProperty Name="LoanDeadlineID" ColumnName="LoanDeadlineID" />
+                <ScalarProperty Name="YearRate" ColumnName="YearRate" />
+                <ScalarProperty Name="ExamineTime" ColumnName="ExamineTime" />
+                <ScalarProperty Name="LowestTenderMoney" ColumnName="LowestTenderMoney" />
+                <ScalarProperty Name="HighestTenderMoney" ColumnName="HighestTenderMoney" />
+                <ScalarProperty Name="Overduefatalism" ColumnName="Overduefatalism" />
+                <ScalarProperty Name="FreezeBail" ColumnName="FreezeBail" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="S_UserTypeTable">
+            <EntityTypeMapping TypeName="DYXTModel.S_UserTypeTable">
+              <MappingFragment StoreEntitySet="S_UserTypeTable">
+                <ScalarProperty Name="UserTypeID" ColumnName="UserTypeID" />
+                <ScalarProperty Name="UserTypeName" ColumnName="UserTypeName" />
+                <ScalarProperty Name="Describe" ColumnName="Describe" />
+                <ScalarProperty Name="FoundTime" ColumnName="FoundTime" />
+                <ScalarProperty Name="ToVoidNo" ColumnName="ToVoidNo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="T_City">
+            <EntityTypeMapping TypeName="DYXTModel.T_City">
+              <MappingFragment StoreEntitySet="T_City">
+                <ScalarProperty Name="CityID" ColumnName="CityID" />
+                <ScalarProperty Name="CityName" ColumnName="CityName" />
+                <ScalarProperty Name="ProID" ColumnName="ProID" />
+                <ScalarProperty Name="CitySort" ColumnName="CitySort" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="T_District">
+            <EntityTypeMapping TypeName="DYXTModel.T_District">
+              <MappingFragment StoreEntitySet="T_District">
+                <ScalarProperty Name="DisID" ColumnName="DisID" />
+                <ScalarProperty Name="DisName" ColumnName="DisName" />
+                <ScalarProperty Name="CityID" ColumnName="CityID" />
+                <ScalarProperty Name="DisSort" ColumnName="DisSort" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="T_Province">
+            <EntityTypeMapping TypeName="DYXTModel.T_Province">
+              <MappingFragment StoreEntitySet="T_Province">
+                <ScalarProperty Name="ProID" ColumnName="ProID" />
+                <ScalarProperty Name="ProName" ColumnName="ProName" />
+                <ScalarProperty Name="ProSort" ColumnName="ProSort" />
+                <ScalarProperty Name="ProRemark" ColumnName="ProRemark" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="B_ManagerRecord">
+            <EntityTypeMapping TypeName="DYXTModel.B_ManagerRecord">
+              <MappingFragment StoreEntitySet="B_ManagerRecord">
+                <ScalarProperty Name="LoginIP" ColumnName="LoginIP" />
+                <ScalarProperty Name="LoginTime" ColumnName="LoginTime" />
+                <ScalarProperty Name="BearFruit" ColumnName="BearFruit" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="RecordID" ColumnName="RecordID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="B_WebLiuYan">
+            <EntityTypeMapping TypeName="DYXTModel.B_WebLiuYan">
+              <MappingFragment StoreEntitySet="B_WebLiuYan">
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="MailBox" ColumnName="MailBox" />
+                <ScalarProperty Name="QQ" ColumnName="QQ" />
+                <ScalarProperty Name="Callnumber" ColumnName="Callnumber" />
+                <ScalarProperty Name="LiuYanTime" ColumnName="LiuYanTime" />
+                <ScalarProperty Name="AccountID" ColumnName="AccountID" />
+                <ScalarProperty Name="WebliuyanID" ColumnName="WebliuyanID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="B_UserLoginDetailTable">
+            <EntityTypeMapping TypeName="DYXTModel.B_UserLoginDetailTable">
+              <MappingFragment StoreEntitySet="B_UserLoginDetailTable">
+                <ScalarProperty Name="EndLogin" ColumnName="EndLogin" />
+                <ScalarProperty Name="EndLoginTime" ColumnName="EndLoginTime" />
+                <ScalarProperty Name="lastLoginIP" ColumnName="lastLoginIP" />
+                <ScalarProperty Name="lastLoginTime" ColumnName="lastLoginTime" />
+                <ScalarProperty Name="RegisterTime" ColumnName="RegisterTime" />
+                <ScalarProperty Name="LoginFrequency" ColumnName="LoginFrequency" />
+                <ScalarProperty Name="PostBox" ColumnName="PostBox" />
+                <ScalarProperty Name="AccountID" ColumnName="AccountID" />
+                <ScalarProperty Name="UserLoginDetailID" ColumnName="UserLoginDetailID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="B_LoanTable">
+            <EntityTypeMapping TypeName="DYXTModel.B_LoanTable">
+              <MappingFragment StoreEntitySet="B_LoanTable">
+                <ScalarProperty Name="StatusID" ColumnName="StatusID" />
+                <ScalarProperty Name="HighestTenderMoney" ColumnName="HighestTenderMoney" />
+                <ScalarProperty Name="LowestTenderMoney" ColumnName="LowestTenderMoney" />
+                <ScalarProperty Name="Grossscore" ColumnName="Grossscore" />
+                <ScalarProperty Name="stopbuyback" ColumnName="stopbuyback" />
+                <ScalarProperty Name="SurplusLoan" ColumnName="SurplusLoan" />
+                <ScalarProperty Name="AlreadyLoan" ColumnName="AlreadyLoan" />
+                <ScalarProperty Name="Scheduleinvestment" ColumnName="Scheduleinvestment" />
+                <ScalarProperty Name="Raisestandard" ColumnName="Raisestandard" />
+                <ScalarProperty Name="Raisestandardday" ColumnName="Raisestandardday" />
+                <ScalarProperty Name="InvestTime" ColumnName="InvestTime" />
+                <ScalarProperty Name="recallaccount" ColumnName="recallaccount" />
+                <ScalarProperty Name="LoanDeadlineID" ColumnName="LoanDeadlineID" />
+                <ScalarProperty Name="sichuantime" ColumnName="sichuantime" />
+                <ScalarProperty Name="SubmitTime" ColumnName="SubmitTime" />
+                <ScalarProperty Name="Endtime" ColumnName="Endtime" />
+                <ScalarProperty Name="RemoveTreetopTime" ColumnName="RemoveTreetopTime" />
+                <ScalarProperty Name="ManageRemark" ColumnName="ManageRemark" />
+                <ScalarProperty Name="LoanDescribe" ColumnName="LoanDescribe" />
+                <ScalarProperty Name="RepaymentWayID" ColumnName="RepaymentWayID" />
+                <ScalarProperty Name="TreetoptypeID" ColumnName="TreetoptypeID" />
+                <ScalarProperty Name="Rate" ColumnName="Rate" />
+                <ScalarProperty Name="AlreadyLoanMoney" ColumnName="AlreadyLoanMoney" />
+                <ScalarProperty Name="LoanPeriods" ColumnName="LoanPeriods" />
+                <ScalarProperty Name="RepayPrincipal" ColumnName="RepayPrincipal" />
+                <ScalarProperty Name="AlreadyPrincipal" ColumnName="AlreadyPrincipal" />
+                <ScalarProperty Name="PayableInterest" ColumnName="PayableInterest" />
+                <ScalarProperty Name="ArrearagePrincipal" ColumnName="ArrearagePrincipal" />
+                <ScalarProperty Name="LoanMoney" ColumnName="LoanMoney" />
+                <ScalarProperty Name="LoanPurpose" ColumnName="LoanPurpose" />
+                <ScalarProperty Name="Loantitle" ColumnName="Loantitle" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="PaymentNumber" ColumnName="PaymentNumber" />
+                <ScalarProperty Name="LoanID" ColumnName="LoanID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="无" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

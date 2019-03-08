@@ -1,0 +1,284 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/jquery.bsgrid-1.37/merged/bsgrid.all.min.css" rel="stylesheet" />
+    <link href="~/Content/jquery.bsgrid-1.37/css/skins/grid_bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/jquery.bsgrid-1.37/css/skins/grid_sky_blue.min.css" rel="stylesheet" />
+    <title>Treetoptypeview</title>
+    <style type="text/css">
+        .container {    
+            width: 100%;
+            padding: 20px 40px 0 35px;
+            margin: 0;
+        }
+
+        .panel-heading span {
+           font-size:15px;font-weight:700;
+        }
+
+        .form-horizontal label {
+            font-weight: normal;
+        }
+
+        .reset {
+            padding-left: 5px;
+            padding-right: 5px;
+        }
+
+        .panel-body {
+            padding-left: 0;
+            background: #f4fcff;
+        }
+
+      
+
+        a, a:hover, a:active, a:visited, a:link {
+            color: white;
+            text-decoration: none;
+        }
+
+        td a {
+            color: blue !important;
+        }
+
+        .h4 {
+            margin: 0 0 4px 0;
+        }
+
+        th {
+            font-weight: normal;
+        }
+
+        .h4, td, th {
+            text-align: center;
+        }
+
+        .table tbody tr td {
+            padding: 4px;
+        }
+
+            .table tbody tr td button {
+                height: 24px;
+                padding: 2px 12px;
+            }
+
+        .modal-body {
+            background: #f4fcff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="containerid">
+        <div class="row">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <div class="row">
+                        <span class="col-md-2">标种类型</span>
+                    </div>
+                </div>
+                <div class="panel-body" style="padding-left:15px;">
+                    <div class="col-md-12 setPadding" style="background:#ffffff;margin-top:10px;">
+                        <label class="col-md-5 control-label">所有标种类型</label>
+                    </div>
+                    <table id="wholewithdrawdeposit">
+                        <tr>
+                            <th w_num="total_line" width="5%">序号</th>
+                            <th w_index="Treetoptype" width="10%">借款类型</th>
+                            <th w_index="TreetopName" width="10%">名称</th>
+                            <th w_index="Identifier" width="10%">标识符</th>
+                            <th w_index="FundStatusName" width="10%">状态</th>
+                            <th w_index="yearRate" width="10%">年利率</th>
+                            <th w_index="LoanDeadlineName" width="10%">借款期限</th>
+                            <th w_index="freezeBail" width="10%">冻结保证金</th>
+                            <th w_index="Describe" width="20%">描述</th>
+                            <th w_index="ToVoidNo" w_render="failedViewButton" width="8%">操作</th>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="modal fade bs-example-modal-sm" id="modUpdata">
+                <div class="modal-dialog" style="width:870px;">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                            <h4 class="modal-title">修改标种类型</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <form class="form-inline" method="post" id="fromUpdatatype">
+                                    <input name="TreetoptypeID" hidden />
+                                    <div class="form-group col-lg-12 col-md-12 col-sm-12" style="margin-top:5px;">
+                                       
+                                            <label class="col-lg-2 col-md-2 col-sm-2 control-label">标种类型：</label>
+
+                                            <input class="form-control col-lg-2 col-md-2 col-sm-2" type="text" name="Treetoptype" readonly="readonly">
+
+                                        <label class="control-label col-lg-1 col-md-1 col-sm-1"></label>
+                                        <div class="form-group col-lg-6 col-md-6 col-sm-6">
+                                            <label class="col-lg-4 col-md-4 col-sm-4 control-label">标识名：</label>
+                                            <input class="form-control col-lg-6 col-md-6 col-sm-6" type="text" name="Identifier" readonly="readonly">
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-lg-12 col-md-12 col-sm-12" style="margin-top:5px;">
+                                     
+                                            <label class="col-lg-2 col-md-2 col-sm-2 control-label">名称：</label>
+                                            <input class="form-control col-lg-6 col-md-6 col-sm-6" type="text" name="TreetopName">
+                                        <label class="control-label col-lg-1 col-md-1 col-sm-1"></label>
+                                        <div class="form-group col-lg-6 col-md-6 col-sm-6">
+                                           
+                                            <label class="col-lg-4 col-md-4 col-sm-4 control-label">冻结保证金：</label>
+                                            <input class="form-control col-lg-6 col-md-6 col-sm-6" type="text" name="FreezeBail">
+                                            <label class="control-label">%</label>   
+                                          </div>
+                                    </div>
+                                    <div class="form-group col-lg-12 col-md-12 col-sm-12" style="margin-top:5px;">                                     
+                                            <label class="col-lg-2 col-md-2 col-sm-2 control-label">额度类型:</label>
+                                            <select class="form-control col-lg-6 col-md-6 col-sm-6" style="width:196px;"  id="LimitTypeID" name="LimitTypeID"></select>
+                                            <label class="control-label col-lg-1 col-md-1 col-sm-1"></label>
+                                        <div class="form-group col-lg-6 col-md-6 col-sm-6">
+                                            <label class="col-lg-4 col-md-4 col-sm-4 control-label">年利率：</label>
+                                            <input class="form-control col-lg-6 col-md-6 col-sm-6" type="text" name="YearRate">
+                                            <label class="control-label">%</label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-lg-12 col-md-12 col-sm-12" style="margin-top:5px;">
+                                        <label class="col-lg-2 col-md-2 col-sm-2 control-label">借款期限:</label>
+                                        <select class="form-control col-lg-2 col-md-2 col-sm-2" style="width:196px;"  id="LoanDeadlineID" name="LoanDeadlineID"></select>                                      
+                                        <label class="control-label col-lg-1 col-md-1 col-sm-1"></label>    
+                                          <div class="form-group col-lg-6 col-md-6 col-sm-6">
+                                            <label class="col-lg-4 col-md-4 col-sm-4 control-label">审核时间：</label>
+                                            <input class="form-control col-lg-6 col-md-6 col-sm-6" type="text" name="ExamineTime">
+                                            <label class="control-label">天</label>
+                                        </div>
+
+                                    </div>
+                                    <div class="form-group col-lg-12 col-md-12 col-sm-12" style="margin-top:5px;">
+                                        <label class="col-lg-2 col-md-2 col-sm-2 control-label">状态:</label>
+                                        <select class="form-control col-lg-2 col-md-2 col-sm-2" style="width:196px;" id="FundStatusID" name="FundStatusID"></select>                       
+                                        <label class="control-label col-lg-1 col-md-1 col-sm-1"></label>    
+                                         <div class="form-group col-lg-6 col-md-6 col-sm-6">
+                                            <label class="col-lg-4 col-md-4 col-sm-4 control-label">垫付逾期天数：</label>
+                                            <input class="form-control col-lg-6 col-md-6 col-sm-6" type="text" name="Overduefatalism">
+                                            <label class="control-label">天</label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-lg-12 col-md-12 col-sm-12" style="margin-top:5px;">                                     
+                                            <label class="col-lg-2 col-md-2 col-sm-2 control-label">最低投标金额：</label>
+                                            <input class="form-control col-lg-2 col-md-2 col-sm-2" type="text" name="LowestTenderMoney">                                 
+                                            <label class="control-label">元（多个请用,号隔开）</label>
+                                    </div>
+
+                                    <div class="form-group col-lg-12 col-md-12 col-sm-12" style="margin-top:5px;">
+                                     
+                                            <label class="col-lg-2 col-md-2 col-sm-2 control-label">最高投标金额：</label>
+
+                                            <input class="form-control col-lg-2 col-md-2 col-sm-2" type="text" name="HighestTenderMoney">
+                                      
+                                        <label class="control-label">元（多个请用,号隔开，0表示不限）</label>
+                                    </div>
+                                    <div class="form-group col-lg-12 col-md-12 col-sm-12" style="margin-top:5px;">
+                                       
+                                            <label class="col-lg-2 col-md-2 col-sm-2 control-label">描述：</label>
+                                     
+                                          <textarea class="form-control col-lg-6 col-md-6 col-sm-6" style="width:196px;" name="Describe"></textarea>                                           
+                                        </div>
+                                        <button type="button" class="btn btn-info col-md-offset-6" id="QueRenInsert">确认提交</button>
+                                        <button type="reset" class="btn btn-info" onclick="reloadImage()">重 置</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div>
+        </div>
+    </div>
+
+    <script src="~/Content/bootstrap-3.3.7-dist/js/jquery-2.0.3.min.js"></script>
+    <script src="~/Content/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <script src="~/Content/jquery.bsgrid-1.37/merged/bsgrid.all.min.js"></script>
+    <script src="~/Content/jquery.bsgrid-1.37/js/lang/grid.zh-CN.min.js"></script>
+    <script src="~/Content/layer/layer.js"></script>
+    <script src="~/Content/jss/customfunction.js"></script>
+    <script>
+
+        $(document).ready(function () {
+            //修改状态
+            $.post("/BorroworlMoneymanage/BorroworlMoney/selectFundStatus", function (jsonData) {
+                selectLoadData("FundStatusID", jsonData);
+            });
+            //额度类型
+            $.post("/BorroworlMoneymanage/BorroworlMoney/selectLimitTypetreetop", function (jsonData) {
+                selectLoadData("LimitTypeID", jsonData);
+            });
+            //借款期限
+            $.post("/BorroworlMoneymanage/BorroworlMoney/selecLoanDeadlinetreetop", function (jsonData) {
+                selectLoadData("LoanDeadlineID", jsonData);
+            });
+            wholewithdrawdeposit = $.fn.bsgrid.init('wholewithdrawdeposit', {
+                url: '/BorroworlMoneymanage/BorroworlMoney/selectTreetoptypexinxi',
+                autoLoad: true,//自动加载数据
+                stripeRows: true,//隔行变色
+                rowHoverColor: true,//划过行变色
+                rowSelectedColor: true,//是否显示选中行背景色
+                pageSize: 10,//默认页面大小
+                pageSizeSelect: true,//是否选择分页页数下拉框
+                pagingLittleToolbar: true,//精简的图标按钮分页工具条
+                pagingToolbarAlign: "left"//分页工具条的显示位置
+            });
+        });
+
+        //权限访问
+        $("#containerid").mouseenter(function () {
+            $.post("/LoginMain/MoKuaiQuanXianOpTypeSelect", function (Data) {
+                for (var i = 0; i < Data.length; i++) {
+                    if (Data[i].Name == "还款方式" && Data[i].Optype == "修改") {
+                        $(".Updataid").removeClass("hidden");
+                    }
+                }
+            });
+        });
+        //自定义回购中详情列
+        function failedViewButton(record, rowIndex, colIndex, options) {
+
+            return '<button type="button" class="Updataid btn btn-danger hidden" onclick="Updata(' + record.TreetoptypeID + ')">修改</button>'
+        }
+        function Updata(TreetoptypeID) {
+            $.post("/BorroworlMoneymanage/BorroworlMoney/UpdataTreetoptype", { TreetoptypeID: TreetoptypeID }, function (data) {
+                loadDatatoForm("fromUpdatatype", data);
+                $("#modUpdata").modal("show");
+            });
+        }
+        $("#QueRenInsert").click(function () {
+            if ($('#fromUpdatatype [name="TreetopName"]').val() != "" && $('#fromUpdatatype [name="YearRate"]').val() != ""
+                && $('#fromUpdatatype [name="ExamineTime"]').val() != "" && $('#fromUpdatatype [name="LowestTenderMoney"]').val() != ""
+                && $('#fromUpdatatype [name="HighestTenderMoney"]').val() != "" && $('#fromUpdatatype [name="FreezeBail"]').val() != ""
+                && $('#fromUpdatatype [name="Overduefatalism"]').val() != "") {
+                var formDate = $("#fromUpdatatype").serializeArray();
+                $.post("/BorroworlMoneymanage/BorroworlMoney/UpdataTreetoptypebaocun", formDate, function (msg) {
+                    if (msg == "success") {
+                        layer.alert('修改成功', { icon: 6, title: '提示' });
+                        wholewithdrawdeposit.refreshPage();
+                        $("#modUpdata").modal("hide");
+                        //刷新table
+                    }
+                    else {
+                        layer.alert('修改失败！', { icon: 5, title: '提示' });
+                    }
+                });
+            } else {
+                layer.alert('请填写完整！', { icon: 2, title: '提示' });
+            }
+        });
+    </script>
+
+</body>
+</html>

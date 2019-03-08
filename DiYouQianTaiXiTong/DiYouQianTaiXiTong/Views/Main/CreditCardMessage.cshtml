@@ -1,0 +1,335 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>帝友P2P借贷系统</title>
+    <link href="/Content/ShouYe/iconfont.css" rel="stylesheet" />
+    <link href="/Content/ShouYe/public.css" rel="stylesheet" />
+    <link href="/Content/ShouYe/style.css" rel="stylesheet" />
+    <link href="/Content/ShouYe/index.css" rel="stylesheet" />
+    <link href="/Content/ShouYe/user.css" rel="stylesheet" />
+    <link href="/Content/ShouYe/mall.css" rel="stylesheet" />
+
+    <link href="~/Content/my1/global_site_base.css" rel="stylesheet" type="text/css" />
+    @*<link href="//img.yihaodianimg.com/myyhd/global/css/global_site_base.css?0" rel="stylesheet" type="text/css" />*@
+    @*<link href="//img.yihaodianimg.com/myyhd/member/css/order_list.css?0" rel="stylesheet" type="text/css" />*@
+    <link href="~/Content/my1/order_list.css" rel="stylesheet" type="text/css" />
+
+    <link href="~/Content/my1/leftmenu.css" rel="stylesheet" />
+
+    <link href="~/content/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/jquery.bsgrid-1.37/merged/bsgrid.all.min.css" rel="stylesheet" />
+    <link href="~/Content/jquery.bsgrid-1.37/css/skins/grid_bootstrap.min.css" rel="stylesheet" />
+
+</head>
+<body>
+    <div class="header">
+        <div class="header_top">
+            <div class="conbox fn_cle">
+                <div class="contact fn_left">
+                    <i class="telico"></i>
+                    <span class="tel">服务热线：<em>400-836-3969 </em></span>                				<a href="http://www.diyou.cc/app/index.html" target="_blank">手机端下载</a>
+                </div>
+                <div class="top_rig fn_rig">
+                    <ul>
+                        <li><a href="/Main/ZhuCe" class="bor_none reg">免费注册</a></li>
+                        <li><a href="/Mian/Login" class="login">立即登录</a></li>
+                        <li><a href="" class="helpico">帮助中心</a></li>
+                        <li><a href="/Main/CounterIndex">利息计算器</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="header_cont conbox fn_cle">
+            <h1 class="fn_left">
+                <a href="">
+                    <img src="/Content/ShouYe/0_admin_upload_1407294921608.jpg" />
+                </a>
+            </h1>
+            <div class="navbar fn_left">
+
+                <ul>
+                    <li class="ui_nav_item ">
+                        <a href="/Main/Index">首页</a>
+                    </li>
+                    <li class="ui_nav_item ">
+                        <a href="/Main/BorrowIndex">我要借款</a>
+                    </li>
+                    <li class="ui_nav_item ">
+                        <a href="/Main/InvestIndex">我要投资</a>
+                    </li>
+                    <li class="ui_nav_item ">
+                        <a href="/Main/MyAccountIndex1">我的账户</a>
+                    </li>
+                    <li class="ui_nav_item ">
+                        <a href="/Main/AboutOurIndex">关于我们</a>
+                    </li>
+                    <li class="ui_nav_item ">
+                        <a href="">新手帮助</a>
+
+                        <ul class="nav_dropdown">
+                            <li class="arrow"><span></span></li>
+                            <li><a href="">网站公告</a></li>
+                            <li><a href="">安全保障</a></li>
+                            <li><a href="">工作原理</a></li>
+                            <li><a href="">法律政策</a></li>
+                            <li><a href="">资费说明</a></li>
+                        </ul>
+
+                    </li>
+
+                </ul>
+            </div>
+            <div class="follow fn_rig">
+                <a href="" target="_blank"><div class="follow_list follow_sina "></div></a>
+                <div class="follow_list follow_wx">
+                    <div class="wx_ewm">
+                        <span class="arrow"></span>
+                        <div class="arrow_img">
+                            <img src="/Content/ShouYe/0_admin_upload_1420791797782.jpg" height="73" width="73" />
+                        </div>
+                    </div>
+
+                </div>
+                <div class="follow_list follow_qq">
+                    <div class="qq_info">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="layout_main" class="mpc_cont">
+        <div class="wrap clearfix">
+            <!-- sideNav -->
+            <div class="mpc_cont_sideNav">
+                <dl style="margin-bottom:-15px;">
+                    <dt>
+                        <i class="my_iconfont sidenav_icon"></i>
+                        <span style="margin-left:-10px;font-size:20px;">我的交易</span>
+                    </dt>
+                    <dd style="margin-top:10px;">
+                        <a href="/Main/MyAccountIndex1">我的投标</a>
+                    </dd>
+                    <dd>
+                        <a href="/Main/LoanManageIndex">我的借款</a>
+                    </dd>
+                    <dd>
+                        <a href="/Main/GatheringIndex">我的收款</a>
+                    </dd>
+                </dl>
+                <dl style="margin-bottom:-10px;">
+                    <dt>
+                        <i class="my_iconfont sidenav_icon"></i>
+                        <span style="margin-left:-10px;font-size:20px;">基础资料</span>
+                    </dt>
+                    <dd style="margin-top:10px;">
+                        <a href="/Main/BaseIndex" class="llw">个人资料</a>
+                    </dd>
+                    <dd>
+                        <a href="/Main/PersonalIndex">填写资料</a>
+                    </dd>
+                    <dd>
+                        <a href="/Main/RegisterMember">注册会员</a>
+                    </dd>
+                    <dd>
+                        <a href="/Main/MemberDataIndex">会员资料</a>
+                    </dd>
+                    <dd>
+                        <a href="/Main/AttestationIndex">实名认证</a>
+                    </dd>
+                </dl>
+                <dl style="margin-bottom:-10px;">
+                    <dt>
+                        <i class="my_iconfont sidenav_icon"></i>
+                        <span style="margin-left:-10px;font-size:20px;">我的资产</span>
+                    </dt>
+                    <dd style="margin-top:10px;">
+                        <a href="/Main/AccountCentre">我的账户</a>
+                    </dd>
+                    <dd>
+                        <a href="/Main/LimitIndex">额度申请</a>
+                    </dd>
+                    <dd>
+                        <a href="/Main/CreditCardIndex">添加银行卡</a>
+                    </dd>
+                    <dd>
+                        <a href="/Main/CreditCardMessage">银行卡信息</a>
+                    </dd>
+                    <dd>
+                        <a href="/Main/RechargeIndex">充值</a>
+                    </dd>
+                </dl>
+                <dl style="margin-bottom:-10px;">
+                    <dt>
+                        <i class="my_iconfont sidenav_icon"></i>
+                        <span style="margin-left:-10px;font-size:20px;">我的服务</span>
+                    </dt>
+                    <dd style="margin-top:10px;">
+                        <a href="/Main/FollowIndex">我的关注</a>
+                    </dd>
+                    <dd>
+                        <a href="/Main/SpreadIndex">我的推广</a>
+                    </dd>
+                </dl>
+            </div>
+
+
+            <div id="layout_main" class="mpc_cont_main layout_w1200">
+                <!--宽屏class名为layout_w1200，窄屏请修改class为layout_w980_g18-->
+                <!-- 左侧菜单导航 -->
+                <!-- <div id="grid_4" class="grid_4"></div>-->
+                <!-- 右侧主体内容-S -->
+                <div class="panel panel-default">
+                    <div class="panel-heading"><h4 class="panel-title">我的银行卡信息</h4></div>
+                    <div class="panel-body">
+                        <form class="form-horizontal" role="form">
+                            <div class="form-group">
+                                <div class="col-md-2 col-sm-2 col-lg-2"></div>
+                                <div class="col-md-8 col-sm-8 col-lg-8">
+                                    <label style="font-size:15px;">真实姓名：</label>
+                                    <label id="UserName" style="font-size:15px; margin-left:30px;"></label>
+                                </div>
+                                <div class="col-md-2 col-sm-2 col-lg-2"></div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-2 col-sm-2 col-lg-2"></div>
+                                <div class="col-md-8 col-sm-8 col-lg-8">
+                                    <label style="font-size:15px;">银行名称：</label>
+                                    <label id="BankName" style="font-size:15px;margin-left:30px;"></label>
+                                </div>
+                                <div class="col-md-2 col-sm-2 col-lg-2"></div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-2 col-sm-2 col-lg-2"></div>
+                                <div class="col-md-8 col-sm-8 col-lg-8">
+                                    <label style="font-size:15px;">银行账号：</label>
+                                    <label id="BankCount" style="font-size:15px;margin-left:30px;"></label>
+                                </div>
+                                <div class="col-md-2 col-sm-2 col-lg-2"></div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-2 col-sm-2 col-lg-2"></div>
+                                <div class="col-md-8 col-sm-8 col-lg-8">
+                                    <label style="font-size:15px;">银行支行：</label>
+                                    <label id="BankHang" style="font-size:15px;margin-left:30px;"></label>
+                                </div>
+                                <div class="col-md-2 col-sm-2 col-lg-2"></div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-2 col-sm-2 col-lg-2"></div>
+                                <div class="col-md-8 col-sm-8 col-lg-8">
+                                    <label style="font-size:15px;">总共资金：</label>
+                                    <label><span style="color:#ff0000;font-size:15px;margin-left:20px;">&yen;</span></label>
+                                    <label id="AllMoney" style="color:#ff0000;font-size:15px;"></label>
+                                </div>
+                                <div class="col-md-2 col-sm-2 col-lg-2"></div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-2 col-sm-2 col-lg-2"></div>
+                                <div class="col-md-8 col-sm-8 col-lg-8">
+                                    <label style="font-size:15px;">可用资金：</label>
+                                    <label><span style="color:#ff0000;font-size:15px;margin-left:20px;">&yen;</span></label>
+                                    <label id="UserMoney" style="color:#ff0000;font-size:15px;"></label>
+                                </div>
+                                <div class="col-md-2 col-sm-2 col-lg-2"></div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-2 col-sm-2 col-lg-2"></div>
+                                <div class="col-md-8 col-sm-8 col-lg-8">
+                                    <label style="font-size:15px;">冻结资金：</label>
+                                    <label><span style="color:#ff0000;font-size:15px;margin-left:20px;">&yen;</span></label>
+                                    <label id="FreeMoney" style="color:#ff0000;font-size:15px;"></label>
+                                </div>
+                                <div class="col-md-2 col-sm-2 col-lg-2"></div>
+                            </div>
+                        </form>
+                    </div>
+                    @*<div class="panel-footer"></div>*@
+                </div>
+                <!-- 右侧主体内容-E -->
+            </div>
+        </div>
+    </div>
+    <div class="ft_wrap">
+        <div id="globalBottomBrowseRelated" data-recordTracker="1"></div>
+        <div class="wrap ft_service_link clearfix">
+            <div id="bottomHelpLinkId" class="ft_help_list clearfix" data-tpa="YHD_GLOBAl_FOOTER_HELP">
+                <dl>
+                    <dt>新手入门</dt>
+                    <dd><a href="" target="_blank">购物流程</a></dd>
+                    <dd><a href="" target="_blank">会员制度</a></dd>
+                    <dd><a href="" target="_blank">订单查询</a></dd>
+
+                </dl>
+                <dl>
+                    <dt>支付方式</dt>
+                    <dd><a href="" target="_blank">货到付款</a></dd>
+                    <dd><a href="" target="_blank">网上支付</a></dd>
+                    <dd><a href="" target="_blank">银行转账</a></dd>
+                </dl>
+                <dl>
+                    <dt>配送服务</dt>
+                    <dd><a href="" target="_blank">配送进度查询</a></dd>
+                    <dd><a href="" target="_blank">商品验货与签收</a></dd>
+                    <dd><a href="" target="_blank">发票制度</a></dd>
+                </dl>
+                <dl>
+                    <dt>售后保障</dt>
+                    <dd><a href="" target="_blank">退换货政策</a></dd>
+                    <dd><a href="" target="_blank">联系客服</a></dd>
+                    <dd><a href="" target="_blank">发票制度</a></dd>
+                </dl>
+            </div>
+            <!--footer 二维码 begin -->
+            <div class="ft_code_wrap clearfix" data-tpa="YHD_GLOBAl_HEADER_MOBILE" id="footerQRcode">
+                <div class="ft_mobile_code clearfix">
+                    <p>APP更优惠</p>
+                    <img src="~/Content/myaccount/images/qryhd.png" alt="APP更优惠二维码" />
+                </div>
+                <div class="ft_mobile_code clearfix">
+                    <p>加微信查订单</p>
+                    <img src="~/Content/myaccount/images/qryhd.png" alt="加微信查订单二维码" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script src="/Content/ShouYe/jquery-1.8.2.min.js"></script>
+    <script src="/Content/ShouYe/diyou.js"></script>
+    <script src="/Content/ShouYe/base.js"></script>
+
+    <script src="~/Content/my1/jquery.min.js"></script>
+    <script src="~/Content/my1/leftmenu.js"></script>
+    <script src="~/Content/my1/order_list.js"></script>
+    <script src="~/Content/my1/synccookiepc.js"></script>
+
+    <script src="~/Content/bootstrap-3.3.7-dist/js/jquery-1.11.2.min.js"></script>
+    <script src="~/Content/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <script src="~/Content/jquery.bsgrid-1.37/merged/bsgrid.all.min.js"></script>
+    <script src="~/Content/jquery.bsgrid-1.37/js/lang/grid.zh-CN.min.js"></script>
+    <script src="~/Content/js/customfunction.js"></script>
+    <script src="~/Content/layer/layer.js"></script>@*对话框*@
+    <script type="text/javascript">
+        $.post("/Personal/Personal/SelectBankCar", function (data) {
+            $("#UserName").text(data.TrueName);
+            $("#BankName").text(data.PayTypeName);
+            $("#BankCount").text(data.BankAccount);
+            $("#BankHang").text(data.Subbranch);
+            $("#AllMoney").text(data.PropertyAmounts);
+            $("#UserMoney").text(data.UsableMoney);
+            $("#FreeMoney").text(data.FreezeMoney);
+        });
+    </script>
+</body>
+</html>
+

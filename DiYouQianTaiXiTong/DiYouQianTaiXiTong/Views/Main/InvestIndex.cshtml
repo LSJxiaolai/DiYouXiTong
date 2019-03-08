@@ -1,0 +1,740 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>帝友P2P借贷系统</title>
+    <link href="~/Content/ShouYe/iconfont.css" rel="stylesheet" />
+    <link href="~/Content/ShouYe/public.css" rel="stylesheet" />
+    <link href="~/Content/ShouYe/style.css" rel="stylesheet" />
+    <link href="~/Content/ShouYe/index.css" rel="stylesheet" />
+    <link href="~/Content/ShouYe/user.css" rel="stylesheet" />
+    <link href="~/Content/ShouYe/mall.css" rel="stylesheet" />
+    
+    <script src="~/Content/ShouYe/jquery-1.8.2.min.js"></script>
+    <script src="~/Content/ShouYe/diyou.js"></script>
+    <script src="~/Content/ShouYe/base.js"></script>    
+    <script>
+var user_id = '';
+var web_domain = "http://www.diyou.cc";
+var js_web_name="我要投资 - 帝友P2P借贷系统V4.0演示站 - 中国最大最专业的借贷系统开发商";
+    </script>
+    <!--[if IE 6]>
+    <script src="/dyweb/dythemes/diyou/js/iepng.js" type="text/javascript"></script>
+    <script type="text/javascript">
+     EvPNG.fix('div, ul, li , a , em , img, input,h1');
+    </script>
+    <![endif]-->
+</head>
+<body>
+    <div class="header">
+        <div class="header_top">
+            <div class="conbox fn_cle">
+                <div class="contact fn_left">
+                    <i class="telico"></i>
+                    <span class="tel">服务热线：<em>400-836-3969 </em></span>                				<a href="http://www.diyou.cc/app/index.html" target="_blank">手机端下载</a>
+                </div>
+                <div class="top_rig fn_rig">
+                    <ul>
+                        <li><a href="/Main/ZhuCe" class="bor_none reg">免费注册</a></li>
+                        <li><a href="/Mian/Login" class="login">立即登录</a></li>
+                        <li><a href="" class="helpico">帮助中心</a></li>
+                        <li><a href="/Main/CounterIndex">利息计算器</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="header_cont conbox fn_cle">
+            <h1 class="fn_left"><a href="">
+                                    <img src="~/Content/ShouYe/0_admin_upload_1425018268932.png" alt=""/>
+              </a></h1>
+            <div class="navbar fn_left">
+
+                <ul>
+                    <li class="ui_nav_item ">
+                        <a href="/Main/Index">首页</a>
+
+
+                    </li>
+                    <li class="ui_nav_item ">
+                        <a href="/Main/BorrowIndex">我要借款</a>
+                    </li>
+                    <li class="ui_nav_item  now ">
+                        <a href="/Main/InvestIndex">我要投资</a>
+                    </li>
+                    <li class="ui_nav_item ">
+                        <a href="/Main/MyAccountIndex1">我的账户</a>
+                    </li>
+                    <li class="ui_nav_item ">
+                        <a href="">关于我们</a>
+                    </li>
+                    <li class="ui_nav_item ">
+                        <a href="">新手帮助</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="follow fn_rig">
+                <a href="" target="_blank"><div class="follow_list follow_sina "></div></a>
+                <div class="follow_list follow_wx">
+                    <div class="wx_ewm">
+                        <span class="arrow"></span>
+                        <div class="arrow_img">
+                            <img src="~/Content/ShouYe/0_admin_upload_1420791797782.jpg" height="73" width="73"/>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="follow_list follow_qq">
+                    <div class="qq_info">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="conbox mt30 cur_pos">
+        您当前的位置是：<a href="" title="首页">首页</a> &gt; <a href="" title="我要投资">我要投资</a>
+    </div>
+    <input type="hidden" name="borrow_style" value="borrow">
+    <div class="conbox mt10">
+        <div class="touzi_con">
+            <div class="touzi_left">
+                <div class="ui_filter">
+                    <dl>
+                        <dd>
+                            <ul data="borrow_type">
+                                <li><b>类型：</b></li>
+                                <li class="ui_filter_tag active" id="borrow_type_li">
+                                    <input type="radio" name="borrow_type" value="" checked="">
+                                    <span>不限</span>
+                                </li>
+                                <li class="ui_filter_tag ">
+                                    <input type="radio" name="borrow_type" value="second">
+                                    <span>秒借贷</span>
+                                </li>
+                                <li class="ui_filter_tag ">
+                                    <input type="radio" name="borrow_type" value="credit">
+                                    <span>信用贷</span>
+                                </li>
+                                <li class="ui_filter_tag ">
+                                    <input type="radio" name="borrow_type" value="vouch">
+                                    <span>担保贷</span>
+                                </li>
+                                <li class="ui_filter_tag ">
+                                    <input type="radio" name="borrow_type" value="pawn">
+                                    <span>抵押贷</span>
+                                </li>
+                                <li class="ui_filter_tag ">
+                                    <input type="radio" name="borrow_type" value="worth">
+                                    <span>净值贷</span>
+                                </li>
+                                <li class="ui_filter_tag ">
+                                    <input type="radio" name="borrow_type" value="roam">
+                                    <span>流转标</span>
+                                </li>
+                            </ul>
+                        </dd>
+                        <dd>
+                            <ul>
+                                <li><b>金额：</b></li>
+                                <li class="ui_filter_tag active" id="account_status_li">
+                                    <input type="radio" name="account_status" value="" checked="">
+                                    <span>不限</span>
+                                </li>
+                                <li class="ui_filter_tag ">
+                                    <input type="radio" name="account_status" value="1">
+                                    <span>2000以下</span>
+                                </li>
+                                <li class="ui_filter_tag ">
+                                    <input type="radio" name="account_status" value="2">
+                                    <span>2000-5000</span>
+                                </li>
+                                <li class="ui_filter_tag ">
+                                    <input type="radio" name="account_status" value="3">
+                                    <span>5000-10000</span>
+                                </li>
+                                <li class="ui_filter_tag ">
+                                    <input type="radio" name="account_status" value="4">
+                                    <span>1万-3万</span>
+                                </li>
+                                <li class="ui_filter_tag ">
+                                    <input type="radio" name="account_status" value="5">
+                                    <span>3万-5万</span>
+                                </li>
+                                <li class="ui_filter_tag ">
+                                    <input type="radio" name="account_status" value="6">
+                                    <span>10万以上</span>
+                                </li>
+                            </ul>
+                        </dd>
+                        <dd>
+                            <ul>
+                                <li><b>利率：</b></li>
+                                <li class="ui_filter_tag active" id="borrow_interestrate_li">
+                                    <input type="radio" name="borrow_interestrate" value="" checked="">
+                                    <span>不限</span>
+                                </li>
+                                <li class="ui_filter_tag ">
+                                    <input type="radio" name="borrow_interestrate" value="1">
+                                    <span>0%-5%</span>
+                                </li>
+                                <li class="ui_filter_tag ">
+                                    <input type="radio" name="borrow_interestrate" value="2">
+                                    <span>5%-10%</span>
+                                </li>
+                                <li class="ui_filter_tag ">
+                                    <input type="radio" name="borrow_interestrate" value="3">
+                                    <span>10%-15%</span>
+                                </li>
+                                <li class="ui_filter_tag ">
+                                    <input type="radio" name="borrow_interestrate" value="4">
+                                    <span>15%-20%</span>
+                                </li>
+                                <li class="ui_filter_tag ">
+                                    <input type="radio" name="borrow_interestrate" value="5">
+                                    <span>20%-24%</span>
+                                </li>
+                                <li class="ui_filter_tag ">
+                                    <input type="radio" name="borrow_interestrate" value="6">
+                                    <span>24%以上</span>
+                                </li>
+                            </ul>
+                        </dd>
+                        <dd class="term">
+                            <ul>
+                                <li><b>期限：</b></li>
+                                <li class="ui_filter_tag active" id="spread_month_li">
+                                    <input type="radio" name="spread_month" value="" checked="">
+                                    <span>不限</span>
+                                </li>
+                                <li class="ui_filter_tag ">
+                                    <input type="radio" name="spread_month" value="1">
+                                    <span>1-3月</span>
+                                </li>
+                                <li class="ui_filter_tag ">
+                                    <input type="radio" name="spread_month" value="2">
+                                    <span>3-6月</span>
+                                </li>
+                                <li class="ui_filter_tag ">
+                                    <input type="radio" name="spread_month" value="3">
+                                    <span>6-12月</span>
+                                </li>
+                                <li class="ui_filter_tag ">
+                                    <input type="radio" name="spread_month" value="4">
+                                    <span>12月以上</span>
+                                </li>
+                            </ul>
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+            <div class="touzi_right mt10">
+                <h3>新手指引</h3>
+                <div class="con_list">
+                    <a href="">如何提现？</a>
+                    <a href="">什么是即时到账充值？</a>
+                    <a href="">如何充值？</a>
+                    <a href="">我在平台的资金安全吗？</a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="to_invest conbox mt60">
+        <div class="main_box">
+            <div class="main_box_tit fn_cle">
+                <h2>理财项目</h2>
+                <ul class="sort">
+                    <li data-order="account">
+                        <i class="lv"></i>
+                        <span>借款金额</span>
+                        <span class="jt_down"></span>
+                        <span class="jt_up"></span>
+                    </li>
+                    <li data-order="apr">
+                        <i class="jiage"></i>
+                        <span>年利率</span>
+                        <span class="jt_down"></span>
+                        <span class="jt_up"></span>
+                    </li>
+                    <li data-order="period">
+                        <i class="jkqx"></i>
+                        <span>借款期限</span>
+                        <span class="jt_down"></span>
+                        <span class="jt_up"></span>
+                    </li>
+                    <li data-order="scale">
+                        <i class="tbjd"></i>
+                        <span>投标进度</span>
+                        <span class="jt_down"></span>
+                        <span class="jt_up"></span>
+                    </li>
+                </ul>
+            </div>
+            <div class="main_box_cont">
+                <div class="invest_list">
+                    <ul>
+
+
+                        <li>
+                            <h3 class="invest_tit">
+                                <img src="~/Content/ShouYe/roam.gif" />
+                                <a href="" title="测试部——流转标01">测试部——流转标01</a>
+                                <em class="award">￥6.00</em>
+                            </h3>
+                            <div class="mt10">
+                                <div class="in_left">
+                                    <table class="invest_tab" border="0">
+                                        <tbody>
+                                            <tr>
+                                                <td class="first">流转总额：<strong class="f_c1">5000元</strong></td>
+                                                <td class="middle">年化利率：10.00%</td>
+                                                <td>借款期限：5个月</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="first">
+                                                    最小流转：1000元
+                                                </td>
+                                                <td>
+                                                    还剩：2份
+                                                </td>
+                                                <td class="middle fn_cle">
+                                                    <span class="">借款进度：</span>
+                                                    <em class=" progress">
+                                                        <span class="pro_bar">
+                                                            <i class="pro_bar_bg" style="width:60.00%">
+                                                                <span class="pro_nums">60.00%</span>
+                                                            </i>
+                                                        </span>
+                                                    </em>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="in_right">
+                                    <a href="/Main/SubscribeIndex" class="default btn yes buy_now">马上认购</a>
+                                </div>
+                            </div>
+                        </li>
+
+
+                        <li>
+                            <h3 class="invest_tit">
+                                @*<img src="./我要投资 - 帝友P2P借贷系统V4.0演示站 - 中国最大最专业的借贷系统开发商_files/roam.gif">*@
+                                <a href="" title="测试713">测试713</a>
+                            </h3>
+                            <div class="mt10">
+                                <div class="in_left">
+                                    <table class="invest_tab" border="0">
+                                        <tbody>
+                                            <tr>
+                                                <td class="first">流转总额：<strong class="f_c1">100000元</strong></td>
+                                                <td class="middle">年化利率：15.00%</td>
+                                                <td>借款期限：1个月</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="first">
+                                                    最小流转：10元
+                                                </td>
+                                                <td>
+                                                    还剩：8790份
+                                                </td>
+                                                <td class="middle fn_cle">
+                                                    <span class="">借款进度：</span>
+                                                    <em class=" progress">
+                                                        <span class="pro_bar">
+                                                            <i class="pro_bar_bg" style="width:12.10%">
+                                                                <span class="pro_nums">12.10%</span>
+                                                            </i>
+                                                        </span>
+                                                    </em>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="in_right">
+                                    <a href="" class="default btn yes buy_now">马上认购</a>
+                                </div>
+                            </div>
+                        </li>
+
+
+                        <li>
+                            <h3 class="invest_tit">
+                                @*<img src="./我要投资 - 帝友P2P借贷系统V4.0演示站 - 中国最大最专业的借贷系统开发商_files/roam.gif">*@
+                                <a href="" title="liuzhuan">liuzhuan</a>
+                            </h3>
+                            <div class="mt10">
+                                <div class="in_left">
+                                    <table class="invest_tab" border="0">
+                                        <tbody>
+                                            <tr>
+                                                <td class="first">流转总额：<strong class="f_c1">100000元</strong></td>
+                                                <td class="middle">年化利率：18.00%</td>
+                                                <td>借款期限：2个月</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="first">
+                                                    最小流转：1元
+                                                </td>
+                                                <td>
+                                                    还剩：38900份
+                                                </td>
+                                                <td class="middle fn_cle">
+                                                    <span class="">借款进度：</span>
+                                                    <em class=" progress">
+                                                        <span class="pro_bar">
+                                                            <i class="pro_bar_bg" style="width:61.10%">
+                                                                <span class="pro_nums">61.10%</span>
+                                                            </i>
+                                                        </span>
+                                                    </em>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="in_right">
+                                    <a href="" class="default btn yes buy_now">马上认购</a>
+                                </div>
+                            </div>
+                        </li>
+
+
+                        <li>
+                            <h3 class="invest_tit">
+                                @*<img src="./我要投资 - 帝友P2P借贷系统V4.0演示站 - 中国最大最专业的借贷系统开发商_files/roam.gif">*@
+                                <a href=" title="测试自动投标">测试自动投标</a>
+                            </h3>
+                            <div class="mt10">
+                                <div class="in_left">
+                                    <table class="invest_tab" border="0">
+                                        <tbody>
+                                            <tr>
+                                                <td class="first">流转总额：<strong class="f_c1">100000元</strong></td>
+                                                <td class="middle">年化利率：10.00%</td>
+                                                <td>借款期限：2个月</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="first">
+                                                    最小流转：100元
+                                                </td>
+                                                <td>
+                                                    还剩：260份
+                                                </td>
+                                                <td class="middle fn_cle">
+                                                    <span class="">借款进度：</span>
+                                                    <em class=" progress">
+                                                        <span class="pro_bar">
+                                                            <i class="pro_bar_bg" style="width:74.00%">
+                                                                <span class="pro_nums">74.00%</span>
+                                                            </i>
+                                                        </span>
+                                                    </em>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="in_right">
+                                    <a href="" class="default btn yes buy_now">马上认购</a>
+                                </div>
+                            </div>
+                        </li>
+
+
+                        <li>
+                            <h3 class="invest_tit">
+                                @*<img src="./我要投资 - 帝友P2P借贷系统V4.0演示站 - 中国最大最专业的借贷系统开发商_files/roam.gif">*@
+                                <a href="" title="计划A">计划A</a>
+                            </h3>
+                            <div class="mt10">
+                                <div class="in_left">
+                                    <table class="invest_tab" border="0">
+                                        <tbody>
+                                            <tr>
+                                                <td class="first">流转总额：<strong class="f_c1">100000元</strong></td>
+                                                <td class="middle">年化利率：12.00%</td>
+                                                <td>借款期限：3个月</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="first">
+                                                    最小流转：1000元
+                                                </td>
+                                                <td>
+                                                    还剩：96份
+                                                </td>
+                                                <td class="middle fn_cle">
+                                                    <span class="">借款进度：</span>
+                                                    <em class=" progress">
+                                                        <span class="pro_bar">
+                                                            <i class="pro_bar_bg" style="width:4.00%">
+                                                                <span class="pro_nums">4.00%</span>
+                                                            </i>
+                                                        </span>
+                                                    </em>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="in_right">
+                                    <a href="" class="default btn yes buy_now">马上认购</a>
+                                </div>
+                            </div>
+                        </li>
+
+
+                        <li>
+                            <h3 class="invest_tit">
+                               @* <img src="./我要投资 - 帝友P2P借贷系统V4.0演示站 - 中国最大最专业的借贷系统开发商_files/roam.gif">*@
+                                <a href="" title="流转标测试">流转标测试</a>
+                            </h3>
+                            <div class="mt10">
+                                <div class="in_left">
+                                    <table class="invest_tab" border="0">
+                                        <tbody>
+                                            <tr>
+                                                <td class="first">流转总额：<strong class="f_c1">100000元</strong></td>
+                                                <td class="middle">年化利率：12.00%</td>
+                                                <td>借款期限：3个月</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="first">
+                                                    最小流转：1000元
+                                                </td>
+                                                <td>
+                                                    还剩：80份
+                                                </td>
+                                                <td class="middle fn_cle">
+                                                    <span class="">借款进度：</span>
+                                                    <em class=" progress">
+                                                        <span class="pro_bar">
+                                                            <i class="pro_bar_bg" style="width:20.00%">
+                                                                <span class="pro_nums">20.00%</span>
+                                                            </i>
+                                                        </span>
+                                                    </em>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="in_right">
+                                    <a href="" class="default btn yes buy_now">马上认购</a>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li>
+                            <h3 class="invest_tit">
+                                @*<img src="./我要投资 - 帝友P2P借贷系统V4.0演示站 - 中国最大最专业的借贷系统开发商_files/roam.gif">*@
+                                <a href="" title="测试流转标2">测试流转标2</a>
+                            </h3>
+                            <div class="mt10">
+                                <div class="in_left">
+                                    <table class="invest_tab" border="0">
+                                        <tbody>
+                                            <tr>
+                                                <td class="first">流转总额：<strong class="f_c1">10000元</strong></td>
+                                                <td class="middle">年化利率：12.00%</td>
+                                                <td>借款期限：1个月</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="first">
+                                                    最小流转：100元
+                                                </td>
+                                                <td>
+                                                    还剩：46份
+                                                </td>
+                                                <td class="middle fn_cle">
+                                                    <span class="">借款进度：</span>
+                                                    <em class=" progress">
+                                                        <span class="pro_bar">
+                                                            <i class="pro_bar_bg" style="width:54.00%">
+                                                                <span class="pro_nums">54.00%</span>
+                                                            </i>
+                                                        </span>
+                                                    </em>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="in_right">
+                                    <a href="" class="default btn yes buy_now">马上认购</a>
+                                </div>
+                            </div>
+                        </li>
+                            <li>
+                            <h3 class="invest_tit">
+                                @*<img src="./我要投资 - 帝友P2P借贷系统V4.0演示站 - 中国最大最专业的借贷系统开发商_files/roam.gif">*@
+                                <a href="" title="测试流转标">测试流转标</a>
+                            </h3>
+                            <div class="mt10">
+                                <div class="in_left">
+                                    <table class="invest_tab" border="0">
+                                        <tbody>
+                                            <tr>
+                                                <td class="first">流转总额：<strong class="f_c1">10000元</strong></td>
+                                                <td class="middle">年化利率：12.00%</td>
+                                                <td>借款期限：1个月</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="first">
+                                                    最小流转：1000元
+                                                </td>
+                                                <td>
+                                                    还剩：8份
+                                                </td>
+                                                <td class="middle fn_cle">
+                                                    <span class="">借款进度：</span>
+                                                    <em class=" progress">
+                                                        <span class="pro_bar">
+                                                            <i class="pro_bar_bg" style="width:20.00%">
+                                                                <span class="pro_nums">20.00%</span>
+                                                            </i>
+                                                        </span>
+                                                    </em>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="in_right">
+                                    <a href="" class="default btn yes buy_now">马上认购</a>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="pagination" id="pages" data-page="0" data-total="126" data-epage="8"><div class="pagination"><span class="current prev">&lt;</span><span class="current">1</span><a href="">2</a><a href="">3</a><a href="">4</a><a href="">5</a><span>...</span><a href="" class="ep">7</a><a href="" class="ep">8</a><a href="" class="ep">9</a><a href="" class="ep">10</a><a href="" class="ep">11</a><a href="" class="ep">14</a><a href="" class="ep">16</a><a href="" class="next">&gt;</a></div></div>
+            </div>
+        </div>
+    </div>
+
+
+    @*<script type="text/javascript">
+diyou.use('tender',function(t){t.tender_list()})
+diyou.use('users',function(u){u.check_block()})
+    </script>*@
+
+    <!-- footer start -->
+    <div class="footer">
+        <div class="conbox footer_top fn_cle">
+            <div class="fn_left f_top_left">
+                <div class="f_map">
+                    <ul class="fn_cle">
+                        <li><a href="" target="_blank">关于我们</a></li>
+                        <li><a href="" target="_blank">安全保障</a></li>
+                        <li><a href="" target="_blank">媒体报道</a></li>
+                        <li><a href="" target="_blank">帮助中心</a></li>
+                        <li><a href="" target="_blank">联系我们</a></li>
+                    </ul>
+                </div>
+                <div class="f_firends">
+                    <ul>
+                        <li>友情链接：</li>
+                        <li><a href="" target="_blank">帝友官网</a></li>
+                        <li><em>|</em></li>
+                        <li><a href="" target="_blank">网贷天眼</a></li>
+                        <li><em>|</em></li>
+                        <li><a href="" target="_blank">禹州启惠</a></li>
+                        <li><em>|</em></li>
+                        <li><a href="http:" target="_blank">汇付天下</a></li>
+                        <li><em>|</em></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="fn_rig f_top_rig">
+                <h3>合作伙伴</h3>
+                <ul class="parther fn_cle">
+                    <li><a href="" class="huifu" target="_blank"><img src="~/Content/ShouYe/0_admin_upload_1407294921608.jpg" title="帝友系统" width="100" height="60"/></a></li>
+                    <li><a href="" class="huifu" target="_blank"><img src="~/Content/ShouYe/1_admin_upload_1425105669802.png"  title="测试合作伙伴" width="100" height="60"/></a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer_bot">
+            <div class="conbox fn_cle">
+                <div class="verification fn_left">
+                    <a href="" title="诚信网站认证" target="_blank" class="credit"></a>				<a href="" title="诺顿安全认证" target="_blank" class="norton"></a>				<a href="" title="公安网警平台" target="_blank" class="police"></a>				<a href="" title="工商网监" target="_blank" class="gongshang"></a>
+                </div>
+                <div class="fn_rig copyright">Copyright@2012-2014 闽ICP备12013734号-24 厦门帝网信息科技有限公司旗下 帝友系统</div>
+                <div class="fn_rig">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- footer end -->
+    <!-- 右侧联系我们 -->
+    <div style="right:-230px;" class="contactusdiyou">
+        <div class="hoverbtn">
+            <span>联</span><span>系</span><span>我</span><span>们</span>
+            <img src="~/Content/ShouYe/hoverbtnbg.png" height="9" width="13"/>
+        </div>
+
+        <div class="conter">
+
+            <div class="con1">
+                <dl class="fn_cle">
+                    <dt><img src="~/Content/ShouYe/contactusdiyou_1.png" height="31" width="31"/></dt>
+                    <dd class="f1">财富热线：</dd>
+                    <dd><span class="ph_num">400-836-3969 </span></dd>
+                </dl>
+            </div>
+
+            <div class="qqcall">
+                <dl class="fn_cle">
+                    <dt><img src="~/Content/ShouYe/contactusdiyou_2.png" /></dt>
+                    <dd class="f1 f_s14">在线客服：</dd>
+                </dl>
+            </div>
+
+            <div class="weixincall">
+                <dl class="fn_cle">
+                    <dt><img src="~/Content/ShouYe/contactusdiyou_5.png" height="31" width="31"/></dt>
+                    <dd class="f1">微信订阅号：</dd>
+                    <dd>dyou</dd>
+                    <dd class="f3"><img src="~/Content/ShouYe/0_admin_upload_1420791797782.jpg" height="73" width="73"/>/dd>
+                </dl>
+            </div>
+
+            <p class="con2 fn_cle">
+                <a class="a1" href="">
+                    <img src="~/Content/ShouYe/contactusdiyou_3.png" /></a>		 <span>新浪微博：</span>
+                <a href="" target="_blank">点击关注</a>
+            </p>
+            <div class="dytimer diyou">
+                <span style="font-weight: bold;">服务时间：</span>
+                <span>10:10-10:1111</span>
+            </div>
+        </div>
+
+    </div>
+    <div class="diyoumask"></div>
+    <!-- 右侧联系我们 -->
+    <!-- 返回顶部 -->
+    <div class="back_right_box">
+        <a id="gotobtn" class="t_b_bor" title="返回顶部" style="display: block;"></a>
+    </div>
+    <!-- 返回顶部 -->
+
+    @*<script type="text/javascript">
+    diyou.use('footer', function(f) {
+        f.back_top();
+		f.aboutus();
+    })
+    </script>*@
+
+
+    @*<div class="sogoutip" style="z-index: 2147483645; visibility: hidden; display: none;"></div><div class="sogoubottom" id="sougou_bottom" style="display: none;"></div><div id="ext_stophi" style="z-index: 2147483647;"><div class="extnoticebg"></div><div class="extnotice"><h2>关闭提示 <a href="http://www.diyou.cc/invest/index.html#" title="关闭提示" id="closenotice" class="closenotice">关闭</a></h2><p id="sogouconfirmtxt"></p>  <a id="sogouconfirm" href="http://www.diyou.cc/invest/index.html#" class="extconfirm">确 认</a> <a id="sogoucancel" href="http://www.diyou.cc/invest/index.html#" class="extconfirm">取 消</a></div></div><div id="ext_overlay" class="ext_overlayBG" style="display: none; z-index: 2147483646;"></div><iframe class="sogou_sugg_feedbackquan" frameborder="0" scrolling="no" src="./我要投资 - 帝友P2P借贷系统V4.0演示站 - 中国最大最专业的借贷系统开发商_files/yun6.html" style="border: none; display: none; height: 84px; width: 100%; z-index: 2147483645; background: transparent;"></iframe>*@
+</body>
+</html>

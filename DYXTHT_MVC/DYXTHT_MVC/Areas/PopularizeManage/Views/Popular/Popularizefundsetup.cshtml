@@ -1,0 +1,246 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/jquery.bsgrid-1.37/merged/bsgrid.all.min.css" rel="stylesheet" />
+    <link href="~/Content/jquery.bsgrid-1.37/css/skins/grid_bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/jquery.bsgrid-1.37/css/skins/grid_sky_blue.min.css" rel="stylesheet" />
+    <title>Popularizefundsetup</title>
+    <style type="text/css">
+        .container {
+            width: 100%;
+            padding: 20px 40px 0 35px;
+            margin: 0;
+        }
+
+        .panel-heading span {
+              font-size:15px;font-weight:700;
+        }
+
+        .reset {
+            padding-left: 5px;
+            padding-right: 5px;
+        }
+
+        .panel-body {
+            padding-left: 0;
+            background: #f4fcff;
+        }
+
+     
+
+        a, a:hover, a:active, a:visited, a:link {
+            color: white;
+            text-decoration: none;
+        }
+
+        td a {
+            color: blue !important;
+        }
+
+        .h4 {
+            margin: 0 0 4px 0;
+        }
+
+        th {
+            font-weight: normal;
+        }
+
+        .h4, td, th {
+            text-align: center;
+        }
+
+        .table tbody tr td {
+            padding: 4px;
+        }
+
+            .table tbody tr td button {
+                height: 24px;
+                padding: 2px 12px;
+            }
+
+        .modal-body {
+            background: #f4fcff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="containerid">
+        <div class="row">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <div class="row">
+                        <span class="col-md-2">默认推广设置</span>
+                    </div>
+                </div>
+                <div class="panel-body" style="padding-left:15px;">
+                    <div class="row" style="background-color:white;margin-bottom:20px;margin-left:10px;">
+                        <span style="font-size:15px;font-weight:700;">默认推广设置</span>
+                    </div>
+                    <table id="tabNoticeType">
+                        <tr>
+                            <th w_num="total_line" width="5%">序号</th>
+                            <th w_index="SpreadTypeID" w_hidden="true">ID</th>
+                            <th w_index="Name" w_align="left" width="15%">名称</th>
+                            <th w_index="Title" width="15%">标题</th>
+                            <th w_index="IdentificationName" width="15%">标识名</th>
+                            <th w_index="FundStatusName" width="10%">状态</th>
+                            <th w_index="CapitalType" width="10%">资金类型</th>
+                            <th w_index="Scale" width="10%">比例</th>
+                            <th w_index="ToVoidNo" w_render="crearViewButton" width="20%">操作</th>
+                        </tr>
+                    </table>
+                </div>
+                @*修改*@
+                <div class="modal fade bs-example-modal-sm" id="Updatamodal">
+                    <div class="modal-dialog" style="width:700px;">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                <h4 class="modal-title">修改资金推广设置</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row">
+                                    <form class="form-horizontal" id="Updatafrom">
+                                        <input name="SpreadTypeID" hidden />
+                                        <div class="form-group form-group-lg">
+                                            <label class="col-sm-5 control-label">名称：</label>
+                                            <div class="col-sm-4">
+                                                <input class="form-control" type="text" name="Name">
+                                            </div>
+                                        </div>
+                                        <div class="form-group form-group-lg">
+                                            <label class="col-sm-5 control-label">标题：</label>
+                                            <div class="col-sm-4">
+                                                <input class="form-control" type="text" name="Title">
+                                            </div>
+                                        </div>
+                                        <div class="form-group form-group-lg">
+                                            <label class="col-sm-5 control-label">标识名：</label>
+                                            <div class="col-sm-4">
+                                                <input class="form-control" type="text" name="IdentificationName">
+                                            </div>
+                                        </div>
+                                        <div class="form-group form-group-lg">
+                                            <label class="col-sm-5 control-label">状态：</label>
+                                            <div class="col-sm-4">
+                                                <select class="form-control" id="FundStatusID" name="FundStatusID"></select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group form-group-lg">
+                                            <label class="col-sm-5 control-label">资金类型：</label>
+                                            <div class="col-sm-4">
+                                                <input class="form-control" type="text" name="CapitalType">
+                                            </div>
+                                        </div>
+                                        <div class="form-group form-group-lg">
+                                            <label class="col-sm-5 control-label">比例：</label>
+                                            <div class="col-sm-4">
+                                                <input class="form-control" type="text" name="Scale" id="ScaleID">
+                                            </div>
+                                        </div>
+                                        <button type="button" class="btn btn-info col-md-offset-5" id="QueRenupdata" style="margin-top:30px;">确认修改</button>
+                                        <button class="btn btn-danger" style="margin-top:30px;width:82px;" data-dismiss="modal">关闭</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal-dialog -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="~/Content/bootstrap-3.3.7-dist/js/jquery-2.0.3.min.js"></script>
+    <script src="~/Content/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <script src="~/Content/jquery.bsgrid-1.37/merged/bsgrid.all.min.js"></script>
+    <script src="~/Content/jquery.bsgrid-1.37/js/lang/grid.zh-CN.min.js"></script>
+    <script src="~/Content/layer/layer.js"></script>
+    <script src="~/Content/jss/customfunction.js"></script>
+    <script>
+
+        var tabNoticeType;
+        $(document).ready(function () {
+            $.post("/PopularizeManage/Popular/SelectFundStatus", function (jsonData) {
+                selectLoadData("FundStatusID", jsonData);
+            });
+            tabNoticeType = $.fn.bsgrid.init('tabNoticeType', {
+                url: '/PopularizeManage/Popular/SelectSpreadType',
+                autoLoad: true,//自动加载数据
+                stripeRows: true,//隔行变色
+                rowHoverColor: true,//划过行变色
+                rowSelectedColor: true,//是否显示选中行背景色
+                pageSize: 10,//默认页面大小
+                pageSizeSelect: true,//是否选择分页页数下拉框
+                pagingLittleToolbar: true,//精简的图标按钮分页工具条
+                pagingToolbarAlign: "left"//分页工具条的显示位置
+
+            });
+        });
+        //权限访问
+        $("#containerid").mouseenter(function () {
+            $.post("/LoginMain/MoKuaiQuanXianOpTypeSelect", function (Data) {
+                for (var i = 0; i < Data.length; i++) {
+                   
+                    if (Data[i].Name == "推广奖励资金设置" && Data[i].Optype == "修改") {
+                        $(".strFundStatus").removeClass("hidden");
+                      
+                    }
+                 
+                }
+            });
+        });
+        //自定义公告详情列
+        function crearViewButton(record, rowIndex, colIndex, options) {
+            return '<button type="button" style=display:compact; class="strFundStatus btn btn-danger hidden" onclick="FundStatus(' + record.FundStatusID + ')">修改</button>'
+        }
+
+        //修改
+        function FundStatus(SpreadTypeID) {
+            $.post("/PopularizeManage/Popular/SelectUpdatafundstatus", { SpreadTypeID: SpreadTypeID }, function (data) {
+                loadDatatoForm("Updatafrom", data);
+            });
+            $("#Updatamodal").modal("show");
+        }
+        //正则表达式验证手机号码
+        $("#ScaleID").change(function () {
+            var shoujihaoma = parseFloat($("#ScaleID").val());
+            var reg = new RegExp(/^[0-9]+(.[0-9]{1,5})?$/);
+            var rg = reg.test(shoujihaoma);
+            if (rg == false) {
+                $("#ScaleID").val("");
+                layer.alert('输入有误！', { icon: 0, title: '提示' });
+            }
+        });
+        //修改实名认证保存
+        $("#QueRenupdata").click(function () {
+            if ($('#Updatafrom [name="Name"]').val() != "" && $('#Updatafrom [name="Title"]').val() != "" && $('#Updatafrom [name="IdentificationName"]').val() != "" && $('#Updatafrom [name="CapitalType"]').val() != "" && $('#Updatafrom [name="Scale"]').val() != "") {
+                var fromarray = $("#Updatafrom").serializeArray();
+                $.post("/PopularizeManage/Popular/Updatefundstatua", fromarray, function (data) {
+                    if (data == "success") {
+                        layer.alert('修改成功！', { icon: 1, title: '提示' });
+                        tabNoticeType.refreshPage();
+                        $("#Updatamodal").modal("hide");//关闭 modal
+                    } else if (data == "exist") {
+                        layer.alert('该名称已存在！', { icon: 2, title: '提示' });
+                    } else {
+                        layer.alert('修改失败！', { icon: 2, title: '提示' });
+                    }
+                });
+            }
+            else {
+                layer.alert('请填写完整！', { icon: 6, title: '提示' });
+            }
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,794 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>帝友P2P借贷系统</title>
+    <link href="/Content/ShouYe/iconfont.css" rel="stylesheet" />
+    <link href="/Content/ShouYe/public.css" rel="stylesheet" />
+    <link href="/Content/ShouYe/style.css" rel="stylesheet" />
+    <link href="/Content/ShouYe/index.css" rel="stylesheet" />
+    <link href="/Content/ShouYe/user.css" rel="stylesheet" />
+    <link href="/Content/ShouYe/mall.css" rel="stylesheet" />
+
+    <link href="~/Content/my1/global_site_base.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/my1/order_list.css" rel="stylesheet" type="text/css" />
+
+    <link href="~/Content/my1/leftmenu.css" rel="stylesheet" />
+
+    <link href="~/content/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/jquery.bsgrid-1.37/merged/bsgrid.all.min.css" rel="stylesheet" />
+    <link href="~/Content/jquery.bsgrid-1.37/css/skins/grid_bootstrap.min.css" rel="stylesheet" />
+
+</head>
+<body>
+    <div class="header">
+        <div class="header_top">
+            <div class="conbox fn_cle">
+                <div class="contact fn_left">
+                    <i class="telico"></i>
+                    <span class="tel">服务热线：<em>400-836-3969 </em></span>                				<a href="http://www.diyou.cc/app/index.html" target="_blank">手机端下载</a>
+                </div>
+                <div class="top_rig fn_rig">
+                    <ul>
+                        <li><a href="/Main/ZhuCe" class="bor_none reg">免费注册</a></li>
+                        <li><a href="/Mian/Login" class="login">立即登录</a></li>
+                        <li><a href="" class="helpico">帮助中心</a></li>
+                        <li><a href="/Main/CounterIndex">利息计算器</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="header_cont conbox fn_cle">
+            <h1 class="fn_left">
+                <a href="">
+                    <img src="/Content/ShouYe/0_admin_upload_1407294921608.jpg" />
+                </a>
+            </h1>
+            <div class="navbar fn_left">
+
+                <ul>
+                    <li class="ui_nav_item ">
+                        <a href="/Main/Index">首页</a>
+
+
+                    </li>
+                    <li class="ui_nav_item ">
+                        <a href="/Main/BorrowIndex">我要借款</a>
+                    </li>
+                    <li class="ui_nav_item ">
+                        <a href="/Main/InvestIndex">我要投资</a>
+                    </li>
+                    <li class="ui_nav_item ">
+                        <a href="/Main/MyAccountIndex1">我的账户</a>
+                    </li>
+                    <li class="ui_nav_item ">
+                        <a href="/Main/AboutOurIndex">关于我们</a>
+                    </li>
+                    <li class="ui_nav_item ">
+                        <a href="">新手帮助</a>
+
+                        <ul class="nav_dropdown">
+                            <li class="arrow"><span></span></li>
+                            <li><a href="">网站公告</a></li>
+                            <li><a href="">安全保障</a></li>
+                            <li><a href="">工作原理</a></li>
+                            <li><a href="">法律政策</a></li>
+                            <li><a href="">资费说明</a></li>
+                        </ul>
+
+                    </li>
+
+                </ul>
+            </div>
+            <div class="follow fn_rig">
+                <a href="" target="_blank"><div class="follow_list follow_sina "></div></a>
+                <div class="follow_list follow_wx">
+                    <div class="wx_ewm">
+                        <span class="arrow"></span>
+                        <div class="arrow_img">
+                            <img src="/Content/ShouYe/0_admin_upload_1420791797782.jpg" height="73" width="73" />
+                        </div>
+                    </div>
+
+                </div>
+                <div class="follow_list follow_qq">
+                    <div class="qq_info">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="layout_main" class="mpc_cont">
+        <div class="wrap clearfix">
+            <!-- sideNav -->
+            <div class="mpc_cont_sideNav">
+                <dl style="margin-bottom:-15px;">
+                    <dt>
+                        <i class="my_iconfont sidenav_icon"></i>
+                        <span style="margin-left:-10px;font-size:20px;">我的交易</span>
+                    </dt>
+                    <dd style="margin-top:10px;">
+                        <a href="/Main/MyAccountIndex1">我的投标</a>
+                    </dd>
+                    <dd>
+                        <a href="/Main/LoanManageIndex">我的借款</a>
+                    </dd>
+                    <dd>
+                        <a href="/Main/GatheringIndex">我的收款</a>
+                    </dd>
+                </dl>
+                <dl style="margin-bottom:-10px;">
+                    <dt>
+                        <i class="my_iconfont sidenav_icon"></i>
+                        <span style="margin-left:-10px;font-size:20px;">基础资料</span>
+                    </dt>
+                    <dd style="margin-top:10px;">
+                        <a href="/Main/BaseIndex" class="llw">个人资料</a>
+                    </dd>
+                    <dd>
+                        <a href="/Main/PersonalIndex">填写资料</a>
+                    </dd>
+                    <dd>
+                        <a href="/Main/RegisterMember">注册会员</a>
+                    </dd>
+                    <dd>
+                        <a href="/Main/MemberDataIndex">会员资料</a>
+                    </dd>
+                    <dd>
+                        <a href="/Main/AttestationIndex">实名认证</a>
+                    </dd>
+                </dl>
+                <dl style="margin-bottom:-10px;">
+                    <dt>
+                        <i class="my_iconfont sidenav_icon"></i>
+                        <span style="margin-left:-10px;font-size:20px;">我的资产</span>
+                    </dt>
+                    <dd style="margin-top:10px;">
+                        <a href="/Main/AccountCentre">我的账户</a>
+                    </dd>
+                    <dd>
+                        <a href="/Main/LimitIndex">额度申请</a>
+                    </dd>
+                    <dd>
+                        <a href="/Main/CreditCardIndex">添加银行卡</a>
+                    </dd>
+                    <dd>
+                        <a href="/Main/CreditCardMessage">银行卡信息</a>
+                    </dd>
+                    <dd>
+                        <a href="/Main/RechargeIndex">充值</a>
+                    </dd>
+                </dl>
+                <dl style="margin-bottom:-10px;">
+                    <dt>
+                        <i class="my_iconfont sidenav_icon"></i>
+                        <span style="margin-left:-10px;font-size:20px;">我的服务</span>
+                    </dt>
+                    <dd style="margin-top:10px;">
+                        <a href="/Main/FollowIndex">我的关注</a>
+                    </dd>
+                    <dd>
+                        <a href="/Main/SpreadIndex">我的推广</a>
+                    </dd>
+                </dl>
+            </div>
+
+
+            <div id="layout_main" class="mpc_cont_main layout_w1200">
+                <!--宽屏class名为layout_w1200，窄屏请修改class为layout_w980_g18-->
+                <!-- 左侧菜单导航 -->
+                <!-- <div id="grid_4" class="grid_4"></div>-->
+                <!-- 右侧主体内容-S -->
+                <div class="row" style="width:1000px;margin-left:5px;border:1px solid #808080;">
+                    <ul class="nav nav-tabs" style="border:1px solid #808080;">
+                        <li class="active"><a href="#MyAttestation" data-toggle="tab" id="MyRenZheng">我的认证</a></li>
+                        <li><a href="#NameAttestation" data-toggle="tab">实名认证</a></li>
+                        <li><a href="#PhoneAttestation" data-toggle="tab">手机认证</a></li>
+                        <li><a href="#XueLiAttestation" data-toggle="tab">学历认证</a></li>
+                        <li><a href="#ShiPinAttestation" data-toggle="tab">视频认证</a></li>
+                    </ul>
+
+                    <div class="tab-content" style="margin-top:30px;width:80%;margin-left:100px; ">
+                        <div class="tab-pane active" id="MyAttestation">
+                            <div class="panel panel-primary">
+                                <div class="panel-heading">信用等级及对应信用分数</div>
+                                <table id="tabXinYongFen" class="table table-bordered table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th width="8%" style="margin-left:15px;">信用等级</th>
+                                            <th width="8%"><button class="btn btn-primary" style="margin-left:30px;">AA</button></th>
+                                            <th width="8%"><button class="btn btn-info" style="margin-left:30px;">A</button></th>
+                                            <th width="8%"><button class="btn btn-success" style="margin-left:30px;">B</button></th>
+                                            <th width="8%"><button class="btn btn-success" style="margin-left:30px;">C</button></th>
+                                            <th width="8%"><button class="btn btn-warning" style="margin-left:30px;">D</button></th>
+                                            <th width="8%"><button class="btn btn-danger" style="margin-left:30px;">E</button></th>
+                                            <th width="8%"><button class="btn btn-danger" style="margin-left:30px;">HR</button></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>信用分数</td>
+                                            <td>165-999999</td>
+                                            <td>150-164</td>
+                                            <td>135-149</td>
+                                            <td>125-134</td>
+                                            <td>115-124</td>
+                                            <td>105-114</td>
+                                            <td>0-104</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="panel panel-primary" style="margin-top:30px;">
+                                <div class="panel-heading">信用总分（等级）</div>
+                                <table id="tabXinYong">
+                                    <thead>
+                                        <tr>
+                                            <th w_index="ItemTypeID" w_hidden="true" width="5%">项目ID</th>
+                                            <th w_index="StatusID" w_hidden="true" width="5%">状态ID</th>
+                                            <th w_index="ItemTypeName" width="5%">项目</th>
+                                            <th w_index="Status" w_hidden="true" width="5%">状态</th>
+                                            <th w_index="Maxintegral" width="5%">信用分数</th>
+                                            <th w_index="CaoZuo" w_render="crearViewButton" width="8%">操作</th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                        </div>
+                        @*学历认证*@
+                        <div class="tab-pane" id="XueLiAttestation">
+                            <div class="row">
+                                <p style="color:#ff0000;">当前学历认证费用免费,请赶快认证哦</p><br />
+                                <p>学历认证申请</p>
+                            </div>
+                            <form class="form-horizontal" id="Infor" method="post">
+                                <div class="form-group">
+                                    <label class="control-label col-md-2">上传证书</label>
+                                    <div class="col-md-1">
+                                        <button class="btn btn-primary" type="button" id="Select">选择文件</button>
+                                    </div>
+                                    <div class="col-md-1" style="margin-left:20px;">
+                                        <button class="btn btn-primary" type="button" id="SelectWenJian">查看文件</button>
+                                    </div>
+                                    <div class="col-md-2" style="margin-left:20px;">
+                                        <label class="control-label ">未选择文件</label>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        @*实名认证*@
+                        <div class="tab-pane" id="NameAttestation">
+                            <div class="row">
+                                <p>你已经通过实名认证。</p>
+                            </div>
+                            <form class="form-horizontal" id="Nameform" method="post">
+                                <div class="form-group">
+                                    <div class="col-lg-3 col-md-3 col-sm-3 text-right">
+                                        <label class="control-label">用<span>&nbsp;&nbsp;</span>户<span>&nbsp;&nbsp;</span>名:</label>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-3 reset">
+                                        <input type="text" class="form-control" id="SUserName" name="UserName" readonly="readonly" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-lg-3 col-md-3 col-sm-3 text-right">
+                                        <label class="control-label">真实姓名:</label>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-3 reset">
+                                        <input type="text" class="form-control" id="STrueName" name="TrueName" readonly="readonly" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-lg-3 col-md-3 col-sm-3 text-right">
+                                        <label class="control-label">性<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>别:</label>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-3 reset">
+                                        <input type="text" class="form-control" id="SSex" name="Sex" readonly="readonly" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-lg-3 col-md-3 col-sm-3 text-right">
+                                        <label class="control-label">身<span>&nbsp;&nbsp;</span>份<span>&nbsp;&nbsp;</span>证:</label>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-3 reset">
+                                        <input type="text" class="form-control" id="SIDCardNo" name="IDCardNo" readonly="readonly" />
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        @*手机认证*@
+                        <div class="tab-pane" id="PhoneAttestation">
+                            <div class="row">
+                                <form class="form-horizontal">
+                                    <label>你的手机已经通过认证，认证的手机号码为：</label>
+                                    <input id="PhoneNumber" name="PhoneNumber" type="text" readonly="readonly" /><a href="#" id="Update">【修改】</a>
+                                    <p style="font-size:15px;">*温馨提示：若原手机号丢失或停用，不能修改时，请联系客服</p>
+                                </form>
+                            </div>
+                        </div>
+                        @*视频认证*@
+                        <div class="tab-pane" id="ShiPinAttestation">
+                            <div class="row">
+                                <p>你尚未通过视频认证。</p>
+                                <p>如果你需要视频认证，请点击按钮提交</p>
+                            </div>
+                            <form class="form-horizontal" id="Infor" method="post">
+                                <div class="form-group">
+                                    <div class="col-md-1">
+                                        <button class="btn btn-primary" type="button" id="SelectVideo">提交申请</button>
+                                    </div>
+                                    <label class="control-label col-md-6">[请保持联系方式畅通,我们的客服会与你联系安排认证]</label>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <!-- 右侧主体内容-E -->
+            </div>
+        </div>
+    </div>
+    <div class="ft_wrap">
+        <div id="globalBottomBrowseRelated" data-recordTracker="1"></div>
+
+        <div class="wrap ft_service_link clearfix">
+            <div id="bottomHelpLinkId" class="ft_help_list clearfix" data-tpa="YHD_GLOBAl_FOOTER_HELP">
+                <dl>
+                    <dt>新手入门</dt>
+                    <dd><a href="" target="_blank">购物流程</a></dd>
+                    <dd><a href="" target="_blank">会员制度</a></dd>
+                    <dd><a href="" target="_blank">订单查询</a></dd>
+
+                </dl>
+                <dl>
+                    <dt>支付方式</dt>
+                    <dd><a href="" target="_blank">货到付款</a></dd>
+                    <dd><a href="" target="_blank">网上支付</a></dd>
+                    <dd><a href="" target="_blank">银行转账</a></dd>
+                </dl>
+                <dl>
+                    <dt>配送服务</dt>
+                    <dd><a href="" target="_blank">配送进度查询</a></dd>
+                    <dd><a href="" target="_blank">商品验货与签收</a></dd>
+                    <dd><a href="" target="_blank">发票制度</a></dd>
+                </dl>
+                <dl>
+                    <dt>售后保障</dt>
+                    <dd><a href="" target="_blank">退换货政策</a></dd>
+                    <dd><a href="" target="_blank">联系客服</a></dd>
+                    <dd><a href="" target="_blank">发票制度</a></dd>
+                </dl>
+            </div>
+            <!--footer 二维码 begin -->
+            <div class="ft_code_wrap clearfix" data-tpa="YHD_GLOBAl_HEADER_MOBILE" id="footerQRcode">
+                <div class="ft_mobile_code clearfix">
+                    <p>APP更优惠</p>
+                    <img src="~/Content/myaccount/images/qryhd.png" alt="APP更优惠二维码" />
+                </div>
+                <div class="ft_mobile_code clearfix">
+                    <p>加微信查订单</p>
+                    <img src="~/Content/myaccount/images/qryhd.png" alt="加微信查订单二维码" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal  bs-example-modal-sm" id="modStata">
+        <div class="modal-dialog">
+            <div class="modal-content" style="width:800px;">
+                <form id="BangZhuForm" class="form-horizontal" role="form" enctype="multipart/form-data">
+                    <input class="hidden" id="ItemTypeID" name="ItemTypeID" type="hidden" />
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <h5 class="modal-title">项目说明</h5>
+                    </div>
+                    <div class="modal-body" style="background-color:#f4f4f4;font-size:15px;">
+                        <div style="height:50px;">
+                            <span>1、现场认证：需要你自己亲自去到相关的部门进行现场认证</span>
+                        </div>
+                        <div style="height:50px;">
+                            <span>2、VIP申请成功：在个人中心——注册会员，会员申请成功后，会享有一定的特权。</span>
+                        </div>
+                        <div style="height:50px;">
+                            <span>3、身份认证：身份认证是系统中最重要的，是保证你的投资或者借款成功的关键，也方便客服与客户联系</span>
+                        </div>
+                        <div style="height:50px;">
+                            <span>4、完善个人信息：完善个人信息能让投资人了解借款者的基本信息，能够有效的得到投资，也能够快速的申请借款</span>
+                        </div>
+                        <div style="height:50px;">
+                            <span>5、工作认证：提供工作的单位和职位，了解余月收入来源；</span>
+                        </div>
+                        <div style="height:50px;">
+                            <span>6、收入认证：提供收入来源（如各种的收入凭据）；</span>
+                        </div>
+                        <div style="height:50px;">
+                            <span>7、社保卡：了解是否有社会保障。</span>
+                        </div>
+                        <div style="height:50px;">
+                            <span>8、房产证：提供房产证了解是否有房贷。</span>
+                        </div>
+                        <div style="height:50px;">
+                            <span>9、驾驶证：驾驶证也是提高你信用积分，了解是否有违规的相关的处分；</span>
+                        </div>
+                        <div style="height:50px;">
+                            <span>10、温馨提示：提供更多的有效证明，则会更容易的操作各项项目</span>
+                        </div>
+                    </div>
+                </form>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div>
+    @*学历认证模态窗体*@
+    <div class="modal  bs-example-modal-sm" id="modInsertExaminee">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h5 class="modal-title">学历认证申请</h5>
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal" role="form" id="formInsertExaminee"
+                          action="/PersonalData/PersonalData/InsertEducationalBackground" method="post">
+                        <div class="form-group">
+                            <div class="img-box text-center">
+                                <img src="" alt="" width="150" height="180" id="IimgStudentPicture" />
+                                <input type="file" style="margin-left:90px;margin-top:5px;" name="fileStudentImage" id="IStudentPicture" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-lg-3 col-md-3 col-sm-3 text-right">
+                                <label class="control-label">用户名:</label>
+                            </div>
+                            <div class="col-lg-8 col-md-8 col-sm-8 reset">
+                                <input type="text" class="form-control" id="UserName" name="UserName" readonly="readonly" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-lg-3 col-md-3 col-sm-3 text-right">
+                                <label class="control-label">真实姓名:</label>
+                            </div>
+                            <div class="col-lg-8 col-md-8 col-sm-8 reset">
+                                <input type="text" class="form-control" id="TrueName" name="TrueName" readonly="readonly" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-lg-3 col-md-3 col-sm-3 text-right">
+                                <label class="control-label">毕业院校:</label>
+                            </div>
+                            <div class="col-lg-8 col-md-8 col-sm-8 reset">
+                                <input type="text" class="form-control" id="Institutions" name="Institutions" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-lg-3 col-md-3 col-sm-3 text-right">
+                                <label class="control-label">专业:</label>
+                            </div>
+                            <div class="col-lg-8 col-md-8 col-sm-8 reset">
+                                <input type="text" class="form-control" id="Specialty" name="Specialty" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-lg-3 col-md-3 col-sm-3 text-right">
+                                <label class="control-label">学历:</label>
+                            </div>
+                            <div class="col-lg-8 col-md-8 col-sm-8 reset">
+                                <input type="text" class="form-control" id="EducationalBackground" name="EducationalBackground" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-lg-3 col-md-3 col-sm-3 text-right">
+                                <label class="control-label">入学时间</label>
+                            </div>
+                            <div class="col-lg-8 col-md-8 col-sm-8 reset">
+                                <input type="date" class="form-control" id="EnrolTime" name="EnrolTime" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-lg-3 col-md-3 col-sm-3 text-right">
+                                <label class="control-label">毕业年份</label>
+                            </div>
+                            <div class="col-lg-8 col-md-8 col-sm-8 reset">
+                                <input type="date" class="form-control" id="GraduationTime" name="GraduationTime" />
+                            </div>
+                        </div>
+                        <div class="form-group" style="padding:10px;">
+                            <div class="col-lg-8 col-md-8 col-sm-8 pull-right">
+                                <button class="btn btn-primary" type="reset">重置</button>
+                                <button class="btn btn-primary" type="button" id="btnSaveInsert">保存</button>
+                                <button class="btn btn-danger" data-dismiss="modal">关闭</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+    @*查看学历*@
+    <div class="modal  bs-example-modal-sm" id="modUpdateExaminee">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h5 class="modal-title">学历认证申请</h5>
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal" role="form" id="formUpdateExaminee"
+                          @*action="/PersonalData/PersonalData/InsertEducationalBackground"*@ method="post">
+                        <div class="form-group">
+                            <div class="img-box text-center">
+                                <input id="UserID" type="hidden" />
+                                <img src="" alt="" width="150" height="180" id="UpdateStudentPicture" />
+                                <input type="file" style="margin-left:90px;margin-top:5px;" name="fileStudentImage" id="UStudentPicture" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-lg-3 col-md-3 col-sm-3 text-right">
+                                <label class="control-label">用户名:</label>
+                            </div>
+                            <div class="col-lg-8 col-md-8 col-sm-8 reset">
+                                <input type="text" class="form-control" id="XUserName" name="UserName" readonly="readonly" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-lg-3 col-md-3 col-sm-3 text-right">
+                                <label class="control-label">真实姓名:</label>
+                            </div>
+                            <div class="col-lg-8 col-md-8 col-sm-8 reset">
+                                <input type="text" class="form-control" id="XTrueName" name="TrueName" readonly="readonly" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-lg-3 col-md-3 col-sm-3 text-right">
+                                <label class="control-label">毕业院校:</label>
+                            </div>
+                            <div class="col-lg-8 col-md-8 col-sm-8 reset">
+                                <input type="text" class="form-control" id="XInstitutions" name="Institutions" readonly="readonly" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-lg-3 col-md-3 col-sm-3 text-right">
+                                <label class="control-label">专业:</label>
+                            </div>
+                            <div class="col-lg-8 col-md-8 col-sm-8 reset">
+                                <input type="text" class="form-control" id="XSpecialty" name="Specialty" readonly="readonly" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-lg-3 col-md-3 col-sm-3 text-right">
+                                <label class="control-label">学历:</label>
+                            </div>
+                            <div class="col-lg-8 col-md-8 col-sm-8 reset">
+                                <input type="text" class="form-control" id="XEducationalBackground" name="EducationalBackground" readonly="readonly" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-lg-3 col-md-3 col-sm-3 text-right">
+                                <label class="control-label">入学时间</label>
+                            </div>
+                            <div class="col-lg-8 col-md-8 col-sm-8 reset">
+                                <input type="text" class="form-control" id="XEnrolTime" name="EnrolTime" readonly="readonly" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-lg-3 col-md-3 col-sm-3 text-right">
+                                <label class="control-label">毕业年份</label>
+                            </div>
+                            <div class="col-lg-8 col-md-8 col-sm-8 reset">
+                                <input type="text" class="form-control" id="XGraduationTime" name="GraduationTime" readonly="readonly" />
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+    @*修改手机号码*@
+    <div class="modal  bs-example-modal-sm" id="modUpdatePhone">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h5 class="modal-title">修改手机认证</h5>
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal" role="form" id="formUpdatePhone" method="post">
+                        <div class="form-group">
+                            <div class="col-lg-3 col-md-3 col-sm-3">
+                                <label class="control-label">新手机号码</label>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-4 reset">
+                                <input type="text" class="form-control " id="XPhoneNumber" name="PhoneNumber" />
+                            </div>
+                        </div>
+                        <div class="form-group" style="padding:10px;">
+                            <div class="col-lg-2 col-md-2 col-sm-2" style="margin-left:150px;">
+                                <button class="btn btn-primary" type="button" id="SaveInsert">保存</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+    <script src="/Content/ShouYe/jquery-1.8.2.min.js"></script>
+    <script src="/Content/ShouYe/diyou.js"></script>
+    <script src="/Content/ShouYe/base.js"></script>
+
+    <script src="~/Content/my1/jquery.min.js"></script>
+    <script src="~/Content/my1/leftmenu.js"></script>
+    <script src="~/Content/my1/order_list.js"></script>
+    <script src="~/Content/my1/synccookiepc.js"></script>
+
+    <script src="~/Content/bootstrap-3.3.7-dist/js/jquery-1.11.2.min.js"></script>
+    <script src="~/Content/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <script src="~/Content/jquery.bsgrid-1.37/merged/bsgrid.all.min.js"></script>
+    <script src="~/Content/jquery.bsgrid-1.37/js/lang/grid.zh-CN.min.js"></script>
+    <script src="~/Content/js/customfunction.js"></script>
+    <script src="~/Content/layer/layer.js"></script>@*对话框*@
+    <script type="text/javascript">
+        var tabXinYong = 0;
+        $(document).ready(function () {
+            tabXinYong = $.fn.bsgrid.init('tabXinYong', {
+                url: '/Personal/Personal/SelectItem',
+                autoLoad: true,//自动加载数据
+                stripeRows: true,//隔行变色
+                rowHoverColor: true,//划过行变色
+                rowSelectedColor: true,//是否显示选中行背景色
+                pageSize: 10,//默认页面大小
+                pageSizeSelect: true,//是否选择分页页数下拉框
+                pagingLittleToolbar: true,//精简的图标按钮分页工具条
+                pagingToolbarAlign: "left",//分页工具条的显示位置
+            });
+            //实名认证
+            $.post("/Personal/Personal/SelectShiMing", function (data) {
+                $("#SUserName").val(data.UserName);
+                $("#STrueName").val(data.TrueName);
+                $("#SSex").val(data.Sex);
+                $("#SIDCardNo").val(data.IDCardNo);
+            });
+            //手机号码
+            $.post("/Personal/Personal/SelectPhone", function (data) {
+                $("#PhoneNumber").val(data.PhoneNumber);
+            });
+        });
+
+
+        function crearViewButton(record, rowIndex, colIndex, options) {
+            return '<button type="button" class="btn btn-primary btn-sm" onclick="openViewNotice(' + record.ItemTypeID + ')">详情</button>';
+        };
+        //查看项目信息
+        function openViewNotice(itemID) {
+            $.post("/Personal/Personal/SelectItemByID", { itemID: itemID }, function (data) {
+                $("#ItemTypeID").val(data, itemID);
+                $("#modStata").modal("show");
+            });
+        }
+        //弹出学历认证模态窗体
+        $("#Select").click(function () {
+            $('#formInsertExaminee [type="reset"]').click();
+            $('#IimgStudentPicture').attr("src", "");
+            $.post("/Personal/Personal/SelectUserName", function (data) {
+            $("#UserName").val(data.UserName);
+            $("#TrueName").val(data.TrueName);
+        });
+            $("#modInsertExaminee").modal("show");
+        });
+        //选择照片
+        var ImgReaderI = new FileReader();
+        regexImageFilter = /^(?:image\/bmp|image\/png|image\/jpge\/image\/jpg)$/i;
+
+        ImgReaderI.onload = function (evt) {
+            $("#IimgStudentPicture").attr('src', evt.target.result);
+        };
+
+        $("#IStudentPicture").change(function () {
+            var imgfFile = $("#IStudentPicture").prop('files')[0];
+            //加载image标签中
+            if (!regexImageFilter.test(imgfFile.type)) {
+                //alert("选择的不是一个有效的图片文件");
+                layer.msg('选择的不是一个有效的图片文件', { icon: 0 });
+            }
+            ImgReaderI.readAsDataURL(imgfFile);
+        });
+        //新增学历认证
+        $("#btnSaveInsert").click(function () {
+            var Institutions = $('#formInsertExaminee [name="Institutions"]').val();//学院
+            var Specialty = $('#formInsertExaminee [name="Specialty"]').val();//专业
+            var EducationalBackground = $('#formInsertExaminee [name="EducationalBackground"]').val();//学历
+            var EnrolTime = $('#formInsertExaminee [name="EnrolTime"]').val();//入学年份
+            var GraduationTime = $('#formInsertExaminee [name="GraduationTime"]').val();//毕业年份
+            var Diploma = $('#formInsertExaminee [name="Diploma"]').prop('files');//证书
+            var fordata = $("#formInsertExaminee").serializeArray();
+            if (Institutions != "" && Specialty != "" && EducationalBackground != "" && EnrolTime != "" && GraduationTime != "") {
+
+                var layerIndex = layer.load(0);
+                //提交表单
+                $("#formInsertExaminee").ajaxSubmit(function (msg) {
+                    layer.close(layerIndex);
+                    $("#modInsertExaminee").modal("hide");
+                    layer.alert(msg, { title: '提示' });
+                });
+            } else {
+                layer.alert('请填写完整', { icon: 0, title: '提示' });
+            }
+        });
+
+        //查看学历
+        $("#SelectWenJian").click(function () {
+            $('#formUpdateExaminee [type="reset"]').click();
+            //加载图片
+            $('#UpdateStudentPicture').attr("src", "");
+            $('#UpdateStudentPicture').attr("src", "/Personal/Personal/GetStudentImage");
+
+            $.post("/Personal/Personal/SelectUserName", function (data) {
+                $("#XUserName").val(data.UserName);
+                $("#XTrueName").val(data.TrueName);
+            });
+            $.post("/Personal/Personal/SelectEducationalBackground", function (data) {
+                    $("#XInstitutions").val(data.Institutions);
+                    $("#XSpecialty").val(data.Specialty);
+                    $("#XEducationalBackground").val(data.EducationalBackground);
+                    $("#XEnrolTime").val(data.EnrolTime);
+                    $("#XGraduationTime").val(data.GraduationTime);
+                    $("#modUpdateExaminee").modal("show");
+                    if (data == "NoUp") {
+                    alert("你还没上传认证,赶快去认证");
+                    $("#modInsertExaminee").modal("show");
+                }
+            });
+
+        });
+
+        //修改手机认证的模态窗体
+        $("#Update").click(function () {
+            $("#modUpdatePhone").modal("show");
+        });
+
+        //正则表达式验证手机号码
+        $("#XPhoneNumber").change(function () {
+            var shoujihao = parseFloat($("#XPhoneNumber").val());
+            var reg = new RegExp(/^1(3|4|5|7|8)\d{9}$/);
+            var rg = reg.test(shoujihao);
+            if (rg == false) {
+
+                layer.alert('请输入正确的11位手机号或者正确的手机号前七位！', { icon: 0, title: '提示' });
+                $("#XPhoneNumber").val("");
+            }
+        });
+        //手机认证修改保存
+        $("#SaveInsert").click(function () {
+
+            var fordate = $("#formUpdatePhone").serializeArray();
+            $.post("/Personal/Personal/UpdatePhone", fordate, function (data) {
+                if (data == "success") {
+                    alert("修改成功");
+                    $("#modUpdatePhone").modal("hide");
+                    window.location.href = "/Personal/Personal/MyAttestation";
+                }
+            });
+        });
+        //视频认证保存
+        $("#SelectVideo").click(function () {
+            $.post("/Personal/Personal/InssertVideo", function (data) {
+                if (data == "Exist")
+                {
+                    alert("你已经申请！正在审核");
+                } else if (data == "success") {
+                    alert("提交成功！等待审核");
+                } else {
+                    alert("提交失败");
+                }
+            });
+        });
+    </script>
+ 
+</body>
+</html>
+

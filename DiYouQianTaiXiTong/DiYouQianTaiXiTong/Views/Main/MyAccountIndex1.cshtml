@@ -1,0 +1,454 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>帝友P2P借贷系统</title>
+    <link href="/Content/ShouYe/iconfont.css" rel="stylesheet" />
+    <link href="/Content/ShouYe/public.css" rel="stylesheet" />
+    <link href="/Content/ShouYe/style.css" rel="stylesheet" />
+    <link href="/Content/ShouYe/index.css" rel="stylesheet" />
+    <link href="/Content/ShouYe/user.css" rel="stylesheet" />
+    <link href="/Content/ShouYe/mall.css" rel="stylesheet" />
+
+    
+    <link href="~/Content/my1/global_site_base.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/my1/order_list.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/my1/leftmenu.css" rel="stylesheet" />
+
+    <link href="~/content/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/jquery.bsgrid-1.37/merged/bsgrid.all.min.css" rel="stylesheet" />
+    <link href="~/Content/jquery.bsgrid-1.37/css/skins/grid_bootstrap.min.css" rel="stylesheet" />
+
+</head>
+<body>
+    <div class="header">
+        <div class="header_top">
+            <div class="conbox fn_cle">
+                <div class="contact fn_left">
+                    <i class="telico"></i>
+                    <span class="tel">服务热线：<em>400-836-3969 </em></span>                				<a href="http://www.diyou.cc/app/index.html" target="_blank">手机端下载</a>
+                </div>
+                <div class="top_rig fn_rig">
+                    <ul>
+                        <li><a href="/Main/ZhuCe" class="bor_none reg">免费注册</a></li>
+                        <li><a href="/Mian/Login" class="login">立即登录</a></li>
+                        <li><a href="" class="helpico">帮助中心</a></li>
+                        <li><a href="/Main/CounterIndex">利息计算器</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="header_cont conbox fn_cle">
+            <h1 class="fn_left">
+                <a href="">
+                    <img src="/Content/ShouYe/0_admin_upload_1407294921608.jpg" />
+                </a>
+            </h1>
+            <div class="navbar fn_left">
+
+                <ul>
+                    <li class="ui_nav_item ">
+                        <a href="/Main/Index">首页</a>
+
+
+                    </li>
+                    <li class="ui_nav_item ">
+                        <a href="/Main/BorrowIndex">我要借款</a>
+                    </li>
+                    <li class="ui_nav_item ">
+                        <a href="/Main/InvestIndex">我要投资</a>
+                    </li>
+                    <li class="ui_nav_item ">
+                        <a href="/Main/MyAccountIndex1">我的账户</a>
+                    </li>
+                    <li class="ui_nav_item ">
+                        <a href="/Main/AboutOurIndex">关于我们</a>
+                    </li>
+                    <li class="ui_nav_item ">
+                        <a href="">新手帮助</a>
+                        <ul class="nav_dropdown">
+                            <li class="arrow"><span></span></li>
+                            <li><a href="">网站公告</a></li>
+                            <li><a href="">安全保障</a></li>
+                            <li><a href="">工作原理</a></li>
+                            <li><a href="">法律政策</a></li>
+                            <li><a href="">资费说明</a></li>
+                        </ul>
+
+                    </li>
+
+                </ul>
+            </div>
+            <div class="follow fn_rig">
+                <a href="" target="_blank"><div class="follow_list follow_sina "></div></a>
+                <div class="follow_list follow_wx">
+                    <div class="wx_ewm">
+                        <span class="arrow"></span>
+                        <div class="arrow_img">
+                            <img src="/Content/ShouYe/0_admin_upload_1420791797782.jpg" height="73" width="73" />
+                        </div>
+                    </div>
+
+                </div>
+                <div class="follow_list follow_qq">
+                    <div class="qq_info">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="layout_main" class="mpc_cont">
+        <div class="wrap clearfix">
+            <!-- sideNav -->
+            <div class="mpc_cont_sideNav">
+                <dl style="margin-bottom:-15px;">
+                    <dt>
+                        <i class="my_iconfont sidenav_icon"></i>
+                        <span style="margin-left:-10px;font-size:20px;">我的交易</span>
+                    </dt>
+                    <dd style="margin-top:10px;">
+                        <a href="/Main/MyAccountIndex1">我的投标</a>
+                    </dd>
+                    <dd>
+                        <a href="/Main/LoanManageIndex">我的借款</a>
+                    </dd>
+                    <dd>
+                        <a href="/Main/GatheringIndex">我的收款</a>
+                    </dd>
+                </dl>
+                <dl style="margin-bottom:-10px;">
+                    <dt>
+                        <i class="my_iconfont sidenav_icon"></i>
+                        <span style="margin-left:-10px;font-size:20px;">基础资料</span>
+                    </dt>
+                    <dd style="margin-top:10px;">
+                        <a href="/Main/BaseIndex" class="llw">个人资料</a>
+                    </dd>
+                    <dd>
+                        <a href="/Main/PersonalIndex">填写资料</a>
+                    </dd>
+                    <dd>
+                        <a href="/Main/RegisterMember">注册会员</a>
+                    </dd>
+                    <dd>
+                        <a href="/Main/MemberDataIndex">会员资料</a>
+                    </dd>
+                    <dd>
+                        <a href="/Main/AttestationIndex">实名认证</a>
+                    </dd>
+                </dl>
+                <dl style="margin-bottom:-10px;">
+                    <dt>
+                        <i class="my_iconfont sidenav_icon"></i>
+                        <span style="margin-left:-10px;font-size:20px;">我的资产</span>
+                    </dt>
+                    <dd style="margin-top:10px;">
+                        <a href="/Main/AccountCentre">我的账户</a>
+                    </dd>
+                    <dd>
+                        <a href="/Main/LimitIndex">额度申请</a>
+                    </dd>
+                    <dd>
+                        <a href="/Main/CreditCardIndex">添加银行卡</a>
+                    </dd>
+                    <dd>
+                        <a href="/Main/CreditCardMessage">银行卡信息</a>
+                    </dd>
+                    <dd>
+                        <a href="/Main/RechargeIndex">充值</a>
+                    </dd>
+                </dl>
+                <dl style="margin-bottom:-10px;">
+                    <dt>
+                        <i class="my_iconfont sidenav_icon"></i>
+                        <span style="margin-left:-10px;font-size:20px;">我的服务</span>
+                    </dt>
+                    <dd style="margin-top:10px;">
+                        <a href="/Main/FollowIndex">我的关注</a>
+                    </dd>
+                    <dd>
+                        <a href="/Main/SpreadIndex">我的推广</a>
+                    </dd>
+                </dl>
+            </div>
+
+
+            <div id="layout_main" class="mpc_cont_main layout_w1200">
+                <!--宽屏class名为layout_w1200，窄屏请修改class为layout_w980_g18-->
+                <!-- 左侧菜单导航 -->
+                <!-- <div id="grid_4" class="grid_4"></div>-->
+                <!-- 右侧主体内容-S -->
+                <div class="row" style="width:1000px;margin-left:5px;">
+                    <ul class="nav nav-tabs" style="border:1px solid #808080;">
+                        <li class="active"><a href="#InvenstRecord" data-toggle="tab">投资记录</a></li>
+                        <li><a href="#ChangeInvenstRecord" data-toggle="tab">流转标投资记录</a></li>
+                        <li><a href="#NowInvenstRecord" data-toggle="tab">投资中的借款</a></li>
+                    </ul>
+                    <div class="tab-content" style="border:1px solid #808080;">
+                        <div class="tab-pane active" id="InvenstRecord">
+                            <div class="col-md-11 col-sm-11 col-xs-11">
+                                <form class="form-horizontal" role="form">
+                                    <div class="form-group" style="margin-top:10px;">
+                                        <label class="col-md-2 col-sm-2 control-label reset">投资标种</label>
+                                        <div class="col-md-2 col-sm-2 reset">
+                                            <select class="form-control" id="Treetoptype" name="Treetoptype"></select>
+                                        </div>
+                                        <div class="col-md-1 col-sm-1">
+                                            <button type="button" class="btn btn-primary" id="btnSelect" style="margin-left:50px;">查询</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <table id="tabInvenst" style="margin-left:10px;">
+                                <thead>
+                                    <tr>
+                                        <th w_index="InvestID" w_hidden="true" width="10%">投资ID</th>
+                                        <th w_index="UserID" w_hidden="true" width="10%">用户ID</th>
+                                        <th w_index="LoanID" w_hidden="true" width="10%">借款ID</th>
+                                        <th w_index="TreetopID" w_hidden="true" width="10%">标种ID</th>
+                                        <th w_index="UserName" width="12%">借款人</th>
+                                        <th w_index="LoanPurpose" width="12%">标题</th>
+                                        <th w_index="InvestMoney" width="12%">投标金额</th>
+                                        <th w_index="TreetopType" width="12%">投资标种</th>
+                                        <th w_index="StartTime" width="20%">投标时间</th>
+                                        <th w_index="StatusName" width="20%">投标状态</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                            <div class="col-md-11 col-sm-11 col-xs-11">
+                                <form class="form-horizontal" role="form">
+                                    <div class="form-group">
+                                        <label style="font-size:20px;">投资总金额:</label>
+                                        <label style="margin-top:2px;color:#ff0000;font-size:20px;">$</label>
+                                        <label id="AllMoney" style="margin-top:2px;color:#ff0000;font-size:20px;"></label>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="ChangeInvenstRecord" style="margin-top:10px;">
+                            <table id="tabChangInvest" style="margin-left:10px;">
+                                <thead>
+                                    <tr>
+                                        <th w_index="InvestID" w_hidden="true" width="10%">投资ID</th>
+                                        <th w_index="UserID" w_hidden="true" width="10%">用户ID</th>
+                                        <th w_index="UserName" width="12%">借款者</th>
+                                        <th w_index="LoanPurpose" width="12%">标题</th>
+                                        <th w_index="InvestMoney" width="12%">投标金额</th>
+                                        <th w_index="LoanTreetop" width="12%">投资标题</th>
+                                        <th w_index="StartTime" width="20%">投标时间</th>
+                                        <th w_index="StatusName" width="20%">投标状态</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                            <div class="col-md-11 col-sm-11 col-xs-11">
+                                <form class="form-horizontal" role="form">
+                                    <div class="form-group">
+                                        <label style="font-size:20px;">投资总金额:</label>
+                                        <label style="margin-top:2px;color:#ff0000;font-size:20px;">$</label>
+                                        <label id="LAllMoney" style="margin-top:2px;color:#ff0000;font-size:20px;"></label>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="tab-pane " id="NowInvenstRecord">
+                            <div class="col-md-11 col-sm-11 col-xs-11">
+                                <form class="form-horizontal" role="form">
+                                    <div class="form-group" style="margin-top:10px;">
+                                        <label class="col-md-2 col-sm-2 control-label reset">投资标种</label>
+                                        <div class="col-md-2 col-sm-2 reset">
+                                            <select class="form-control" id="NTreetoptype" name="Treetoptype"></select>
+                                        </div>
+                                        <div class="col-md-1 col-sm-1">
+                                            <button type="button" class="btn btn-primary" id="NbtnSelect" style="margin-left:50px;">查询</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <table id="tabNowInvenst" style="margin-left:10px;">
+                                <thead>
+                                    <tr>
+                                        <th w_index="InvestID" w_hidden="true" width="10%">投资ID</th>
+                                        <th w_index="UserID" w_hidden="true" width="10%">用户ID</th>
+                                        <th w_index="LoanID" w_hidden="true" width="10%">借款ID</th>
+                                        <th w_index="TreetopID" w_hidden="true" width="10%">标种ID</th>
+                                        <th w_index="UserName" width="8%">借款人</th>
+                                        <th w_index="LoanPurpose" width="8%">标题</th>
+                                        <th w_index="TreetopType" width="8%">类型</th>
+                                        <th w_index="Rate" width="8%">年利率/%</th>
+                                        <th w_index="LoanDeadlineName" width="8%">期限</th>
+                                        <th w_index="InvestMoney" width="8%">投标金额</th>
+                                        <th w_index="Scheduleinvestment" width="8%">进度</th>
+                                        <th w_index="StartTime" width="15%">发布时间</th>
+                                        <th w_index="StatusName" width="8%">状态</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <!-- 右侧主体内容-E -->
+            </div>
+        </div>
+    </div>
+    <div class="ft_wrap">
+        <div id="globalBottomBrowseRelated" data-recordTracker="1"></div>
+
+        <div class="wrap ft_service_link clearfix">
+            <div id="bottomHelpLinkId" class="ft_help_list clearfix" data-tpa="YHD_GLOBAl_FOOTER_HELP">
+                <dl>
+                    <dt>新手入门</dt>
+                    <dd><a href="" target="_blank">购物流程</a></dd>
+                    <dd><a href="" target="_blank">会员制度</a></dd>
+                    <dd><a href="" target="_blank">订单查询</a></dd>
+                    
+                </dl>
+                <dl>
+                    <dt>支付方式</dt>
+                    <dd><a href="" target="_blank">货到付款</a></dd>
+                    <dd><a href="" target="_blank">网上支付</a></dd>
+                    <dd><a href="" target="_blank">银行转账</a></dd>
+                </dl>
+                <dl>
+                    <dt>配送服务</dt>
+                    <dd><a href="" target="_blank">配送进度查询</a></dd>
+                    <dd><a href="" target="_blank">商品验货与签收</a></dd>
+                    <dd><a href="" target="_blank">发票制度</a></dd>
+                </dl>
+                <dl>
+                    <dt>售后保障</dt>
+                    <dd><a href="" target="_blank">退换货政策</a></dd>
+                    <dd><a href="" target="_blank">联系客服</a></dd>
+                    <dd><a href="" target="_blank">发票制度</a></dd>
+                </dl>
+            </div>
+            <!--footer 二维码 begin -->
+            <div class="ft_code_wrap clearfix" data-tpa="YHD_GLOBAl_HEADER_MOBILE" id="footerQRcode">
+                <div class="ft_mobile_code clearfix">
+                    <p>APP更优惠</p>
+                    <img src="~/Content/myaccount/images/qryhd.png" alt="APP更优惠二维码" />
+                </div>
+                <div class="ft_mobile_code clearfix">
+                    <p>加微信查订单</p>
+                    <img src="~/Content/myaccount/images/qryhd.png" alt="加微信查订单二维码" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script src="/Content/ShouYe/jquery-1.8.2.min.js"></script>
+    <script src="/Content/ShouYe/diyou.js"></script>
+    <script src="/Content/ShouYe/base.js"></script>
+
+    <script src="~/Content/my1/jquery.min.js"></script>
+    <script src="~/Content/my1/leftmenu.js"></script>
+    <script src="~/Content/my1/order_list.js"></script>
+    <script src="~/Content/my1/synccookiepc.js"></script>
+
+    <script src="~/Content/bootstrap-3.3.7-dist/js/jquery-1.11.2.min.js"></script>
+    <script src="~/Content/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <script src="~/Content/jquery.bsgrid-1.37/merged/bsgrid.all.min.js"></script>
+    <script src="~/Content/jquery.bsgrid-1.37/js/lang/grid.zh-CN.min.js"></script>
+    <script src="~/Content/js/customfunction.js"></script>
+    <script src="~/Content/layer/layer.js"></script>@*对话框*@
+ 
+    <script type="text/javascript">
+
+        var tabInvenst;
+        var tabChangInvest;
+        var tabNowInvenst;
+        $(document).ready(function () {
+            $.post("/Personal/Personal/SelectTreetoptype", function (data) {
+                selectLoadData("Treetoptype", data);
+            });
+            //绑定tab
+            tabInvenst = $.fn.bsgrid.init('tabInvenst', {
+                url: '/Personal/Personal/SelectInvestRecord',
+                autoLoad: true,
+                stripeRows: true,//隔行变色
+                rowHoverColor: true,//划过行变色
+                rowSelectedColor: true,//是否显示选中行背景色
+                pageSize: 10,//默认页面大小
+                pageSizeSelect: true,//是否选择分页页数下拉框
+                pagingLittleToolbar: true,//精简的图标按钮分页工具条
+                pagingToolbarAlign: "left",//分页工具条的显示位置
+            });
+            $(".bsgridPagingOutTab").css("min-width", "90%");
+            tabInvenstSearch();
+
+            //绑定流转标tab
+            tabChangInvest = $.fn.bsgrid.init('tabChangInvest', {
+                url: '/Personal/Personal/SelectChangeInvest',
+                autoLoad: true,
+                stripeRows: true,//隔行变色
+                rowHoverColor: true,//划过行变色
+                rowSelectedColor: true,//是否显示选中行背景色
+                pageSize: 10,//默认页面大小
+                pageSizeSelect: true,//是否选择分页页数下拉框
+                pagingLittleToolbar: true,//精简的图标按钮分页工具条
+                pagingToolbarAlign: "left",//分页工具条的显示位置
+            });
+            $(".bsgridPagingOutTab").css("min-width", "90%");
+            //正在招标的借款
+            $.post("/Personal/Personal/SelectTreetoptype", function (data) {
+                selectLoadData("NTreetoptype", data);
+            });
+            tabNowInvenst = $.fn.bsgrid.init('tabNowInvenst', {
+                url: '/Personal/Personal/SelectNowInvest',
+                autoLoad: true,
+                stripeRows: true,//隔行变色
+                rowHoverColor: true,//划过行变色
+                rowSelectedColor: true,//是否显示选中行背景色
+                pageSize: 10,//默认页面大小
+                pageSizeSelect: true,//是否选择分页页数下拉框
+                pagingLittleToolbar: true,//精简的图标按钮分页工具条
+                pagingToolbarAlign: "left",//分页工具条的显示位置
+            });
+            $(".bsgridPagingOutTab").css("min-width", "99%");
+            tabNowInvenstSearch();
+        });
+        //多条件查询
+        function tabInvenstSearch() {
+            var treetoptypeID = $("#Treetoptype").val();
+            if (treetoptypeID == undefined || treetoptypeID == "") {
+                treetoptypeID = 0;
+            }
+            tabInvenst.search("&treetoptypeID=" + treetoptypeID);
+        }
+        $("#btnSelect").click(function () {
+            tabInvenstSearch();
+        });
+
+        //多条件查询
+        function tabNowInvenstSearch() {
+            var treetoptypeID = $("#NTreetoptype").val();
+            if (treetoptypeID == undefined || treetoptypeID == "") {
+                treetoptypeID = 0;
+            }
+            tabNowInvenst.search("&treetoptypeID=" + treetoptypeID);
+        }
+        $("#NbtnSelect").click(function () {
+            tabNowInvenstSearch();
+        });
+
+        //计算投资金额
+        $.post("/Personal/Personal/CountInvestMoney", function (data) {
+            $("#AllMoney").text(data);
+        });
+        //计算流转投资金额
+        $.post("/Personal/Personal/CountInvestCMoney", function (data) {
+            $("#LAllMoney").text(data);
+        });
+    </script>
+</body>
+</html>
+

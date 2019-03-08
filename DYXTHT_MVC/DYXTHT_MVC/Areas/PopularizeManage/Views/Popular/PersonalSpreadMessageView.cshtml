@@ -1,0 +1,205 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/jquery.bsgrid-1.37/merged/bsgrid.all.min.css" rel="stylesheet" />
+    <link href="~/Content/jquery.bsgrid-1.37/css/skins/grid_bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/jquery.bsgrid-1.37/css/skins/grid_sky_blue.min.css" rel="stylesheet" />
+    <title>PersonalSpreadMessageView</title>
+    <style type="text/css">
+        .container {
+            width: 100%;
+            padding: 20px 40px 0 35px;
+            margin: 0;
+        }
+
+        .panel-heading span {
+              font-size:15px;font-weight:700;
+        }
+
+        .reset {
+            padding-left: 5px;
+            padding-right: 5px;
+        }
+
+        .panel-body {
+            padding-left: 0;
+            background: #f4fcff;
+        }
+
+      
+
+        a, a:hover, a:active, a:visited, a:link {
+            color: white;
+            text-decoration: none;
+        }
+
+        td a {
+            color: blue !important;
+        }
+
+        .h4 {
+            margin: 0 0 4px 0;
+        }
+
+        th {
+            font-weight: normal;
+        }
+
+        .h4, td, th {
+            text-align: center;
+        }
+
+        .table tbody tr td {
+            padding: 4px;
+        }
+
+            .table tbody tr td button {
+                height: 24px;
+                padding: 2px 12px;
+            }
+
+        .modal-body {
+            background: #f4fcff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <div class="row">
+                        <span class="col-md-2">推广统计</span>
+                    </div>
+                </div>
+                <div class="panel-body" style="padding-left:15px;">
+                    <div class="row" style="background-color:white;margin-bottom:20px;margin-left:10px;">
+                        <span style="font-size:15px;font-weight:700;">推广统计</span>
+                    </div>
+                    <table id="tabRechargeall">
+                        <tr>
+                            <th w_num="total_line" width="5%">序号</th>
+                            <th w_index="SpreadUserID" w_hidden="true">用户ID</th>
+                            <th w_index="SpreadUserName" w_align="left" width="10%">推广人</th>
+                            <th w_index="SpreadPeople" width="10%">推广人数</th>
+                            <th w_index="InvestTime" width="10%">投资次数</th>
+                            <th w_index="InvestAmount" width="10%">投资总额</th>
+                            <th w_index="InvestTiCheng" width="10%">投资提成</th>
+                            <th w_index="RepaymentTime" width="10%">还款次数</th>
+                            <th w_index="RepaymentAmount" width="10%">还款总额</th>
+                            <th w_index="RepaymentTiCheng" width="10%">还款提成</th>
+                            <th w_index="ToVoidNo" w_render="crearViewButton" width="15%">操作</th>
+                        </tr>
+                    </table>
+                    <form class="form-horizontal" role="form">
+                        <div class="form-group" style="margin-bottom:0; margin-top:10px;" id="tabRechargeallid">
+                            <label class="col-md-9 col-sm-9 control-label">推广人：</label>
+                            <div class="col-md-2 col-sm-2">
+                                <input type="text" class="form-control" name="SpreadUserName" id="SpreadUserNameID">
+                            </div>
+                            <button class="btn btn-primary" type="button" id="btnSousu"><span class="glyphicon glyphicon-search"></span> 搜索</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            @*记录详细*@
+            <div class="modal fade bs-example-modal-sm" id="Selectcapitalmodal">
+                <div class="modal-dialog" style="width:1000px;">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                            <h4 class="modal-title">用户推广详细信息</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <table id="tabFundtable">
+                                    <tr>
+                                        <th w_num="total_line" width="5%">序号</th>
+                                        <th w_index="SpreadUserID" w_hidden="true">推广人ID</th>
+                                        <th w_index="SpreadRenName" width="10%">推广人</th>
+                                        <th w_index="UserName" width="10%">推广客户</th>
+                                        <th w_index="Name" width="10%">推广类型</th>
+                                        <th w_index="ReleaseTimeStr" width="10%">关联时间</th>                                      
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div>
+        </div>
+    </div>
+
+    <script src="~/Content/bootstrap-3.3.7-dist/js/jquery-2.0.3.min.js"></script>
+    <script src="~/Content/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <script src="~/Content/jquery.bsgrid-1.37/merged/bsgrid.all.min.js"></script>
+    <script src="~/Content/jquery.bsgrid-1.37/js/lang/grid.zh-CN.min.js"></script>
+    <script src="~/Content/layer/layer.js"></script>
+    <script src="~/Content/jss/customfunction.js"></script>
+    <script>
+
+        var tabRechargeall;
+        var tabFundtable;
+        $(document).ready(function () {
+            tabRechargeall = $.fn.bsgrid.init('tabRechargeall', {
+                url: '/PopularizeManage/Popular/SelectPersonalSpreadMessage',
+                autoLoad: true,//自动加载数据
+                stripeRows: true,//隔行变色
+                rowHoverColor: true,//划过行变色
+                rowSelectedColor: true,//是否显示选中行背景色
+                pageSize: 10,//默认页面大小
+                pageSizeSelect: true,//是否选择分页页数下拉框
+                pagingLittleToolbar: true,//精简的图标按钮分页工具条
+                pagingToolbarAlign: "left"//分页工具条的显示位置
+
+            });
+            $("#tabRechargeallid").hide();
+            $.post("/LoginMain/MoKuaiQuanXianOpTypeSelect", function (Data) {
+                for (var i = 0; i < Data.length; i++) {
+                    if (Data[i].Name == "推广统计" && Data[i].Optype == "查询") {
+
+                        $("#tabRechargeallid").show();
+                   
+                    }
+                }
+            });
+        });
+        //自定义公告详情列
+        function crearViewButton(record, rowIndex, colIndex, options) {
+            return '<button type="button" style=display:compact; class="btn btn-info" onclick="openselectfund(' + record.SpreadUserID + ')">记录详细</button>'
+        }
+
+        //搜索
+        $("#btnSousu").click(function () {
+            var SpreadUserNameID = $("#SpreadUserNameID").val();
+            tabRechargeall.search("SpreadUserNameID=" + SpreadUserNameID);
+        });
+        //记录详细
+        function openselectfund(SpreadUserID) {
+            $("#tabFundtable_pt").empty();
+            tabFundtable = $.fn.bsgrid.init('tabFundtable', {
+                url: '/PopularizeManage/Popular/selectTuiGuangJiLu?SpreadUserID=' + SpreadUserID,
+                autoLoad: true,//自动加载数据
+                stripeRows: true,//隔行变色
+                rowHoverColor: true,//划过行变色
+                rowSelectedColor: true,//是否显示选中行背景色
+                pageSize: 10,//默认页面大小
+                pageSizeSelect: true,//是否选择分页页数下拉框
+                pagingLittleToolbar: true,//精简的图标按钮分页工具条
+                pagingToolbarAlign: "left"//分页工具条的显示位置
+            });
+            $("#Selectcapitalmodal").modal("show");
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,232 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/jquery.bsgrid-1.37/merged/bsgrid.all.min.css" rel="stylesheet" />
+    <link href="~/Content/jquery.bsgrid-1.37/css/skins/grid_bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/jquery.bsgrid-1.37/css/skins/grid_sky_blue.min.css" rel="stylesheet" />
+    <title>NoticeManagement</title>
+    <style type="text/css">
+        .container {
+            width: 100%;
+            padding: 20px 40px 0 35px;
+            margin: 0;
+        }
+
+        .panel-heading span {
+         font-size:15px;font-weight:700;
+        }
+
+        .form-horizontal label {
+            font-weight: normal;
+        }
+
+        .reset {
+            padding-left: 5px;
+            padding-right: 5px;
+        }
+
+        .panel-body {
+            padding-left: 0;
+        }
+
+       span a:hover {
+           color:#ff0000;
+            font-size: 17px;
+            margin-right: 8px;
+       
+        }
+            a, a:hover, a:active, a:visited, a:link {
+                color: white;
+                text-decoration: none;
+            }
+
+        td a {
+            color: blue !important;
+        }
+
+        .h4 {
+            margin: 0 0 4px 0;
+        }
+
+        th {
+            font-weight: normal;
+        }
+        .h4, td, th {
+            text-align: center;
+        }
+
+        .table tbody tr td {
+            padding: 4px;
+        }
+
+            .table tbody tr td button {
+                height: 24px;
+                padding: 2px 12px;
+            }
+    </style>
+</head>
+<body>
+    <div class="container" id="containerid">
+        <div class="row">
+            <div class="panel panel-info">
+                <div class="panel-heading">                   
+                    <div class="row">                
+                        <span>文章列表<a href="/SystemManagement/IssuanceNotice/InsertNotice" id="insertwenzhangid">[添加文章]</a></span>   
+                        <form class="form-horizontal" role="form">                     
+                            <div class="form-group" id="tabNoticeid">                                                             
+                                <label class="col-md-2 col-sm-2 control-label reset">用户名：</label>
+                                <div class="col-md-2 col-sm-2 reset">
+                                    <input type="text" class="form-control" name="User" id="SUser">
+                                </div>      
+                                <label class="col-md-1 col-sm-1 control-label reset">标题：</label>
+                                <div class="col-md-2 col-sm-2 reset">
+                                    <input type="text" class="form-control" name="Titles" id="STitles">
+                                </div>                          
+                                <label class="col-md-2 col-sm-2 control-label reset">分类栏目：</label>
+                                <div class="col-md-2 col-sm-2 reset">
+                                    <select class="form-control" name="NoticeTypename" id="SNoticeType"></select>
+                                </div>
+                                <button type="button" class="btn btn-primary" id="btnSelect"><span class="glyphicon glyphicon-search"></span> 查询</button>                                
+                            </div>
+                        </form>
+                    </div>                  
+                </div>
+                <div class="panel-body" style="padding-left:15px;">                
+                    <table id="tabNotice">
+                        <tr>
+                            <th w_num="total_line" width="5%">序号</th>
+                            <th w_index="NoticeID" w_hidden="true">ID</th>                          
+                            <th w_index="Title" w_align="left" width="25%">标题</th>
+                            <th w_index="User" width="15%">作者</th>                                                                                                   
+                           <th w_index="NoticeTypeName" width="15%">分类栏目</th>
+                            <th w_index="NoticeStatusName" width="10%">状态</th>                          
+                            <th w_index="ToVoidNo" w_render="crearViewButton" width="25%">操作</th>
+                        </tr>
+                    </table>                  
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="~/Content/bootstrap-3.3.7-dist/js/jquery-2.0.3.min.js"></script>
+    <script src="~/Content/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <script src="~/Content/jquery.bsgrid-1.37/merged/bsgrid.all.min.js"></script>
+    <script src="~/Content/jquery.bsgrid-1.37/js/lang/grid.zh-CN.min.js"></script>
+    <script src="~/Content/layer/layer.js"></script>
+    <script src="~/Content/jss/customfunction.js"></script>
+    <script type="text/javascript">
+
+        var tabNotice;//公告信息 表格     
+        $(document).ready(function () {
+            //公告类别的下拉框
+            $.post("/SystemManagement/IssuanceNotice/SelctNoticeType", function (data) {
+                selectLoadData("SNoticeType", data);
+            });
+            tabNotice = $.fn.bsgrid.init('tabNotice', {
+                url: '/SystemManagement/IssuanceNotice/SelectNoticeAll',
+                autoLoad: true,//自动加载数据
+                stripeRows: true,//隔行变色
+                rowHoverColor: true,//划过行变色
+                rowSelectedColor: true,//是否显示选中行背景色
+                pageSize: 10,//默认页面大小
+                pageSizeSelect: true,//是否选择分页页数下拉框
+                pagingLittleToolbar: true,//精简的图标按钮分页工具条
+                pagingToolbarAlign: "left",//分页工具条的显示位置   
+             
+            });
+            tabNoticeSearch();
+            $("#tabNoticeid").hide();
+            $("#insertwenzhangid").hide();
+        });
+        //权限访问
+        $("#containerid").mouseenter(function () {
+            $.post("/LoginMain/MoKuaiQuanXianOpTypeSelect", function (Data) {
+                for (var i = 0; i < Data.length; i++) {
+                    if (Data[i].Name == "文章管理" && Data[i].Optype == "查询")
+                    {
+                        $("#tabNoticeid").show();                     
+                    }
+                    if (Data[i].Name == "文章管理" && Data[i].Optype == "新增")
+                    {
+                        $("#insertwenzhangid").show();
+                    }
+                    if (Data[i].Name == "文章管理" && Data[i].Optype == "修改")
+                    {
+                        $(".strUpdata").removeClass("hidden");
+                       
+                    }
+                    if (Data[i].Name == "文章管理" && Data[i].Optype == "删除")
+                    {
+                        $(".strDelete").removeClass("hidden");
+                    }
+                }
+            });
+        });
+
+        //自定义公告详情列
+        function crearViewButton(record, rowIndex, colIndex, options) {
+            return '<button type="button" class="btn btn-primary" onclick="openViewNotice(' + record.NoticeID + ')">查看</button>'
+               + "&emsp;"
+               + '<button type="button" style=display:compact; class="strUpdata btn btn-info hidden" onclick="Updata(' + record.NoticeID + ')">修改</button>'
+               + "&emsp;"
+               + '<button type="button" style=display:compact; class="strDelete btn btn-danger hidden" onclick="Delete(' + record.NoticeID + ')">删除</button>';
+        }
+
+        //公告表格查询
+        function tabNoticeSearch() {
+            var noticeSUser = $("#SUser").val();
+            var noticeSTitles = $("#STitles").val();
+            var noticeTypeId = $("#SNoticeType").val();
+            if (noticeTypeId == undefined || noticeTypeId == "") {
+                noticeTypeId = 0;
+            }
+            tabNotice.search("noticeSUser=" + noticeSUser + "&noticeSTitles=" + noticeSTitles + "&noticeTypeId=" + noticeTypeId);
+        }
+        //查询
+        $("#btnSelect").click(function () {
+            tabNoticeSearch();
+          
+        });
+
+        //查看公告详情
+        function openViewNotice(NoticeID) {
+
+            window.open("/SystemManagement/IssuanceNotice/NoticeDetailed?noticeId=" + NoticeID);
+        }
+        //修改公告
+        function Updata(NoticeID) {
+            window.location.href = "/SystemManagement/IssuanceNotice/UpdateNotice?NoticeID=" + NoticeID;//修改公告页面
+        };
+        //删除公告
+        function Delete(NoticeID) {
+            layer.confirm("确定要删除吗？", {
+                icon: 3,
+                btn: ['确定', '取消']
+                //按钮
+            }, function (layerIndex) {
+                layer.close(layerIndex);//关闭提示框
+                //var rowindex = tabNotice.getSelectedRowIndex();//获取选中行                                   
+                //var onticeId = tabNotice.getColumnValue(rowindex, "NoticeID");
+                $.post("/SystemManagement/IssuanceNotice/NoticeDelete", { NoticeID: NoticeID }, function (data) {
+                    if (data = true) {
+                        layer.alert('删除成功！', { icon: 1, title: '提示' });
+                    } else {
+                        layer.alert('删除失败！', { icon: 2, title: '提示' });
+                    }
+                    tabNoticeSearch();//刷新公告信息                      
+                });                                       
+            });
+        };
+    </script>
+
+</body>
+</html>

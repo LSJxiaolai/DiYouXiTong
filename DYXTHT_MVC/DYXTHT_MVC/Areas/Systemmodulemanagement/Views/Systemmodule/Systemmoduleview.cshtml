@@ -1,0 +1,292 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/jquery.bsgrid-1.37/merged/bsgrid.all.min.css" rel="stylesheet" />
+    <link href="~/Content/jquery.bsgrid-1.37/css/skins/grid_bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/jquery.bsgrid-1.37/css/skins/grid_sky_blue.min.css" rel="stylesheet" />
+    <title>Systemmoduleview</title>
+    <style type="text/css">
+        .container {
+            width: 100%;
+            padding: 20px 40px 0 35px;
+            margin: 0;
+        }
+
+        .panel-heading span {
+            font-size: 18px;
+        }
+
+        .reset {
+            padding-left: 5px;
+            padding-right: 5px;
+        }
+
+        .panel-body {
+            padding-left: 0;
+            background: #f4fcff;
+        }
+
+       
+        a, a:hover, a:active, a:visited, a:link {
+            color: white;
+            text-decoration: none;
+        }
+
+        td a {
+            color: blue !important;
+        }
+
+        .h4 {
+            margin: 0 0 4px 0;
+        }
+
+        th {
+            font-weight: normal;
+        }
+
+        .h4, td, th {
+            text-align: center;
+        }
+
+        .table tbody tr td {
+            padding: 4px;
+        }
+
+            .table tbody tr td button {
+                height: 24px;
+                padding: 2px 12px;
+            }
+
+        .modal-body {
+            background: #f4fcff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="containerid">
+        <div class="row">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <div class="row">
+                        <span class="col-md-2" style="font-size:15px;font-weight:700;">模块管理</span>
+                    </div>
+                </div>
+                <div class="panel-body" style="padding-left:15px;">
+                    <div class="row" style="background-color:#ffffff;margin-bottom:20px;margin-left:10px;">
+                        <span style="font-size:15px;font-weight:700;">系统模块</span>
+                    </div>
+                    <table id="tabRechargeall">
+                        <tr>
+                            <th w_index="identificationName" width="15%">编号</th>
+                            <th w_index="Name" w_align="left" width="20%">名称</th>
+                            <th w_index="Describe" width="20%">描述</th>
+                            <th w_index="Edition" width="10%">版本</th>
+                            <th w_index="UserName" width="15%">作者</th>
+                            <th w_index="ReleaseTimeStr" width="20%">更新时间</th>
+                        </tr>
+                    </table>
+                    <div class="row" style="background-color:#ffffff;margin-bottom:20px;margin-left:10px;">
+                        <span style="font-size:15px;font-weight:700;">已安装模块</span>
+                    </div>
+                    <table id="tabFundtable">
+                        <tr>
+                            <th w_num="total_line" width="5%">序号</th>
+                            <th w_index="ModuleID" w_hidden="true">ID</th>
+                            <th w_index="identificationName" width="10%">标识名</th>
+                            <th w_index="Byname" width="10%">别名</th>
+                            <th w_index="Name" width="10%">名称</th>
+                            <th w_index="Edition" width="10%">版本</th>
+                            <th w_index="UserName" width="10%">作者</th>
+                            <th w_index="ReleaseTimeStr" width="10%">更新时间</th>
+                            <th w_index="Describe" width="10%">描述</th>
+                            <th w_index="ModuleStatus" width="10%">状态</th>
+                            <th w_index="ToVoidNo" w_render="crearViewButton" width="15%">操作</th>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            @*编辑*@
+            <div class="modal fade bs-example-modal-sm" id="Updatamodal">
+                <div class="modal-dialog" style="width:700px;">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                            <h4 class="modal-title">编辑模块</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <form class="form-horizontal" method="post" id="Updatafrom">
+                                    <input name="ModuleID" hidden />
+                                    <input name="UserID" hidden />
+                                    <div class="form-group form-group-lg">
+                                        <label class="col-sm-4 control-label">标识名：</label>
+                                        <div class="col-sm-4">
+                                            <input class="form-control" type="text" name="identificationName" id="identificationNameID">
+                                        </div>
+                                    </div>
+                                    <div class="form-group form-group-lg">
+                                        <label class="col-sm-4 control-label">别名：</label>
+                                        <div class="col-sm-4">
+                                            <input class="form-control" type="text" name="Byname" id="BynameID">
+                                        </div>
+                                    </div>
+                                    <div class="form-group form-group-lg">
+                                        <label class="col-md-4 col-sm-4 control-label">名称：</label>
+                                        <div class="col-sm-4">
+                                            <input class="form-control" type="text" id="NameID" name="Name">
+
+                                        </div>
+                                    </div>
+                                    <div class="form-group form-group-lg">
+                                        <label class="col-sm-4 control-label">版本：</label>
+                                        <div class="col-sm-4">
+                                            <input class="form-control" type="text" name="Edition" id="EditionID">
+                                        </div>
+                                    </div>
+                                    <div class="form-group form-group-lg">
+                                        <label class="col-sm-4 control-label">描述：</label>
+                                        <div class="col-sm-4">
+                                            <textarea class="form-control" rows="3" name="Describe" id="DescribeID"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-group form-group-lg">
+                                        <label class="col-sm-4 control-label">状态：</label>
+                                        <div class="col-sm-4">
+                                            <select class="form-control" id="ModuleStatusID" name="ModuleStatusID"></select>
+                                        </div>
+                                    </div>
+                                    <button type="button" class="btn btn-info col-md-offset-5" id="QueRenupdata" style="margin-top:30px;">确认编辑</button>                                  
+                                </form>
+                            </div>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div>
+        </div>
+    </div>
+
+    <script src="~/Content/bootstrap-3.3.7-dist/js/jquery-2.0.3.min.js"></script>
+    <script src="~/Content/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <script src="~/Content/jquery.bsgrid-1.37/merged/bsgrid.all.min.js"></script>
+    <script src="~/Content/jquery.bsgrid-1.37/js/lang/grid.zh-CN.min.js"></script>
+    <script src="~/Content/layer/layer.js"></script>
+    <script src="~/Content/jss/customfunction.js"></script>
+    <script>
+
+        var tabRechargeall;
+        var tabFundtable;
+        $(document).ready(function () {
+            $.post("/Systemmodulemanagement/Systemmodule/SelctModuleStatus", function (jsonData) {
+                selectLoadData("ModuleStatusID", jsonData);
+            });
+            tabRechargeall = $.fn.bsgrid.init('tabRechargeall', {
+                url: '/Systemmodulemanagement/Systemmodule/selectsystemodule',
+                autoLoad: true,//自动加载数据
+                stripeRows: true,//隔行变色
+                rowHoverColor: true,//划过行变色
+                rowSelectedColor: true,//是否显示选中行背景色
+                pageSize: 5,//默认页面大小
+                pageSizeSelect: true,//是否选择分页页数下拉框
+                pagingLittleToolbar: true,//精简的图标按钮分页工具条
+                pagingToolbarAlign: "left"//分页工具条的显示位置
+
+            });
+            tabFundtable = $.fn.bsgrid.init('tabFundtable', {
+                url: '/Systemmodulemanagement/Systemmodule/selectsyste',
+                autoLoad: true,//自动加载数据
+                stripeRows: true,//隔行变色  
+                rowHoverColor: true,//划过行变色
+                rowSelectedColor: true,//是否显示选中行背景色
+                pageSize: 7,//默认页面大小
+                pageSizeSelect: true,//是否选择分页页数下拉框
+                pagingLittleToolbar: true,//精简的图标按钮分页工具条
+                pagingToolbarAlign: "left"//分页工具条的显示位置
+
+            });
+        });
+        //权限访问
+        $("#containerid").mouseenter(function () {
+            $.post("/LoginMain/MoKuaiQuanXianOpTypeSelect", function (Data) {
+                for (var i = 0; i < Data.length; i++) {
+                    if (Data[i].Name == "模块管理" && Data[i].Optype == "编辑") {
+                        $(".stropenselectfund").removeClass("hidden");
+                    }
+                    if (Data[i].Name == "模块管理" && Data[i].Optype == "卸载") {
+                        $(".strbtnDelete").removeClass("hidden");
+                      
+                    }                  
+                }
+            });
+        });
+        //自定义公告详情列
+        function crearViewButton(record, rowIndex, colIndex, options) {
+            return '<button type="button" style=display:compact; class="stropenselectfund  btn-info hidden" onclick="openselectfund(' + record.ModuleID + ')">编辑</button>'
+              + "&emsp;"
+                  + '<button type="button" style=display:compact; class="strbtnDelete  btn-danger hidden" onclick="Delete(' + record.ModuleID + ')">卸载</button>';
+        }
+
+       //编辑
+        function openselectfund(ModuleID) {
+            $.post("/Systemmodulemanagement/Systemmodule/UpdataModule", { ModuleID: ModuleID }, function (data) {
+                loadDatatoForm("Updatafrom", data);
+            });
+            $("#Updatamodal").modal("show");
+        }
+        //编辑保存
+        $("#QueRenupdata").click(function () {
+            if ($('#Updatafrom [name="identificationName"]').val().trim() != "" && $('#Updatafrom [name="Byname"]').val().trim() != "" && $('#Updatafrom [name="Name"]').val().trim() != ""
+                && $('#Updatafrom [name="Edition"]').val().trim() != "" && $('#Updatafrom [name="Describe"]').val().trim() != "") {
+                var formDate = $("#Updatafrom").serializeArray();
+                $.post("/Systemmodulemanagement/Systemmodule/Updatabianji", formDate, function (msg) {
+                    if (msg == "success") {
+                        layer.alert('编辑成功！', { icon: 6, title: '提示' });
+                        //关闭模态窗体
+                        $("#Updatamodal").modal("hide");
+                        //刷新table
+                        tabFundtable.refreshPage();
+                    }
+                    else if (msg == "exist") {
+                        layer.alert('模块名称已存在！', { icon: 6, title: '提示' });
+                    }
+                    else {
+
+                        layer.alert('编辑失败！', { icon: 5, title: '提示' });
+                    }
+                });
+            }
+            else {
+                layer.alert('请完整填写！', { icon: 2, title: '提示' });
+            }
+        });
+        //卸载
+        function Delete(ModuleID) {//通过主键删除角色
+            layer.confirm("确定卸载？", {
+                icon: 3,
+                btn: ['确定', '取消']
+                //按钮
+            }, function (layerIndex) {
+                var layerIndex = layer.load(0);//显示 加载层
+                $.post("/Systemmodulemanagement/Systemmodule/DeleteModule", { ModuleID: ModuleID }, function (data) {
+                    if (data == "success") {
+                        layer.alert('卸载成功！', { icon: 6, title: '提示' });
+                        tabFundtable.refreshPage();
+                    } else {
+                        layer.alert('卸载失败！', { icon: 5, title: '提示' });
+                    }
+                    layer.close(layerIndex);//关闭 加载层
+                });
+            });
+        };
+    </script>
+
+</body>
+</html>

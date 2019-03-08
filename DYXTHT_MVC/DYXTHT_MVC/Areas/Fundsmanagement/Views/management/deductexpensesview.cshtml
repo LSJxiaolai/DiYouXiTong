@@ -1,0 +1,238 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/jquery.bsgrid-1.37/merged/bsgrid.all.min.css" rel="stylesheet" />
+    <link href="~/Content/jquery.bsgrid-1.37/css/skins/grid_bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/jquery.bsgrid-1.37/css/skins/grid_sky_blue.min.css" rel="stylesheet" />
+    <title>deductexpensesview</title>
+    <style type="text/css">
+        .container {
+            width: 100%;
+            padding: 20px 40px 0 35px;
+            margin: 0;
+        }
+
+        .panel-heading span {
+          font-size:15px;font-weight:700;
+        }
+
+        .form-horizontal label {
+            font-weight: normal;
+        }
+
+        .reset {
+            padding-left: 5px;
+            padding-right: 5px;
+        }
+
+        .panel-body {
+            padding-left: 0;
+            background: #f4fcff;
+        }
+
+        span {
+          font-size:15px;font-weight:700;
+        }
+
+        a, a:hover, a:active, a:visited, a:link {
+            color: white;
+            text-decoration: none;
+        }
+
+        td a {
+            color: blue !important;
+        }
+
+        .h4 {
+            margin: 0 0 4px 0;
+        }
+
+        th {
+            font-weight: normal;
+        }
+
+        .h4, td, th {
+            text-align: center;
+        }
+
+        .table tbody tr td {
+            padding: 4px;
+        }
+
+            .table tbody tr td button {
+                height: 24px;
+                padding: 2px 12px;
+            }
+
+        .titleInfor {
+            border: 1px ridge #e5dfdf;
+            background: #f4fcff;
+            width: 300px;
+            height: 400px;
+            font-size: 24px;
+            float: left;
+        }
+
+        .Baseinfor {
+            float: left;
+            background: #f4fcff;
+            width: 900px;
+            height: 650px;
+            margin-left: 15px;
+        }
+
+        .modal-body {
+            background: #f4fcff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <div class="row">
+                        <span class="col-md-2">费用扣除</span>
+                    </div>
+                </div>
+                <div class="panel-body" style="padding-left:15px;">
+                    <form class="form-horizontal" id="insertnocittype">
+                        <div class="form-group">
+                            <label class="col-lg-5 col-md-5 col-sm-5 control-label">用户名：</label>
+                            <div class="col-lg-3 col-md-3 col-sm-3">
+                                <input class="form-control" type="text" id="UsernameID" name="UserName">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-5 col-md-5 col-sm-5 control-label">类型：</label>
+                            <div class="col-lg-3 col-md-3 col-sm-3">
+                                <select class="form-control" name="ItemTypeID" id="ItemTypeID"></select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-5 col-md-5 col-sm-5 control-label">金额：</label>
+                            <div class="col-lg-3 col-md-3 col-sm-3">
+                                <input class="form-control" type="text" id="Amountmoneyid" name="Amountmoney">
+                            </div>
+                            
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-5 col-md-5 col-sm-5 control-label">备注：</label>
+                            <div class="col-lg-3 col-md-3 col-sm-3">
+                                <input class="form-control" type="text" id="Remarksid" name="Remarks">
+                            </div>
+                            <label class="control-label" style="color:#ff0000;">比如，现场费用扣除200元</label>
+                        </div>
+                        <div class="form-group">
+                            <label for="validCode" class="col-lg-5 col-md-5 col-sm-5 control-label">
+                                验证码:
+                            </label>
+                            <div class="col-lg-3 col-md-3 col-sm-3">
+                                <input type="text" class="form-control col-sm-3" style="width:150px;"  name="validCode" id="validCode" value="" />
+                                <span class="text" style="padding:0"><img src="/Fundsmanagement/management/validcode" id="ValidateCode" onclick="reloadValideImage()" /></span>
+                            </div>
+                       </div>
+                    </form>
+                    <div class="form-group" id="btnSelectid">
+                        <button class="btn btn-success col-md-offset-5" type="button" id="btnSelect"><span class="glyphicon glyphicon-yen"></span>确认扣除</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="~/Content/bootstrap-3.3.7-dist/js/jquery-2.0.3.min.js"></script>
+    <script src="~/Content/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <script src="~/Content/jquery.bsgrid-1.37/merged/bsgrid.all.min.js"></script>
+    <script src="~/Content/jquery.bsgrid-1.37/js/lang/grid.zh-CN.min.js"></script>
+    <script src="~/Content/layer/layer.js"></script>
+    <script src="~/Content/jss/customfunction.js"></script>
+    <script>
+        function reloadValideImage() {
+            $("#ValidateCode").attr("src", "/Fundsmanagement/management/validcode?ts=" + new Date().getTime());
+            // document.getElementById('ValidateCode').src = '/Main/validcode?ts=' + new Date().getTime();
+        }
+        $(document).ready(function () {
+            $.post("/Fundsmanagement/management/SelctItemType", function (jsonData) {
+                selectLoadData("ItemTypeID", jsonData);
+            });
+            $("#btnSelectid").hide();
+            $.post("/LoginMain/MoKuaiQuanXianOpTypeSelect", function (Data) {
+                for (var i = 0; i < Data.length; i++) {
+                    if (Data[i].Name == "扣除费用" && Data[i].Optype == "新增") {
+                        $("#btnSelectid").show();                     
+                    }                 
+                }
+            });
+        });
+
+        //充值金额限制
+        $("#Amountmoneyid").change(function () {
+            var feilv = parseFloat($("#Amountmoneyid").val());
+            var reg = new RegExp(/^[0-9]*$/);
+            var rg = reg.test(feilv);
+            if (rg == false) {
+                $("#Amountmoneyid").val("");
+                layer.alert('充值金额输入有误！', { icon: 6, title: '提示' });
+            }
+        });
+
+        $("#UsernameID").change(function () {
+            var formDate = $("#insertnocittype").serializeArray();
+            $.post("/Fundsmanagement/management/selectUseryesbyno", formDate, function (msg) {
+                if (msg == "fail") {
+                    layer.alert('对不起，没有查找到该用户！', { icon: 6, title: '提示' });
+                    $("#UsernameID").val("");
+                }
+            });
+        });
+
+        $("#btnSelect").click(function () {
+            if ($('#insertnocittype [name="UserName"]').val() != "" && $('#insertnocittype [name="Amountmoney"]').val() != "" && $('#insertnocittype [name="Remarks"]').val() != "") {
+                var formDate = $("#insertnocittype").serializeArray();
+                $.post("/Fundsmanagement/management/insertdeductexpenses", formDate, function (msg) {
+                if (msg == "success") {                 
+                    $("#ValidateCode").attr("src", "/Fundsmanagement/management/validcode?ts=" + new Date().getTime());
+                    $("#Amountmoneyid").val("");
+                    $("#Remarksid").val("");
+                    $("#validCode").val("");
+                    layer.alert('成功扣除', { icon: 6, title: '提示' });
+                } else if (msg == "insufficientamount")
+                {
+                    layer.alert('余额不足！', { icon: 5, title: '提示' });
+
+                } else if (msg == "ValidCodeErro")
+                {
+                    layer.alert('验证码错误！', { icon: 5, title: '提示' });
+                    $("#validCode").val("");
+                }else if (msg == "exist") {
+                    layer.alert('没有该用户！', { icon: 5, title: '提示' });
+                    $("#UsernameID").val("");
+                    $("#Amountmoneyid").val("");
+                }
+                else {
+
+                    layer.alert('扣除失败！', { icon: 5, title: '提示' });
+                }
+            });
+        }
+        else {
+                layer.alert('请填写完整！', { icon: 2, title: '提示' });
+        }
+
+        });
+
+    </script>
+
+
+</body>
+</html>

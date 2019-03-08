@@ -1,0 +1,190 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/jquery.bsgrid-1.37/merged/bsgrid.all.min.css" rel="stylesheet" />
+    <link href="~/Content/jquery.bsgrid-1.37/css/skins/grid_bootstrap.min.css" rel="stylesheet" />
+    <title>InsertNotice</title>
+    <style type="text/css">
+        .container {
+            padding-top: 10px;
+            margin-left: 10px;
+        }
+
+        .form-horizontal label {
+            font-weight: normal;
+            font-size: 15px;
+        }
+
+        .reset {
+            padding-left: 2px;
+            padding-right: 2px;
+        }
+
+        input[type=checkbox] {
+            margin-top: 12px;
+        }
+
+
+        .file {
+            height: 100px;
+        }
+
+        .file, .noticeContent {
+            border: 1px solid #aaa;
+            border-radius: 5px;
+        }
+
+        .btngroup button {
+            font-size: 18px;
+            padding: 6px 24px;
+        }
+    </style>
+
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                   <span style="font-size:15px;font-weight:700;">添加文章</span>
+                </div>
+                <div class="panel-body" style="padding-left:15px;">
+                    <form id="fromNotice" class="form-horizontal" role="form" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label class="col-md-2 col-sm-2 control-label reset">分类栏目：</label>
+                            <div class="col-md-4 col-sm-4 reset">
+                                <select class="form-control" id="selectNoticeType" name="NoticeTypeID"></select>
+                            </div>
+                            <label class="col-md-2 col-sm-2 control-label reset">状态：</label>
+                            <div class="col-md-4 col-sm-4 reset">
+                                <select class="form-control" id="selectNoticeStatus" name="NoticeStatusID"></select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2 col-sm-2 control-label reset">发布时间：</label>
+                            <div class="col-md-4 col-sm-4 reset">
+                                <input type="datetime" class="form-control" name="ReleaseTime" id="SReleaseTime">
+                            </div>
+                            <label class="col-md-2 col-sm-2 control-label reset">发布标签：</label>
+                            <div class="col-md-4 col-sm-4 reset">
+                                <input type="text" class="form-control" name="ArticleLabel" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2 col-sm-2 control-label reset">通知标题：</label>
+                            <div class="col-md-10 col-sm-10 reset">
+                                <input type="text" class="form-control" name="Title" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2 col-sm-2 control-label reset">通知正文：</label>
+                            <div class="col-md-10 col-sm-10 reset">
+                                <div class="noticeContent">
+                                    <textarea id="NoticeContent" name="NoticeContent" class="form-control"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group btngroup">
+                            <div class="col-md-2 col-sm-2 col-md-offset-5 col-sm-offset-5">
+                                <button class="btn btn-primary" type="button" id="saveForm">确认提交</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            
+        </div>
+    </div> 
+    <script src="~/Content/bootstrap-3.3.7-dist/js/jquery-2.0.3.min.js"></script>
+    <script src="~/Content/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <script src="~/Content/jquery.bsgrid-1.37/merged/bsgrid.all.min.js"></script>
+    <script src="~/Content/jquery.bsgrid-1.37/js/lang/grid.zh-CN.min.js"></script>
+
+    <script src="~/Content/ckeditor/ckeditor.js"></script>@*富文本编辑器*@
+    <script src="~/Content/ckeditor/lang/zh-cn.js"></script>
+
+    <script src="~/Content/jss/customfunction.js"></script>
+
+    <script src="~/Content/layer/layer.js"></script>
+    <script>
+        var ckeditorNoticeContent;
+        $("#NoticeContent").ready(function () {
+            //公告类别的下拉框
+            $.post("/SystemManagement/IssuanceNotice/SelctNoticeType", function (data) {
+                selectLoadData("selectNoticeType", data);
+            });
+            //公告状态的下拉框
+            $.post("/SystemManagement/IssuanceNotice/selectNoticeStatus", function (data) {
+                selectLoadData("selectNoticeStatus", data);
+            });
+            ckeditorNoticeContent = CKEDITOR.replace("NoticeContent"); //初始化 ckeditor富文本编辑器
+            getNowFormatDate();
+        });
+        //获取当前的日期时间 格式“yyyy-MM-dd HH:MM:SS”
+        function getNowFormatDate() {
+            var date = new Date();
+            var seperator1 = "-";
+            var seperator2 = ":";
+            var month = date.getMonth() + 1;
+            var strDate = date.getDate();
+            if (month >= 1 && month <= 9) {
+                month = "0" + month;
+            }
+            if (strDate >= 0 && strDate <= 9) {
+                strDate = "0" + strDate;
+            }
+            var currentdate = date.getFullYear() + seperator1 + month + seperator1 + strDate
+                    + " " + date.getHours() + seperator2 + date.getMinutes()
+                    + seperator2 + date.getSeconds();
+            document.getElementById("SReleaseTime").value = currentdate;
+        }
+        //保存公告
+        $("#saveForm").click(function () {
+            var NoticeTypeID = $('#fromNotice [name="NoticeTypeID"]').val();
+            var NoticeStatusID = $('#fromNotice [name="NoticeStatusID"]').val();
+            var ArticleLabel = $('#fromNotice input[name="ArticleLabel"]').val();
+            var Title = $('#fromNotice input[name="Title"]').val();
+            var NoticeContent = ckeditorNoticeContent.getData();
+            if (NoticeTypeID != 0 && NoticeStatusID != "" && Title != "" && NoticeContent != "") {
+
+                var fd = new FormData();//""里面跟数据库保存一致
+                fd.append("NoticeTypeID", NoticeTypeID);//分类栏目
+                fd.append("NoticeStatusID", NoticeStatusID);//公告状态
+                fd.append("ArticleLabel", ArticleLabel);//文章标签
+                fd.append("Title", Title);//标题
+                fd.append("NoticeContent", NoticeContent);//公告内容
+
+                var xhr = new XMLHttpRequest();
+                xhr.addEventListener("load", function (event) {
+                    if (event.currentTarget.responseText == "true") {
+                        alert("｡◕ᴗ◕｡保存成功｡◕ᴗ◕｡");                      
+                      
+                        location.reload();
+                    }
+                    else {
+                        layer.alert('保存失败！(｡•́︿•̀｡)', { icon: 5, title: '提示' });
+                    }
+                }, false);
+                xhr.addEventListener("error", function (event) {
+                    layer.alert('保存失败！(╯︵╰)', { icon: 5, title: '提示' });
+                }, false);
+                xhr.open("POST", "/SystemManagement/IssuanceNotice/NoticeInsert");
+                xhr.send(fd);
+            } else {
+                layer.alert('请填写完整(❁´ω`❁)', { icon: 0, title: '提示' });
+            }
+        });
+
+    </script>
+
+</body>
+</html>

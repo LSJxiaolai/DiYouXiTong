@@ -1,0 +1,333 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/jquery.bsgrid-1.37/merged/bsgrid.all.min.css" rel="stylesheet" />
+    <link href="~/Content/jquery.bsgrid-1.37/css/skins/grid_bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/jquery.bsgrid-1.37/css/skins/grid_sky_blue.min.css" rel="stylesheet" />
+    <title>NoticeManagement</title>
+    <style type="text/css">
+        .container {
+            width: 100%;
+            padding: 20px 40px 0 35px;
+            margin: 0;
+        }
+
+        .panel-heading span {
+            font-size: 18px;
+        }
+
+        .form-horizontal label {
+            font-weight: normal;
+        }
+
+        .reset {
+            padding-left: 5px;
+            padding-right: 5px;
+        }
+
+        .panel-body {
+            padding-left: 0;
+            background: #f4fcff;
+        }
+                   
+        a, a:hover, a:active, a:visited, a:link {
+            color: white;
+            text-decoration: none;
+        }
+
+        td a {
+            color: blue !important;
+        }
+
+        .h4 {
+            margin: 0 0 4px 0;
+        }
+
+        th {
+            font-weight: normal;
+        }
+
+        .h4, td, th {
+            text-align: center;
+        }
+
+        .table tbody tr td {
+            padding: 4px;
+        }
+
+            .table tbody tr td button {
+                height: 24px;
+                padding: 2px 12px;
+            }
+
+        .titleInfor {
+            border: 1px ridge #e5dfdf;
+            background: #f4fcff;
+            /*width: 330px;*/
+            height: 500px;
+           
+            float: left;
+        }
+
+        .Baseinfor {
+            float: left;
+            background: #f4fcff;
+            /*width: 900px;
+            height: 650px;
+            margin-left: 15px;*/
+        }
+
+        .modal-body {
+            background: #f4fcff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="containerid">
+        <div class="row">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <div class="row">
+                        <span class="col-md-2" style="font-size:15px;font-weight:700;">用户账户信息</span>
+                    </div>
+                </div>
+                <div class="panel-body" style="padding-left:15px;">
+                    <div class="titleInfor col-sm-3 col-md-3 col-lg-3">
+                        <span style="font-size:15px;font-weight:700;">查找用户</span>
+                        <form class="form-horizontal" method="post" id="insertnocittype">
+                            <div class="form-group">
+                                <label class="col-sm-5 col-md-5 control-label">用户名：</label>
+                                 <div class="col-sm-7">
+                                    <input type="text" class="form-control" id="UserName" name="UserName">
+                                 </div>
+                               </div>
+                            <div class="form-group">
+                                <label class="col-sm-5 col-md-5 control-label">用户ID：</label>
+                                  <div class="col-sm-7">
+                                    <input type="text" class="form-control" id="UserID" name="UserID">
+                                  </div>
+                                </div>                          
+                            <button type="button" class="btn btn-primary col-md-offset-4" style="margin-top:30px;" id="selectqueren"><span class="glyphicon glyphicon-search"></span>查询</button>
+                        </form>
+                    </div>
+                    <div class="Baseinfor col-sm-9 col-md-9 col-lg-9">
+                        <span style=" font-size: 15px;font-weight: 700;">用户银行账户列表</span>
+                        <table id="tabfundmanage">
+                            <tr>
+                                <th w_num="total_line" width="5%">序号</th>
+                                <th w_index="UserID" w_hidden="true">ID</th>
+                                <th w_index="UserName" w_align="left" width="12%">用户名</th>
+                                <th w_index="TrueName" width="12%">真实姓名</th>
+                                <th w_index="PayTypeName" width="12%">所属银行</th>
+                                <th w_index="ProNameCityName" width="12%">所在地</th>
+                                <th w_index="Subbranch" width="12%">支行</th>
+                                <th w_index="BankAccount" width="20%">银行账户</th>
+                                <th w_index="ToVoidNo" w_render="crearViewButton" width="15%">操作</th>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+                @* 修改 *@
+                <div class="modal bs-example-modal-sm" id="modUsermanage">
+                    <div class="modal-dialog" style="width:700px;">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                <h4 class="modal-title"><span class="glyphicon glyphicon-th-list"></span>修改用户银行账户</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row">
+                                    <form class="form-horizontal" method="post" id="UpdataUserxinxi">   
+                                        <input id="UseriID" name="UserID" hidden />                                  
+                                        <div class="form-group">
+                                            <label class="col-lg-5 col-md-5 col-sm-5 control-label">用户名：</label>
+                                            <div class="col-lg-4 col-md-4 col-sm-4">
+                                                <input type="text" class="form-control" id="UserName" name="UserName" readonly="readonly">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-lg-5 col-md-5 col-sm-5 control-label">真实姓名：</label>
+                                            <div class="col-lg-4 col-md-4 col-sm-4">
+                                                <input type="text" class="form-control" id="TrueName" name="TrueName" readonly="readonly">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-lg-5 col-md-5 col-sm-5 control-label">所在地：</label>
+                                            <div class="col-lg-4 col-md-4 col-sm-4">
+                                                <select class="form-control" style="width:96px;" name="ProID" id="ProNameID"></select>
+                                                <select class="form-control col-md-offset-6" style="width:96px;margin-top:-35px;" name="CityID" id="CityNameID"></select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-lg-5 col-md-5 col-sm-5 control-label">所属银行：</label>
+                                            <div class="col-lg-4 col-md-4 col-sm-4">
+                                                <select class="form-control" name="PayTypeID" id="PayTypeNameID"></select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-lg-5 col-md-5 col-sm-5 control-label">支行：</label>
+                                            <div class="col-lg-4 col-md-4 col-sm-4">
+                                                <input type="text" class="form-control" id="Subbranch" name="Subbranch">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-lg-5 col-md-5 col-sm-5 control-label">银行账户：</label>
+                                            <div class="col-lg-4 col-md-4 col-sm-4">
+                                                <input type="text" class="form-control" id="BankAccount" name="BankAccount">
+                                            </div>
+                                        </div>
+                                        <button type="button" class="btn btn-info col-md-offset-5" id="updataUser" style="margin-top:20px;">确认修改</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal-dialog -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="~/Content/bootstrap-3.3.7-dist/js/jquery-2.0.3.min.js"></script>
+    <script src="~/Content/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <script src="~/Content/jquery.bsgrid-1.37/merged/bsgrid.all.min.js"></script>
+    <script src="~/Content/jquery.bsgrid-1.37/js/lang/grid.zh-CN.min.js"></script>
+    <script src="~/Content/layer/layer.js"></script>
+    <script src="~/Content/jss/customfunction.js"></script>
+    <script>
+        var tabfundmanage;
+        $.ajaxSetup({
+            async: false //将异步请求变成同步
+        });
+        $(document).ready(function () {
+            tabfundmanage = $.fn.bsgrid.init('tabfundmanage', {
+                url: '/Fundsmanagement/management/selectaccountnumber',
+                autoLoad: true,//自动加载数据
+                stripeRows: true,//隔行变色
+                rowHoverColor: true,//划过行变色
+                rowSelectedColor: true,//是否显示选中行背景色
+                pageSize: 10,//默认页面大小
+                pageSizeSelect: true,//是否选择分页页数下拉框
+                pagingLittleToolbar: true,//精简的图标按钮分页工具条
+                pagingToolbarAlign: "left"//分页工具条的显示位置
+            });
+            selectUserSearch();
+            $("#selectqueren").hide();
+        });
+
+        //权限访问
+        $("#containerid").mouseenter(function () {
+            $.post("/LoginMain/MoKuaiQuanXianOpTypeSelect", function (Data) {
+                for (var i = 0; i < Data.length; i++) {
+                    if (Data[i].Name == "账号管理" && Data[i].Optype == "查询") {
+                        $("#selectqueren").show();
+                    }                   
+                    if (Data[i].Name == "账号管理" && Data[i].Optype == "修改") {
+                        $(".Updataid").removeClass("hidden");
+                       
+                    }
+                }
+            });
+        });
+
+        //正则表达式验证银行卡号
+        $("#BankAccount").change(function () {
+            var shoujihaoma = parseFloat($("#BankAccount").val());
+            var reg = new RegExp(/^([1-9]{1})(\d{14}|\d{18})$/);
+            var rg = reg.test(shoujihaoma);
+            if (rg == false) {
+
+                layer.alert('请输入正确银行卡号号码！', { icon: 0, title: '提示' });
+                $("#BankAccount").val("");
+            }
+        });
+
+
+        //自定义公告详情列
+        function crearViewButton(record, rowIndex, colIndex, options) {
+            return '<button type="button" style=display:compact; class="Updataid btn btn-danger hidden" onclick="Updata(' + record.UserID + ')">修改</button>';
+        }
+        //多条件查询
+        function selectUserSearch(){
+            var UserName = $("#UserName").val();
+            var UserID = $("#UserID").val();       
+            if (UserID == undefined || UserID == "") {
+                UserID = 0;
+            }
+            tabfundmanage.search("UserName=" + UserName + "&UserID=" + UserID);
+        }
+        //查询
+        $("#selectqueren").click(function () {
+            selectUserSearch();
+        });
+
+        function Updata(UserID) {          
+            //所属银行
+            $.post("/Fundsmanagement/management/SelctPayType", function (jsonData) {
+                selectLoadData("PayTypeNameID", jsonData);
+            });
+            //省份
+            $.post("/Fundsmanagement/management/SelctPro", function (jsonData) {
+                selectLoadData("ProNameID", jsonData);
+            });
+            //查询绑定
+            $.post("/Fundsmanagement/management/updatabanding", { UserID: UserID }, function (data) {
+                loadDatatoForm("UpdataUserxinxi", data);
+                //当省份类型下拉框改变时，绑定城市类型明细下拉框
+                $.post("/Fundsmanagement/management/SelectCityDetail", { varProNameID: data.ProID }, function (jsonData) {
+                    selectLoadData("CityNameID", jsonData);
+                    //设置公告类型明细 选择项
+                    $("#CityNameID").val(data.CityID);
+                });               
+            });
+            $("#modUsermanage").modal("show");
+        }
+        //当省份类型下拉框改变时，绑定城市类型明细下拉框
+        $("#ProNameID").change(function () {
+            var varProNameID = $("#ProNameID").val();
+            $.post("/Fundsmanagement/management/SelectCityDetail", { varProNameID: varProNameID }, function (jsonData) {
+                selectLoadData("CityNameID", jsonData);
+            });
+        });
+        //修改用户银行账户
+        $("#updataUser").click(function () {
+            if ($('#UpdataUserxinxi [name="Subbranch"]').val().trim() != "" && $('#UpdataUserxinxi [name="BankAccount"]').val().trim() != "") {
+                var formDate = $("#UpdataUserxinxi").serializeArray();
+                $.post("/Fundsmanagement/management/UpdateYinhangxinxi", formDate, function (msg) {
+                    if (msg == "success") {
+                        layer.alert('成功修改', { icon: 6, title: '提示' });
+                        //关闭公告类型模态窗体
+                        $("#modUsermanage").modal("hide");
+                        //刷新table
+                        tabfundmanage.refreshPage();
+                    }
+                    else if (msg == "exist") {
+
+                        layer.alert('银行账户已经存在！', { icon: 5, title: '提示' });
+                    }
+                    else if (msg == "nofull") {
+                        layer.alert('请填写完整！', { icon: 2, title: '提示' });
+                    }
+                    else {
+
+                        layer.alert('修改失败！', { icon: 5, title: '提示' });
+                    }
+                });
+            }
+            else {
+                layer.alert('请填写完整！', { icon: 2, title: '提示' });
+            }
+        });
+    </script>
+
+</body>
+</html>

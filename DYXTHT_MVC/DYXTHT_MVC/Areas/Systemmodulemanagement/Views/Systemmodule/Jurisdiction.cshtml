@@ -1,0 +1,245 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/jquery.bsgrid-1.37/merged/bsgrid.all.min.css" rel="stylesheet" />
+    <link href="~/Content/jquery.bsgrid-1.37/css/skins/grid_bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/jquery.bsgrid-1.37/css/skins/grid_sky_blue.min.css" rel="stylesheet" />
+    <title>权限管理</title>
+    <style type="text/css">
+        .container {
+            width: 98%;
+            padding-top: 4px;
+        }
+
+        .panel-heading {
+             font-size:15px;font-weight:700;
+             color:#000000;
+        }
+
+        .table th {
+            font-weight: normal;
+            font-size: 16px;
+        }
+
+        .table td {
+            font-size: 15px;
+        }
+
+        .table th, .table td, .panel-heading {
+            text-align: center;
+        }
+
+        .panel-body {
+            padding-left: 0;
+            background: #f4fcff;
+           
+            overflow: auto;
+        }
+
+        .row td button {
+            padding: 4px 8px;
+            margin-right: 5px;
+        }
+
+        .row > button {
+            font-size: 16px;
+            padding: 6px 18px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="containerid">
+        <div class="row">
+            <div class="panel panel-info">
+                <div class="panel-heading">权限管理</div>
+                <div class="panel-body">
+                    <div class="Baseinfor">
+                        <table id="tabUserType" style="width:100%">
+                            <tr>
+                                <th w_num="total_line">序号</th>
+                                <th w_index="UserTypeID" w_hidden="true"></th>
+                                <th w_index="UserTypeName">角色</th>
+                                <th w_index="Describe">描述</th>
+                                <th w_index="FoundTime">创建时间</th>
+                                <th w_index="ToVoidNo" w_render="crearViewButton">操作</th>
+                            </tr>
+                        </table>
+                    </div>
+                  </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2 col-sm-2 col-xs-2 pull-right" id="tabUserTypeid">
+                <button class="btn btn-primary" onclick="Add()">新增角色</button>
+            </div>
+        </div>
+        @*说明文字*@
+        <div class="panel" style="width:100%;margin-top:10px;background:#EEEEEE;text-align:center;color:#666666;font-size:13px;float:left;padding:5px">
+            <span style="display:block">
+                说明：此处管理的是角色的权限，你可以在这个界面让某种角色作废或启用，
+                也可以单击“修改”按钮修改角色的基本信息和权限，在作废后的角色可以删除，当然，你可以单击“新增角色”按钮新增一种角色和其相对应的权限。
+            </span>
+        </div>
+
+    </div>
+    <script src="~/Content/bootstrap-3.3.7-dist/js/jquery-2.0.3.min.js"></script>
+    <script src="~/Content/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <script src="~/Content/jquery.bsgrid-1.37/merged/bsgrid.all.min.js"></script>
+    <script src="~/Content/jquery.bsgrid-1.37/js/lang/grid.zh-CN.min.js"></script>
+    <script src="~/Content/layer/layer.js"></script>
+    <script src="~/Content/jss/customfunction.js"></script>
+    <script type="text/javascript">
+
+
+        var tabUserType;//权限管理
+        //窗体加载时就查询角色的信息，并绑定在table里面
+        $(function () {
+            //查询所有权限信息
+            tabUserType = $.fn.bsgrid.init('tabUserType', {
+                url: '/Systemmodulemanagement/Systemmodule/SelectUserTypeAll',
+                autoLoad: false,//自动加载数据
+                stripeRows: true,//隔行变色
+                rowHoverColor: true,//划过行变色
+                displayBlankRows: false,//是否显示空白行，默认值false
+                rowSelectedColor: true,//是否显示选中行背景色            
+                pageSize: 10,//默认页面大小
+                pageSizeSelect: true,//是否选择分页页数下拉框
+                pagingLittleToolbar: true,//精简的图标按钮分页工具条
+                pagingToolbarAlign: "left",//分页工具条的显示位置
+                                                                    
+            });
+
+            //刷新
+            tabUserType.search();
+
+            $("#tabUserTypeid").hide();
+        });
+
+        //权限访问
+        $("#containerid").mouseenter(function () {
+            $.post("/LoginMain/MoKuaiQuanXianOpTypeSelect", function (Data) {
+                for (var i = 0; i < Data.length; i++) {
+                    if (Data[i].Name == "管理员类型" && Data[i].Optype == "新增") {
+                        $("#tabUserTypeid").show();
+                        
+                    }
+                    if (Data[i].Name == "管理员类型" && Data[i].Optype == "删除") {
+                        $(".strDelete").removeClass("hidden");
+                    
+                    }
+                    if (Data[i].Name == "管理员类型" && Data[i].Optype == "修改") {
+                        $(".strUpdate").removeClass("hidden");                     
+                    }
+                    if (Data[i].Name == "管理员类型" && Data[i].Optype == "开启") {
+                        $(".strQiYong").removeClass("hidden");
+
+                    }
+                    if (Data[i].Name == "管理员类型" && Data[i].Optype == "作废") {
+                        $(".strZuoFei").removeClass("hidden");
+
+                    }
+                }
+            });
+        });
+        //自定义权限操作按钮列
+        function crearViewButton(record, rowIndex, colIndex, options) {
+            //ToVoidNo是数据库传过来的列明
+            var zuofeifuo = record.ToVoidNo;
+            //作废按钮显示
+            if (zuofeifuo == true) {
+                return '<button type="button" class="strUpdate btn btn-primary hidden"  onclick="Update(' + record.UserTypeID + ')">修改</button>'
+                + "&emsp;"
+                + '<button type="button" style=display:compact; class="strZuoFei btn btn-danger hidden" onclick="ZuoFei(' + record.UserTypeID + ')">作废</button>';
+            }
+            else {
+                return '<button type="button" class="strUpdate btn btn-primary hidden" onclick="Update(' + record.UserTypeID + ')">修改</button>'
+               + "&emsp;"
+               + '<button type="button" style=display:compact; class="strQiYong btn btn-success hidden" onclick="QiYong(' + record.UserTypeID + ')">启用</button>'
+               + "&emsp;"
+               + '<button type="button" style=display:compact; class="strDelete btn btn-warning hidden" onclick="Delete(' + record.UserTypeID + ')">删除</button>';
+            }
+        }
+        //跳转到新增界面
+        function Add() {
+            document.location.href = "/Systemmodulemanagement/Systemmodule/InsertJurisdiction?time=" + (new Date()).getTime();
+        };
+        //带着id跳转到修改界面
+        function Update(ID) {
+            document.location.href = "/Systemmodulemanagement/Systemmodule/UpdateJurisdiction?ID=" + encodeURI(ID) + "&time=" + (new Date()).getTime();
+        };
+        //删除权限
+        function Delete(ID) {//通过主键删除角色
+            layer.confirm("确定删除？", {
+                icon: 3,
+                btn: ['确定', '取消']
+                //按钮
+            }, function (layerIndex) {
+                layer.close(layerIndex);//关闭提示框
+
+                $.getJSON("/Systemmodulemanagement/Systemmodule/DeleteUserType?ID=" + encodeURI(ID) + "&time=" + (new Date()).getTime(),
+                    function (data) {
+                        if (data == "success") {
+                            //刷新
+                            tabUserType.search();
+                        };
+                });
+            });
+        };
+        //权限作废
+        function ZuoFei(ID) {//通过主键修改角色的状态
+            layer.confirm("确定作废？", {
+                icon: 3,
+                btn: ['确定', '取消']
+                //按钮
+            }, function (layerIndex) {
+                layer.close(layerIndex);//关闭提示框
+
+                $.getJSON("/Systemmodulemanagement/Systemmodule/ZuoFeiFou?UserTypeID=" + encodeURI(ID) + "&DuanDuan=" + false + "&time=" + (new Date()).getTime(),
+                    function (data) {
+                        if (data == "success") {
+                            //刷新
+                            tabUserType.search();
+                        }
+                        if (data == "exist") {
+                            layer.alert('已有用户的角色，不能作废!', { icon: 0, title: '提示' });
+                        }
+                        if (data == "failed") {
+                            layer.alert('数据异常!', { icon: 2, title: '提示' });
+                        }
+                });
+            });
+        }
+        //启用权限
+        function QiYong(ID) {//通过主键修改角色的状态
+            layer.confirm("确定启用？", {
+                icon: 3,
+                btn: ['确定', '取消']
+                //按钮
+            }, function (layerIndex) {
+                layer.close(layerIndex);//关闭提示框
+                $.getJSON("/Systemmodulemanagement/Systemmodule/ZuoFeiFou?UserTypeID=" + encodeURI(ID) + "&DuanDuan=" + true + "&time=" + (new Date()).getTime(),
+                    function (data) {
+                        if (data == "success") {
+                            //刷新
+                            tabUserType.search();
+                        } else {
+                            layer.alert('数据异常!', { icon: 2, title: '提示' });
+                        }
+                });
+            });
+        }
+
+    </script>
+
+
+</body>
+</html>

@@ -1,0 +1,150 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta property="qc:admins" content="7705207451366411756337" />
+    <meta property="wb:webmaster" content="a5dad0e8c9851f3b" />
+    <meta name="keywords" content="网贷系统、P2P网贷、P2P借贷、P2P、帝友" />
+    <meta name="description" content="该站为帝友P2P网贷系统V4 演示站。购买系统请访问http://www.diyou.cn" />
+    <title>帝友P2P借贷系统</title>
+    <link href="/Content/ShouYe/iconfont.css" rel="stylesheet" />
+    <link href="/Content/ShouYe/public.css" rel="stylesheet" />
+    <link href="/Content/ShouYe/style.css" rel="stylesheet" />
+    <link href="/Content/ShouYe/index.css" rel="stylesheet" />
+    <link href="/Content/ShouYe/user.css" rel="stylesheet" />
+    <link href="/Content/ShouYe/mall.css" rel="stylesheet" />
+
+    <link href="~/Content/my1/global_site_base.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/my1/order_list.css" rel="stylesheet" type="text/css" />
+
+    <link href="~/Content/my1/leftmenu.css" rel="stylesheet" />
+
+    <link href="~/Content/jquery.bsgrid-1.37/merged/bsgrid.all.min.css" rel="stylesheet" />
+    <link href="~/Content/jquery.bsgrid-1.37/css/skins/grid_bootstrap.min.css" rel="stylesheet" />
+
+
+    
+    @*<script src="~/Content/ShouYe/jquery-1.8.2.min.js"></script>
+    <script src="~/Content/ShouYe/diyou.js"></script>
+    <script src="~/Content/ShouYe/base.js"></script>*@
+   
+</head>
+<body>
+    <div class="header bor_none box_none">
+        <div class="header_top">
+            <div class="conbox fn_cle">
+                <div class="contact fn_left">
+                    <i class="telico"></i>
+                    <span class="tel">服务热线：<em>400-836-3969 </em></span>                                <a href="" target="_blank">手机端下载</a>
+                </div>
+                <div class="top_rig fn_rig">
+                    <ul>
+                        <li><a href="/Main/ZhuCe" class="bor_none reg">免费注册</a></li>
+                        <li><a href="/Main/Login" class="login">立即登录</a></li>
+                        <li><a href="" class="helpico">帮助中心</a></li>
+                        <li><a href="/Main/CounterIndex">利息计算器</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="header_cont conbox fn_cle">
+            <h1 class="fn_left"><a href="/"><img src="~/Content/ShouYe/0_admin_upload_1425018268932.png" /></a></h1>
+            <div class="member">注册</div>
+        </div>
+    </div>
+    <div class="reg_bg">
+        <div class="conbox">
+            <div class="member_reg">
+                <div class="reg_step_bg reg_step_first"></div>
+                <div class="reg_left">
+                    <form name="reg_form" method="post"  id="reg_form">
+                        <input type="hidden" id="reg_type" value="email">
+                        <div class="reg_item">
+                            <label for="username" class="basic_label">用户名</label>
+                            <input id="UserNuber" name="User" type="text" class="basic_input" value="" />
+
+                        </div>
+                        <div class="reg_item">
+                            <label for="password" class="basic_label">登录密码</label>
+                            <input id="password" name="password" type="password" class="basic_input" value="" />
+                        </div>
+                        <div class="reg_item verify_code" id="verify_code">
+                            <label for="vericode" class="basic_label">验证码</label>
+                            <input id="validCode" name="validCode" type="text" class="basic_input" maxlength="4" value="" />
+                            <img src="/Main/ValideCode" id="ValidateCode" onclick="reloadValideImage()" style="height:40px;" /> 
+                         </div>
+                        <div class="reg_item">
+                            <p><input type="submit" class="user_reg_sub" value="完成注册" id="reg_sub" /></p>
+                        </div>
+                        <div class="reg_item">
+                            <p>已有账号？<a href="#" class="user_f_c2">立即登录</a></p>
+                        </div>
+                    </form>
+                </div>
+
+
+                <div class="cle"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="footer_bot">
+            <div class="conbox fn_cle">
+                <div class="verification fn_left">
+                    <a href="#" title="诚信网站认证" target="_blank" class="credit"></a>				<a href="http://www.diyou.cc" title="诺顿安全认证" target="_blank" class="norton"></a>				<a href="http://www.diyou.cc" title="公安网警平台" target="_blank" class="police"></a>				<a href="http://www.diyou.cc" title="工商网监" target="_blank" class="gongshang"></a>
+                </div>
+                <div class="fn_rig copyright">Copyright@2012-2014 闽ICP备12013734号-24 厦门帝网信息科技有限公司旗下 帝友系统</div>
+                <div class="fn_rig">
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="/Content/ShouYe/jquery-1.8.2.min.js"></script>
+    <script src="/Content/ShouYe/diyou.js"></script>
+    <script src="/Content/ShouYe/base.js"></script>
+
+    <script src="~/Content/my1/jquery.min.js"></script>
+    <script src="~/Content/my1/leftmenu.js"></script>
+    <script src="~/Content/my1/order_list.js"></script>
+    <script src="~/Content/my1/synccookiepc.js"></script>
+
+    <script src="~/Content/bootstrap-3.3.7-dist/js/jquery-1.11.2.min.js"></script>
+    <script src="~/Content/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <script src="~/Content/jquery.bsgrid-1.37/merged/bsgrid.all.min.js"></script>
+    <script src="~/Content/jquery.bsgrid-1.37/js/lang/grid.zh-CN.min.js"></script>
+    <script src="~/Content/js/customfunction.js"></script>
+    <script src="~/Content/layer/layer.js"></script>@*对话框*@
+    <script type="text/javascript">
+        //注册
+        $("#reg_sub").click(function () {
+            var fordata = $("#reg_form").serializeArray();
+            $.post("/Main/InsertYongHu", fordata, function (data) {
+                if (data == "Exist")
+                {
+                    layer.alert("该用户已存在", { icon: 0, title: '提示' }, function (layerIndex) {
+                        layer.close(layerIndex);
+                    });
+                } else if (data == "success") {
+                    layer.alert("注册成功！请登录！", { icon: 1, title: '提示' }, function (layerIndex) {
+                        layer.close(layerIndex);
+                        window.location.href = "/Main/Login";
+                    });
+                }
+                else {
+                    layer.alert("注册失败", { icon: 2, title: '提示' });
+                }
+            });
+        });
+        //验证码刷新方法
+        function reloadValideImage() {
+            document.getElementById("ValidateCode").src = '/Main/ValideCode?ts=' + new Date().getTime();
+        }
+    </script>
+
+</body>
+</html>

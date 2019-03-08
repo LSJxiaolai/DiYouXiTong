@@ -1,0 +1,315 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/jquery.bsgrid-1.37/merged/bsgrid.all.min.css" rel="stylesheet" />
+    <link href="~/Content/jquery.bsgrid-1.37/css/skins/grid_bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/jquery.bsgrid-1.37/css/skins/grid_sky_blue.min.css" rel="stylesheet" />
+    <title>NoticeManagement</title>
+    <style type="text/css">
+        .container {
+            width: 100%;
+            padding: 20px 40px 0 35px;
+            margin: 0;
+        }
+
+        .panel-heading span {
+         font-size:15px;font-weight:700;
+        }
+
+        .form-horizontal label {
+            font-weight: normal;
+        }
+
+        .reset {
+            padding-left: 5px;
+            padding-right: 5px;
+        }
+
+        .panel-body {
+            padding-left: 0;
+             background:#f4fcff;
+        }
+        
+        a, a:hover, a:active, a:visited, a:link {
+            color: white;
+            text-decoration: none;
+        }
+
+        td a {
+            color: blue !important;
+        }
+
+        .h4 {
+            margin: 0 0 4px 0;
+        }
+
+        th {
+            font-weight: normal;
+        }
+
+        .h4, td, th {
+            text-align: center;
+        }
+
+        .table tbody tr td {
+            padding: 4px;
+        }
+
+            .table tbody tr td button {
+                height: 24px;
+                padding: 2px 12px;
+            }
+            .titleInfor{
+            border: 1px ridge #e5dfdf;
+            background:#f4fcff;         
+            /*width:300px;*/         
+            height:500px;                   
+            float:left;
+         
+        }
+        .Baseinfor {
+            float:left;              
+            background:#f4fcff;
+            /*width:900px;         
+            height:650px;
+            margin-left:15px;*/
+        }
+        .modal-body {
+         background:#f4fcff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="containerid">
+        <div class="row">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <div class="row">
+                        <span class="col-md-2">分类栏目</span>                       
+                    </div>
+                </div>
+                <div class="panel-body" style="padding-left:15px;">
+                    <div class="titleInfor col-sm-3 col-md-3 col-lg-3">
+                     <span style="font-size:15px;font-weight:700;">添加分类栏目</span>
+                        <form class="form-horizontal"  method="post" id="insertnocittype">
+                            <div class="form-group">
+                                <label class="col-md-5 col-sm-5 control-label">名称：</label>
+                                <div class="col-sm-6 col-md-6">
+                                    <input type="text" class="form-control" id="NoticeTypeName" name="NoticeTypeName">
+                                </div>
+                                </div>
+                            <div class="form-group">
+                                <label class="col-md-5 col-sm-5 control-label">别名：</label>
+                                <div class="col-sm-6 col-md-6">
+                                    <input type="text" class="form-control" id="Byname" name="Byname">
+                                </div>
+                                </div>        
+                            <div class="form-group">
+                                <label class="col-md-5 col-sm-5 control-label">内容：</label>
+                                <div class="col-sm-6 col-md-6">
+                                    <textarea class="form-control" id="Content" name="Content"></textarea>
+                                </div>
+                                </div> 
+                            <button type="button" class="btn btn-info col-md-offset-4" style="margin-top:20px;" id="insertqueren">确认提交</button>                   
+                        </form>
+                    </div>
+                    <div class="Baseinfor col-sm-9 col-md-9 col-lg-9">
+                        <span style="font-size:15px;font-weight:700;">分类栏目</span>
+                        <table id="tabNoticeType">
+                            <tr>
+                                <th w_num="total_line" width="5%">序号</th>
+                                <th w_index="NoticeTypeID" w_hidden="true">ID</th>
+                                <th w_index="NoticeTypeName" w_align="left" width="25%">名称</th>
+                                <th w_index="Byname" width="25%">别名</th>                               
+                                <th w_index="ToVoidNo" w_render="crearViewButton" width="25%">操作</th>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                @* 修改 *@
+                <div class="modal bs-example-modal-sm" id="modNoticeType">
+                    <div class="modal-dialog" style="width:600px;">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                <h4 class="modal-title"><span class="glyphicon glyphicon-th-list"></span>修改分类栏目</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row">
+                                    <form class="form-horizontal" method="post" id="Updatanocittype">
+                                        <input id="NoticeTypeID" name="NoticeTypeID" hidden />
+                                        <div class="form-group">
+                                            <label class="col-lg-5 col-md-5 col-sm-5 control-label">名称：</label>
+                                            <div class="col-lg-4 col-md-4 col-sm-4">
+                                                <input type="text" class="form-control" id="NoticeTypeName" name="NoticeTypeName">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-lg-5 col-md-5 col-sm-5 control-label">别名：</label>
+                                            <div class="col-lg-4 col-md-4 col-sm-4">
+                                                <input type="text" class="form-control" id="Byname" name="Byname">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-lg-5 col-md-5 col-sm-5 control-label">内容：</label>
+                                            <div class="col-lg-4 col-md-4 col-sm-4">
+                                                <textarea class="form-control" name="Content"></textarea>
+                                            </div>
+                                        </div>
+                                        <button type="button" class="btn btn-info col-md-offset-5" id="updatanotic" style="margin-top:20px;">确认修改</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal-dialog -->
+                </div>                               
+            </div>
+        </div>
+    </div>
+
+    <script src="~/Content/bootstrap-3.3.7-dist/js/jquery-2.0.3.min.js"></script>
+    <script src="~/Content/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <script src="~/Content/jquery.bsgrid-1.37/merged/bsgrid.all.min.js"></script>
+    <script src="~/Content/jquery.bsgrid-1.37/js/lang/grid.zh-CN.min.js"></script>
+    <script src="~/Content/layer/layer.js"></script>
+    <script src="~/Content/jss/customfunction.js"></script>
+    <script>
+        $(document).ready(function () {         
+            tabNoticeType = $.fn.bsgrid.init('tabNoticeType', {
+                url: '/SystemManagement/IssuanceNotice/selectNotictype',
+                autoLoad: true,//自动加载数据
+                stripeRows: true,//隔行变色
+                rowHoverColor: true,//划过行变色
+                rowSelectedColor: true,//是否显示选中行背景色
+                pageSize: 10,//默认页面大小
+                pageSizeSelect: true,//是否选择分页页数下拉框
+                pagingLittleToolbar: true,//精简的图标按钮分页工具条
+                pagingToolbarAlign: "left"//分页工具条的显示位置     
+               
+            });
+            $("#insertqueren").hide();
+        });
+        //权限访问
+        $("#containerid").mouseenter(function () {
+            $.post("/LoginMain/MoKuaiQuanXianOpTypeSelect", function (Data) {
+                for (var i = 0; i < Data.length; i++) {
+                    if (Data[i].Name == "分类栏目" && Data[i].Optype == "新增") {
+                        $("#insertqueren").show();
+                        
+                    }
+                    if (Data[i].Name == "分类栏目" && Data[i].Optype == "删除") {
+                        $(".strDelete").removeClass("hidden");
+                       
+                    }
+                    if (Data[i].Name == "借款费用" && Data[i].Optype == "修改") {
+                        $(".strUpdata").removeClass("hidden");
+                      
+                    }
+                }
+            });
+        });
+
+        //自定义公告详情列
+        function crearViewButton(record, rowIndex, colIndex, options) {
+            return '<button type="button" style=display:compact; class="strUpdata btn btn-info hidden" onclick="Updata(' + record.NoticeTypeID + ')">修改</button>'
+               + "&emsp;"
+               + '<button type="button" style=display:compact; class="strDelete btn btn-danger hidden" onclick="Delete(' + record.NoticeTypeID + ')">删除</button>';
+        }
+       //添加分类栏目
+        $("#insertqueren").click(function () {
+            if ($('#insertnocittype [name="NoticeTypeName"]').val().trim() != "" && $('#insertnocittype [name="Byname"]').val().trim() != "" && $('#insertnocittype [name="Content"]').val().trim() != "") {
+                var formDate = $("#insertnocittype").serializeArray();
+                $.post("/SystemManagement/IssuanceNotice/InsertNoticeType", formDate, function (msg) {
+                    if (msg == "success") {
+                        layer.alert('成功添加', { icon: 6, title: '提示' });                                                
+                        location.reload();
+                    }
+                    else if (msg == "exist") {
+                        layer.alert('公告类型已经存在！', { icon: 5, title: '提示' });
+                        $("#NoticeTypeName").val("");
+                        $("#Byname").val("");
+                        $("#Content").val("");
+                    }
+                    else if (msg == "nofull") {
+                        layer.alert('请填写完整！', { icon: 2, title: '提示' });
+                    }
+                    else {
+
+                        layer.alert('添加失败！', { icon: 5, title: '提示' });
+                    }
+                });
+            }
+            else {
+                layer.alert('请填写完整！', { icon: 2, title: '提示' });
+            }
+        });
+       
+        //删除分类栏目
+        function Delete(NoticeTypeID) {
+            layer.confirm("确定要删除吗？", {
+                icon: 3,
+                btn: ['确定', '取消']
+                //按钮
+            }, function (layerIndex) {
+                layer.close(layerIndex);//关闭提示框            
+                $.post("/SystemManagement/IssuanceNotice/NoticetypeDelete", { NoticeTypeID: NoticeTypeID }, function (data) {
+                    if (data = true) {
+                        layer.alert('删除成功！', { icon: 1, title: '提示' });
+                        tabNoticeType.refreshPage();
+                    } else {
+                        layer.alert('删除失败！', { icon: 2, title: '提示' });
+                    }
+                                  
+                });
+            });
+        };
+        //修改分类栏目绑定
+        function Updata(NoticeTypeID) {         
+            $.post("/SystemManagement/IssuanceNotice/updatanotictype", { NoticeTypeID: NoticeTypeID }, function (data) {                        
+                loadDatatoForm("Updatanocittype", data);
+            });
+            $("#modNoticeType").modal("show");
+        }
+        //修改分类栏目保存
+        $("#updatanotic").click(function () {
+            if ($('#Updatanocittype [name="NoticeTypeName"]').val().trim() != "" && $('#Updatanocittype [name="Byname"]').val().trim() != "" && $('#Updatanocittype [name="Content"]').val().trim() != "") {
+                var formDate = $("#Updatanocittype").serializeArray();
+                $.post("/SystemManagement/IssuanceNotice/UpdateNoticeType", formDate, function (msg) {
+                    if (msg == "success") {
+                        layer.alert('成功修改', { icon: 6, title: '提示' });
+                        //关闭公告类型模态窗体
+                        $("#modNoticeType").modal("hide");
+                        //刷新table
+                        tabNoticeType.refreshPage();
+                    }
+                    else if (msg == "exist") {
+    
+                        layer.alert('公告类型已经存在！', { icon: 5, title: '提示' });
+                    }
+                    else if (msg == "nofull") {
+                        layer.alert('请填写完整！', { icon: 2, title: '提示' });
+                    }
+                    else {
+                 
+                        layer.alert('修改失败！', { icon: 5, title: '提示' });
+                    }
+                });
+            }
+            else {
+                layer.alert('请填写完整！', { icon: 2, title: '提示' });
+            }
+
+        });
+    </script>
+
+</body>
+</html>

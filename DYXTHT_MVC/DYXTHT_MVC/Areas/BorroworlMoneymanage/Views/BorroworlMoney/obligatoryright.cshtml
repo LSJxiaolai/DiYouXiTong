@@ -1,0 +1,410 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/jquery.bsgrid-1.37/merged/bsgrid.all.min.css" rel="stylesheet" />
+    <link href="~/Content/jquery.bsgrid-1.37/css/skins/grid_bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/jquery.bsgrid-1.37/css/skins/grid_sky_blue.min.css" rel="stylesheet" />
+
+    <title>obligatoryright</title>
+    <style type="text/css">
+        .container {
+            width: 100%;
+            padding: 20px 40px 0 35px;
+            margin: 0;
+        }
+
+        .panel-heading span {
+            font-size: 18px;
+        }
+
+        .form-horizontal label {
+            font-weight: normal;
+        }
+
+        .reset {
+            padding-left: 5px;
+            padding-right: 5px;
+        }
+
+        .panel-body {
+            padding-left: 0;
+            background: #f4fcff;
+        }
+
+        td a {
+            color: blue !important;
+        }
+
+        th {
+            font-weight: normal;
+        }
+
+        .h4, td, th {
+            text-align: center;
+        }
+
+        .table tbody tr td {
+            padding: 4px;
+        }
+
+            .table tbody tr td button {
+                height: 24px;
+                padding: 2px 12px;
+            }
+
+        .modal-body {
+            background: #f4fcff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="containerid">
+        <div class="row">
+            <div class="panel panel-info">
+                <div class="panel-body" style="padding-left:15px;">
+                    <div class="tab" role="tabpanel">
+                        <ul id="myTab" class="nav nav-tabs">
+                            <li role="presentation" class="active"><a href="#bulletin" aria-controls="home" role="tab" data-toggle="tab">所有转让</a></li>
+                            <li role="presentation"><a href="#rule" role="tab" aria-controls="profile" data-toggle="tab" onclick="binreview()">正在转让</a></li>
+                            <li role="presentation"><a href="#three" role="tab" aria-controls="messages" data-toggle="tab" onclick="rechargesuccessfully()">撤销</a></li>
+                            <li role="presentation"><a href="#four" role="tab" data-toggle="tab" onclick="Rechargefailed()">转让成功</a></li>
+                            <li role="presentation"><a href="#five" role="tab" aria-controls="profile" data-toggle="tab" onclick="UserRechargefailed()">网站应收明细账</a></li>
+                        </ul>
+
+                        <div id="myTabContent" class="tab-content">
+                            <div class="tab-pane active" id="bulletin">
+                                <div class="col-md-12 setPadding" style="background:#ffffff; margin-top:5px;" id="tabcontentid">
+                                    <label>转让列表</label>
+                                    <a href="#" class="col-md-offset-10" id="exportToExcel">导出全部</a>
+                                </div>
+                                <table id="wholewithdrawdeposit">
+                                    <tr>
+                                        <th w_index="CreditorAttornID" w_hidden="true">CreditorAttornID</th>
+                                        <th w_index="UserName" width="5%">转让者</th>
+                                        <th w_index="TenderTitle" width="10%">投标标题</th>
+                                        <th w_index="Rate" width="5%">利率</th>
+                                        <th w_index="WaitPeriodss" width="8%">待收期数</th>
+                                        <th w_index="AttornPeriodss" width="8%">转让期数</th>
+                                        <th w_index="AllPeriodss" width="8%">总期数</th>
+                                        <th w_index="WaitCapital" width="8%">待收本金</th>
+                                        <th w_index="WaitAccrual" width="10%">待收利息</th>
+                                        <th w_index="AttornPrice" width="10%">转让价格</th>
+                                        <th w_index="ReleaseTimeStr" width="12%">提交时间</th>
+                                        <th w_index="StatusName" width="5%">查看</th>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div class="tab-pane" id="rule" style="visibility:hidden">
+                                <div class="col-md-12 setPadding" style="background:#ffffff; margin-top:5px;" id="rulesetid">
+                                    <label>转让列表</label>
+                                    <a href="#" class="col-md-offset-10" id="zhengzaiToExcel">导出全部</a>
+                                </div>
+                                <table id="tabinreview">
+                                    <tr>
+                                        <th w_index="CreditorAttornID" w_hidden="true">CreditorAttornID</th>
+                                        <th w_index="UserName" width="5%">转让者</th>
+                                        <th w_index="TenderTitle" width="10%">投标标题</th>
+                                        <th w_index="Rate" width="5%">利率</th>
+                                        <th w_index="WaitPeriodss" width="8%">待收期数</th>
+                                        <th w_index="AttornPeriodss" width="8%">转让期数</th>
+                                        <th w_index="AllPeriodss" width="8%">总期数</th>
+                                        <th w_index="WaitCapital" width="8%">待收本金</th>
+                                        <th w_index="WaitAccrual" width="10%">待收利息</th>
+                                        <th w_index="AttornPrice" width="10%">转让价格</th>
+                                        <th w_index="ReleaseTimeStr" width="12%">提交时间</th>
+                                        <th w_index="StatusName" width="5%">查看</th>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div class="tab-pane" id="three" style="visibility:hidden">
+                                <div class="col-md-12 setPadding" style="background:#ffffff; margin-top:5px;" id="threestrid">
+                                    <label>转让列表</label>
+                                    <a href="#" class="col-md-offset-10" id="chexiaoToExcel">导出全部</a>
+                                </div>
+                                <table id="tabRechargesuccessfully">
+                                    <tr>
+                                        <th w_index="CreditorAttornID" w_hidden="true">CreditorAttornID</th>
+                                        <th w_index="UserName" width="5%">转让者</th>
+                                        <th w_index="TenderTitle" width="10%">投标标题</th>
+                                        <th w_index="Rate" width="5%">利率</th>
+                                        <th w_index="WaitPeriodss" width="8%">待收期数</th>
+                                        <th w_index="AttornPeriodss" width="8%">转让期数</th>
+                                        <th w_index="AllPeriodss" width="8%">总期数</th>
+                                        <th w_index="WaitCapital" width="8%">待收本金</th>
+                                        <th w_index="WaitAccrual" width="10%">待收利息</th>
+                                        <th w_index="AttornPrice" width="10%">转让价格</th>
+                                        <th w_index="ReleaseTimeStr" width="12%">提交时间</th>
+                                        <th w_index="StatusName" width="5%">查看</th>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div class="tab-pane" id="four" style="visibility:hidden">
+                                <div class="col-md-12 setPadding" style="background:#ffffff; margin-top:5px;" id="fourstrid">
+                                    <label>转让列表</label>
+                                    <a href="#" class="col-md-offset-10" id="successToExcel">导出全部</a>
+                                </div>
+                                <table id="tabRechargefailed">
+                                    <tr>
+                                        <th w_index="CreditorAttornID" w_hidden="true">CreditorAttornID</th>
+                                        <th w_index="UserName" width="5%">转让者</th>
+                                        <th w_index="TenderTitle" width="10%">投标标题</th>
+                                        <th w_index="Rate" width="5%">利率</th>
+                                        <th w_index="WaitPeriodss" width="8%">待收期数</th>
+                                        <th w_index="AttornPeriodss" width="8%">转让期数</th>
+                                        <th w_index="AllPeriodss" width="8%">总期数</th>
+                                        <th w_index="WaitCapital" width="8%">待收本金</th>
+                                        <th w_index="WaitAccrual" width="10%">待收利息</th>
+                                        <th w_index="AttornPrice" width="10%">转让价格</th>
+                                        <th w_index="ReleaseTimeStr" width="12%">提交时间</th>
+                                        <th w_index="PurchaserUser" width="5%">购买者</th>
+                                        <th w_index="TimeStr" width="12%">购买时间</th>
+                                        <th w_index="StatusName" width="5%">查看</th>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div class="tab-pane" id="five" style="visibility:hidden">
+                                <div class="col-md-12 setPadding" style="background:#ffffff; margin-top:5px;" id="fivestrid">
+                                    <label>网站应收明细账</label>                                  
+                                </div>
+                                <table id="tabUserRechargefailed">
+                                    <tr>
+                                        <th w_index="WebsiteReceivableDetailID" w_hidden="true">WebsiteReceivableDetailID</th>
+                                        <th w_index="Loantitle" width="10%">借款标题</th>
+                                        <th w_index="TimeStr" width="12%">应收日期</th>
+                                        <th w_index="UserName" width="8%">借款者</th>
+                                        <th w_index="RealityAmount" width="8%">收款总额</th>
+                                        <th w_index="ReceivableCapital" width="8%">应收本金</th>
+                                        <th w_index="ReceivableAccrual" width="8%">应收利息</th>
+                                        <th w_index="YuQiTianShu" width="8%">逾期天数</th>
+                                        <th w_index="WebsiteWhetherPayTimeStr" width="12%">实还时间</th>                                     
+                                        <th w_index="StatusName" width="5%">状态</th>    
+                                    </tr>
+                                </table>
+                            </div>                           
+                        </div>
+                    </div>
+                </div>            
+            </div>
+        </div>
+    </div>
+
+    <script src="~/Content/bootstrap-3.3.7-dist/js/jquery-2.0.3.min.js"></script>
+    <script src="~/Content/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <script src="~/Content/jquery.bsgrid-1.37/merged/bsgrid.all.min.js"></script>
+    <script src="~/Content/jquery.bsgrid-1.37/js/lang/grid.zh-CN.min.js"></script>
+    <script src="~/Content/layer/layer.js"></script>
+    <script src="~/Content/jss/customfunction.js"></script>
+    <script>
+
+        var wholewithdrawdeposit;
+        var tabinreview;
+        var tabRechargesuccessfully;
+        var tabRechargefailed;
+        var tabUserRechargefailed;
+        var tabUserchebiao;
+        $(document).ready(function () {
+           
+            wholewithdrawdeposit = $.fn.bsgrid.init('wholewithdrawdeposit', {
+                url: '/BorroworlMoneymanage/BorroworlMoney/selectobligatoryright',
+                autoLoad: true,//自动加载数据
+                stripeRows: true,//隔行变色
+                rowHoverColor: true,//划过行变色
+                rowSelectedColor: true,//是否显示选中行背景色
+                pageSize: 10,//默认页面大小
+                pageSizeSelect: true,//是否选择分页页数下拉框
+                pagingLittleToolbar: true,//精简的图标按钮分页工具条
+                pagingToolbarAlign: "left"//分页工具条的显示位置
+            });
+
+            $("#tabcontentid").hide();
+            $("#rulesetid").hide();
+            $("#threestrid").hide();
+            $("#fourstrid").hide();
+            $("#fivestrid").hide();
+        });
+     
+        //权限访问
+        $("#containerid").mouseenter(function () {
+            $.post("/LoginMain/MoKuaiQuanXianOpTypeSelect", function (Data) {
+                for (var i = 0; i < Data.length; i++) {
+                    if (Data[i].Name == "债权转让" && Data[i].Optype == "导出全部") {
+                        $("#tabcontentid").show();
+                        $("#rulesetid").show();
+                        $("#threestrid").show();
+                        $("#fourstrid").show();
+                        $("#fivestrid").show();
+                    }                   
+                }
+            });
+        });
+
+        //正在转让
+        function binreview() {
+            document.getElementById("rule").style.visibility = "visible"
+            if (tabinreview == null) {
+                tabinreview = $.fn.bsgrid.init('tabinreview', {
+                    url: '/BorroworlMoneymanage/BorroworlMoney/selectzhengzaiobligatoryright',
+                    autoLoad: true,//自动加载数据
+                    stripeRows: true,//隔行变色
+                    rowHoverColor: true,//划过行变色
+                    rowSelectedColor: true,//是否显示选中行背景色
+                    pageSize: 10,//默认页面大小
+                    pageSizeSelect: true,//是否选择分页页数下拉框
+                    pagingLittleToolbar: true,//精简的图标按钮分页工具条
+                    pagingToolbarAlign: "left"//分页工具条的显示位置
+                });
+             
+            }
+            else {
+                tabinreview = tabinreview;
+             
+            }
+            $(".bsgridPagingOutTab").css("min-width", "98%");
+        }
+        //撤销
+        function rechargesuccessfully() {
+            document.getElementById("three").style.visibility = "visible"
+            if (tabRechargesuccessfully==null) {
+                tabRechargesuccessfully = $.fn.bsgrid.init('tabRechargesuccessfully', {
+                    url: '/BorroworlMoneymanage/BorroworlMoney/selectchexiaoobligatoryright',
+                    autoLoad: true,//自动加载数据
+                    stripeRows: true,//隔行变色
+                    rowHoverColor: true,//划过行变色
+                    rowSelectedColor: true,//是否显示选中行背景色
+                    pageSize: 10,//默认页面大小
+                    pageSizeSelect: true,//是否选择分页页数下拉框
+                    pagingLittleToolbar: true,//精简的图标按钮分页工具条
+                    pagingToolbarAlign: "left"//分页工具条的显示位置
+                });               
+            }
+            else {
+                tabRechargesuccessfully = tabRechargesuccessfully;
+                
+            }
+            $(".bsgridPagingOutTab").css("min-width", "98%");
+        }
+        //转让成功
+        function Rechargefailed() {
+            document.getElementById("four").style.visibility = "visible"
+            if (tabRechargefailed == null) {
+                tabRechargefailed = $.fn.bsgrid.init('tabRechargefailed', {
+                    url: '/BorroworlMoneymanage/BorroworlMoney/selectsueeccsbligatoryright',
+                    autoLoad: true,//自动加载数据
+                    stripeRows: true,//隔行变色
+                    rowHoverColor: true,//划过行变色
+                    rowSelectedColor: true,//是否显示选中行背景色
+                    pageSize: 10,//默认页面大小
+                    pageSizeSelect: true,//是否选择分页页数下拉框
+                    pagingLittleToolbar: true,//精简的图标按钮分页工具条
+                    pagingToolbarAlign: "left"//分页工具条的显示位置
+                });
+              
+            }
+            else {
+                tabRechargefailed = tabRechargefailed;
+               
+            }
+            $(".bsgridPagingOutTab").css("min-width", "98%");
+        }
+        //网站应收明细账
+        function UserRechargefailed() {
+            document.getElementById("five").style.visibility = "visible"
+            if (tabUserRechargefailed == null) {
+                tabUserRechargefailed = $.fn.bsgrid.init('tabUserRechargefailed', {
+                    url: '/BorroworlMoneymanage/BorroworlMoney/overdueadvancemingxizhang',
+                    autoLoad: true,//自动加载数据
+                    stripeRows: true,//隔行变色
+                    rowHoverColor: true,//划过行变色
+                    rowSelectedColor: true,//是否显示选中行背景色
+                    pageSize: 10,//默认页面大小
+                    pageSizeSelect: true,//是否选择分页页数下拉框
+                    pagingLittleToolbar: true,//精简的图标按钮分页工具条
+                    pagingToolbarAlign: "left"//分页工具条的显示位置
+                });
+              
+            }
+            else {
+                tabUserRechargefailed = tabUserRechargefailed;
+             
+            }
+            $(".bsgridPagingOutTab").css("min-width", "98%");
+        }                
+        //所有导出
+        $("#exportToExcel").click(function () {
+            var a = 1
+            //检查当前列表是否是 当前的查询条件查询出来的
+            if (a == 1) {
+                layer.confirm("是否导出全部数据？", {
+                    icon: 3,
+                    btn: ['确定', '取消']
+                    //按钮
+                }, function (layerIndex) {
+                    layer.close(layerIndex);//关闭提示
+                    //打开下载链接
+                    window.open("/BorroworlMoneymanage/BorroworlMoney/ExExcel");
+                })
+            }
+        });
+        //正在导出
+        $("#zhengzaiToExcel").click(function () {
+            var a = 1
+            //检查当前列表是否是 当前的查询条件查询出来的
+            if (a == 1) {
+                layer.confirm("是否导出全部数据？", {
+                    icon: 3,
+                    btn: ['确定', '取消']
+                    //按钮
+                }, function (layerIndex) {
+                    layer.close(layerIndex);//关闭提示
+                    //打开下载链接
+                    window.open("/BorroworlMoneymanage/BorroworlMoney/zhengzaiExExcel");
+                })
+            }
+        });
+        //撤销导出
+        $("#chexiaoToExcel").click(function () {
+            var a = 1
+            //检查当前列表是否是 当前的查询条件查询出来的
+            if (a == 1) {
+                layer.confirm("是否导出全部数据？", {
+                    icon: 3,
+                    btn: ['确定', '取消']
+                    //按钮
+                }, function (layerIndex) {
+                    layer.close(layerIndex);//关闭提示
+                    //打开下载链接
+                    window.open("/BorroworlMoneymanage/BorroworlMoney/chexiaoExExcel");
+                })
+            }
+        });
+
+        //成功转让导出
+        $("#successToExcel").click(function () {
+            var a = 1
+            //检查当前列表是否是 当前的查询条件查询出来的
+            if (a == 1) {
+                layer.confirm("是否导出全部数据？", {
+                    icon: 3,
+                    btn: ['确定', '取消']
+                    //按钮
+                }, function (layerIndex) {
+                    layer.close(layerIndex);//关闭提示
+                    //打开下载链接
+                    window.open("/BorroworlMoneymanage/BorroworlMoney/chenggongzhuanranExExcel");
+                })
+            }
+        });
+        
+
+    </script>
+</body>
+</html>

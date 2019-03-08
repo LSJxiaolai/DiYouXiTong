@@ -1,0 +1,260 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/jquery.bsgrid-1.37/merged/bsgrid.all.min.css" rel="stylesheet" />
+    <link href="~/Content/jquery.bsgrid-1.37/css/skins/grid_bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/jquery.bsgrid-1.37/css/skins/grid_sky_blue.min.css" rel="stylesheet" />
+    <title>InserUser</title>
+    <style type="text/css">
+        .container {
+            width: 100%;
+            padding: 20px 40px 0 35px;
+            margin: 0;
+        }
+
+        .panel-heading span {
+            font-size:15px;font-weight:700;
+        }
+
+        .form-horizontal label {
+            font-weight: normal;
+        }
+
+        .reset {
+            padding-left: 5px;
+            padding-right: 5px;
+        }
+
+        .panel-body {
+            padding-left: 0;
+            background: #f4fcff;
+        }
+
+        span {
+            font-size: 17px;
+            font-weight: 700;
+        }
+
+        a, a:hover, a:active, a:visited, a:link {
+            color: white;
+            text-decoration: none;
+        }
+
+        td a {
+            color: blue !important;
+        }
+
+        .h4 {
+            margin: 0 0 4px 0;
+        }
+
+        th {
+            font-weight: normal;
+        }
+
+        .h4, td, th {
+            text-align: center;
+        }
+
+        .table tbody tr td {
+            padding: 4px;
+        }
+
+            .table tbody tr td button {
+                height: 24px;
+                padding: 2px 12px;
+            }
+
+        .titleInfor {
+            border: 1px ridge #e5dfdf;
+            background: #f4fcff;
+            width: 300px;
+            height: 400px;
+            font-size: 24px;
+            float: left;
+        }
+
+        .Baseinfor {
+            float: left;
+            background: #f4fcff;
+            width: 900px;
+            height: 650px;
+            margin-left: 15px;
+        }
+
+        .modal-body {
+            background: #f4fcff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <div class="row">
+                        <span class="col-md-2">添加用户</span>
+                    </div>
+                </div>
+                <div class="panel-body" style="padding-left:15px;">
+                    <form class="form-horizontal" method="post" id="Inserfrom">
+                        <input id="PhoneauID" name="PhoneauID" hidden />
+                        <input name="UserID" hidden />
+                        <div class="form-group form-group-lg">
+                            <label class="col-sm-5 control-label">用户名：</label>
+                            <div class="col-sm-3">
+                                <input class="form-control" type="text" name="UserName" id="UserNameID">
+                            </div>
+                            <label class="control-label" style="color:#ff0000">*</label>
+                        </div>
+                        <div class="form-group form-group-lg">
+                            <label class="col-sm-5 control-label">邮箱：</label>
+                            <div class="col-sm-3">
+                                <input class="form-control" type="text" name="PostBox" id="PostBoxID">
+                            </div>
+                            <label class="control-label" style="color:#ff0000">*</label>
+                        </div>
+                        <div class="form-group form-group-lg">
+                            <label class="col-md-5 col-sm-5 control-label">密码：</label>
+                            <div class="col-sm-3">
+                                <input class="form-control" type="password" name="Passwords" id="PasswordsID">
+                            </div>
+                            <label class="control-label" style="color:#ff0000">*</label>
+                        </div>
+                        <div class="form-group form-group-lg">
+                            <label class="col-sm-5 control-label">确认密码：</label>
+                            <div class="col-sm-3">
+                                <input class="form-control" type="password" name="Password" id="PasswordID">
+                            </div>
+                            <label class="control-label" style="color:#ff0000">*</label>
+                        </div>
+                        <div class="form-group form-group-lg">
+                            <label class="col-sm-5 control-label">支付密码：</label>
+                            <div class="col-sm-3">
+                                <input class="form-control" type="password" name="PayPasswords" id="PayPasswordsID" />
+                            </div>
+                            <label class="control-label" style="color:#ff0000">*</label>
+                        </div>
+                        <div class="form-group form-group-lg">
+                            <label class="col-sm-5 control-label">确认支付密码：</label>
+                            <div class="col-sm-3">
+                                <input class="form-control" type="password" name="PayPassword" id="PayPasswordID">
+                            </div>
+                            <label class="control-label" style="color:#ff0000">*</label>
+                        </div>
+                        <button type="button" class="btn btn-info col-md-offset-5" id="QueRenInsert">提交</button>
+                        <button type="reset" class="btn btn-info" id="zhongzhiid" onclick="reloadImage()">重 置</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="~/Content/bootstrap-3.3.7-dist/js/jquery-2.0.3.min.js"></script>
+    <script src="~/Content/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <script src="~/Content/jquery.bsgrid-1.37/merged/bsgrid.all.min.js"></script>
+    <script src="~/Content/jquery.bsgrid-1.37/js/lang/grid.zh-CN.min.js"></script>
+    <script src="~/Content/layer/layer.js"></script>
+    <script src="~/Content/jss/customfunction.js"></script>
+    <script>
+        $(function () {
+            $("#QueRenInsert").hide();
+            $("#zhongzhiid").hide();
+            
+            $.post("/LoginMain/MoKuaiQuanXianOpTypeSelect", function (Data) {
+                for (var i = 0; i < Data.length; i++) {
+                    if (Data[i].Name == "添加用户" && Data[i].Optype == "新增")
+                    {
+                        $("#QueRenInsert").show();
+                        $("#zhongzhiid").show();
+                    }                  
+                }
+            });
+        });
+        //确认密码
+        $("#PasswordID").change(function () {
+            var PasswordsID = $("#PasswordsID").val();
+            var PasswordID = $("#PasswordID").val();
+            if (PasswordsID.trim() != PasswordID.trim()) {
+                layer.alert('两次输入密码不一致，请重新输入！', { icon: 5, title: '提示' });
+                $("#PasswordsID").val("");
+                $("#PasswordID").val("");
+            }
+        });
+        //确认支付密码
+        $("#PayPasswordID").change(function () {
+            var PayPasswordsID = $("#PayPasswordsID").val();
+            var PayPasswordID = $("#PayPasswordID").val();
+            if (PayPasswordsID.trim() != PayPasswordID.trim()) {
+                layer.alert('两次输入密码不一致，请重新输入！', { icon: 5, title: '提示' });
+                $("#PayPasswordsID").val("");
+                $("#PayPasswordID").val("");
+            }
+        });
+
+        //function reloadImage() {
+        //    $("#PasswordsID").val("");
+        //    $("#PasswordID").val("");
+        //}
+
+        $("#QueRenInsert").click(function () {
+            var PasswordsID = $("#PasswordsID").val();
+            var PasswordID = $("#PasswordID").val();
+            if (PasswordsID.trim() != PasswordID.trim()) {
+                layer.alert('两次输入密码不一致，请重新输入！', { icon: 5, title: '提示' });
+                $("#PasswordsID").val("");
+                $("#PasswordID").val("");
+            }
+            var PayPasswordsID = $("#PayPasswordsID").val();
+            var PayPasswordID = $("#PayPasswordID").val();
+            if (PayPasswordsID.trim() != PayPasswordID.trim()) {
+                layer.alert('两次输入密码不一致，请重新输入！', { icon: 5, title: '提示' });
+                $("#PayPasswordsID").val("");
+                $("#PayPasswordID").val("");
+            }
+
+
+            if ($('#Inserfrom [name="UserName"]').val() != "" && $('#Inserfrom [name="PostBox"]').val() != "" && $('#Inserfrom [name="Passwords"]').val() != "" && $('#Inserfrom [name="Password"]').val() != "" && $('#Inserfrom [name="PayPasswords"]').val() != "" && $('#Inserfrom [name="PayPassword"]').val() != "")
+            {
+                var formDate = $("#Inserfrom").serializeArray();
+                $.post("/UserManagement/Usermanagement/insertUserPwP", formDate, function (msg) {
+                if (msg == "success") {
+                    layer.alert('成功添加', { icon: 6, title: '提示' });
+                    $("#UserNameID").val("");
+                    $("#PostBoxID").val("");
+                    $("#PasswordsID").val("");
+                    $("#PasswordID").val("");
+                    $("#PayPasswordsID").val("");
+                    $("#PayPasswordID").val("");
+                }
+                else if (msg == "AccountUserfail") {
+                    layer.alert('该用户名已存在！', { icon: 5, title: '提示' });
+                    $("#UserNameID").val("");
+                }
+                else if (msg == "UserNamefail") {
+                    layer.alert('该用户名已存在！', { icon: 5, title: '提示' });
+                    $("#UserNameID").val("");
+                } else {
+                    layer.alert('添加失败！', { icon: 5, title: '提示' });
+                }
+            });
+        }
+        else {
+                layer.alert('请填写完整！', { icon: 2, title: '提示' });
+        }
+
+        });
+
+    </script>
+
+</body>
+</html>

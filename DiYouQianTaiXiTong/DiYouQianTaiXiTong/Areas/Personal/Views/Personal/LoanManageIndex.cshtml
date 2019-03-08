@@ -1,0 +1,806 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>帝友P2P借贷系统</title>
+    <link href="/Content/ShouYe/iconfont.css" rel="stylesheet" />
+    <link href="/Content/ShouYe/public.css" rel="stylesheet" />
+    <link href="/Content/ShouYe/style.css" rel="stylesheet" />
+    <link href="/Content/ShouYe/index.css" rel="stylesheet" />
+    <link href="/Content/ShouYe/user.css" rel="stylesheet" />
+    <link href="/Content/ShouYe/mall.css" rel="stylesheet" />
+
+    <link href="~/Content/my1/global_site_base.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/my1/order_list.css" rel="stylesheet" type="text/css" />
+
+    <link href="~/Content/my1/leftmenu.css" rel="stylesheet" />
+
+    <link href="~/content/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/jquery.bsgrid-1.37/merged/bsgrid.all.min.css" rel="stylesheet" />
+    <link href="~/Content/jquery.bsgrid-1.37/css/skins/grid_bootstrap.min.css" rel="stylesheet" />
+
+</head>
+<body>
+    <div class="header">
+        <div class="header_top">
+            <div class="conbox fn_cle">
+                <div class="contact fn_left">
+                    <i class="telico"></i>
+                    <span class="tel">服务热线：<em>400-836-3969 </em></span>                				<a href="http://www.diyou.cc/app/index.html" target="_blank">手机端下载</a>
+                </div>
+
+                <div class="top_rig fn_rig" id="yuanlaiID">
+                    <a href="/Main/ZhuCe" class="bor_none reg" id="zhuceID">免费注册</a>
+                    <a href="/Main/Login" class="login" id="Login">立即登录</a>
+                    <a href="" class="helpico">帮助中心</a>
+                    <a href="/Main/CounterIndex">利息计算器</a>
+                </div>
+
+                <div class="top_rig fn_rig" id="userviweID">
+                    <label id="userid" style="font-size:14px;">欢迎你：</label><label id="UserName" style="color:#e4b022;font-size:15px;font-weight:700;">@ViewBag.User</label><span>&nbsp;</span>
+                    <a href="" class="helpico">帮助中心</a>
+                    <a href="/Main/CounterIndex">利息计算器</a>
+                </div>
+            </div>
+        </div>
+        <div class="header_cont conbox fn_cle">
+            <h1 class="fn_left">
+                <a href="">
+                    <img src="~/Content/ShouYe/0_admin_upload_1425018268932.png" alt="帝友P2P借贷系统V4.0演示站" />
+                </a>
+            </h1>
+            <div class="navbar fn_left">
+
+                <ul>
+                    <li class="ui_nav_item ">
+                        <a href="/Main/Index">首页</a>
+                    </li>
+                    <li class="ui_nav_item ">
+                        <a href="/Loan/Loan/BorrowIndex">我要借款</a>
+                    </li>
+                    <li class="ui_nav_item ">
+                        <a href="/Invest/Invest/InvestIndex">我要投资</a>
+                    </li>
+                    <li class="ui_nav_item ">
+                        <a href="/Personal/Personal/BaseIndex">我的账户</a>
+                    </li>
+                    <li class="ui_nav_item ">
+                        <a href="/Main/AboutOurIndex">关于我们</a>
+                        <ul class="nav_dropdown">
+                            <li class="arrow"><span></span></li>
+                            <li><a href="/Main/CertificateIndex">证照资质</a></li>
+                        </ul>
+
+                    </li>
+                    <li class="ui_nav_item ">
+                        <a href="">新手帮助</a>
+                        <ul class="nav_dropdown">
+                            <li class="arrow"><span></span></li>
+                            <li><a href="">网站公告</a></li>
+                            <li><a href="">安全保障</a></li>
+                            <li><a href="">工作原理</a></li>
+                            <li><a href="">法律政策</a></li>
+                            <li><a href="">资费说明</a></li>
+                        </ul>
+
+                    </li>
+
+                </ul>
+            </div>
+            <div class="follow fn_rig">
+                <a href="" target="_blank"><div class="follow_list follow_sina "></div></a>
+                <div class="follow_list follow_wx">
+                    <div class="wx_ewm">
+                        <span class="arrow"></span>
+                        <div class="arrow_img">
+                            <img src="~/Content/ShouYe/0_admin_upload_1420791797782.jpg" height="73" width="73" />
+                        </div>
+                    </div>
+
+                </div>
+                <div class="follow_list follow_qq">
+                    <div class="qq_info">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="layout_main" class="mpc_cont">
+        <div class="wrap clearfix">
+            <!-- sideNav -->
+            <div class="mpc_cont_sideNav">
+                <dl style="margin-bottom:-15px;">
+                    <dt>
+                        <i class="my_iconfont sidenav_icon"></i>
+                        <span style="margin-left:-10px;font-size:20px;">我的交易</span>
+                    </dt>
+                    <dd style="margin-top:10px;">
+                        <a href="/Personal/Personal/MyAccountIndex1">我的投标</a>
+                    </dd>
+                    <dd>
+                        <a href="/Personal/Personal/LoanManageIndex">我的借款</a>
+                    </dd>
+                    <dd>
+                        <a href="/Personal/Personal/GatheringIndex">我的收款</a>
+                    </dd>
+                </dl>
+                <dl style="margin-bottom:-10px;">
+                    <dt>
+                        <i class="my_iconfont sidenav_icon"></i>
+                        <span style="margin-left:-10px;font-size:20px;">基础资料</span>
+                    </dt>
+                    <dd style="margin-top:10px;">
+                        <a href="/Personal/Personal/BaseIndex" class="llw">个人资料</a>
+                    </dd>
+                    <dd>
+                        <a href="/Personal/Personal/PersonalIndex">填写资料</a>
+                    </dd>
+                    <dd>
+                        <a href="/Personal/Personal/RegisterMember">注册会员</a>
+                    </dd>
+                    <dd>
+                        <a href="/Personal/Personal/MemberDataIndex">会员资料</a>
+                    </dd>
+                    <dd>
+                        <a href="/Personal/Personal/AttestationIndex">我的认证</a>
+                    </dd>
+                </dl>
+                <dl style="margin-bottom:-10px;">
+                    <dt>
+                        <i class="my_iconfont sidenav_icon"></i>
+                        <span style="margin-left:-10px;font-size:20px;">我的资产</span>
+                    </dt>
+                    <dd style="margin-top:10px;">
+                        <a href="/Personal/Personal/AccountCentre">我的账户</a>
+                    </dd>
+                    <dd>
+                        <a href="/Personal/Personal/LimitIndex">额度申请</a>
+                    </dd>
+                    <dd>
+                        <a href="/Personal/Personal/CreditCardIndex">添加银行卡</a>
+                    </dd>
+                    <dd>
+                        <a href="/Personal/Personal/CreditCardMessage">银行卡信息</a>
+                    </dd>
+                    <dd>
+                        <a href="/Personal/Personal/RechargeIndex">充值和提现</a>
+                    </dd>
+                </dl>
+                <dl style="margin-bottom:-10px;">
+                    <dt>
+                        <i class="my_iconfont sidenav_icon"></i>
+                        <span style="margin-left:-10px;font-size:20px;">我的服务</span>
+                    </dt>
+                    <dd style="margin-top:10px;">
+                        <a href="/Personal/Personal/FollowIndex">我的关注</a>
+                    </dd>
+                    <dd>
+                        <a href="/Personal/Personal/SpreadIndex">我的推广</a>
+                    </dd>
+                </dl>
+            </div>
+
+
+            <div id="layout_main" class="mpc_cont_main layout_w1200">
+                <!--宽屏class名为layout_w1200，窄屏请修改class为layout_w980_g18-->
+                <!-- 左侧菜单导航 -->
+                <!-- <div id="grid_4" class="grid_4"></div>-->
+                <!-- 右侧主体内容-S -->
+                <div class="row" style="margin-top:20px;width:1000px;margin-left:5px;">
+                    <ul class="nav nav-tabs" style="border:1px solid #808080;">
+                        <li class="active"><a href="#LoanRecord" data-toggle="tab">正在招标的借款</a></li>
+                        <li><a href="#RepaymentLoan" data-toggle="tab">正在还款的借款</a></li>
+                        <li><a href="#AlreadyRepayment" data-toggle="tab">已还清的借款</a></li>
+                        <li><a href="#LoanDetail" data-toggle="tab">还款明细</a></li>
+                        <li><a href="#Overdue" data-toggle="tab">逾期的借款</a></li>
+                    </ul>
+                    <div class="tab-content" style="border:1px solid #808080;">
+                        <div class="tab-pane active" id="LoanRecord">
+                            <div class="col-md-11 col-sm-11 col-xs-11">
+                                <form class="form-horizontal" role="form" style="margin-top:20px;">
+                                    <div class="form-group">
+                                        <label class="col-md-2 col-sm-2 control-label reset">借款标种</label>
+                                        <div class="col-md-2 col-sm-2 reset">
+                                            <select class="form-control" id="Treetoptype" name="Treetoptype"></select>
+                                        </div>
+                                        <div class="col-md-1 col-sm-1">
+                                            <button type="button" class="btn btn-primary" id="btnSelect" style="margin-left:50px;">搜索</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <table id="tabLoandlist" style="margin-left:10px;">
+                                <thead>
+                                    <tr>
+                                        <th w_index="LoanID" w_hidden="true" width="10%">借款ID</th>
+                                        <th w_index="UserID" w_hidden="true" width="10%">用户ID</th>
+                                        <th w_index="TreetopID" w_hidden="true" width="10%">标种ID</th>
+                                        <th w_index="LoanDeadlineID" w_hidden="true" width="10%">期限ID</th>
+                                        <th w_index="RepaymentWayID" w_hidden="true" width="10%">还款方式ID</th>
+                                        <th w_index="LoanPurpose" width="8%">标题</th>
+                                        <th w_index="Treetoptype" width="8%">类型</th>
+                                        <th w_index="RepaymentWayName" width="8%">还款方式</th>
+                                        <th w_index="LoanMoney" width="8%">金额</th>
+                                        <th w_index="Rate" width="8%">年利率/%</th>
+                                        <th w_index="SurplusLoan" width="8%">剩余份数</th>
+                                        <th w_index="AlreadyLoan" width="8%">被购买份数</th>
+                                        <th w_index="LoanDeadlineName" width="8%">期限</th>
+                                        <th w_index="StartTime" width="15%">发布时间</th>
+                                        <th w_index="StatusName" width="5">状态</th>
+                                        <th w_index="Buy" w_render="crearViewButton" width="10%">操作</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                        <div class="tab-pane" id="RepaymentLoan" style="margin-top:20px;">
+                            <div class="col-md-11 col-sm-11 col-xs-11">
+                                <form class="form-horizontal" role="form">
+                                    <div class="form-group">
+                                        <label class="col-md-2 col-sm-2 control-label reset">借款标种</label>
+                                        <div class="col-md-2 col-sm-2 reset">
+                                            <select class="form-control" id="MTreetoptype" name="Treetoptype"></select>
+                                        </div>
+                                        <div class="col-md-1 col-sm-1">
+                                            <button type="button" class="btn btn-primary" id="MbtnSelect" style="margin-left:50px;">搜索</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <table id="tabRepaymentLoan" style="margin-left:10px;">
+                                <thead>
+                                    <tr>
+                                        <th w_index="LoanID" w_hidden="true" width="10%">借款ID</th>
+                                        <th w_index="TreetoptypeID" w_hidden="true" width="10%">标种ID</th>
+                                        <th w_index="LoanDeadlineID" w_hidden="true" width="10%">期限ID</th>
+                                        <th w_index="LoanPurpose" width="5%">标题</th>
+                                        <th w_index="Treetoptype" width="8%">借款类型</th>
+                                        <th w_index="LoanMoney" width="8%">借款金额</th>
+                                        <th w_index="Rate" width="8%">年利率/%</th>
+                                        <th w_index="LoanDeadline" width="8%">还款期限</th>
+                                        <th w_index="StartTime" width="15%">借款时间</th>
+                                        <th w_index="LoanPeriods" width="8%">借款期数</th>
+                                        <th w_index="RepayPrincipal" width="8%">应偿还本息</th>
+                                        <th w_index="AlreadyPrincipal" width="8%">已还本息</th>
+                                        <th w_index="ArrearagePrincipal" width="8%">未还本息</th>
+                                        <th w_index="PayableInterest" width="8%">应还利息</th>
+                                        <th w_index="MBuy" w_render="crearViewButton1" width="10%">操作</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                        <div class="tab-pane" id="AlreadyRepayment" style="margin-top:20px;">
+                            <div class="col-md-11 col-sm-11 col-xs-11">
+                                <form class="form-horizontal" role="form">
+                                    <div class="form-group">
+                                        <label class="col-md-2 col-sm-2 control-label reset">借款标种</label>
+                                        <div class="col-md-2 col-sm-2 reset">
+                                            <select class="form-control" id="YTreetoptype" name="Treetoptype"></select>
+                                        </div>
+                                        <div class="col-md-1 col-sm-1">
+                                            <button type="button" class="btn btn-primary" id="YbtnSelect" style="margin-left:50px;">搜索</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <table id="tabRepayment" style="margin-left:10px;">
+                                <thead>
+                                    <tr>
+                                        <th w_index="LoanID" w_hidden="true" width="10%">借款ID</th>
+                                        <th w_index="UserID" w_hidden="true" width="10%">用户ID</th>
+                                        <th w_index="TreetoptypeID" w_hidden="true" width="10%">标种ID</th>
+                                        <th w_index="LoanPurpose" width="8%">标题</th>
+                                        <th w_index="LoanMoney" width="8%">借款金额</th>
+                                        <th w_index="Treetoptype" width="8%">借款类型</th>
+                                        <th w_index="RepayPrincipal" width="8%">应偿还本息</th>
+                                        <th w_index="AlreadyPrincipal" width="8%">已还本息</th>
+                                        <th w_index="ArrearagePrincipal" width="8%">未还本息</th>
+                                        <th w_index="StartTime" width="15%">还款时间</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                        <div class="tab-pane" id="LoanDetail" style="margin-top:10px;">
+                            <table id="tabLoanDetail">
+                                <thead>
+                                    <tr>
+                                        <th w_index="LoanDetailID" w_hidden="true" width="10%">借款明细ID</th>
+                                        <th w_index="LoanID" w_hidden="true" width="10%">借款ID</th>
+                                        <th w_index="LoanPurpose" width="8%">标题</th>
+                                        <th w_index="LoanMoney" width="8%">借款金额</th>
+                                        <th w_index="Treetoptype" width="8%">借款类型</th>
+                                        <th w_index="RepayPrincipal" width="8%">应偿还本息</th>
+                                        <th w_index="AlreadyPrincipal" width="8%">已还本息</th>
+                                        <th w_index="ArrearagePrincipal" width="8%">未还本息</th>
+                                        <th w_index="PayableInterest" width="8%">应还利息</th>
+                                        <th w_index="StartTime" width="15%">还款时间</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                        <div class="tab-pane" id="Overdue" style="margin-top:10px;">
+                            <table id="tabOverdue">
+                                <thead>
+                                    <tr>
+                                        <th w_index="OverdueLoanID" w_hidden="true" width="10%">逾期还款ID</th>
+                                        <th w_index="LoanID" w_hidden="true" width="10%">借款ID</th>
+                                        <th w_index="LoanPurpose" width="8%">标题</th>
+                                        <th w_index="LoanPeriods" width="8%">期数</th>
+                                        <th w_index="PayablePrincipal" width="8%">应偿还本息</th>
+                                        <th w_index="AlreadyPrincipal" width="8%">已还本息</th>
+                                        <th w_index="OverdueDay" width="8%">逾期天数</th>
+                                        <th w_index="StartTime" width="8%">应还时间</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <!-- 右侧主体内容-E -->
+            </div>
+        </div>
+    </div>
+    <div class="ft_wrap">
+        <div id="globalBottomBrowseRelated" data-recordTracker="1"></div>
+
+        <div class="wrap ft_service_link clearfix">
+            <div id="bottomHelpLinkId" class="ft_help_list clearfix" data-tpa="YHD_GLOBAl_FOOTER_HELP">
+                <dl>
+                    <dt>新手入门</dt>
+                    <dd><a href="" target="_blank">购物流程</a></dd>
+                    <dd><a href="" target="_blank">会员制度</a></dd>
+                    <dd><a href="" target="_blank">订单查询</a></dd>
+
+                </dl>
+                <dl>
+                    <dt>支付方式</dt>
+                    <dd><a href="" target="_blank">货到付款</a></dd>
+                    <dd><a href="" target="_blank">网上支付</a></dd>
+                    <dd><a href="" target="_blank">银行转账</a></dd>
+                </dl>
+                <dl>
+                    <dt>配送服务</dt>
+                    <dd><a href="" target="_blank">配送进度查询</a></dd>
+                    <dd><a href="" target="_blank">商品验货与签收</a></dd>
+                    <dd><a href="" target="_blank">发票制度</a></dd>
+                </dl>
+                <dl>
+                    <dt>售后保障</dt>
+                    <dd><a href="" target="_blank">退换货政策</a></dd>
+                    <dd><a href="" target="_blank">联系客服</a></dd>
+                    <dd><a href="" target="_blank">发票制度</a></dd>
+                </dl>
+            </div>
+            <!--footer 二维码 begin -->
+            <div class="ft_code_wrap clearfix" data-tpa="YHD_GLOBAl_HEADER_MOBILE" id="footerQRcode">
+                <div class="ft_mobile_code clearfix">
+                    <p>APP更优惠</p>
+                    <img src="~/Content/myaccount/images/qryhd.png" alt="APP更优惠二维码" />
+                </div>
+                <div class="ft_mobile_code clearfix">
+                    <p>加微信查订单</p>
+                    <img src="~/Content/myaccount/images/qryhd.png" alt="加微信查订单二维码" />
+                </div>
+            </div>
+        </div>
+    </div>
+    @*撤标模态窗体*@
+
+    <div class="modal fade" id="CheLoanInfor" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+        <div class="modal-dialog" style="width:900px;">
+            <div class="modal-content">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <div class="panel panel-primary">
+                    <div class="panel-heading">我要撤标</div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <form class="form-horizontal" method="post" id="CheLoanForm">
+                                <input type="hidden" id="LoanID" name="LoanID" class="hidden" />
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">借款用途</label>
+                                    <div class="col-md-3">
+                                        <input type="text" class="form-control" name="LoanPurpose" id="LoanPurpose" readonly="readonly" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">标题</label>
+                                    <div class="col-md-3">
+                                        <input class="form-control" name="Loantitle" id="Loantitle" readonly="readonly" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">借款金额</label>
+                                    <div class="col-md-3">
+                                        <input class="form-control" name="LoanMoney" id="LoanMoney" readonly="readonly" />
+                                    </div>
+                                    <label class="control-label" style="margin-top:2px;">元</label>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">年利率</label>
+                                    <div class="col-md-3">
+                                        <input class="form-control" name="Rate" id="Rate" readonly="readonly" />
+                                    </div>
+                                    <label class="control-label" style="margin-top:2px;">%</label>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">剩余份数</label>
+                                    <div class="col-md-3">
+                                        <input class="form-control" name="SurplusLoan" id="SurplusLoan" readonly="readonly" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 col-md-offset-1 control-label no-padding-right" for="validCode">
+                                        验证码
+                                    </label>
+                                    <div class="col-sm-3" style="margin-left:15px;">
+                                        <div class="input-group">
+                                            <input type="text" name="validCode" id="validCode" value="" class="form-control" style="margin-left:-18px;"/>
+                                            <div class="input-group-addon" style="padding:0"><img src="/Main/ValideCode" id="ValidateCode" onclick="reloadValideImage()" style="margin-left:-18px;"/></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                            <button class="btn btn-primary" style="margin-left:250px;" id="Submit">撤标</button>
+                            <button class="btn btn-primary" style="margin-left:30px;" id="Return">取消</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @*还款模态窗体*@
+    <div class="modal fade" id="ReturnLoanInfor" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+        <div class="modal-dialog" style="width:900px;">
+            <div class="modal-content">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <div class="panel panel-primary">
+                    <div class="panel-heading">我要还款</div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <form class="form-horizontal" method="post" id="ReturnLoanForm">
+                                <input type="hidden" id="MLoanID" name="LoanID" class="hidden" />
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">借款用途</label>
+                                    <div class="col-md-3">
+                                        <input type="text" class="form-control" name="LoanPurpose" id="MLoanPurpose" readonly="readonly" />
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">借款金额</label>
+                                    <div class="col-md-3">
+                                        <input class="form-control" name="LoanMoney" id="MLoanMoney" readonly="readonly" />
+                                    </div>
+                                    <label class="control-label" style="margin-top:2px;">元</label>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">年利率</label>
+                                    <div class="col-md-3">
+                                        <input class="form-control" name="Rate" id="MRate" readonly="readonly" />
+                                    </div>
+                                    <label class="control-label" style="margin-top:2px;">%</label>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">还款期数</label>
+                                    <div class="col-md-3">
+                                        <input class="form-control" name="LoanPeriods" id="MLoanPeriods" readonly="readonly" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">应还金额</label>
+                                    <div class="col-md-3">
+                                        <input class="form-control" name="RepayPrincipal" id="MRepayPrincipal" readonly="readonly" />
+                                    </div>
+                                    <label class="control-label" style="margin-top:2px;">元</label>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">未还金额</label>
+                                    <div class="col-md-3">
+                                        <input class="form-control" name="ArrearagePrincipal" id="MArrearagePrincipal" readonly="readonly" />
+                                    </div>
+                                    <label class="control-label" style="margin-top:2px;">元</label>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">每期还款金额</label>
+                                    <div class="col-md-3">
+                                        <input class="form-control" name="EveryTrancheMoney" id="MEveryTrancheMoney" readonly="readonly" />
+                                    </div>
+                                    <label class="control-label" style="margin-top:2px;">元</label>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">当期还款金额:</label>
+                                    <div class="col-md-3">
+                                        <input class="form-control" name="DArrearagePrincipal" id="DArrearagePrincipal" />
+                                    </div>
+                                    <label class="control-label" style="margin-top:2px;">元</label>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 col-md-offset-1 control-label no-padding-right" for="validCode">
+                                        验证码
+                                    </label>
+                                    <div class="col-sm-3" style="margin-left:15px;">
+                                        <div class="input-group">
+                                            <input type="text" name="validCode" id="validCode1" value="" class="form-control" style="margin-left:-18px;"/>
+                                            <div class="input-group-addon" style="padding:0"><img src="/Main/ValideCode" id="ValidateCode1" onclick="reloadValideImage1()" style="margin-left:-18px;"/></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                            <button class="btn btn-primary" style="margin-left:250px;" id="HSubmit">提交</button>
+                            <button class="btn btn-primary" style="margin-left:50px;" id="Hreturn">取消</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="/Content/ShouYe/jquery-1.8.2.min.js"></script>
+    <script src="/Content/ShouYe/diyou.js"></script>
+    <script src="/Content/ShouYe/base.js"></script>
+
+    <script src="~/Content/my1/jquery.min.js"></script>
+    <script src="~/Content/my1/leftmenu.js"></script>
+    <script src="~/Content/my1/order_list.js"></script>
+    <script src="~/Content/my1/synccookiepc.js"></script>
+
+    <script src="~/Content/bootstrap-3.3.7-dist/js/jquery-1.11.2.min.js"></script>
+    <script src="~/Content/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <script src="~/Content/jquery.bsgrid-1.37/merged/bsgrid.all.min.js"></script>
+    <script src="~/Content/jquery.bsgrid-1.37/js/lang/grid.zh-CN.min.js"></script>
+    <script src="~/Content/js/customfunction.js"></script>
+    <script src="~/Content/layer/layer.js"></script>@*对话框*@
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $.post("/Main/sesssinoselect", function (data) {
+                if (data == "success") {
+                    $("div").remove("#yuanlaiID");
+                }
+                else {
+                    $("div").remove("#userviweID");
+                }
+            });
+        });
+        var tabLoandlist;
+        var tabRepaymentLoan;
+        var tabRepayment;
+        var tabLoanDetail;
+        var tabOverdue;
+        $(document).ready(function () {
+            $.post("/Personal/Personal/SelectTreetoptype", function (data) {
+                selectLoadData("Treetoptype", data);
+            });
+            //绑定正在招标tab
+            tabLoandlist = $.fn.bsgrid.init('tabLoandlist', {
+                url: '/Personal/Personal/SelectAllLoanBiao',
+                autoLoad: true,
+                stripeRows: true,//隔行变色
+                rowHoverColor: true,//划过行变色
+                rowSelectedColor: true,//是否显示选中行背景色
+                pageSize: 10,//默认页面大小
+                pageSizeSelect: true,//是否选择分页页数下拉框
+                pagingLittleToolbar: true,//精简的图标按钮分页工具条
+                pagingToolbarAlign: "left",//分页工具条的显示位置
+            });
+            tabLoandSearch();
+
+
+            $.post("/Personal/Personal/SelectTreetoptype", function (data) {
+                selectLoadData("MTreetoptype", data);
+            });
+            //绑定流转标tab
+            tabRepaymentLoan = $.fn.bsgrid.init('tabRepaymentLoan', {
+                url: '/Personal/Personal/SelectManLoan',
+                autoLoad: true,
+                stripeRows: true,//隔行变色
+                rowHoverColor: true,//划过行变色
+                rowSelectedColor: true,//是否显示选中行背景色
+                pageSize: 10,//默认页面大小
+                pageSizeSelect: true,//是否选择分页页数下拉框
+                pagingLittleToolbar: true,//精简的图标按钮分页工具条
+                pagingToolbarAlign: "left",//分页工具条的显示位置
+            });
+            tabRepaymentLoanSearch();
+
+            //已还清的借款
+            $.post("/Personal/Personal/SelectTreetoptype", function (data) {
+                selectLoadData("YTreetoptype", data);
+            });
+                tabRepayment = $.fn.bsgrid.init('tabRepayment', {
+                    url: '/Personal/Personal/SelectAlreadyRepayment',
+                    autoLoad: true,
+                    stripeRows: true,//隔行变色
+                    rowHoverColor: true,//划过行变色
+                    rowSelectedColor: true,//是否显示选中行背景色
+                    pageSize: 10,//默认页面大小
+                    pageSizeSelect: true,//是否选择分页页数下拉框
+                    pagingLittleToolbar: true,//精简的图标按钮分页工具条
+                    pagingToolbarAlign: "left",//分页工具条的显示位置
+                });
+                tabRepaymentSearch();
+
+                //还款明细
+                tabLoanDetail = $.fn.bsgrid.init('tabLoanDetail', {
+                    url: '/Personal/Personal/SelectLoanDetail',
+                    autoLoad: true,
+                    stripeRows: true,//隔行变色
+                    rowHoverColor: true,//划过行变色
+                    rowSelectedColor: true,//是否显示选中行背景色
+                    pageSize: 10,//默认页面大小
+                    pageSizeSelect: true,//是否选择分页页数下拉框
+                    pagingLittleToolbar: true,//精简的图标按钮分页工具条
+                    pagingToolbarAlign: "left",//分页工具条的显示位置
+                });
+            //逾期还款
+                tabOverdue = $.fn.bsgrid.init('tabOverdue', {
+                    url: '/Personal/Personal/SelectOverdue',
+                    autoLoad: true,
+                    stripeRows: true,//隔行变色
+                    rowHoverColor: true,//划过行变色
+                    rowSelectedColor: true,//是否显示选中行背景色
+                    pageSize: 10,//默认页面大小
+                    pageSizeSelect: true,//是否选择分页页数下拉框
+                    pagingLittleToolbar: true,//精简的图标按钮分页工具条
+                    pagingToolbarAlign: "left",//分页工具条的显示位置
+                });
+        });
+
+        //正在招标的借款
+        //多条件查询
+        function tabLoandSearch() {
+            var treetoptypeID = $("#Treetoptype").val();
+            if (treetoptypeID == undefined || treetoptypeID == "") {
+                treetoptypeID = 0;
+            }
+            tabLoandlist.search("&treetoptypeID=" + treetoptypeID);
+        }
+        $("#btnSelect").click(function () {
+            tabLoandSearch();
+        });
+        //自定义购买按钮
+        function crearViewButton(record, rowIndex, colIndex, options) {
+            return '<button type="button" class="btn btn-warning btn-sm" onclick="openViewNotice(' + record.LoanID + ')">撤标</button>';
+        };
+        //通过借款ID传递数据
+        function openViewNotice(loanID) {
+            $.post("/Personal/Personal/SelectLoan", { loanID: loanID }, function (data) {
+                $("#LoanPurpose").val(data.LoanPurpose);
+                $("#Loantitle").val(data.Loantitle);
+                $("#LoanMoney").val(data.LoanMoney);
+                $("#SurplusLoan").val(data.SurplusLoan);
+                $("#Rate").val(data.Rate);
+                $("#LoanID").val(data.LoanID);
+                $("#CheLoanInfor").modal("show");
+                //window.location.href = "/Personal/Personal/CheBiaoIndex";
+            });
+        }
+        //刷新验证码
+        function reloadValideImage() {
+            document.getElementById("ValidateCode").src = '/Main/ValideCode?ts=' + new Date().getTime();
+        };
+        //提交
+        $("#Submit").click(function () {
+            layer.confirm("确定要撤标吗", {
+                icon: 3,
+                btn: ['确定', '取消']
+            }, function (layerIndex) {
+                layer.close(layerIndex);
+                var fordata = $("#CheLoanForm").serializeArray();
+                $.post("/Personal/Personal/RevokeLoan", fordata, function (data) {
+                    if (data == "success") {
+                        alert("撤销成功！");
+                        window.location.href = "/Personal/Personal/LoanManageIndex";
+                    } else if (data == "validCodeFail") {
+                        layer("验证码错误");
+                        $("#validCode").val("");
+                        reloadValideImage();
+                    } else {
+                        alert("撤标失败!");
+                    }
+                });
+            });
+        });
+        //取消
+        $("#Return").click(function () {
+            $("#ValidateCode").val("");
+            window.location.href = "/Personal/Personal/LoanManageIndex";
+            //$("#CheLoanInfor").modal('hide');
+        });
+
+
+        //满标的借款
+        //多条件查询
+        function tabRepaymentLoanSearch() {
+            var treetoptypeID = $("#MTreetoptype").val();
+
+            if (treetoptypeID == undefined || treetoptypeID == "") {
+                treetoptypeID = 0;
+            }
+            tabRepaymentLoan.search("&treetoptypeID=" + treetoptypeID);
+        }
+        $("#MbtnSelect").click(function () {
+            tabRepaymentLoanSearch();
+        });
+        //自定义还款按钮
+        function crearViewButton1(record, rowIndex, colIndex, options) {
+            return '<button type="button" class="btn btn-primary btn-sm" onclick="openViewNotice1(' + record.LoanID + ')">还款</button>';
+        };
+
+        function reloadValideImage1() {
+            document.getElementById("ValidateCode1").src = '/Main/ValideCode?ts=' + new Date().getTime();
+        };
+        //通过借款ID传递数据
+        function openViewNotice1(loanID) {
+            $.post("/Personal/Personal/SelectManBiaoLoan", { loanID: loanID }, function (data) {
+                $("#MRate").val(data.Rate);
+                $("#MLoanPurpose").val(data.LoanPurpose);
+                $("#MLoanMoney").val(data.LoanMoney);
+                $("#MLoanPeriods").val(data.LoanPeriods);
+                $("#MRepayPrincipal").val(data.RepayPrincipal);
+                $("#MArrearagePrincipal").val(data.ArrearagePrincipal);
+                $("#MLoanID").val(data.LoanID);
+                $("#MEveryTrancheMoney").val(data.EveryTrancheMoney);
+                $("#ReturnLoanInfor").modal("show");
+            });
+        };
+
+       //还款保存
+        $("#HSubmit").click(function () {
+            layer.confirm("确定要还款", {
+                icon: 3,
+                btn: ['确定', '取消']
+            }, function (layerIndex) {
+                layer.close(layerIndex);
+                var date = $("#ReturnLoanForm").serializeArray();
+                $.post("/Personal/Personal/InsertRepayment", date, function (data) {
+                    if (data == "success") {
+                        alert("还款成功！");
+                        $("#ReturnLoanInfor").modal('hide');
+                        location.reload();
+
+                    } else if (data == "OneTime") {
+                        alert("此次还款需一次还清！");
+                        $("#DArrearagePrincipal").val("");
+                    } else if (data == "NoMoney") {
+                        alert("你的账户余额不足，不能还款");
+                        $("#DArrearagePrincipal").val("");
+
+                    } else if (data == "CodeFail") {
+                        alert("验证码错误");
+                        $("#validCode1").val("");
+                        reloadValideImage1();
+                    } else {
+                        alert("还款失败");
+                    }
+                })
+            });
+        })
+        $("#Hreturn").click(function () {
+            $("#DArrearagePrincipal").val("");
+            $("#validCode1").val("");
+            $("#ReturnLoanInfor").modal('hide');
+        });
+
+        //已还清的借款
+        function tabRepaymentSearch() {
+            var treetoptypeID = $("#YTreetoptype").val();
+            if (treetoptypeID == undefined || treetoptypeID == "") {
+                treetoptypeID = 0;
+            }
+            tabRepayment.search("&treetoptypeID=" + treetoptypeID);
+        }
+        $("#YbtnSelect").click(function () {
+            tabRepaymentSearch();
+        });
+    </script>
+</body>
+</html>
+

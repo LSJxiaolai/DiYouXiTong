@@ -1,0 +1,150 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta property="qc:admins" content="7705207451366411756337" />
+    <meta property="wb:webmaster" content="a5dad0e8c9851f3b" />
+    <meta name="keywords" content="网贷系统、P2P网贷、P2P借贷、P2P、帝友" />
+    <meta name="description" content="该站为帝友P2P网贷系统V4 演示站。购买系统请访问http://www.diyou.cn" />
+    <title>帝友P2P借贷系统</title>
+    <link href="~/Content/jquery.bsgrid-1.37/css/skins/grid_bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/ShouYe/iconfont.css" rel="stylesheet" />
+    <link href="~/Content/ShouYe/public.css" rel="stylesheet" />
+    <link href="~/Content/ShouYe/style.css" rel="stylesheet" />
+    <link href="~/Content/ShouYe/index.css" rel="stylesheet" />
+    <link href="~/Content/ShouYe/user.css" rel="stylesheet" />
+    <link href="~/Content/ShouYe/mall.css" rel="stylesheet" />
+    <script src="~/Content/ShouYe/jquery-1.8.2.min.js"></script>
+    <script src="~/Content/ShouYe/diyou.js"></script>
+    <script src="~/Content/ShouYe/base.js"></script>
+</head>
+<body>
+
+    <div class="header bor_none box_none">
+        <div class="header_top">
+            <div class="conbox fn_cle">
+                <div class="contact fn_left">
+                    <i class="telico"></i>
+                    <span class="tel">服务热线：<em>400-836-3969 </em></span>                				<a href="http://www.diyou.cc/app/index.html" target="_blank">手机端下载</a>
+                </div>
+                <div class="top_rig fn_rig">
+                    <ul>
+                        <li><a href="/Main/ZhuCe" class="bor_none reg">免费注册</a></li>
+                        <li><a href="/Main/Login" class="login">立即登录</a></li>
+                        <li><a href="" class="helpico">帮助中心</a></li>
+                        <li><a href="/Main/CounterIndex">利息计算器</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="header_cont conbox fn_cle">
+            <h1 class="fn_left"><a href="/"><img src="~/Content/ShouYe/0_admin_upload_1407294921608.jpg" /></a></h1>
+            <div class="member">登录</div>
+        </div>
+    </div>
+    <div class="login_bg">
+        <div class="conbox">
+            <div class="member_login">
+                <div class="login_left m_ptc login_shadow">
+                    <div class="log_tit">
+                        <img src="~/Content/images/login_photo.jpg" />
+                    </div>
+                    <div class="login_center">
+                        <form method="post"  id="log_form">
+                            <div class="log_li">
+                                <label for="username" class="basic_label">账&nbsp;&nbsp;号</label>
+                                <input id="username" name="username" type="text" class="basic_input" value="" />
+                            </div>
+                            <div class="log_li">
+                                <div class="fn_cle">
+                                    <label for="password" style="display:inline; float:left;" class="basic_label">密&nbsp;&nbsp;码</label>
+                                    <a href="" class="forget_pwd fr">忘记密码？</a>
+                                </div>
+                                <input id="password" name="password" type="password" class="basic_input" value="" />
+                            </div>
+
+                            <div class="log_li verify_code">
+                                <label for="vericode" class="basic_label">验证码</label>
+                                <input id="validCode" name="validCode" type="text" class="basic_input" maxlength="4" value="" />
+                                    <img src="/Main/ValideCode" id="ValidateCode" onclick="reloadValideImage()" style="height:40px;" />
+                            </div>
+                            <div class="login_warning" id="login_warning">
+                                <span></span>
+                            </div>    
+                            <div class="log_li">
+                                <p>
+                                    <input type="button" class="user_login_btn" value="登&nbsp;&nbsp;录" id="loginID" />
+                                </p>
+                            </div>                     
+                        </form>
+                       
+                    </div>
+                    <div class="login_border"></div>
+                </div>
+                <div class="login_right">
+                    <img src="~/Content/images/login_pic.jpg" />
+                </div>
+                <div class="cle"></div>
+            </div>
+        </div>
+    </div>
+
+   
+
+    <div class="footer">
+        <div class="footer_bot">
+            <div class="conbox fn_cle">
+                <div class="verification fn_left">
+                    <a href="#" title="诚信网站认证" target="_blank" class="credit"></a>				<a href="http://www.diyou.cc" title="诺顿安全认证" target="_blank" class="norton"></a>				<a href="http://www.diyou.cc" title="公安网警平台" target="_blank" class="police"></a>				<a href="http://www.diyou.cc" title="工商网监" target="_blank" class="gongshang"></a>
+                </div>
+                <div class="fn_rig copyright">Copyright@2012-2014 闽ICP备12013734号-24 厦门帝网信息科技有限公司旗下 帝友系统</div>
+                <div class="fn_rig">
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="~/Content/bootstrap-3.3.7-dist/js/jquery-2.0.3.min.js"></script>
+    <script src="~/Content/bootstrap-3.3.7-dist/js/jquery-1.11.2.min.js"></script>
+    <script src="~/Content/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <script src="~/Content/jquery.bsgrid-1.37/merged/bsgrid.all.min.js"></script>
+    <script src="~/Content/jquery.bsgrid-1.37/js/lang/grid.zh-CN.min.js"></script>
+    <script src="~/Content/js/customfunction.js"></script>
+    <script src="~/Content/layer/layer.js"></script>@*对话框*@
+    <script>
+        //登录
+      
+        $("#loginID").click(function () {
+            var str = $("#log_form").serializeArray();
+            $.post("/Main/UserLogin", str, function (data) {
+                if (data == "success") {
+                    window.location.href = "/Main/Index";
+                } else if (data == "fail") {
+                    alert('密码错误');
+
+                } else if (data == "validCodeFail") {
+                    alert('验证码错误');
+                        $("#validCode").val("");
+                        reloadValideImage();
+                    
+                } else {
+                    alert('请填写验证码');
+                }
+            });
+        });
+        //验证码刷新方法
+        function reloadValideImage() {
+            document.getElementById("ValidateCode").src = '/Main/ValideCode?ts=' + new Date().getTime();
+        }
+    </script>
+
+</body>
+
+</html>
+
+
+

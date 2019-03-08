@@ -1,0 +1,642 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>帝友P2P借贷系统</title>
+    <link href="/Content/ShouYe/iconfont.css" rel="stylesheet" />
+    <link href="/Content/ShouYe/public.css" rel="stylesheet" />
+    <link href="/Content/ShouYe/style.css" rel="stylesheet" />
+    <link href="/Content/ShouYe/index.css" rel="stylesheet" />
+    <link href="/Content/ShouYe/user.css" rel="stylesheet" />
+    <link href="/Content/ShouYe/mall.css" rel="stylesheet" />
+
+    <link href="~/Content/my1/global_site_base.css" rel="stylesheet" type="text/css" />
+    @*<link href="//img.yihaodianimg.com/myyhd/global/css/global_site_base.css?0" rel="stylesheet" type="text/css" />*@
+    @*<link href="//img.yihaodianimg.com/myyhd/member/css/order_list.css?0" rel="stylesheet" type="text/css" />*@
+    <link href="~/Content/my1/order_list.css" rel="stylesheet" type="text/css" />
+
+    <link href="~/Content/my1/leftmenu.css" rel="stylesheet" />
+
+    <link href="~/content/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/jquery.bsgrid-1.37/merged/bsgrid.all.min.css" rel="stylesheet" />
+    <link href="~/Content/jquery.bsgrid-1.37/css/skins/grid_bootstrap.min.css" rel="stylesheet" />
+
+</head>
+<body>
+    <div class="header">
+        <div class="header_top">
+            <div class="conbox fn_cle">
+                <div class="contact fn_left">
+                    <i class="telico"></i>
+                    <span class="tel">服务热线：<em>400-836-3969 </em></span>                				<a href="http://www.diyou.cc/app/index.html" target="_blank">手机端下载</a>
+                </div>
+                <div class="top_rig fn_rig">
+                    <ul>
+                        <li><a href="/Main/ZhuCe" class="bor_none reg">免费注册</a></li>
+                        <li><a href="/Mian/Login" class="login">立即登录</a></li>
+                        <li><a href="" class="helpico">帮助中心</a></li>
+                        <li><a href="/Main/CounterIndex">利息计算器</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="header_cont conbox fn_cle">
+            <h1 class="fn_left">
+                <a href="">
+                    <img src="/Content/ShouYe/0_admin_upload_1407294921608.jpg" />
+                </a>
+            </h1>
+            <div class="navbar fn_left">
+
+                <ul>
+                    <li class="ui_nav_item ">
+                        <a href="/Main/Index">首页</a>
+                    </li>
+                    <li class="ui_nav_item ">
+                        <a href="/Main/BorrowIndex">我要借款</a>
+                    </li>
+                    <li class="ui_nav_item ">
+                        <a href="/Main/InvestIndex">我要投资</a>
+                    </li>
+                    <li class="ui_nav_item ">
+                        <a href="/Main/MyAccountIndex1">我的账户</a>
+                    </li>
+                    <li class="ui_nav_item ">
+                        <a href="/Main/AboutOurIndex">关于我们</a>
+                    </li>
+                    <li class="ui_nav_item ">
+                        <a href="">新手帮助</a>
+
+                        <ul class="nav_dropdown">
+                            <li class="arrow"><span></span></li>
+                            <li><a href="">网站公告</a></li>
+                            <li><a href="">安全保障</a></li>
+                            <li><a href="">工作原理</a></li>
+                            <li><a href="">法律政策</a></li>
+                            <li><a href="">资费说明</a></li>
+                        </ul>
+
+                    </li>
+
+                </ul>
+            </div>
+            <div class="follow fn_rig">
+                <a href="" target="_blank"><div class="follow_list follow_sina "></div></a>
+                <div class="follow_list follow_wx">
+                    <div class="wx_ewm">
+                        <span class="arrow"></span>
+                        <div class="arrow_img">
+                            <img src="/Content/ShouYe/0_admin_upload_1420791797782.jpg" height="73" width="73" />
+                        </div>
+                    </div>
+
+                </div>
+                <div class="follow_list follow_qq">
+                    <div class="qq_info">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="layout_main" class="mpc_cont">
+        <div class="wrap clearfix">
+            <!-- sideNav -->
+            <div class="mpc_cont_sideNav">
+                <dl style="margin-bottom:-15px;">
+                    <dt>
+                        <i class="my_iconfont sidenav_icon"></i>
+                        <span style="margin-left:-10px;font-size:20px;">我的交易</span>
+                    </dt>
+                    <dd style="margin-top:10px;">
+                        <a href="/Main/MyAccountIndex1">我的投标</a>
+                    </dd>
+                    <dd>
+                        <a href="/Main/LoanManageIndex">我的借款</a>
+                    </dd>
+                    <dd>
+                        <a href="/Main/GatheringIndex">我的收款</a>
+                    </dd>
+                </dl>
+                <dl style="margin-bottom:-10px;">
+                    <dt>
+                        <i class="my_iconfont sidenav_icon"></i>
+                        <span style="margin-left:-10px;font-size:20px;">基础资料</span>
+                    </dt>
+                    <dd style="margin-top:10px;">
+                        <a href="/Main/BaseIndex" class="llw">个人资料</a>
+                    </dd>
+                    <dd>
+                        <a href="/Main/PersonalIndex">填写资料</a>
+                    </dd>
+                    <dd>
+                        <a href="/Main/RegisterMember">注册会员</a>
+                    </dd>
+                    <dd>
+                        <a href="/Main/MemberDataIndex">会员资料</a>
+                    </dd>
+                    <dd>
+                        <a href="/Main/AttestationIndex">实名认证</a>
+                    </dd>
+                </dl>
+                <dl style="margin-bottom:-10px;">
+                    <dt>
+                        <i class="my_iconfont sidenav_icon"></i>
+                        <span style="margin-left:-10px;font-size:20px;">我的资产</span>
+                    </dt>
+                    <dd style="margin-top:10px;">
+                        <a href="/Main/AccountCentre">我的账户</a>
+                    </dd>
+                    <dd>
+                        <a href="/Main/LimitIndex">额度申请</a>
+                    </dd>
+                    <dd>
+                        <a href="/Main/CreditCardIndex">添加银行卡</a>
+                    </dd>
+                    <dd>
+                        <a href="/Main/CreditCardMessage">银行卡信息</a>
+                    </dd>
+                    <dd>
+                        <a href="/Main/RechargeIndex">充值</a>
+                    </dd>
+                </dl>
+                <dl style="margin-bottom:-10px;">
+                    <dt>
+                        <i class="my_iconfont sidenav_icon"></i>
+                        <span style="margin-left:-10px;font-size:20px;">我的服务</span>
+                    </dt>
+                    <dd style="margin-top:10px;">
+                        <a href="/Main/FollowIndex">我的关注</a>
+                    </dd>
+                    <dd>
+                        <a href="/Main/SpreadIndex">我的推广</a>
+                    </dd>
+                </dl>
+            </div>
+
+
+            <div id="layout_main" class="mpc_cont_main layout_w1200">
+                <!--宽屏class名为layout_w1200，窄屏请修改class为layout_w980_g18-->
+                <!-- 左侧菜单导航 -->
+                <!-- <div id="grid_4" class="grid_4"></div>-->
+                <!-- 右侧主体内容-S -->
+                <div class="row" style="margin-top:10px;width:1000px;margin-left:5px;">
+                    <ul class="nav nav-tabs" style="border:2px solid #e8e4e4;">
+                        <li class="active"><a href="#Rechange" data-toggle="tab" id="ChongZhi">充值</a></li>
+                        <li><a href="#RechangeRecord" data-toggle="tab">充值记录</a></li>
+                        <li><a href="#Cash" data-toggle="tab">提现</a></li>
+                        <li><a href="#CashRecord" data-toggle="tab">提现记录</a></li>
+                    </ul>
+                    <div class="tab-content" style="border:2px solid #e8e4e4;">
+                        <div class="tab-pane active" id="Rechange">
+                            <form class="form-horizontal" id="Infor" method="post" style="margin-top:30px;">
+                                <div class="form-group">
+                                    <label class="control-label col-md-2">充值方式</label>
+                                    <div class="col-md-3">
+                                        <select class="form-control" id="RechargeTypeName" name="RechargeTypeName"></select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-2">充值类型</label>
+                                    <div class="col-md-3">
+                                        <select class="form-control" id="PayTypeName" name="PayTypeName"></select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-2">充值金额</label>
+                                    <div class="col-md-3">
+                                        <input type="text" class="form-control" id="RechargeMoney" name="RechargeMoney">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-2">充值手续费</label>
+                                    <div class="col-md-3">
+                                        <input type="text" class="form-control" id="RechargePoundage" name="RechargePoundage" readonly="readonly">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-2">实际到账金额</label>
+                                    <div class="col-md-3">
+                                        <input type="text" class="form-control" id="RealityAccountMoney" name="RealityAccountMoney" readonly="readonly">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-2">目前账户可用余额</label>
+                                    <div class="col-md-3">
+                                        <input class="form-control" id="NowMoney" name="NowMoney" readonly="readonly">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-2">充值后账户可用余额</label>
+                                    <div class="col-md-3">
+                                        <input class="form-control" id="FinalMoney" name="FinalMoney" readonly="readonly">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-1"></label>
+                                    <div class="col-md-3">
+                                        <button type="button" class="btn btn-primary" style="margin-left:100px;" id="Submit">确认提交</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="tab-pane" id="RechangeRecord">
+                            <div class="col-md-11 col-sm-11 col-xs-11">
+                                <form class="form-horizontal" role="form" style="margin-top:20px;"> 
+                                    <div class="form-group">
+                                        <label class="col-md-2 col-sm-2 control-label reset">充值类型</label>
+                                        <div class="col-md-3 col-sm-3 reset">
+                                            <select class="form-control" name="PayTypeName" id="TPayTypeName"></select>
+                                        </div>
+                                        <label class="col-md-2 col-sm-2 control-label reset">充值方式</label>
+                                        <div class="col-md-3 col-sm-3 reset">
+                                            <select class="form-control" name="RechargeTypeName" id="TRechargeTypeName"></select>
+                                        </div>
+                                        <div class="col-md-1 col-sm-1 col-xs-1">
+                                            <button type="button" class="btn btn-primary" id="btnSelect">查询</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <table id="tabRechangeRecord">
+                                <thead>
+                                    <tr>
+                                        <th w_index="RechargeRecordID" w_hidden="true" width="5%">充值ID</th>
+                                        <th w_index="PayTypeID" w_hidden="true" width="10%">充值类型ID</th>
+                                        <th w_index="RechargeTypeID" w_hidden="true" width="10%">充值方式ID</th>
+                                        <th w_index="StatusID" w_hidden="true" width="5%">状态ID</th>
+                                        <th w_index="TradeNumber" width="12%">充值交易号</th>
+                                        <th w_index="PayTypeName" width="12%">充值类型</th>
+                                        <th w_index="RechargeTypeName" width="12%">充值方式</th>
+                                        <th w_index="RechargeMoney" width="12%">充值金额</th>
+                                        <th w_index="StartTime" width="12%">充值时间</th>
+                                        <th w_index="StatusName" width="10%">审核状态</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                        <div class="tab-pane" id="Cash">
+                            <form class="form-horizontal" id="CashInfor" method="post" style="margin-top:30px;">
+                                <div class="form-group">
+                                    <label class="control-label col-md-2">真实姓名</label>
+                                    <div class="col-md-3">
+                                        <input type="text" class="form-control" id="TrueName" name="TrueName" readonly="readonly">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-2">提现账号</label>
+                                    <div class="col-md-3">
+                                        <input type="text" class="form-control" id="CashAccountNumber" name="CashAccountNumber">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-2">提现总额</label>
+                                    <div class="col-md-3">
+
+                                        <input type="text" class="form-control" id="CashAmount" name="CashAmount">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-2">到账金额</label>
+                                    <div class="col-md-3">
+                                        <input type="text" class="form-control" id="AccountMoney" name="AccountMoney" readonly="readonly">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-2">手续费</label>
+                                    <div class="col-md-3">
+                                        <input type="text" class="form-control" id="Poundage" name="Poundage" readonly="readonly">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-2">提现类型</label>
+                                    <div class="col-md-3">
+                                        <select class="form-control" id="PayTypeID" name="PayTypeID"></select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-2">银行所在省份</label>
+                                    <div class="col-md-3">
+                                        <select class="form-control" id="ProID" name="ProID"></select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-2">银行所在城市</label>
+                                    <div class="col-md-3">
+                                        <select class="form-control" id="CityID" name="CityID"></select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-2">开户支行</label>
+                                    <div class="col-md-3">
+                                        <input class="form-control" id="Subbranch" name="Subbranch">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-1"></label>
+                                    <div class="col-md-3">
+                                        <button type="button" class="btn btn-primary" style="margin-left:100px;" id="CSubmit">确认提交</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="tab-pane" id="CashRecord">
+                            <div class="col-md-11 col-sm-11 col-xs-11">
+                                <form class="form-horizontal" role="form" style="margin-top:20px;">
+                                    <div class="form-group">
+                                        <label class="col-md-2 col-sm-2 control-label reset">提现类型</label>
+                                        <div class="col-md-3 col-sm-3 reset">
+                                            <select class="form-control" name="CPayTypeName" id="CPayTypeName"></select>
+                                        </div>
+                                        <div class="col-md-1 col-sm-1 col-xs-1">
+                                            <button type="button" class="btn btn-primary" id="CbtnSelect">查询</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <table id="tabCashRecord">
+                                <thead>
+                                    <tr>
+                                        <th w_index="UserCashID" w_hidden="true" width="5%">提现ID</th>
+                                        <th w_index="PayTypeID" w_hidden="true" width="10%">提现类型ID</th>
+                                        <th w_index="StatusID" w_hidden="true" width="5%">状态ID</th>
+                                        <th w_index="PayTypeName" width="12%">提现类型</th>
+                                        <th w_index="CashAccountNumber" width="12%">提现账号</th>
+                                        <th w_index="CashAmount" width="12%">提现总额</th>
+                                        <th w_index="AccountMoney" width="12%">到账金额</th>
+                                        <th w_index="Poundage" width="12%">手续费</th>
+                                        <th w_index="StartTime" width="12%">提现时间</th>
+                                        <th w_index="StatusName" width="10%">提现状态</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <!-- 右侧主体内容-E -->
+            </div>
+        </div>
+    </div>
+    <div class="ft_wrap">
+        <div id="globalBottomBrowseRelated" data-recordTracker="1"></div>
+
+        <div class="wrap ft_service_link clearfix">
+            <div id="bottomHelpLinkId" class="ft_help_list clearfix" data-tpa="YHD_GLOBAl_FOOTER_HELP">
+                <dl>
+                    <dt>新手入门</dt>
+                    <dd><a href="" target="_blank">购物流程</a></dd>
+                    <dd><a href="" target="_blank">会员制度</a></dd>
+                    <dd><a href="" target="_blank">订单查询</a></dd>
+
+                </dl>
+                <dl>
+                    <dt>支付方式</dt>
+                    <dd><a href="" target="_blank">货到付款</a></dd>
+                    <dd><a href="" target="_blank">网上支付</a></dd>
+                    <dd><a href="" target="_blank">银行转账</a></dd>
+                </dl>
+                <dl>
+                    <dt>配送服务</dt>
+                    <dd><a href="" target="_blank">配送进度查询</a></dd>
+                    <dd><a href="" target="_blank">商品验货与签收</a></dd>
+                    <dd><a href="" target="_blank">发票制度</a></dd>
+                </dl>
+                <dl>
+                    <dt>售后保障</dt>
+                    <dd><a href="" target="_blank">退换货政策</a></dd>
+                    <dd><a href="" target="_blank">联系客服</a></dd>
+                    <dd><a href="" target="_blank">发票制度</a></dd>
+                </dl>
+            </div>
+            <!--footer 二维码 begin -->
+            <div class="ft_code_wrap clearfix" data-tpa="YHD_GLOBAl_HEADER_MOBILE" id="footerQRcode">
+                <div class="ft_mobile_code clearfix">
+                    <p>APP更优惠</p>
+                    <img src="~/Content/myaccount/images/qryhd.png" alt="APP更优惠二维码" />
+                </div>
+                <div class="ft_mobile_code clearfix">
+                    <p>加微信查订单</p>
+                    <img src="~/Content/myaccount/images/qryhd.png" alt="加微信查订单二维码" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script src="/Content/ShouYe/jquery-1.8.2.min.js"></script>
+    <script src="/Content/ShouYe/diyou.js"></script>
+    <script src="/Content/ShouYe/base.js"></script>
+
+    <script src="~/Content/my1/jquery.min.js"></script>
+    <script src="~/Content/my1/leftmenu.js"></script>
+    <script src="~/Content/my1/order_list.js"></script>
+    <script src="~/Content/my1/synccookiepc.js"></script>
+
+    <script src="~/Content/bootstrap-3.3.7-dist/js/jquery-1.11.2.min.js"></script>
+    <script src="~/Content/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <script src="~/Content/jquery.bsgrid-1.37/merged/bsgrid.all.min.js"></script>
+    <script src="~/Content/jquery.bsgrid-1.37/js/lang/grid.zh-CN.min.js"></script>
+    <script src="~/Content/js/customfunction.js"></script>
+    <script src="~/Content/layer/layer.js"></script>@*对话框*@
+    <script type="text/javascript">
+
+        var tabRechangeRecord = 0;
+        var tabCashRecord = 0;
+        $(document).ready(function () {
+           // 充值方式下拉框
+            $.post("/Personal/Personal/RechargeType", function (data) {
+                selectLoadData("RechargeTypeName", data);
+            });
+            //充值记录中充值方式下拉框
+            $.post("/Personal/Personal/RechargeType", function (data) {
+                selectLoadData("TRechargeTypeName", data);
+            });
+            //充值类型下拉框
+            $.post("/Personal/Personal/PayType", function (data) {
+                selectLoadData("PayTypeName", data);
+            });
+            //充值记录中充值类型下拉框
+            $.post("/Personal/Personal/PayType", function (data) {
+                selectLoadData("TPayTypeName", data);
+            });
+
+           //绑定账户原有的金额
+            $.post("/Personal/Personal/SelectMoney", function (data) {
+                $("#NowMoney").val(data.PropertyAmounts);
+            });
+
+
+            //绑定充值tab
+            tabRechangeRecord = $.fn.bsgrid.init('tabRechangeRecord', {
+                url: '/Personal/Personal/SelectRechargeRcord',
+                autoLoad: true,
+                stripeRows: true,//隔行变色
+                rowHoverColor: true,//划过行变色
+                rowSelectedColor: true,//是否显示选中行背景色
+                pageSize: 10,//默认页面大小
+                pageSizeSelect: true,//是否选择分页页数下拉框
+                pagingLittleToolbar: true,//精简的图标按钮分页工具条
+                pagingToolbarAlign: "left",//分页工具条的显示位置
+            });
+            tabRechangeRecordSearch();
+
+
+
+            //绑定用户真实姓名
+            $.post("/Personal/Personal/SelectTrueName", function (data) {
+                $("#TrueName").val(data.TrueName);
+            });
+            //提现类型
+            $.post("/Personal/Personal/PayType", function (data) {
+                selectLoadData("PayTypeID", data);
+            });
+            //提现省份
+            $.post("/Personal/Personal/SelectCashProvince", function (data) {
+                selectLoadData("ProID", data);
+            });
+            //提现记录的类型下拉框
+            $.post("/Personal/Personal/PayType", function (data) {
+                selectLoadData("CPayTypeName", data);
+            });
+            //绑定提现记录tab
+            tabCashRecord = $.fn.bsgrid.init('tabCashRecord', {
+                url: '/Personal/Personal/SelectCashRecord',
+                autoLoad: true,
+                stripeRows: true,//隔行变色
+                rowHoverColor: true,//划过行变色
+                rowSelectedColor: true,//是否显示选中行背景色
+                pageSize: 10,//默认页面大小
+                pageSizeSelect: true,//是否选择分页页数下拉框
+                pagingLittleToolbar: true,//精简的图标按钮分页工具条
+                pagingToolbarAlign: "left",//分页工具条的显示位置
+            });
+            tabCashRecordSearch();
+        });
+        //充值记录多条件查询
+        function tabRechangeRecordSearch() {
+            var payTypeID = $("#TPayTypeName").val();
+            var rechargeTypeID = $("#TRechargeTypeName").val();
+            if (payTypeID == undefined || payTypeID == "") {
+                payTypeID = 0;
+            }
+            if (rechargeTypeID == undefined || rechargeTypeID == "")
+            {
+                rechargeTypeID = 0;
+            }
+            tabRechangeRecord.search("payTypeID=" + payTypeID + "&rechargeTypeID=" + rechargeTypeID);
+        }
+
+        //通过选择省份选择城市
+        $("#ProID").click(function () {
+            var proID = $("#ProID").val();
+            $.post("/Personal/Personal/SelectCashCity", { proID: proID }, function (data) {
+                selectLoadData("CityID", data);
+            });
+        });
+        //查询
+        $("#btnSelect").click(function () {
+            tabRechangeRecordSearch();
+        });
+        //实际到账的金额、充值后的账户可用余额的计算
+        $("#RechargeMoney").change(function () {
+            var RechargeMoney = $("#RechargeMoney").val();
+            var NowMoney = parseFloat($("#NowMoney").val());
+            var yy = RechargeMoney * 0.001;
+            var RechargePoundage = $("#RechargePoundage").val(yy);
+            var RealityAccountMoney = parseFloat($("#RealityAccountMoney").val(RechargeMoney - yy));
+            var realityAccountMoney =parseFloat($("#RealityAccountMoney").val());
+            if (NowMoney == NaN) {
+                $("#FinalMoney").val(NowMoney + realityAccountMoney);
+            }
+            else {
+                parseFloat($("#FinalMoney").val(NowMoney+realityAccountMoney));
+
+            }
+        });
+        //充值新增
+        $("#Submit").click(function () {
+            var fordata = $("#Infor").serializeArray();
+            $.post("/Personal/Personal/InsertRecharge", fordata, function (data) {
+                if (data == "success") {
+                    layer.alert("充值成功,等待审核", { icon: 1, title: '提示' }, function (layerIndex) {
+                        layer.close(layerIndex);
+                        location.reload();
+                    });
+                } else
+                {
+                    layer.alert("充值失败", { icon: 2, title: '提示' });
+                }
+            });
+        })
+
+
+        //计算提现到账金额
+        $("#CashAmount").change(function () {
+            var CashMoney = $("#CashAmount").val();
+            var CashPoundage = CashMoney * 0.001;
+            $("#Poundage").val(CashPoundage);
+            $("#AccountMoney").val(CashMoney - CashPoundage);
+        });
+
+        //提现多条件查询
+        function tabCashRecordSearch() {
+            var payTypeID = $("#CPayTypeName").val();
+            if (payTypeID == undefined || payTypeID == "")
+            {
+                payTypeID = 0;
+            }
+            tabCashRecord.search("payTypeID=" + payTypeID);
+        }
+
+        $("#CbtnSelect").click(function () {
+            tabCashRecordSearch();
+        });
+        //提现新增
+        $("#CSubmit").click(function () {
+            var fordata = $("#CashInfor").serializeArray();
+            $.post("/Personal/Personal/InsertCash", fordata, function (data) {
+                if (data == "success")
+                {
+                    layer.alert("提交成功,等待审核", { icon: 1, title: '提示' }, function (layerIndex) {
+                        layer.close(layerIndex);
+                        location.reload();
+                    });
+                } else if (data == "fail") {
+                    layer.alert("提现失败", { icon: 2, title: '提示' }, function (layerIndex) {
+                        layer.close(layerIndex);
+                        location.reload();
+                    });
+                } else if (data == "lose") {
+                    layer.alert("账号格式不正确", { icon: 0, title: '提示' }, function (layerIndex) {
+                        layer.close(layerIndex);
+                        $("#CashAccountNumber").val("");
+                    });
+                } else {
+                    layer.alert("账户余额不足", { icon:3, title: '提示' }, function (layerIndex) {
+                        layer.close(layerIndex);
+                        $("#CashAmount").val("");
+                        
+                    });
+                }
+            });
+        });
+
+        //重新加载Form表单文本框的内容
+        $("#ChongZhi").click(function () {
+            location.reload();
+        });
+
+    </script>
+</body>
+</html>
+

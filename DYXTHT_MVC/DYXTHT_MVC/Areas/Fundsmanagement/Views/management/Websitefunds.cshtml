@@ -1,0 +1,184 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/jquery.bsgrid-1.37/merged/bsgrid.all.min.css" rel="stylesheet" />
+    <link href="~/Content/jquery.bsgrid-1.37/css/skins/grid_bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/jquery.bsgrid-1.37/css/skins/grid_sky_blue.min.css" rel="stylesheet" />
+
+    <title>Websitefunds</title>
+    <style type="text/css">
+        .container {
+            width: 100%;
+            padding: 20px 40px 0 35px;
+            margin: 0;
+        }
+
+        .panel-heading span {
+            font-size: 18px;
+        }
+
+        .form-horizontal label {
+            font-weight: normal;
+        }
+
+        .reset {
+            padding-left: 5px;
+            padding-right: 5px;
+        }
+
+        .panel-body {
+            padding-left: 0;
+            background: #f4fcff;
+        }
+
+        td a {
+            color: blue !important;
+        }
+
+        th {
+            font-weight: normal;
+        }
+
+        .h4, td, th {
+            text-align: center;
+        }
+
+        .table tbody tr td {
+            padding: 4px;
+        }
+
+            .table tbody tr td button {
+                height: 24px;
+                padding: 2px 12px;
+            }
+
+        .modal-body {
+            background: #f4fcff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="panel panel-info">
+                <div class="panel-body" style="padding-left:15px;">                                                            
+                        <div class="row setPadding" style="background:#ffffff;">
+                            <label class="col-md-12">网站收支</label>
+                            <div class="col-lg-12 col-md-12 col-sm-12" style="margin-right:5px;margin-bottom:5px;" id="strselectid">
+                                <form class="form-horizontal" role="form">
+                                    <div class="form-group" style="margin-bottom:0;">
+                                        <label class="col-md-1 col-sm-1 control-label reset">用户名：</label>
+                                        <div class="col-md-1 col-sm-1 reset">
+                                            <input type="text" class="form-control" name="UserName" id="SNoticeName">
+                                        </div>
+                                        <label class="col-md-1 col-sm-1 control-label reset">类型：</label>
+                                        <div class="col-lg-2 col-md-2 col-sm-2 reset">
+                                            <select class="form-control" id="selectAcademe" name="academeId"></select>
+                                        </div>
+                                        <label class="col-md-1 col-sm-1 control-label reset">操作时间:</label>
+                                        <div class="col-md-2 col-sm-2 reset">
+                                            <input type="date" class="form-control" name="ReleaseTimeStr" id="SReleaseTime">
+                                        </div>
+                                        <span class="col-md-1" style="width:20px;">到</span>
+                                        <div class="col-md-2 col-sm-2 reset">
+                                            <input type="date" class="form-control" name="EneleaseTimeStr" id="EnReleaseTime">
+                                        </div>
+                                        
+                                        <button class="btn btn-primary" type="button" id="btnSelect"><span class="glyphicon glyphicon-search"></span> 查询</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                                <table id="wholewithdrawdeposit">
+                                    <tr>
+                                        <th w_num="total_line" width="5%">序号</th>
+                                        <th w_index="WebsiteExpensesID"  w_hidden="true">ID</th>
+                                        <th w_index="OperateTypeName" width="10%">类型</th>
+                                        <th w_index="User" width="10%">操作人</th>
+                                        <th w_index="strOperateMoney" width="10%">操作金额</th>
+                                        <th w_index="strEarning" width="10%">收入</th>
+                                        <th w_index="strExpenses" width="10%">支出</th>
+                                        <th w_index="Remark" width="30%">备注</th>
+                                        <th w_index="ReleaseTimeStr" width="15%">操作时间</th>                                 
+                                    </tr>
+                                </table>
+                                <div class="row" style="margin-left:6px;">
+                                    <label>总额：</label><span id="OperateMoney"></span>
+                                    <label>|总收入：</label><span id="Earning"></span>
+                                    <label>|总支出：</label><span id="Expenses"></span>                                  
+                                </div>                                                                                
+                </div>               
+            </div>
+        </div>
+    </div>
+
+    <script src="~/Content/bootstrap-3.3.7-dist/js/jquery-2.0.3.min.js"></script>
+    <script src="~/Content/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <script src="~/Content/jquery.bsgrid-1.37/merged/bsgrid.all.min.js"></script>
+    <script src="~/Content/jquery.bsgrid-1.37/js/lang/grid.zh-CN.min.js"></script>
+    <script src="~/Content/layer/layer.js"></script>
+    <script src="~/Content/jss/customfunction.js"></script>
+    <script>
+        var wholewithdrawdeposit;
+        var releaseTime = "1017-08-08 00:00:00.000";
+        var EnReleaseTime = "4017-08-08 00:00:00.000";
+        var noticeName = "";
+        $(document).ready(function () {
+            $.post("/Fundsmanagement/management/selectOPtype", function (jsonData) {
+                selectLoadData("selectAcademe", jsonData);
+            });
+           wholewithdrawdeposit = $.fn.bsgrid.init('wholewithdrawdeposit', {
+               url: '/Fundsmanagement/management/selectWebsitefunds',
+                autoLoad: true,//自动加载数据
+                stripeRows: true,//隔行变色
+                rowHoverColor: true,//划过行变色
+                rowSelectedColor: true,//是否显示选中行背景色
+                pageSize: 10,//默认页面大小
+                pageSizeSelect: true,//是否选择分页页数下拉框
+                pagingLittleToolbar: true,//精简的图标按钮分页工具条
+                pagingToolbarAlign: "left"//分页工具条的显示位置
+            });          
+           $.post("/Fundsmanagement/management/Websitefundscount", function (data) {
+                $("#OperateMoney").html(data.dfs);
+                $("#Earning").html(data.YY);
+                $("#Expenses").html(data.bb);
+           });
+           var academeId = $("#selectAcademe").val();
+           if (academeId == "" || academeId == undefined) {
+               academeId = 0;
+           }
+           wholewithdrawdeposit.search("noticeName=" + noticeName + "&releaseTime=" + releaseTime + "&EnReleaseTime=" + EnReleaseTime + "&academeId=" + academeId);
+
+           $("#strselectid").hide();
+           $.post("/LoginMain/MoKuaiQuanXianOpTypeSelect", function (Data) {
+               for (var i = 0; i < Data.length; i++) {
+                   if (Data[i].Name == "网站收支" && Data[i].Optype == "查询") {
+                       $("#strselectid").show();
+                   }
+               }
+           });
+        });
+
+        $("#btnSelect").click(function () {
+            noticeName = $("#SNoticeName").val();
+            releaseTime = $("#SReleaseTime").val() + " 00:00:00.000";
+            EnReleaseTime = $("#EnReleaseTime").val() + " 00:00:00.000";
+            //获取下拉框的值
+            var academeId = $("#selectAcademe").val();
+            if (academeId == "" || academeId == undefined) {
+                academeId = 0;
+            }
+            wholewithdrawdeposit.search("noticeName=" + noticeName + "&releaseTime=" + releaseTime + "&EnReleaseTime=" + EnReleaseTime + "&academeId=" + academeId);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,404 @@
+﻿
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+
+
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>帝友P2P借贷系统</title>
+    <style>
+        .row, .reset-row.col-lg-2.col-md-2.col-sm-2 {
+            padding-left: 30px;
+            padding-right: 0;
+        }
+
+        .row, .reset-row {
+            margin-top: 5px;
+        }
+
+        .one {
+            margin-left: 500px;
+            margin-top: 20px;
+        }
+    </style>
+    <link href="~/content/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="/Content/ShouYe/iconfont.css" rel="stylesheet" />
+    <link href="/Content/ShouYe/public.css" rel="stylesheet" />
+    <link href="/Content/ShouYe/style.css" rel="stylesheet" />
+    <link href="/Content/ShouYe/index.css" rel="stylesheet" />
+    <link href="/Content/ShouYe/user.css" rel="stylesheet" />
+    <link href="/Content/ShouYe/mall.css" rel="stylesheet" />
+
+    <link href="~/Content/my1/global_site_base.css" rel="stylesheet" type="text/css" />
+    @*<link href="//img.yihaodianimg.com/myyhd/global/css/global_site_base.css?0" rel="stylesheet" type="text/css" />*@
+    @*<link href="//img.yihaodianimg.com/myyhd/member/css/order_list.css?0" rel="stylesheet" type="text/css" />*@
+    <link href="~/Content/my1/order_list.css" rel="stylesheet" type="text/css" />
+
+    <link href="~/Content/my1/leftmenu.css" rel="stylesheet" />
+
+
+</head>
+<body>
+    <div class="header">
+        <div class="header_top">
+            <div class="conbox fn_cle">
+                <div class="contact fn_left">
+                    <i class="telico"></i>
+                    <span class="tel">服务热线：<em>400-836-3969 </em></span>                				<a href="http://www.diyou.cc/app/index.html" target="_blank">手机端下载</a>
+                </div>
+
+                <div class="top_rig fn_rig" id="yuanlaiID">
+                    <a href="/Main/ZhuCe" class="bor_none reg" id="zhuceID">免费注册</a>
+                    <a href="/Main/Login" class="login" id="Login">立即登录</a>
+                    <a href="" class="helpico">帮助中心</a>
+                    <a href="/Main/CounterIndex">利息计算器</a>
+                </div>
+
+                <div class="top_rig fn_rig" id="userviweID">
+                    <label id="userid" style="font-size:14px;">欢迎你：</label><label id="UserName" style="color:#e4b022;font-size:15px;font-weight:700;">@ViewBag.User</label><span>&nbsp;</span>
+                    <a href="" class="helpico">帮助中心</a>
+                    <a href="/Main/CounterIndex">利息计算器</a>
+                </div>
+            </div>
+        </div>
+        <div class="header_cont conbox fn_cle">
+            <h1 class="fn_left">
+                <a href="">
+                    <img src="~/Content/ShouYe/0_admin_upload_1425018268932.png" alt="帝友P2P借贷系统V4.0演示站" />
+                </a>
+            </h1>
+            <div class="navbar fn_left">
+
+                <ul>
+                    <li class="ui_nav_item ">
+                        <a href="/Main/Index">首页</a>
+                    </li>
+                    <li class="ui_nav_item ">
+                        <a href="/Loan/Loan/BorrowIndex">我要借款</a>
+                    </li>
+                    <li class="ui_nav_item ">
+                        <a href="/Invest/Invest/InvestIndex">我要投资</a>
+                    </li>
+                    <li class="ui_nav_item ">
+                        <a href="/Personal/Personal/BaseIndex">我的账户</a>
+                    </li>
+                    <li class="ui_nav_item ">
+                        <a href="/Main/AboutOurIndex">关于我们</a>
+                        <ul class="nav_dropdown">
+                            <li class="arrow"><span></span></li>
+                            <li><a href="/Main/CertificateIndex">证照资质</a></li>
+                        </ul>
+
+                    </li>
+                    <li class="ui_nav_item ">
+                        <a href="">新手帮助</a>
+                        <ul class="nav_dropdown">
+                            <li class="arrow"><span></span></li>
+                            <li><a href="">网站公告</a></li>
+                            <li><a href="">安全保障</a></li>
+                            <li><a href="">工作原理</a></li>
+                            <li><a href="">法律政策</a></li>
+                            <li><a href="">资费说明</a></li>
+                        </ul>
+
+                    </li>
+
+                </ul>
+            </div>
+            <div class="follow fn_rig">
+                <a href="" target="_blank"><div class="follow_list follow_sina "></div></a>
+                <div class="follow_list follow_wx">
+                    <div class="wx_ewm">
+                        <span class="arrow"></span>
+                        <div class="arrow_img">
+                            <img src="~/Content/ShouYe/0_admin_upload_1420791797782.jpg" height="73" width="73" />
+                        </div>
+                    </div>
+
+                </div>
+                <div class="follow_list follow_qq">
+                    <div class="qq_info">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="layout_main" class="mpc_cont">
+        <div class="wrap clearfix">
+            <!-- sideNav -->
+            <div class="mpc_cont_sideNav">
+                <dl style="margin-bottom:-15px;">
+                    <dt>
+                        <i class="my_iconfont sidenav_icon"></i>
+                        <span style="margin-left:-10px;font-size:20px;">我的交易</span>
+                    </dt>
+                    <dd style="margin-top:10px;">
+                        <a href="/Personal/Personal/MyAccountIndex1">我的投标</a>
+                    </dd>
+                    <dd>
+                        <a href="/Personal/Personal/LoanManageIndex">我的借款</a>
+                    </dd>
+                    <dd>
+                        <a href="/Personal/Personal/GatheringIndex">我的收款</a>
+                    </dd>
+                </dl>
+                <dl style="margin-bottom:-10px;">
+                    <dt>
+                        <i class="my_iconfont sidenav_icon"></i>
+                        <span style="margin-left:-10px;font-size:20px;">基础资料</span>
+                    </dt>
+                    <dd style="margin-top:10px;">
+                        <a href="/Personal/Personal/BaseIndex" class="llw">个人资料</a>
+                    </dd>
+                    <dd>
+                        <a href="/Personal/Personal/PersonalIndex">填写资料</a>
+                    </dd>
+                    <dd>
+                        <a href="/Personal/Personal/RegisterMember">注册会员</a>
+                    </dd>
+                    <dd>
+                        <a href="/Personal/Personal/MemberDataIndex">会员资料</a>
+                    </dd>
+                    <dd>
+                        <a href="/Personal/Personal/AttestationIndex">我的认证</a>
+                    </dd>
+                </dl>
+                <dl style="margin-bottom:-10px;">
+                    <dt>
+                        <i class="my_iconfont sidenav_icon"></i>
+                        <span style="margin-left:-10px;font-size:20px;">我的资产</span>
+                    </dt>
+                    <dd style="margin-top:10px;">
+                        <a href="/Personal/Personal/AccountCentre">我的账户</a>
+                    </dd>
+                    <dd>
+                        <a href="/Personal/Personal/LimitIndex">额度申请</a>
+                    </dd>
+                    <dd>
+                        <a href="/Personal/Personal/CreditCardIndex">添加银行卡</a>
+                    </dd>
+                    <dd>
+                        <a href="/Personal/Personal/CreditCardMessage">银行卡信息</a>
+                    </dd>
+                    <dd>
+                        <a href="/Personal/Personal/RechargeIndex">充值和提现</a>
+                    </dd>
+                </dl>
+                <dl style="margin-bottom:-10px;">
+                    <dt>
+                        <i class="my_iconfont sidenav_icon"></i>
+                        <span style="margin-left:-10px;font-size:20px;">我的服务</span>
+                    </dt>
+                    <dd style="margin-top:10px;">
+                        <a href="/Personal/Personal/FollowIndex">我的关注</a>
+                    </dd>
+                    <dd>
+                        <a href="/Personal/Personal/SpreadIndex">我的推广</a>
+                    </dd>
+                </dl>
+            </div>
+
+
+            <div id="layout_main" class="mpc_cont_main layout_w1200">
+                <!--宽屏class名为layout_w1200，窄屏请修改class为layout_w980_g18-->
+                <!-- 左侧菜单导航 -->
+                <!-- <div id="grid_4" class="grid_4"></div>-->
+                <!-- 右侧主体内容-S -->
+                <div class="panel panel-default">
+                    <div class="panel-heading">我要还款</div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <form class="form-horizontal" method="post" id="ReturnLoanForm">
+                                <input type="hidden" id="MLoanID" name="LoanID" class="hidden" />
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">借款用途</label>
+                                    <div class="col-md-3">
+                                        <input type="text" class="form-control" name="LoanPurpose" id="MLoanPurpose" readonly="readonly" />
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">借款金额</label>
+                                    <div class="col-md-3">
+                                        <input class="form-control" name="LoanMoney" id="MLoanMoney" readonly="readonly" />
+                                    </div>
+                                    <label class="control-label" style="margin-top:2px;">元</label>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">年利率</label>
+                                    <div class="col-md-3">
+                                        <input class="form-control" name="Rate" id="MRate" readonly="readonly" />
+                                    </div>
+                                    <label class="control-label" style="margin-top:2px;">%</label>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">还款期数</label>
+                                    <div class="col-md-3">
+                                        <input class="form-control" name="LoanPeriods" id="MLoanPeriods" readonly="readonly" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">应还金额</label>
+                                    <div class="col-md-3">
+                                        <input class="form-control" name="RepayPrincipal" id="MRepayPrincipal" readonly="readonly" />
+                                    </div>
+                                    <label class="control-label" style="margin-top:2px;">元</label>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">未还金额</label>
+                                    <div class="col-md-3">
+                                        <input class="form-control" name="ArrearagePrincipal" id="MArrearagePrincipal" readonly="readonly" />
+                                    </div>
+                                    <label class="control-label" style="margin-top:2px;">元</label>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">当期还款金额:</label>
+                                    <div class="col-md-3">
+                                        <input class="form-control" name="DArrearagePrincipal" id="DArrearagePrincipal" />
+                                    </div>
+                                    <label class="control-label" style="margin-top:2px;">元</label>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 col-md-offset-1 control-label no-padding-right" for="validCode">
+                                        验证码
+                                    </label>
+                                    <div class="col-sm-3">
+                                        <div class="input-group">
+                                            <input type="text" name="validCode" id="validCode" value="" class="form-control" />
+                                            <div class="input-group-addon" style="padding:0"><img src="/Main/ValideCode" id="ValidateCode" onclick="reloadValideImage()" /></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                            <button class="btn btn-primary" style="margin-left:250px;" id="HSubmit">确定</button>
+                            <button class="btn btn-primary" style="margin-left:50px;" id="Hreturn">返回</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 右侧主体内容-E -->
+            </div>
+        </div>
+    </div>
+    <div class="ft_wrap">
+        <div id="globalBottomBrowseRelated" data-recordTracker="1"></div>
+
+        <div class="wrap ft_service_link clearfix">
+            <div id="bottomHelpLinkId" class="ft_help_list clearfix" data-tpa="YHD_GLOBAl_FOOTER_HELP">
+                <dl>
+                    <dt>新手入门</dt>
+                    <dd><a href="" target="_blank">购物流程</a></dd>
+                    <dd><a href="" target="_blank">会员制度</a></dd>
+                    <dd><a href="" target="_blank">订单查询</a></dd>
+                    <dd><a href="" target="_blank">发票制度</a></dd>
+                </dl>
+                <dl>
+                    <dt>支付方式</dt>
+                    <dd><a href="" target="_blank">货到付款</a></dd>
+                    <dd><a href="" target="_blank">网上支付</a></dd>
+                    <dd><a href="" target="_blank">银行转账</a></dd>
+                    <dd><a href="" target="_blank">礼品卡支付</a></dd>
+                    <dd><a href="" target="_blank">其它支付</a></dd>
+                </dl>
+                <dl>
+                    <dt>配送服务</dt>
+                    <dd><a href="" target="_blank">配送进度查询</a></dd>
+                    <dd><a href="" target="_blank">商品验货与签收</a></dd>
+                </dl>
+                <dl>
+                    <dt>售后保障</dt>
+                    <dd><a href="" target="_blank">退换货政策</a></dd>
+                    <dd><a href="" target="_blank">联系客服</a></dd>
+                </dl>
+            </div>
+            <!--footer 二维码 begin -->
+            <div class="ft_code_wrap clearfix" data-tpa="YHD_GLOBAl_HEADER_MOBILE" id="footerQRcode">
+                <div class="ft_mobile_code clearfix">
+                    <p>APP更优惠</p>
+                    <img src="~/Content/myaccount/images/qryhd.png" alt="APP更优惠二维码" />
+                    @*<img src="//img.yihaodianimg.com/front-homepage/index/images/qryhd.png?1=1" alt="APP更优惠二维码" />*@
+                </div>
+                <div class="ft_mobile_code clearfix">
+                    <p>加微信查订单</p>
+                    <img src="~/Content/myaccount/images/qryhd.png" alt="加微信查订单二维码" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script src="/Content/ShouYe/jquery-1.8.2.min.js"></script>
+    <script src="/Content/ShouYe/diyou.js"></script>
+    <script src="/Content/ShouYe/base.js"></script>
+
+    <script src="~/Content/my1/jquery.min.js"></script>
+    <script src="~/Content/my1/leftmenu.js"></script>
+    <script src="~/Content/my1/order_list.js"></script>
+    <script src="~/Content/my1/synccookiepc.js"></script>
+    <script src="~/Content/layer/layer.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $.post("/Main/sesssinoselect", function (data) {
+                if (data == "success") {
+                    $("div").remove("#yuanlaiID");
+                }
+                else {
+                    $("div").remove("#userviweID");
+                }
+            });
+        });
+        //刷新验证码
+        function reloadValideImage() {
+            document.getElementById("ValidateCode").src = '/Main/ValideCode?ts=' + new Date().getTime();
+        };
+        //$("#HSubmit").click(function () {
+        //    layer.confirm("确定要还款", {
+        //        icon: 3,
+        //        btn: ['确定', '取消']
+        //    }, function (layerIndex) {
+        //        layer.close(layerIndex);
+        //        var date = $("#ReturnLoanForm").serializeArray();
+        //        $.post("/Personal/Personal/InsertRepayment", date, function (data) {
+        //            if (data == "success") {
+        //                alert("还款成功！");
+        //                location.reload();
+        //                window.location.href = "/Personal/Personal/LoanManageIndex";
+
+        //            } else if (data == "OneTime") {
+        //                alert("此次还款需一次还清！");
+        //                $("#DArrearagePrincipal").val("");
+        //            } else if (data == "NoMoney") {
+        //                alert("你的账户余额不足，不能还款");
+        //                $("#DArrearagePrincipal").val("");
+
+        //            } else if (data == "CodeFail") {
+        //                alert("验证码错误");
+        //                $("#validCode").val("");
+        //                reloadValideImage();
+        //            } else {
+        //                alert("还款失败");
+        //                layer.alert();
+        //            }
+        //        })
+        //    });
+        //})
+        //$("#Hreturn").click(function () {
+        //    $("#DArrearagePrincipal").val("");
+        //    $("#validCode").val("");
+        //    window.location.href = "/Personal/Personal/LoanManageIndex";
+        //});
+    </script>
+
+</body>
+</html>
+
+

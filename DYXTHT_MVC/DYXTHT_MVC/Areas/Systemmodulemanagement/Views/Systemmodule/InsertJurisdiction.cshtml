@@ -1,0 +1,243 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet" />
+    @*CSS样式(包含默认皮肤样式)*@
+    <link href="~/Content/jquery.bsgrid-1.37/merged/bsgrid.all.min.css" rel="stylesheet" />
+    @*CSS皮肤(需引用于bsgrid.all.min.css之后)*@
+    <link href="~/Content/jquery.bsgrid-1.37/css/skins/grid_blue.min.css" rel="stylesheet" />
+
+    <title>InsertJurisdiction</title>
+    <style type="text/css">
+        .container {
+            width: 98%;
+            padding-top: 4px;
+        }
+
+        .panel-heading {
+            font-size: 16px;
+        }
+
+        .table th {
+            font-weight: normal;
+            font-size: 16px;
+        }
+
+        .table td {
+            font-size: 15px;
+        }
+
+        .table th, .table td {
+            text-align: center;
+        }
+
+        .panel-body {          
+            padding: 0;
+            height: 440px;
+            overflow: auto;
+        }
+
+        .row td button {
+            padding: 4px 8px;
+            margin-right: 5px;
+        }
+
+        .row > button {
+            font-size: 16px;
+            padding: 6px 18px;
+        }
+
+        .plhead {
+            height: 40px;
+            line-height: 40px;
+            background:#D9EDF7;
+        }
+
+        .pltitle {
+            width: 25%;
+        }
+
+        .plrole {
+            width: 75%;
+        }
+
+        .pltitle, .plrole {
+            height: 100%;
+            color: #fff;
+            float: left;
+            font-size: 16px;
+            padding-left: 10px;
+        }
+
+        .plhead label {
+            font-weight: normal;
+        }
+
+        .plhead input {
+            height: 28px;
+            border-radius: 2px;
+            border: 1px solid #fff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="panel panel-info">
+                <div class="plhead">
+                    <div class="pltitle">
+                        <span>新增角色</span>
+                    </div>
+                    <div class="plrole">
+                        <div class="col-lg-2 col-md-2 col-sm-2 text-right">
+                            <label class="control-label">角色名称：</label>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-3 reset">
+                            <input type="text" class="form-control" id="Name" />
+                        </div>
+                        <div class="col-lg-2 col-md-2 col-sm-2 text-right">
+                            <label class="control-label">描述：</label>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-3 reset">
+                            <input type="text" class="form-control" id="Describe" />
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <table class="table table-bordered table-hover table-striped table-responsive" id="tbModular">
+                        <tr>
+                            <th>序号</th>
+                            <th>模块名称</th>
+                            <th>操作</th>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 col-sm-4 col-xs-4 pull-right">
+                <button class="btn btn-primary" id="save">保存</button>
+                <button class="btn btn-primary" id="reset">重置</button>
+                <button class="btn btn-danger" id="quit">返回</button>
+            </div>
+        </div>
+    </div>
+    <script src="~/Content/bootstrap-3.3.7-dist/js/jquery-2.0.3.min.js"></script>
+    <script src="~/Content/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <script src="~/Content/jquery.bsgrid-1.37/merged/bsgrid.all.min.js"></script>
+    <script src="~/Content/jquery.bsgrid-1.37/js/lang/grid.zh-CN.min.js"></script>
+    <script src="~/Content/layer/layer.js"></script>@*对话框*@
+    <script>
+        var MoKuaiMingXiiiD = new Array;//定义一个数组，用来装角色对应的模块明细id，即它的权限
+        var caozuoid;//操作ID
+        var geshu = 1;//个数
+        //窗体加载的时候查询模块信息，和模块对应的明细信息，并绑定到table里
+        $(function () {
+            $.getJSON("/Systemmodulemanagement/Systemmodule/SelectModular?time=" + (new Date()).getTime(), function (dataMoKuai) {
+                $.each(dataMoKuai, function (i) {
+                    //序号
+                    var xh = i + 1;
+                    caozuoid = "ca" + i;
+                    $("#tbModular").append(
+                    "<tr onmouseover=this.style.backgroundColor='#eeeeee'; onmouseout=this.style.backgroundColor='#fff';>"
+                    + "<td><span>" + xh + "</span></td>"
+                    + "<td><span>" + dataMoKuai[i].Name + "</span></td>"
+                    + "<td id=" + caozuoid + "></td></tr>");
+                    SelectMoKuaiMingXi(dataMoKuai[i].ModuleID, caozuoid);
+                });
+            });
+        });
+        //查询模块明细按钮
+        function SelectMoKuaiMingXi(ModuleID, caozuoid) {
+            $.ajax({
+                url: "/Systemmodulemanagement/Systemmodule/SelectModularDetail?ModuleID=" + encodeURI(ModuleID) + "&time=" + (new Date()).getTime(), //所需要的列表接口地址（控制器的方法）
+                async: false,
+                type: "get",//数据传输通道的类型
+                dataType: "json",//传输的数据的类型
+                success: function (data) {//直接理解为回调函数
+                    $.each(data, function (j) {
+                        //获取操作列
+                        $("#" + caozuoid).append(
+                            "<input type=button class='btn btn-primary btn-sm' id=" + data[j].ModularDetailID + " value=" + data[j].Optype
+                            + " onclick=DanJiLeiJi(" + data[j].ModularDetailID + ") />");
+                        geshu += 1;
+                    });
+                }
+            });
+
+        }
+
+        //累计新增的操作
+        function DanJiLeiJi(ID) {
+          
+            //判断当前点击的按钮是否是（蓝色）
+            if (document.getElementById(ID).className == "btn btn-primary btn-sm") {
+                document.getElementById(ID).className = "btn btn-warning btn-sm";
+                //push() 方法可向数组的末尾添加一个或多个元素，并返回新的长度。
+                /*
+                参数 描述
+                    newelement1 必需。要添加到数组的第一个元素。
+                    newelement2 可选。要添加到数组的第二个元素。
+                    newelementX 可选。可添加多个元素。*/
+                MoKuaiMingXiiiD.push(ID);//添加到数组中
+            } else {
+                document.getElementById(ID).className = "btn btn-primary btn-sm";
+                for (var i = 0; i < MoKuaiMingXiiiD.length; i++) {
+                    if (MoKuaiMingXiiiD[i] == ID) {
+                        /*  splice() 方法向/从数组中添加/删除项目，然后返回被删除的项目。
+                             参数 描述
+                              index   必需。整数，规定添加/删除项目的位置，使用负数可从数组结尾处规定位置。,
+                              howmany 必需。要删除的项目数量。如果设置为 0，则不会删除项目。,
+                              item1,.....,itemX 可选。向数组添加的新项目。 */
+                        MoKuaiMingXiiiD.splice(i, 1);
+                    }
+                }
+            }
+            //alert(MoKuaiMingXiiiD);
+            
+        }
+
+        //新增保存
+        $("#save").click(function () {
+            layer.confirm("确定保存？", {
+                icon: 3,
+                btn: ['确定', '取消']
+                //按钮
+            }, function (layerIndex) {
+                layer.close(layerIndex);//关闭提示框
+                var Name = document.getElementById("Name").value.trim();
+                var Describe = document.getElementById("Describe").value.trim();
+                //alert(Name + Describe + MoKuaiMingXiiiD);
+                @*函数encodeURI()该方法不会对 ASCII 字母和数字进行编码，也不会对这些 ASCII 标点符号进行编码： - _ . ! ~ * ' ( ) 。
+                该方法的目的是对 URI 进行完整的编码，因此对以下在 URI 中具有特殊含义的 ASCII 标点符号，encodeURI() 函数是不会进行转义的：;/?:@&=+$,#
+                如果 URI 组件中含有分隔符，比如 ? 和 #，则应当使用 encodeURIComponent() 方法分别对各组件进行编码。*@
+
+                $.getJSON("/Systemmodulemanagement/Systemmodule/InsertUserType?Name=" + encodeURI(Name) + "&Describe="
+                    + encodeURI(Describe) + "&MoKuaiMingXiiiD=" + MoKuaiMingXiiiD + "&time=" + (new Date()).getTime(), function (data) {
+                        if (data == "success") {
+                            document.location.href = "/Systemmodulemanagement/Systemmodule/Jurisdiction?time=" + (new Date()).getTime();
+                        }
+                    });
+            });
+        });
+        //返回
+        $("#quit").click(function () {
+            document.location.href = "/Systemmodulemanagement/Systemmodule/Jurisdiction?time=" + (new Date()).getTime();
+        });
+        //重置
+        $("#reset").click(function () {
+            MoKuaiMingXiiiD.splice(0, MoKuaiMingXiiiD.length);
+            location = location;
+        });
+
+    </script>
+</body>
+</html>

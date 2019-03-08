@@ -1,0 +1,480 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/jquery.bsgrid-1.37/merged/bsgrid.all.min.css" rel="stylesheet" />
+    <link href="~/Content/jquery.bsgrid-1.37/css/skins/grid_bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/jquery.bsgrid-1.37/css/skins/grid_sky_blue.min.css" rel="stylesheet" />
+
+    <title>Usertabulation</title>
+    <style type="text/css">
+        .container {
+            width: 100%;
+            padding: 20px 40px 0 35px;
+            margin: 0;
+        }
+
+        .panel-heading span {
+            font-size: 18px;
+        }
+
+        .form-horizontal label {
+            font-weight: normal;
+        }
+
+        .reset {
+            padding-left: 5px;
+            padding-right: 5px;
+        }
+
+        .panel-body {
+            padding-left: 0;
+            background: #f4fcff;
+        }
+
+        td a {
+            color: blue !important;
+        }
+
+        th {
+            font-weight: normal;
+        }
+
+        .h4, td, th {
+            text-align: center;
+        }
+
+        .table tbody tr td {
+            padding: 4px;
+        }
+
+            .table tbody tr td button {
+                height: 24px;
+                padding: 2px 12px;
+            }
+
+        .modal-body {
+            background: #f4fcff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="panel panel-info">
+                <div class="panel-body" style="padding-left:15px;">
+                    <div class="row setPadding" style="background:#ffffff;">
+                        <label class="col-md-1">用户信息</label>
+                        <div class="col-lg-11 col-md-11 col-sm-11" id="Userlogintimeid">
+                            <form class="form-horizontal" role="form">
+                                <div class="form-group" style="margin-bottom:0;">
+                                    <label class="col-md-9 col-sm-9 control-label reset">用户名：</label>
+                                    <div class="col-md-2 col-sm-2 reset">
+                                        <input type="text" class="form-control" name="UserName" id="UserNameID">
+                                    </div>
+                                    <button class="btn btn-primary" type="button" id="btnSelect"><span class="glyphicon glyphicon-search"></span>搜索</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <table id="Userlogintime">
+                        <tr>
+                            <th w_num="total_line" width="5%">序号</th>
+                            <th w_index="UserID" w_hidden="true">ID</th>
+                            <th w_index="UserName" width="10%">用户名</th>
+                            <th w_index="PostBox" width="10%">邮箱</th>
+                            <th w_index="Integral" width="10%">积分</th>
+                            <th w_index="UserTypeName" width="10%">用户类型</th>
+                            <th w_index="ReleaseTimeStr" width="10%">最后登录时间</th>
+                            <th w_index="ToVoidNo" w_render="basicViewButton" width="10%">基本信息</th>
+                            <th w_index="ToVoidNo" w_render="detailedViewButton" width="10%">详细信息</th>
+                            <th w_index="ToVoidNo" w_render="materialViewButton" width="10%">材料审核</th>
+                            <th w_index="ToVoidNo" w_render="fundViewButton" width="10%">资金详细</th>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            @*基本信息*@
+            <div class="modal fade bs-example-modal-sm" id="Selectmodal">
+                <div class="modal-dialog" style="width:700px;">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                            <h4 class="modal-title">用户基本信息</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <form class="form-horizontal" method="post" id="selectfrom">
+                                    <input name="UserID" hidden />
+                                    <div class="form-group form-group-lg">
+                                        <label class="col-sm-4 control-label">用户名：</label>
+                                        <div class="col-sm-4">
+                                            <input class="form-control" type="text" name="UserName" id="Usernameid" readonly="readonly">
+                                        </div>
+                                    </div>
+                                    <div class="form-group form-group-lg">
+                                        <label class="col-sm-4 control-label">真实姓名：</label>
+                                        <div class="col-sm-4">
+                                            <input class="form-control" type="text" name="TrueName" id="TrueNameid" readonly="readonly">
+                                        </div>
+                                    </div>
+                                    <div class="form-group form-group-lg">
+                                        <label class="col-md-4 col-sm-4 control-label">性别：</label>
+                                        <div class="col-sm-4">
+                                            <input class="form-control" type="text" id="Sexid" name="Sex" readonly="readonly">
+
+                                        </div>
+                                    </div>
+                                    <div class="form-group form-group-lg">
+                                        <label class="col-md-4 col-sm-4 control-label">出生日期：</label>
+                                        <div class="col-sm-4">
+                                            <input class="form-control" type="text" id="BornDatesid" name="BornDates" readonly="readonly">
+
+                                        </div>
+                                    </div>
+                                    <div class="form-group form-group-lg">
+                                        <label class="col-sm-4 control-label">籍贯：</label>
+                                        <div class="col-sm-4">
+                                            <input class="form-control" type="text" name="NativePlace" id="NativePlaceid" readonly="readonly">
+                                        </div>
+                                    </div>
+                                    <div class="form-group form-group-lg">
+                                        <label class="col-sm-4 control-label">身份证号：</label>
+                                        <div class="col-sm-4">
+                                            <input class="form-control" type="text" name="IDCardNo" id="IDCardNoID" readonly="readonly">
+                                        </div>
+                                    </div>
+                                    <div class="form-group form-group-lg">
+                                        <label class="col-sm-4 control-label">手机号码：</label>
+                                        <div class="col-sm-4">
+                                            <input class="form-control" type="text" name="PhoneNumber" id="PhoneNumberID" readonly="readonly">
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div>
+            @*详细信息*@
+            <div class="modal fade bs-example-modal-sm" id="Updatamodal">
+                <div class="modal-dialog" style="width:800px;">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                            <h4 class="modal-title">用户详细信息</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <form class="form-inline" id="Userfrom">
+                                    <input name="UserID" hidden />
+                                    <div class="form-group col-md-12">
+                                        <div class="form-group col-md-6">
+                                            <label class="col-md-4">用户名：</label>
+                                            <input type="text" class="form-control col-md-4" id="UpUserNameID" name="UserName" readonly="readonly">
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label class="col-md-4">用户类型：</label>
+                                            <input type="email" class="form-control" name="UserTypeName" id="UserTypeNameID" readonly="readonly">
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-12" style="margin-top:10px;">
+                                        <div class="form-group col-md-6">
+                                            <label class="col-md-4">真实姓名：</label>
+                                            <input type="text" class="form-control col-md-4" name="TrueName" id="TrueNameID">
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label class="col-md-4">性别：</label>
+                                            <input type="email" class="form-control" name="Sex" id="SexID">
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-12" style="margin-top:10px;">
+                                        <div class="form-group col-md-6">
+                                            <label class="col-md-4">出生日期：</label>
+                                            <input type="date" class="form-control" style="width:197px;" name="BornDates" id="BornDatesID">
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label class="col-md-4">身份证号：</label>
+                                            <input type="email" class="form-control" name="IDCardNo" id="IDCardNoID">
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-12" style="margin-top:10px;">
+                                        <div class="form-group col-md-6">
+                                            <label class="col-md-4">手机号：</label>
+                                            <input type="text" class="form-control col-md-4" name="PhoneNumber" id="PhoneNumberID">
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label class="col-md-4">籍贯：</label>
+                                            <input type="email" class="form-control" id="NativePlaceID" name="NativePlace">
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-12" style="margin-top:10px;">
+                                        <div class="form-group col-md-6">
+                                            <label class="col-md-4">邮箱：</label>
+                                            <input type="text" class="form-control col-md-4" name="PostBox" id="PostBoxID">
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label class="col-md-4">文化程度：</label>
+                                            <input type="email" class="form-control" id="EducationalBackgroundID" name="EducationalBackground">
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-12" style="margin-top:10px;">
+                                        <div class="form-group col-md-6">
+                                            <label class="col-md-4">婚姻状况：</label>
+                                            <input type="text" class="form-control col-md-4" id="MarriageStateID" name="MarriageState">
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label class="col-md-4">子女：</label>
+                                            <input type="email" class="form-control" id="IssueID" name="Issue">
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-12" style="margin-top:10px;">
+                                        <div class="form-group col-md-6">
+                                            <label class="col-md-4">社保：</label>
+                                            <input type="text" class="form-control col-md-4" id="SocialSecurityID" name="SocialSecurity">
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label class="col-md-4">住房条件：</label>
+                                            <input type="email" class="form-control" id="housingConditionID" name="housingCondition">
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-12" style="margin-top:10px;">
+                                        <div class="form-group col-md-6">
+                                            <label class="col-md-4">是否购车：</label>
+                                            <input type="text" class="form-control col-md-4" id="WhetherBuyCarID" name="WhetherBuyCar">
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label class="col-md-4">资产总额：</label>
+                                            <input type="email" class="form-control" id="PropertyAmountsID" name="PropertyAmounts" readonly="readonly">
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-12" style="margin-top:10px;">
+                                        <div class="form-group col-md-6">
+                                            <label class="col-md-4">可用金额：</label>
+                                            <input type="text" class="form-control col-md-4" id="UsableMoneyID" name="UsableMoney" readonly="readonly">
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label class="col-md-4">冻结金额：</label>
+                                            <input type="email" class="form-control" id="FreezeMoney" name="FreezeMoney" readonly="readonly">
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-12" style="margin-top:10px;">
+                                        <div class="form-group col-md-6">
+                                            <label class="col-md-4">待收金额：</label>
+                                            <input type="text" class="form-control col-md-4" id="WaitMoneyID" name="WaitMoney" readonly="readonly">
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label class="col-md-4">代还金额：</label>
+                                            <input type="email" class="form-control" id="CompensatoryMoneyID" name="CompensatoryMoney" readonly="readonly">
+                                        </div>
+                                    </div>
+                                    <button type="button" class="btn btn-info col-md-offset-5" style="margin-top:20px;" id="QueRenupdata">确认修改</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div>
+            @*材料审核*@
+            <div class="modal fade bs-example-modal-sm" id="Selectmaterialmodal">
+                <div class="modal-dialog" style="width:1000px;">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                            <h4 class="modal-title">用户材料信息</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <table id="tabMaterialAttestationType">
+                                    <tr>
+                                        <th w_index="MaterialAttestationID" width="5%">ID</th>
+                                        <th w_index="UserName" w_align="left" width="10%">用户</th>
+                                        <th w_index="ItemTypeName" width="10%">类型</th>
+                                        <th w_index="Viewlogo" w_render="PViewlogo" width="15%" id="UnimgPicture">缩略图</th>
+                                        <th w_index="Integral" width="10%">积分</th>
+                                        <th w_index="StatusName" width="10%">状态</th>
+                                        <th w_index="ReleaseTimeStr" width="10%">添加时间</th>
+                                        <th w_index="Remarks" width="15%">备注</th>
+                                        <th w_index="ReviewRemarks" width="15%">审核备注</th>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div>
+            @*资金详细*@
+            <div class="modal fade bs-example-modal-sm" id="Selectcapitalmodal">
+                <div class="modal-dialog" style="width:1000px;">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                            <h4 class="modal-title">用户资金详细信息</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <table id="tabFundtable">
+                                    <tr>
+                                        <th w_index="UserExpensesID" width="5%">ID</th>
+                                        <th w_index="UserName" width="8%">用户名称</th>
+                                        <th w_index="OperateTypeName" width="8%">类型</th>
+                                        <th w_index="OperateMoney" width="8%">操作金额</th>
+                                        <th w_index="PropertyAmounts" width="8%">余额</th>
+                                        <th w_index="Earning" width="8%">收入</th>
+                                        <th w_index="Expenses" width="8%">支出</th>
+                                        <th w_index="Remark" width="30%">备注</th>
+                                        <th w_index="ReleaseTimeStr" width="17%">操作时间</th>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div>
+        </div>
+    </div>
+
+    <script src="~/Content/bootstrap-3.3.7-dist/js/jquery-2.0.3.min.js"></script>
+    <script src="~/Content/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <script src="~/Content/jquery.bsgrid-1.37/merged/bsgrid.all.min.js"></script>
+    <script src="~/Content/jquery.bsgrid-1.37/js/lang/grid.zh-CN.min.js"></script>
+    <script src="~/Content/layer/layer.js"></script>
+    <script src="~/Content/jss/customfunction.js"></script>
+    <script>
+        var Userlogintime;
+        var tabMaterialAttestationType;
+        var tabFundtable;
+        $(document).ready(function () {
+            Userlogintime = $.fn.bsgrid.init('Userlogintime', {
+                url: '/UserManagement/Usermanagement/SelectUSerxinxi',
+                autoLoad: true,//自动加载数据
+                stripeRows: true,//隔行变色
+                rowHoverColor: true,//划过行变色
+                rowSelectedColor: true,//是否显示选中行背景色
+                pageSize: 10,//默认页面大小
+                pageSizeSelect: true,//是否选择分页页数下拉框
+                pagingLittleToolbar: true,//精简的图标按钮分页工具条
+           }); pagingToolbarAlign: "left"//分页工具条的显示位置
+            $("#Userlogintimeid").hide();
+            $.post("/LoginMain/MoKuaiQuanXianOpTypeSelect", function (Data) {
+                for (var i = 0; i < Data.length; i++) {
+                    if (Data[i].Name == "用户信息" && Data[i].Optype == "查询") {
+                        $("#Userlogintimeid").show();
+                       
+                    }
+                }
+            });
+        });
+
+
+        //自定义基本信息列
+        function basicViewButton(record, rowIndex, colIndex, options) {
+
+            return '<button type="button" class="btn btn-primary" onclick="openselect(' + record.UserID + ')">查看</button>'
+
+        }
+        //自定义详细信息列
+        function detailedViewButton(record, rowIndex, colIndex, options) {
+
+            return '<button type="button" class="btn btn-primary" onclick="openUpdata(' + record.UserID + ')">编辑</button>'
+
+        }
+        //自定义材料审核列
+        function materialViewButton(record, rowIndex, colIndex, options) {
+
+            return '<button type="button" class="btn btn-primary" onclick="openselectmatera(' + record.UserID + ')">查看</button>'
+
+        }
+        //自定义资金详细列
+        function fundViewButton(record, rowIndex, colIndex, options) {
+
+            return '<button type="button" class="btn btn-primary" onclick="openselectfund(' + record.UserID + ')">查看</button>'
+
+        }
+        //多条件查询
+        $("#btnSelect").click(function () {
+            var UserNameID = $("#UserNameID").val();
+            Userlogintime.search("UserNameID=" + UserNameID);
+        });
+       //基本信息绑定
+        function openselect(UserID) {
+            $.post("/UserManagement/Usermanagement/selectfrombiangding", { UserID: UserID }, function (data) {
+                loadDatatoForm("selectfrom", data);
+            });
+            $("#Selectmodal").modal("show");
+        }
+        //详细信息绑定
+        function openUpdata(UserID) {
+            $.post("/UserManagement/Usermanagement/selectfromUSerdetailed", { UserID: UserID }, function (data) {
+                loadDatatoForm("Updatamodal", data);
+            });
+            $("#Updatamodal").modal("show");
+        }
+        //详细信息保存
+        $("#QueRenupdata").click(function () {
+            if ($('#Userfrom [name="TrueName"]').val() != "" && $('#Userfrom [name="Sex"]').val() != "" && $('#Userfrom [name="BornDates"]').val() != "" && $('#Userfrom [name="IDCardNo"]').val() != "" && $('#Userfrom [name="PhoneNumber"]').val() != "" && $('#Userfrom [name="NativePlace"]').val() != "") {
+                var fromarray = $("#Userfrom").serializeArray();
+                $.post("/UserManagement/Usermanagement/UpdataUserdetailed", fromarray, function (data) {
+                    if (data == "success") {
+                        layer.alert('修改成功！', { icon: 1, title: '提示' });
+                        Userlogintime.refreshPage();
+                        $("#Updatamodal").modal("hide");//关闭 modal
+                    } else {
+                        layer.alert('修改失败！', { icon: 2, title: '提示' });
+                    }
+                });
+            }
+            else {
+                layer.alert('请填写完整！', { icon: 6, title: '提示' });
+            }
+        });
+        //材料审核绑定图片
+        function PViewlogo(record, rowIndex, colIndex, options) {
+            var MaterialAttestationID = tabMaterialAttestationType.getColumnValue(rowIndex, "MaterialAttestationID");
+            $("#UnimgPicture").attr("src", "/UserManagement/Usermanagement/GetPictureImage");
+            return '<img src="/UserManagement/Usermanagement/GetPictureImage?MaterialAttestationID=' + MaterialAttestationID + '" alt="" width="60" height="30" id="UnimgPicture" />';
+        }
+        //材料信息查看
+        function openselectmatera(UserID) {
+            $("#tabMaterialAttestationType_pt").empty();
+            tabMaterialAttestationType = $.fn.bsgrid.init('tabMaterialAttestationType', {
+                url: '/UserManagement/Usermanagement/SelectUSermaterial?UserID=' + UserID,
+                autoLoad: true,//自动加载数据
+                stripeRows: true,//隔行变色
+                rowHoverColor: true,//划过行变色
+                rowSelectedColor: true,//是否显示选中行背景色
+                pageSize: 10,//默认页面大小
+                pageSizeSelect: true,//是否选择分页页数下拉框
+                pagingLittleToolbar: true,//精简的图标按钮分页工具条
+                pagingToolbarAlign: "left"//分页工具条的显示位置
+            });
+            $(".bsgridPagingOutTab").css("min-width", "98%");
+            $("#Selectmaterialmodal").modal("show");
+        }
+        function openselectfund(UserID) {
+            $("#tabFundtable_pt").empty();
+            tabFundtable = $.fn.bsgrid.init('tabFundtable', {
+                url: '/UserManagement/Usermanagement/selectUserincomeexpenditure?UserID=' + UserID,
+                autoLoad: true,//自动加载数据
+                stripeRows: true,//隔行变色
+                rowHoverColor: true,//划过行变色
+                rowSelectedColor: true,//是否显示选中行背景色
+                pageSize: 10,//默认页面大小
+                pageSizeSelect: true,//是否选择分页页数下拉框
+                pagingLittleToolbar: true,//精简的图标按钮分页工具条
+                pagingToolbarAlign: "left"//分页工具条的显示位置
+            });
+            $(".bsgridPagingOutTab").css("min-width", "98%");
+            $("#Selectcapitalmodal").modal("show");
+        }
+    </script>
+</body>
+</html>

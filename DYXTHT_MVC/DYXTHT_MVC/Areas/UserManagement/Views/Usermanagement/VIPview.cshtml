@@ -1,0 +1,461 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/jquery.bsgrid-1.37/merged/bsgrid.all.min.css" rel="stylesheet" />
+    <link href="~/Content/jquery.bsgrid-1.37/css/skins/grid_bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/jquery.bsgrid-1.37/css/skins/grid_sky_blue.min.css" rel="stylesheet" />
+
+    <title>Rechargemanagement</title>
+    <style type="text/css">
+        .container {
+            width: 100%;
+            padding: 20px 40px 0 35px;
+            margin: 0;
+        }
+
+        .panel-heading span {
+            font-size: 18px;
+        }
+
+        .form-horizontal label {
+            font-weight: normal;
+        }
+
+        .reset {
+            padding-left: 5px;
+            padding-right: 5px;
+        }
+
+        .panel-body {
+            padding-left: 0;
+            background: #f4fcff;
+        }
+
+        td a {
+            color: blue !important;
+        }
+
+        th {
+            font-weight: normal;
+        }
+
+        .h4, td, th {
+            text-align: center;
+        }
+
+        .table tbody tr td {
+            padding: 4px;
+        }
+
+            .table tbody tr td button {
+                height: 24px;
+                padding: 2px 12px;
+            }
+
+        .modal-body {
+            background: #f4fcff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="containerid">
+        <div class="row">
+            <div class="panel panel-info">
+                <div class="panel-body" style="padding-left:15px;">
+                    <div class="tab" role="tabpanel">
+                        <ul id="myTab" class="nav nav-tabs">
+                            <li role="presentation" class="active"><a href="#bulletin" aria-controls="home" role="tab" data-toggle="tab">全部</a></li>
+                            <li role="presentation"><a href="#rule" role="tab" aria-controls="profile" data-toggle="tab" onclick="binreview()">待审核</a></li>
+                            <li role="presentation"><a href="#three" role="tab" aria-controls="messages" data-toggle="tab" onclick="rechargesuccessfully()">已审</a></li>
+                            <li role="presentation"><a href="#four" role="tab" data-toggle="tab" onclick="Rechargefailed()">审核失败</a></li>
+                        </ul>
+                        <div class="col-md-12" style="background-color:#ffffff;"><label>VIP会员列表</label></div>
+                        <div id="myTabContent" class="tab-content">
+                            <div class="tab-pane active" id="bulletin">
+                                <table id="tabRechargeall">
+                                    <tr>
+                                        <th w_num="total_line" width="5%">序号</th>
+                                        <th w_index="VIPUserID" w_hidden="true">ID</th>
+                                        <th w_index="UserName" width="11%">用户名</th>
+                                        <th w_index="UserTypeName" width="11%">客服名称</th>
+                                        <th w_index="VipDeadline" width="11%">VIP期限/月</th>
+                                        <th w_index="ReleaseTimeStr" width="11%">开始时间</th>
+                                        <th w_index="ENTimeStr" width="11%">结束时间</th>
+                                        <th w_index="StatusName" width="10%">状态</th>
+                                        <th w_index="WhetherPayment" width="10%">是否缴费/元</th>
+                                        <th w_index="ToVoidNo" w_render="crearViewButton" width="15%">操作</th>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div class="tab-pane" id="rule" style="visibility:hidden">
+                                <table id="tabinreview">
+                                    <tr>
+                                        <th w_num="total_line" width="5%">序号</th>
+                                        <th w_index="VIPUserID" w_hidden="true">ID</th>
+                                        <th w_index="UserName" width="11%">用户名</th>
+                                        <th w_index="UserTypeName" width="11%">客服名称</th>
+                                        <th w_index="VipDeadline" width="11%">VIP期限/月</th>
+                                        <th w_index="ReleaseTimeStr" width="11%">开始时间</th>
+                                        <th w_index="ENTimeStr" width="11%">结束时间</th>
+                                        <th w_index="StatusName" width="10%">状态</th>
+                                        <th w_index="WhetherPayment" width="10%">是否缴费/元/th>
+                                        <th w_index="ToVoidNo" w_render="chakanViewButton" width="15%">操作</th>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div class="tab-pane" id="three" style="visibility:hidden">
+                                <table id="tabRechargesuccessfully">
+                                    <tr>
+                                        <th w_num="total_line" width="5%">序号</th>
+                                        <th w_index="VIPUserID" w_hidden="true">ID</th>
+                                        <th w_index="UserName" width="11%">用户名</th>
+                                        <th w_index="UserTypeName" width="11%">客服名称</th>
+                                        <th w_index="VipDeadline" width="11%">VIP期限/月</th>
+                                        <th w_index="ReleaseTimeStr" width="11%">开始时间</th>
+                                        <th w_index="ENTimeStr" width="11%">结束时间</th>
+                                        <th w_index="StatusName" width="10%">状态</th>
+                                        <th w_index="WhetherPayment" width="10%">是否缴费/元</th>
+                                        <th w_index="ToVoidNo" w_render="selectViewButton" width="15%">操作</th>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div class="tab-pane" id="four" style="visibility:hidden">
+                                <table id="tabRechargefailed">
+                                    <tr>
+                                        <th w_num="total_line" width="5%">序号</th>
+                                        <th w_index="VIPUserID" w_hidden="true">ID</th>
+                                        <th w_index="UserName" width="11%">用户名</th>
+                                        <th w_index="UserTypeName" width="11%">客服名称</th>
+                                        <th w_index="VipDeadline" width="11%">VIP期限/月</th>
+                                        <th w_index="ReleaseTimeStr" width="11%">开始时间</th>
+                                        <th w_index="ENTimeStr" width="11%">结束时间</th>
+                                        <th w_index="StatusName" width="10%">状态</th>
+                                        <th w_index="WhetherPayment" width="10%">是否缴费/元</th>
+                                        <th w_index="ToVoidNo" w_render="selctButton" width="15%">操作</th>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @*审核*@
+                <div class="modal fade bs-example-modal-sm" id="modUpdatashenhe">
+                    <div class="modal-dialog" style="width:600px;">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                <h3 class="modal-title">VIP用户审核</h3>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row">
+                                    <form class="form-inline" method="post" id="Updatashenhe">
+                                        <input name="VIPUserID" hidden />
+                                        <input name="UserID" hidden />
+                                        <div class="col-md-12">
+                                            <label class="col-md-4">审核：</label>
+                                            <label>
+                                                <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1">
+                                                审核
+                                            </label>
+                                            <label>
+                                                <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+                                                审核通过
+                                            </label>
+                                            <label>
+                                                <input type="radio" name="optionsRadios" id="optionsRadios3" value="option3">
+                                                审核不通过
+                                            </label>
+                                        </div>
+                                        <div class="form-group col-md-12">
+                                            <label class="col-md-4">审核备注：</label>
+                                            <textarea class="form-control col-md-8" rows="5" name="ExamineRemarks" id="ExamineRemarksID" style="width:216px;"></textarea>
+                                        </div>
+                                        <div class="form-group col-md-12" style="margin-top:5px;">
+                                            <label for="validCode" class="col-sm-4 col-md-4 control-label">
+                                                验证码:
+                                            </label>
+                                            <div class="col-sm-8 col-md-8">
+                                                <input type="text" style="margin-left:-15px;width:130px;" class="form-control" name="validCode" id="validCode" value="" />
+                                                <span class="text" style="padding:0"><img src="/Fundsmanagement/management/validcode" id="ValidateCode" onclick="reloadValideImage()" /></span>
+                                            </div>
+                                        </div>
+                                        <button type="button" class="btn btn-info col-md-offset-5" id="updataShenhe" style="margin-top:30px;">确认审核</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal-dialog -->
+                </div>
+                @*查看*@
+                <div class="modal fade bs-example-modal-sm" id="selectmodal">
+                    <div class="modal-dialog" style="width:700px;">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                <h4 class="modal-title">查看VIP用户</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row">
+                                    <form class="form-horizontal" id="Slectfrom">
+                                        <input name="ItemTypeID" hidden />
+                                        <div class="form-group form-group-lg">
+                                            <label class="col-sm-5 control-label">用户名：</label>
+                                            <div class="col-sm-4">
+                                                <input class="form-control" type="text" name="UserName" disabled>
+                                            </div>
+                                        </div>
+                                        <div class="form-group form-group-lg">
+                                            <label class="col-sm-5 control-label">客服名称：</label>
+                                            <div class="col-sm-4">
+                                                <input class="form-control" type="text" name="UserTypeName" disabled>
+                                            </div>
+                                        </div>
+                                        <div class="form-group form-group-lg">
+                                            <label class="col-sm-5 control-label">VIP期限/月：</label>
+                                            <div class="col-sm-4">
+                                                <input class="form-control" type="text" name="VipDeadline" disabled>
+                                            </div>
+                                        </div>
+                                        <div class="form-group form-group-lg">
+                                            <label class="col-sm-5 control-label">开始时间：</label>
+                                            <div class="col-sm-4">
+                                                <input class="form-control" type="text" name="ReleaseTimeStr" disabled>
+                                            </div>
+
+                                        </div>
+                                        <div class="form-group form-group-lg">
+                                            <label class="col-sm-5 control-label">结束时间：</label>
+                                            <div class="col-sm-4">
+                                                <input class="form-control" type="text" name="ENTimeStr" disabled>
+                                            </div>
+                                        </div>
+                                        <div class="form-group form-group-lg">
+                                            <label class="col-sm-5 control-label">状态：</label>
+                                            <div class="col-sm-4">
+                                                <input class="form-control" type="text" name="StatusName" disabled>
+                                            </div>
+                                        </div>
+                                        <div class="form-group form-group-lg">
+                                            <label class="col-sm-5 control-label">是否缴费：</label>
+                                            <div class="col-sm-4">
+                                                <input class="form-control" type="text" name="WhetherPayment" disabled>
+                                            </div>
+                                        </div>
+                                        <div class="form-group form-group-lg">
+                                            <label class="col-sm-5 control-label">审核时间：</label>
+                                            <div class="col-sm-4">
+                                                <input class="form-control" type="text" name="ETimeStr" disabled>
+                                            </div>
+                                        </div>
+                                        <div class="form-group form-group-lg">
+                                            <label class="col-sm-5 control-label">审核备注：</label>
+                                            <div class="col-sm-6">
+                                                <textarea style="width:210px;" rows="3" name="ExamineRemarks" disabled></textarea>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal-dialog -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="~/Content/bootstrap-3.3.7-dist/js/jquery-2.0.3.min.js"></script>
+    <script src="~/Content/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <script src="~/Content/jquery.bsgrid-1.37/merged/bsgrid.all.min.js"></script>
+    <script src="~/Content/jquery.bsgrid-1.37/js/lang/grid.zh-CN.min.js"></script>
+    <script src="~/Content/layer/layer.js"></script>
+    <script src="~/Content/jss/customfunction.js"></script>
+    <script>
+        var tabRechargeall;
+        var tabinreview;
+        var tabRechargesuccessfully;
+        var tabRechargefailed;
+        function reloadValideImage() {
+            $("#ValidateCode").attr("src", "/LoginMain/validcode?ts=" + new Date().getTime());
+            // document.getElementById('ValidateCode').src = '/Main/validcode?ts=' + new Date().getTime();
+        }
+        $(document).ready(function () {
+            tabRechargeall = $.fn.bsgrid.init('tabRechargeall', {
+                url: '/UserManagement/Usermanagement/SelectVIPUSer',
+                autoLoad: true,//自动加载数据
+                stripeRows: true,//隔行变色
+                rowHoverColor: true,//划过行变色
+                rowSelectedColor: true,//是否显示选中行背景色
+                pageSize: 10,//默认页面大小
+                pageSizeSelect: true,//是否选择分页页数下拉框
+                pagingLittleToolbar: true,//精简的图标按钮分页工具条
+                pagingToolbarAlign: "left"//分页工具条的显示位置
+            });
+        });
+        //权限访问
+        $("#containerid").mouseenter(function () {
+            $.post("/LoginMain/MoKuaiQuanXianOpTypeSelect", function (Data) {
+                for (var i = 0; i < Data.length; i++) {                   
+                    if (Data[i].Name == "VIP管理" && Data[i].Optype == "审核")
+                    {
+                        $(".strShenHe").removeClass("hidden");
+
+                    }                   
+                }
+            });
+        });
+
+        function binreview() {
+            document.getElementById("rule").style.visibility = "visible"
+            if (tabinreview == null) {
+                tabinreview = $.fn.bsgrid.init('tabinreview', {
+                    url: '/UserManagement/Usermanagement/SelectVIPUSerbyDSH',
+                    autoLoad: true,//自动加载数据
+                    stripeRows: true,//隔行变色
+                    rowHoverColor: true,//划过行变色
+                    rowSelectedColor: true,//是否显示选中行背景色
+                    pageSize: 10,//默认页面大小
+                    pageSizeSelect: true,//是否选择分页页数下拉框
+                    pagingLittleToolbar: true,//精简的图标按钮分页工具条
+                    pagingToolbarAlign: "left"//分页工具条的显示位置
+                });
+            }
+            else {
+                tabinreview = tabinreview;
+            }
+            $(".bsgridPagingOutTab").css("min-width", "98%");
+        }
+        function rechargesuccessfully() {
+            document.getElementById("three").style.visibility = "visible"
+            if (tabRechargesuccessfully==null) {
+                tabRechargesuccessfully = $.fn.bsgrid.init('tabRechargesuccessfully', {
+                    url: '/UserManagement/Usermanagement/SelectVIPUSerbyYS',
+                    autoLoad: true,//自动加载数据
+                    stripeRows: true,//隔行变色
+                    rowHoverColor: true,//划过行变色
+                    rowSelectedColor: true,//是否显示选中行背景色
+                    pageSize: 10,//默认页面大小
+                    pageSizeSelect: true,//是否选择分页页数下拉框
+                    pagingLittleToolbar: true,//精简的图标按钮分页工具条
+                    pagingToolbarAlign: "left"//分页工具条的显示位置
+                });
+
+            }
+            else {
+                tabRechargesuccessfully = tabRechargesuccessfully;
+            }
+            $(".bsgridPagingOutTab").css("min-width", "98%");
+        }
+        function Rechargefailed() {
+            document.getElementById("four").style.visibility = "visible"
+            if (tabRechargefailed==null) {
+                tabRechargefailed = $.fn.bsgrid.init('tabRechargefailed', {
+                    url: '/UserManagement/Usermanagement/SelectVIPUSerbySHSB',
+                    autoLoad: true,//自动加载数据
+                    stripeRows: true,//隔行变色
+                    rowHoverColor: true,//划过行变色
+                    rowSelectedColor: true,//是否显示选中行背景色
+                    pageSize: 10,//默认页面大小
+                    pageSizeSelect: true,//是否选择分页页数下拉框
+                    pagingLittleToolbar: true,//精简的图标按钮分页工具条
+                    pagingToolbarAlign: "left"//分页工具条的显示位置
+                });
+            }
+            else {
+                tabRechargefailed = tabRechargefailed;
+            }
+            $(".bsgridPagingOutTab").css("min-width", "98%");
+        }
+
+         //自定义公告详情列
+        function crearViewButton(record, rowIndex, colIndex, options) {
+            var shenghe = tabRechargeall.getColumnValue(rowIndex, "StatusName");
+            if (shenghe=="待审核") {
+                return '<button type="button" class="strShenHe btn btn-danger hidden" onclick="openViewModal(' + record.VIPUserID + ')">审核</button>'
+            } else {
+                return '<button type="button" class="btn btn-primary" onclick="selectxinxi(' + record.VIPUserID + ')">查看</button>'
+            }
+        }
+        //自定义公告详情列
+        function chakanViewButton(record, rowIndex, colIndex, options) {
+            var shenghe = tabinreview.getColumnValue(rowIndex, "StatusName");
+            if (shenghe == "待审核") {
+                return '<button type="button" class="strShenHe btn btn-danger hidden" onclick="openViewModal(' + record.VIPUserID + ')">审核</button>'
+            } else {
+                return '<button type="button" class="btn btn-primary" onclick="selectxinxi(' + record.VIPUserID + ')">查看</button>'
+            }
+        }
+        //自定义公告详情列
+        function selectViewButton(record, rowIndex, colIndex, options) {
+            var shenghe = tabRechargesuccessfully.getColumnValue(rowIndex, "StatusName");
+            if (shenghe == "待审核") {
+                return '<button type="button" class="btn btn-danger" onclick="openViewModal(' + record.VIPUserID + ')">审核</button>'
+            } else {
+                return '<button type="button" class="btn btn-primary" onclick="selectxinxi(' + record.VIPUserID + ')">查看</button>'
+            }
+        }
+        //自定义公告详情列
+        function selctButton(record, rowIndex, colIndex, options) {
+            var shenghe = tabRechargefailed.getColumnValue(rowIndex, "StatusName");
+            if (shenghe == "待审核") {
+                return '<button type="button" class="btn btn-danger" onclick="openViewModal(' + record.VIPUserID + ')">审核</button>'
+            } else {
+                return '<button type="button" class="btn btn-primary" onclick="selectxinxi(' + record.VIPUserID + ')">查看</button>'
+            }
+        }
+        //审核
+        function openViewModal(VIPUserID) {
+            $.post("/UserManagement/Usermanagement/selectshenhe", { VIPUserID: VIPUserID }, function (data) {
+                loadDatatoForm("Updatashenhe", data);
+            });
+            $("#ValidateCode").attr("src", "/Fundsmanagement/management/validcode?ts=" + new Date().getTime());
+            $("#modUpdatashenhe").modal("show");
+        }
+
+        //查看
+        function selectxinxi(VIPUserID) {
+            $.post("/UserManagement/Usermanagement/selectVipuserxinxi", { VIPUserID: VIPUserID }, function (data) {
+                loadDatatoForm("Slectfrom", data);
+            });
+            $("#selectmodal").modal("show");
+        }
+        //审核保存
+        $("#updataShenhe").click(function () {
+            if ($("input[name='optionsRadios'][type='radio']:checked").val() != undefined && $('#Updatashenhe [name="ExamineRemarks"]').val().trim() != "") {
+                var formDate = $("#Updatashenhe").serializeArray();
+                $.post("/UserManagement/Usermanagement/updatashenheVIP", formDate, function (msg) {
+                    if (msg == "success") {
+                        layer.alert('审核成功', { icon: 6, title: '提示' });
+                        //关闭模态窗体
+                        $("#modUpdatashenhe").modal("hide");
+                        //刷新table
+                        tabRechargeall.refreshPage();
+                    }
+                    else if (msg == "ValidCodeErro") {
+                        layer.alert('验证码错误！', { icon: 5, title: '提示' });
+                        $("#validCode").val("");
+                    }
+                    else if (msg == "failmoney") {
+
+                        layer.alert('用户余额不足！', { icon: 5, title: '提示' });
+                    } else {
+                        layer.alert('审核失败！', { icon: 5, title: '提示' });
+                    }
+                });
+            }
+            else {
+                layer.alert('审核状态和备注不能为空！', { icon: 2, title: '提示' });
+            }
+        });
+
+    </script>
+</body>
+</html>

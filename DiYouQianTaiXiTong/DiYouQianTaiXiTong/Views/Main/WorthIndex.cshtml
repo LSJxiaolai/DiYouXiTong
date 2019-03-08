@@ -1,0 +1,295 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>帝友P2P借贷系统</title>
+    <link href="~/Content/ShouYe/iconfont.css" rel="stylesheet" />
+    <link href="~/Content/ShouYe/public.css" rel="stylesheet" />
+    <link href="~/Content/ShouYe/style.css" rel="stylesheet" />
+    <link href="~/Content/ShouYe/index.css" rel="stylesheet" />
+    <link href="~/Content/ShouYe/user.css" rel="stylesheet" />
+    <link href="~/Content/ShouYe/mall.css" rel="stylesheet" />
+
+    <script src="~/Content/ShouYe/jquery-1.8.2.min.js"></script>
+    <script src="~/Content/ShouYe/diyou.js"></script>
+    <script src="~/Content/ShouYe/base.js"></script>  
+
+    <link href="~/Content/bootstrap-3.3.7-dist/css/style.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/jquery.bsgrid-1.37/merged/bsgrid.all.min.css" rel="stylesheet" />
+    <link href="~/Content/jquery.bsgrid-1.37/css/skins/grid_bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="header">
+        <div class="header_top">
+            <div class="conbox fn_cle">
+                <div class="contact fn_left">
+                    <i class="telico"></i>
+                    <span class="tel">服务热线：<em>400-836-3969 </em></span>                				<a href="http://www.diyou.cc/app/index.html" target="_blank">手机端下载</a>
+                </div>
+                <div class="top_rig fn_rig">
+                    <ul>
+                        <li><a href="/Main/ZhuCe" class="bor_none reg">免费注册</a></li>
+                        <li><a href="/Mian/Login" class="login">立即登录</a></li>
+                        <li><a href="" class="helpico">帮助中心</a></li>
+                        <li><a href="/Main/CounterIndex">利息计算器</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="header_cont conbox fn_cle">
+            <h1 class="fn_left">
+                <a href="">
+                    <img src="~/Content/ShouYe/0_admin_upload_1425018268932.png" alt="" />
+                </a>
+            </h1>
+            <div class="navbar fn_left">
+
+                <ul>
+                    <li class="ui_nav_item ">
+                        <a href="/Main/Index">首页</a>
+
+
+                    </li>
+                    <li class="ui_nav_item ">
+                        <a href="/Main/BorrowIndex">我要借款</a>
+                    </li>
+                    <li class="ui_nav_item  now ">
+                        <a href="/Main/InvestIndex">我要投资</a>
+                    </li>
+                    <li class="ui_nav_item ">
+                        <a href="/Main/MyAccountIndex1">我的账户</a>
+                    </li>
+                    <li class="ui_nav_item ">
+                        <a href="">关于我们</a>
+                    </li>
+                    <li class="ui_nav_item ">
+                        <a href="">新手帮助</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="follow fn_rig">
+                <a href="" target="_blank"><div class="follow_list follow_sina "></div></a>
+                <div class="follow_list follow_wx">
+                    <div class="wx_ewm">
+                        <span class="arrow"></span>
+                        <div class="arrow_img">
+                            <img src="~/Content/ShouYe/0_admin_upload_1420791797782.jpg" height="73" width="73" />
+                        </div>
+                    </div>
+
+                </div>
+                <div class="follow_list follow_qq">
+                    <div class="qq_info">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container" style="margin-top:5px;">
+        <div class="panel panel-primary">
+            <div class="panel-heading">我的信用积分：通过上传真实信用认证资料，可提高你的信用等级和额度</div>
+            <div class="panel-body">
+                <div class="row">
+                    <form class="form-horizontal" method="post" id="InsertForm">
+                        <div class="form-group">
+                            <label class="control-label col-md-3">借款类型</label>
+                            <div class="col-md-3">
+                                <input class="form-control" name="TreetoptypeID" id="TreetoptypeID" readonly="readonly" value="净值标" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3">借款标题</label>
+                            <div class="col-md-3">
+                                <input class="form-control" name="LoanTitle" id="LoanTitle" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3">借款用途</label>
+                            <div class="col-md-3">
+                                <select class="form-control" name="LoanPurpose" id="LoanPurpose">
+                                    <option>进货</option>
+                                    <option>销售</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3">借款金额</label>
+                            <div class="col-md-3">
+                                <input class="form-control" name="LoanMoney" id="LoanMoney" />
+                            </div>
+                            <label class="control-label" style="margin-top:2px;">元(借款金额2000元--200000元)</label>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3">年利率</label>
+                            <div class="col-md-3">
+                                <input class="form-control" name="Rate" id="Rate" />
+                            </div>
+                            <label class="control-label" style="margin-top:2px;">%(利率精确到小数点后两位，范围8.00--30.00%之间)</label>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3">还款方式</label>
+                            <div class="col-md-3">
+                                <select class="form-control" name="RepaymentWayID" id="RepaymentWayID"></select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3">借款期限</label>
+                            <div class="col-md-3">
+                                <select class="form-control" name="LoanDeadlineID" id="XLoanDeadlineID"></select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3">筹标期限</label>
+                            <div class="col-md-3">
+                                <select class="form-control" name="ChouDeadline" id="XChouDeadline">
+                                    <option>1天</option>
+                                    <option>2天</option>
+                                    <option>3天</option>
+                                    <option>4天</option>
+                                    <option>5天</option>
+                                    <option>6天</option>
+                                    <option>7天</option>
+                                    <option>8天</option>
+                                    <option>9天</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3">最低投标金额</label>
+                            <div class="col-md-3">
+                                <select class="form-control" name="LowestTenderMoney" id="LowestTenderMoney">
+                                    <option>50</option>
+                                    <option>100</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3">最高投标金额</label>
+                            <div class="col-md-3">
+                                <select class="form-control" name="HighestTenderMoney" id="HighestTenderMoney">
+                                    <option>500</option>
+                                    <option>1000</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3">借款描述</label>
+                            <div class="col-md-3">
+                                <textarea class="form-control" name="LoanDescribe" id="LoanDescribe"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 col-md-offset-1 control-label no-padding-right" for="validCode">
+                                验证码
+                            </label>
+                            <div class="col-sm-3 col-md-3 col-lg-3 ">
+                                <div class="input-group">
+                                    <input type="text" name="validCode" id="validCode" value="" class="form-control" />
+                                    <div class="input-group-addon" style="padding:0"><img src="/Main/ValideCode" id="ValidateCode" onclick="reloadValideImage()" /></div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <button class="btn btn-primary" style="margin-left:300px;" id="Submit">提交</button>
+                    <button class="btn btn-primary" style="margin-left:30px;" id="Back">返回</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="~/Content/bootstrap-3.3.7-dist/js/jquery-1.11.2.min.js"></script>
+    <script src="~/Content/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <script src="~/Content/bootstrap-3.3.7-dist/js/bootstrap-table.js"></script>
+    <script src="~/Content/layer/layer.js"></script>@*对话框*@
+    <script src="~/Content/jquery.bsgrid-1.37/merged/bsgrid.all.min.js"></script>
+    <script src="~/Content/jquery.bsgrid-1.37/js/lang/grid.zh-CN.min.js"></script>
+    <script src="~/Content/js/customfunction.js"></script>
+    <script type="text/javascript">
+
+            $(document).ready(function () {
+
+                //还款方式
+                $.post("/Loan/Loan/RePaymentWay", function (data) {
+                    selectLoadData("RepaymentWayID", data);
+                });
+                //信用标借款期限
+                $.post("/Loan/Loan/SelectLoanDeadline", function (data) {
+                    selectLoadData("XLoanDeadlineID", data);
+                });
+
+            });
+
+        //借款金额的限制
+            $("#LoanMoney").change(function () {
+                var LoanMoney = $("#LoanMoney").val();
+
+                if (LoanMoney < 2000)
+                {
+                    layer.alert('你输入的金额不能低于2000!', { icon: 2, title: '提示' });
+                    $("#LoanMoney").val("");
+                }
+                if (LoanMoney > 200000)
+                {
+                    layer.alert('你输入的金额不能超过20万!', { icon: 2, title: '提示' });
+                    $("#LoanMoney").val("");
+                }
+            })
+
+        //年利率的限制
+            $("#Rate").change(function () {
+                var Rate = $("#Rate").val();
+                if (Rate < 8.00)
+                {
+                    layer.alert('年利率不在范围之内!', { icon: 0, title: '提示' });
+                    $("#Rate").val("");
+                }
+                if (Rate > 30.00)
+                {
+                     layer.alert('年利率不在范围之内!', { icon: 0, title: '提示' });
+                    $("#Rate").val("");
+                }
+            });
+
+            //提交信用标
+            $("#Submit").click(function () {
+                layer.confirm("确定要发布此标？", {
+                    icon: 3,
+                    btn: ['确定', '取消']
+                }, function (layerIndex) {
+                    layer.close(layerIndex);//关闭提示框
+                    var fordate = $("#InsertForm").serializeArray();
+                    $.post("/Loan/Loan/InsertJingTreeTop", fordate, function (data) {
+                        if (data == "success") {
+                            layer.alert("发布成功,等待审核！", { icon: 1, title: '提示' }, function (layerIndex) {
+                                window.location.href = "/Main/BorrowIndex";
+                            });
+                        } else if (data == "validCodefail")
+                        {
+                            layer.alert('验证码错误', { icon: 2, title: '提示' });
+                            $("#validCode").val("");
+                            reloadValideImage();
+                        } else if (data == "validCodefailNull") {
+                            layer.alert('验证码错误', { icon: 3, title: '提示' });
+                        } else {
+                            layer.alert('发布失败', { icon: 2, title: '提示' });
+                        }
+                    })
+                });
+            });
+            //验证码刷新方法
+            function reloadValideImage() {
+                document.getElementById("ValidateCode").src = '/Main/ValideCode?ts=' + new Date().getTime();
+            }
+            $("#Back").click(function () {
+                window.location.href = "/Main/BorrowIndex";
+            })
+    </script>
+</body>
+</html>

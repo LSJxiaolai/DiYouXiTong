@@ -1,0 +1,298 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/jquery.bsgrid-1.37/merged/bsgrid.all.min.css" rel="stylesheet" />
+    <link href="~/Content/jquery.bsgrid-1.37/css/skins/grid_bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/jquery.bsgrid-1.37/css/skins/grid_sky_blue.min.css" rel="stylesheet" />
+    <title>GunanLiUserTypeview</title>
+    <style type="text/css">
+        .container {
+            width: 100%;
+            padding: 20px 40px 0 35px;
+            margin: 0;
+        }
+
+        .panel-heading span {
+             font-size:15px;font-weight:700;
+        }
+
+        .reset {
+            padding-left: 5px;
+            padding-right: 5px;
+        }
+
+        .panel-body {
+            padding-left: 0;
+            background: #f4fcff;
+        }
+
+      
+
+        a, a:hover, a:active, a:visited, a:link {
+            color: white;
+            text-decoration: none;
+        }
+
+        td a {
+            color: blue !important;
+        }
+
+        .h4 {
+            margin: 0 0 4px 0;
+        }
+
+        th {
+            font-weight: normal;
+        }
+
+        .h4, td, th {
+            text-align: center;
+        }
+
+        .table tbody tr td {
+            padding: 4px;
+        }
+
+            .table tbody tr td button {
+                height: 24px;
+                padding: 2px 12px;
+            }
+
+        .titleInfor {
+            border: 1px ridge #e5dfdf;
+            background: #f4fcff;
+            /*width: 300px;*/
+            height: 500px;
+            float: left;
+        }
+
+        .Baseinfor {
+            float: left;
+            background: #f4fcff;
+            /*width: 1000px;
+            height: 650px;
+            margin-left: 15px;*/
+        }
+
+        .modal-body {
+            background: #f4fcff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="containerid">
+        <div class="row">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <div class="row">
+                        <span class="col-md-2">管理员信息</span>
+                    </div>
+                </div>
+                <div class="panel-body" style="padding-left:15px;">
+                    <div class="titleInfor col-sm-3 col-md-3 col-lg-3">
+                        <div class="col-md-12" style="background-color:white;font-size:15px;font-weight:700;"><span>查找用户</span></div>
+                        <form class="form-horizontal" method="post" id="insertnocittype">
+                            <div class="col-md-12" style="margin-top:20px;">
+                                <div class="form-group">
+                                    <label class="col-md-5 control-label">用户名：</label>
+                                    <div class="col-md-7">
+                                        <input type="text" class="form-control" id="SeUserName" name="UserName">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-5 control-label">用户ID：</label>
+                                    <div class="col-md-7">
+                                        <input type="text" class="form-control" id="SeUserNameID" name="UserName">
+                                    </div>
+                                </div>
+                                <button type="button" class="btn btn-info" style="margin-top:30px;margin-left:100px;" id="selectqueren">确认提交</button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="Baseinfor col-sm-9 col-md-9 col-lg-9">
+                        <div class="col-sm-12 col-md-12" style="background-color:white;">
+                            <div class="col-md-2"><span style="font-size:15px;font-weight:700;">管理员列表</span></div>
+                        </div>
+                        <table id="tabNoticeType">
+                            <tr>
+                                <th w_num="total_line" width="5%">序号</th>
+                                <th w_index="UserID" w_align="left" w_hidden="true">ID</th>
+                                <th w_index="UserName" width="20%">用户名</th>
+                                <th w_index="TrueName" width="10%">管理别名</th>
+                                <th w_index="UserTypeName" width="13%">管理类型</th>
+                                <th w_index="ToVoidNo" w_render="crearViewButton" width="25%">操作</th>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                @*修改*@
+                <div class="modal fade bs-example-modal-sm" id="Updatamodal">
+                    <div class="modal-dialog" style="width:700px;">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                <h4 class="modal-title">修改管理员</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row">
+                                    <form class="form-horizontal" id="Updatafrom">
+                                        <input name="UserID" hidden />
+                                        <div class="form-group form-group-lg">
+                                            <label class="col-sm-5 control-label">用户名：</label>
+                                            <div class="col-sm-4">
+                                                <input class="form-control" type="text" name="UserName" id="UserName">
+                                            </div>
+                                        </div>
+                                        <div class="form-group form-group-lg">
+                                            <label class="col-sm-5 control-label">管理别名：</label>
+                                            <div class="col-sm-4">
+                                                <input class="form-control" type="text" name="TrueName" id="TrueName">
+                                            </div>
+                                        </div>
+                                        <div class="form-group form-group-lg">
+                                            <label class="col-sm-5 control-label">管理类型：</label>
+                                            <div class="col-sm-4">
+                                                <select class="form-control" id="UserTypeID" name="UserTypeID"></select>
+                                            </div>
+                                        </div>
+                                        <button class="btn btn-info col-md-offset-5" type="button" id="QueRenupdata" style="margin-top:20px;">确认提交</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal-dialog -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="~/Content/bootstrap-3.3.7-dist/js/jquery-2.0.3.min.js"></script>
+    <script src="~/Content/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <script src="~/Content/jquery.bsgrid-1.37/merged/bsgrid.all.min.js"></script>
+    <script src="~/Content/jquery.bsgrid-1.37/js/lang/grid.zh-CN.min.js"></script>
+    <script src="~/Content/layer/layer.js"></script>
+    <script src="~/Content/jss/customfunction.js"></script>
+    <script>
+
+        var tabNoticeType;
+        $(document).ready(function () {
+            $.post("/Systemmodulemanagement/Systemmodule/SelctUsertype", function (jsonData) {
+                selectLoadData("UserTypeID", jsonData);
+            });
+            tabNoticeType = $.fn.bsgrid.init('tabNoticeType', {
+                url: '/Systemmodulemanagement/Systemmodule/SelectUsertype',
+                autoLoad: true,//自动加载数据
+                stripeRows: true,//隔行变色
+                rowHoverColor: true,//划过行变色
+                rowSelectedColor: true,//是否显示选中行背景色
+                pageSize: 10,//默认页面大小
+                pageSizeSelect: true,//是否选择分页页数下拉框
+                pagingLittleToolbar: true,//精简的图标按钮分页工具条
+                pagingToolbarAlign: "left"//分页工具条的显示位置
+            });
+            tabNoticeSearch();
+            $("#selectqueren").hide();
+        });
+
+        //权限访问
+        $("#containerid").mouseenter(function () {
+            $.post("/LoginMain/MoKuaiQuanXianOpTypeSelect", function (Data) {
+                for (var i = 0; i < Data.length; i++) {
+                    if (Data[i].Name == "管理员管理" && Data[i].Optype == "查询") {
+                        $("#selectqueren").show();
+                        
+                    }
+                    if (Data[i].Name == "管理员管理" && Data[i].Optype == "删除") {
+                        $(".strDelete").removeClass("hidden");
+                       
+                    }
+                    if (Data[i].Name == "管理员管理" && Data[i].Optype == "修改") {
+                        $(".strUpdata").removeClass("hidden");
+                        
+                    }
+                }
+            });
+        });
+
+        //自定义公告详情列
+        function crearViewButton(record, rowIndex, colIndex, options) {
+            return '<button type="button" style=display:compact; class="strUpdata btn-info hidden" onclick="Updata(' + record.UserID + ')">修改</button>'
+            + "&emsp;"
+            + '<button type="button" style=display:compact; class="strDelete btn-danger hidden" onclick="Delete(' + record.UserID + ')">删除</button>';
+        }
+
+        //多条件查询
+        function tabNoticeSearch() {
+            var SeUserName = $("#SeUserName").val();
+            var SeUserNameID = $("#SeUserNameID").val();
+            if (SeUserNameID == undefined || SeUserNameID == "") {
+                SeUserNameID = 0;
+            }
+            tabNoticeType.search("SeUserName=" + SeUserName + "&SeUserNameID=" + SeUserNameID);
+        }
+        $("#selectqueren").click(function () {
+            tabNoticeSearch();
+        });
+
+        //修改
+        function Updata(UserID) {
+            $.post("/Systemmodulemanagement/Systemmodule/UpdataUsertype", { UserID: UserID }, function (data) {
+                loadDatatoForm("Updatafrom", data);
+            });
+            $("#Updatamodal").modal("show");
+        }
+        //修改实名认证保存
+        $("#QueRenupdata").click(function () {
+            if ($('#Updatafrom [name="UserName"]').val().trim() != "" && $('#Updatafrom [name="TrueName"]').val().trim() != "")
+             {
+                var fromarray = $("#Updatafrom").serializeArray();
+                $.post("/Systemmodulemanagement/Systemmodule/UpdataUser", fromarray, function (data) {
+                    if (data == "success") {
+                        layer.alert('修改成功！', { icon: 1, title: '提示' });
+                        tabNoticeType.refreshPage();
+                        $("#Updatamodal").modal("hide");//关闭 modal
+                    } else if (data == "exist") {
+                        layer.alert('用户名已存在！', { icon: 5, title: '提示' });
+                    }
+                    else
+                    {
+                        layer.alert('修改失败！', { icon: 2, title: '提示' });
+                    }
+                });
+            }
+            else {
+                layer.alert('请填写完整！', { icon: 6, title: '提示' });
+            }
+        });
+      //删除类型
+        function Delete(UserID) {//通过主键删除角色
+            layer.confirm("确定删除？", {
+                icon: 3,
+                btn: ['确定', '取消']
+                //按钮
+            }, function (layerIndex) {
+                var layerIndex = layer.load(0);//显示 加载层
+                $.post("/Systemmodulemanagement/Systemmodule/Deleteuser", { UserID: UserID }, function (data) {
+                    if (data == "success") {
+                        layer.alert('删除成功！', { icon: 6, title: '提示' });
+                        tabNoticeType.refreshPage();
+                    } else {
+                        layer.alert('删除失败！', { icon: 5, title: '提示' });
+                    }
+                    layer.close(layerIndex);//关闭 加载层
+                });
+            });
+        };
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,405 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>帝友P2P借贷系统</title>
+    <link href="/Content/ShouYe/iconfont.css" rel="stylesheet" />
+    <link href="/Content/ShouYe/public.css" rel="stylesheet" />
+    <link href="/Content/ShouYe/style.css" rel="stylesheet" />
+    <link href="/Content/ShouYe/index.css" rel="stylesheet" />
+    <link href="/Content/ShouYe/user.css" rel="stylesheet" />
+    <link href="/Content/ShouYe/mall.css" rel="stylesheet" />
+
+    <link href="~/Content/my1/global_site_base.css" rel="stylesheet" type="text/css" />
+    @*<link href="//img.yihaodianimg.com/myyhd/global/css/global_site_base.css?0" rel="stylesheet" type="text/css" />*@
+    @*<link href="//img.yihaodianimg.com/myyhd/member/css/order_list.css?0" rel="stylesheet" type="text/css" />*@
+    <link href="~/Content/my1/order_list.css" rel="stylesheet" type="text/css" />
+
+    <link href="~/Content/my1/leftmenu.css" rel="stylesheet" />
+
+    <link href="~/content/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/jquery.bsgrid-1.37/merged/bsgrid.all.min.css" rel="stylesheet" />
+    <link href="~/Content/jquery.bsgrid-1.37/css/skins/grid_bootstrap.min.css" rel="stylesheet" />
+
+</head>
+<body>
+    <div class="header">
+        <div class="header_top">
+            <div class="conbox fn_cle">
+                <div class="contact fn_left">
+                    <i class="telico"></i>
+                    <span class="tel">服务热线：<em>400-836-3969 </em></span>                				<a href="http://www.diyou.cc/app/index.html" target="_blank">手机端下载</a>
+                </div>
+                <div class="top_rig fn_rig">
+                    <ul>
+                        <li><a href="/Main/ZhuCe" class="bor_none reg">免费注册</a></li>
+                        <li><a href="/Mian/Login" class="login">立即登录</a></li>
+                        <li><a href="" class="helpico">帮助中心</a></li>
+                        <li><a href="/Main/CounterIndex">利息计算器</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="header_cont conbox fn_cle">
+            <h1 class="fn_left">
+                <a href="">
+                    <img src="/Content/ShouYe/0_admin_upload_1407294921608.jpg" />
+                </a>
+            </h1>
+            <div class="navbar fn_left">
+
+                <ul>
+                    <li class="ui_nav_item ">
+                        <a href="/Main/Index">首页</a>
+                    </li>
+                    <li class="ui_nav_item ">
+                        <a href="/Main/BorrowIndex">我要借款</a>
+                    </li>
+                    <li class="ui_nav_item ">
+                        <a href="/Main/InvestIndex">我要投资</a>
+                    </li>
+                    <li class="ui_nav_item ">
+                        <a href="/Main/MyAccountIndex1">我的账户</a>
+                    </li>
+                    <li class="ui_nav_item ">
+                        <a href="/Main/AboutOurIndex">关于我们</a>
+                    </li>
+                    <li class="ui_nav_item ">
+                        <a href="">新手帮助</a>
+                        <ul class="nav_dropdown">
+                            <li class="arrow"><span></span></li>
+                            <li><a href="">网站公告</a></li>
+                            <li><a href="">安全保障</a></li>
+                            <li><a href="">工作原理</a></li>
+                            <li><a href="">法律政策</a></li>
+                            <li><a href="">资费说明</a></li>
+                        </ul>
+
+                    </li>
+
+                </ul>
+            </div>
+            <div class="follow fn_rig">
+                <a href="" target="_blank"><div class="follow_list follow_sina "></div></a>
+                <div class="follow_list follow_wx">
+                    <div class="wx_ewm">
+                        <span class="arrow"></span>
+                        <div class="arrow_img">
+                            <img src="/Content/ShouYe/0_admin_upload_1420791797782.jpg" height="73" width="73" />
+                        </div>
+                    </div>
+
+                </div>
+                <div class="follow_list follow_qq">
+                    <div class="qq_info">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="layout_main" class="mpc_cont">
+        <div class="wrap clearfix">
+            <!-- sideNav -->
+            <div class="mpc_cont_sideNav">
+                <dl style="margin-bottom:-15px;">
+                    <dt>
+                        <i class="my_iconfont sidenav_icon"></i>
+                        <span style="margin-left:-10px;font-size:20px;">我的交易</span>
+                    </dt>
+                    <dd style="margin-top:10px;">
+                        <a href="/Main/MyAccountIndex1">我的投标</a>
+                    </dd>
+                    <dd>
+                        <a href="/Main/LoanManageIndex">我的借款</a>
+                    </dd>
+                    <dd>
+                        <a href="/Main/GatheringIndex">我的收款</a>
+                    </dd>
+                </dl>
+                <dl style="margin-bottom:-10px;">
+                    <dt>
+                        <i class="my_iconfont sidenav_icon"></i>
+                        <span style="margin-left:-10px;font-size:20px;">基础资料</span>
+                    </dt>
+                    <dd style="margin-top:10px;">
+                        <a href="/Main/BaseIndex" class="llw">个人资料</a>
+                    </dd>
+                    <dd>
+                        <a href="/Main/PersonalIndex">填写资料</a>
+                    </dd>
+                    <dd>
+                        <a href="/Main/RegisterMember">注册会员</a>
+                    </dd>
+                    <dd>
+                        <a href="/Main/MemberDataIndex">会员资料</a>
+                    </dd>
+                    <dd>
+                        <a href="/Main/AttestationIndex">实名认证</a>
+                    </dd>
+                </dl>
+                <dl style="margin-bottom:-10px;">
+                    <dt>
+                        <i class="my_iconfont sidenav_icon"></i>
+                        <span style="margin-left:-10px;font-size:20px;">我的资产</span>
+                    </dt>
+                    <dd style="margin-top:10px;">
+                        <a href="/Main/AccountCentre">我的账户</a>
+                    </dd>
+                    <dd>
+                        <a href="/Main/LimitIndex">额度申请</a>
+                    </dd>
+                    <dd>
+                        <a href="/Main/CreditCardIndex">添加银行卡</a>
+                    </dd>
+                    <dd>
+                        <a href="/Main/CreditCardMessage">银行卡信息</a>
+                    </dd>
+                    <dd>
+                        <a href="/Main/RechargeIndex">充值</a>
+                    </dd>
+                </dl>
+                <dl style="margin-bottom:-10px;">
+                    <dt>
+                        <i class="my_iconfont sidenav_icon"></i>
+                        <span style="margin-left:-10px;font-size:20px;">我的服务</span>
+                    </dt>
+                    <dd style="margin-top:10px;">
+                        <a href="/Main/FollowIndex">我的关注</a>
+                    </dd>
+                    <dd>
+                        <a href="/Main/SpreadIndex">我的推广</a>
+                    </dd>
+                </dl>
+            </div>
+
+
+            <div id="layout_main" class="mpc_cont_main layout_w1200">
+                <!--宽屏class名为layout_w1200，窄屏请修改class为layout_w980_g18-->
+                <!-- 左侧菜单导航 -->
+                <!-- <div id="grid_4" class="grid_4"></div>-->
+                <!-- 右侧主体内容-S -->
+                <div class="row" style="margin-top:20px; width:1000px;margin-left:5px;">
+                    <ul class="nav nav-tabs" style="border:1px solid #808080;">
+                        <li class="active"><a href="#NeedSpread" data-toggle="tab">我要推广</a></li>
+                        <li><a href="#MySpread" data-toggle="tab">我的推广</a></li>
+                        <li><a href="#SpreadRecord" data-toggle="tab">推广记录</a></li>
+                    </ul>
+                    <div class="tab-content" style="border:solid 1px #808080;">
+                        <div class="tab-pane active" id="NeedSpread">
+                            <form class="form-horizontal" id="Infor" method="post"  style="margin-top:30px;">
+                                <div class="form-group">
+                                    <label class="control-label col-md-2">推广用户</label>
+                                    <div class="col-md-3">
+                                        <select class="form-control" id="UserName" name="UserName"></select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-2">推广类型</label>
+                                    <div class="col-md-3">
+                                        <select class="form-control" id="Name" name="Name"></select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-2">邀请链接</label>
+                                    <div class="col-md-3">
+                                        <textarea class="form-control" id="Remark" name="Remark"></textarea>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-1"></label>
+                                    <div class="col-md-3">
+                                        <button type="button" class="btn btn-primary" id="Submit" style="margin-left:150px;">确认推广</button>
+                                    </div>
+                                </div>
+
+                            </form>
+                        </div>
+                        <div class="tab-pane" id="MySpread">
+                            <table id="tabMySpread" style="margin-top:30px;">
+                                <thead>
+                                    <tr>
+                                        <th w_index="PersonalSpreadID" w_hidden="true" width="10%">推广用户ID</th>
+                                        <th w_index="SpreadUserID" w_hidden="true" width="10%">PersonalSpreadID</th>
+                                        <th w_index="UserName" width="12%">用户名</th>
+                                        <th w_index="InvestAmount" width="12%">投资总额</th>
+                                        <th w_index="RepaymentAmount" width="12%">还款总额</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                        <div class="tab-pane" id="SpreadRecord">
+                            <div class="col-md-11 col-sm-11 col-xs-11">
+                                <form class="form-horizontal" role="form">
+                                    <div class="form-group">
+                                        <label class="col-md-2 col-sm-2 control-label reset">用户名：</label>
+                                        <div class="col-md-2 col-sm-2 reset">
+                                            <input type="text" class="form-control" name="UserName" id="RUserName">
+                                        </div>
+                                        <div class="col-md-1 col-sm-1">
+                                            <button type="button" class="btn btn-primary" id="btnSelect" style="margin-left:30px;">查询</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <table id="tabSpreadRecord" style="margin-top:30px;">
+                                <thead>
+                                    <tr>
+                                        <th w_index="SpreadUserID" w_hidden="true" width="10%">推广用户ID</th>
+                                        <th w_index="SpreadRenID" w_hidden="true" width="10%">用户ID</th>
+                                        <th w_index="SpreadTypeID" w_hidden="true" width="10%">资金类型ID</th>
+                                        <th w_num="total_line" width="8%">序号</th>
+                                        <th w_index="UserName" width="12%">用户名</th>
+                                        <th w_index="Name" width="12%">资金类型</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <!-- 右侧主体内容-E -->
+            </div>
+        </div>
+    </div>
+    <div class="ft_wrap">
+        <div id="globalBottomBrowseRelated" data-recordTracker="1"></div>
+
+        <div class="wrap ft_service_link clearfix">
+            <div id="bottomHelpLinkId" class="ft_help_list clearfix" data-tpa="YHD_GLOBAl_FOOTER_HELP">
+                <dl>
+                    <dt>新手入门</dt>
+                    <dd><a href="" target="_blank">购物流程</a></dd>
+                    <dd><a href="" target="_blank">会员制度</a></dd>
+                    <dd><a href="" target="_blank">订单查询</a></dd>
+
+                </dl>
+                <dl>
+                    <dt>支付方式</dt>
+                    <dd><a href="" target="_blank">货到付款</a></dd>
+                    <dd><a href="" target="_blank">网上支付</a></dd>
+                    <dd><a href="" target="_blank">银行转账</a></dd>
+                </dl>
+                <dl>
+                    <dt>配送服务</dt>
+                    <dd><a href="" target="_blank">配送进度查询</a></dd>
+                    <dd><a href="" target="_blank">商品验货与签收</a></dd>
+                    <dd><a href="" target="_blank">发票制度</a></dd>
+                </dl>
+                <dl>
+                    <dt>售后保障</dt>
+                    <dd><a href="" target="_blank">退换货政策</a></dd>
+                    <dd><a href="" target="_blank">联系客服</a></dd>
+                    <dd><a href="" target="_blank">发票制度</a></dd>
+                </dl>
+            </div>
+            <!--footer 二维码 begin -->
+            <div class="ft_code_wrap clearfix" data-tpa="YHD_GLOBAl_HEADER_MOBILE" id="footerQRcode">
+                <div class="ft_mobile_code clearfix">
+                    <p>APP更优惠</p>
+                    <img src="~/Content/myaccount/images/qryhd.png" alt="APP更优惠二维码" />
+                </div>
+                <div class="ft_mobile_code clearfix">
+                    <p>加微信查订单</p>
+                    <img src="~/Content/myaccount/images/qryhd.png" alt="加微信查订单二维码" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script src="/Content/ShouYe/jquery-1.8.2.min.js"></script>
+    <script src="/Content/ShouYe/diyou.js"></script>
+    <script src="/Content/ShouYe/base.js"></script>
+
+    <script src="~/Content/my1/jquery.min.js"></script>
+    <script src="~/Content/my1/leftmenu.js"></script>
+    <script src="~/Content/my1/order_list.js"></script>
+    <script src="~/Content/my1/synccookiepc.js"></script>
+
+    <script src="~/Content/bootstrap-3.3.7-dist/js/jquery-1.11.2.min.js"></script>
+    <script src="~/Content/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <script src="~/Content/jquery.bsgrid-1.37/merged/bsgrid.all.min.js"></script>
+    <script src="~/Content/jquery.bsgrid-1.37/js/lang/grid.zh-CN.min.js"></script>
+    <script src="~/Content/js/customfunction.js"></script>
+    <script src="~/Content/layer/layer.js"></script>@*对话框*@
+    <script type="text/javascript">
+
+        var tabMySpread
+        var tabSpreadRecord;
+        //申请类型下拉框
+        $(document).ready(function () {
+            $.post("/Personal/Personal/Selectuser", function (data) {
+                selectLoadData("UserName", data);
+            });
+
+            $.post("/Personal/Personal/SelectSpreadLeiXing", function (data) {
+                selectLoadData("Name", data);
+            });
+            tabMySpread = $.fn.bsgrid.init('tabMySpread', {
+                url: '/Personal/Personal/SelectSpread',
+                autoLoad: true,
+                stripeRows: true,//隔行变色
+                rowHoverColor: true,//划过行变色
+                rowSelectedColor: true,//是否显示选中行背景色
+                pageSize: 10,//默认页面大小
+                pageSizeSelect: true,//是否选择分页页数下拉框
+                pagingLittleToolbar: true,//精简的图标按钮分页工具条
+                pagingToolbarAlign: "left",//分页工具条的显示位置
+            });
+            tabSpreadRecord = $.fn.bsgrid.init('tabSpreadRecord', {
+                url: '/Personal/Personal/SelectSpreadRecord',
+                autoLoad: true,
+                stripeRows: true,//隔行变色
+                rowHoverColor: true,//划过行变色
+                rowSelectedColor: true,//是否显示选中行背景色
+                pageSize: 10,//默认页面大小
+                pageSizeSelect: true,//是否选择分页页数下拉框
+                pagingLittleToolbar: true,//精简的图标按钮分页工具条
+                pagingToolbarAlign: "left",//分页工具条的显示位置
+            });
+            tabSpreadRecordSearch();
+        });
+        //多条件查询
+        function tabSpreadRecordSearch() {
+            var username = $("#RUserName").val();
+            tabSpreadRecord.search("username=" + username);
+        };
+
+        $("#btnSelect").click(function () {
+            tabSpreadRecordSearch();
+        });
+
+        //新增申请
+        $("#Submit").click(function () {
+            var fordate = $("#Infor").serializeArray();
+            $.post("/Personal/Personal/InsertSpread", fordate, function (data) {
+                if (data == "success") {
+                    layer.alert("推广成功!等待用户链接", { icon: 1, title: '提示' }, function (layerIndex) {
+                        layer.close(layerIndex);
+                        location.reload();
+                    });
+                } else if (data == "AlreadySpread")
+                {
+                    layer.alert("该用户已成为你的推广人", { icon: 1, title: '提示' }, function (layerIndex) {
+                        layer.close(layerIndex);
+                        location.reload();
+                    });
+                }
+                else {
+                    layer.msg("推广失败！");
+                }
+            });
+        });
+
+    </script>
+</body>
+</html>
+

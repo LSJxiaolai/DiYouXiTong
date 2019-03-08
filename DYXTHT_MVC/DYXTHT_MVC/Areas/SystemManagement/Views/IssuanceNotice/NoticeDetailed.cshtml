@@ -1,0 +1,94 @@
+﻿@{
+    Layout = null;
+}
+@using DYXTHT_MVC.Vo;;
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet" />
+    <script src="~/Content/bootstrap-3.3.7-dist/js/jquery-2.0.3.min.js"></script>
+    <script src="~/Content/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <title>公告详细页</title>
+    <link href="~/Content/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet" />
+    <style type="text/css"> 
+        .panel-body, .panel-body hr {
+            padding: 0;
+            border-bottom: 3px solid red;
+        }
+
+            .panel-body p {
+                margin-bottom: 5px;
+            }
+
+                .panel-body p span {
+                 font-size:15px;font-weight:700;
+                }
+
+        hr {
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+
+        .next {
+            padding: 30px 15px 0 15px;
+            font-size: 16px;
+        }
+          .titleInfor{
+            border: 5px ridge #e9d357;
+            background:#f6eeee;        
+            border-radius: 4px;          
+            height:160px;
+             font-size: 24px;
+            text-align: center;
+            color: #337ab7;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row col-md-offset-5">
+            <img style="height:80px;" src="~/Content/images/yyk.jpg" />          
+        </div>
+
+        @{
+
+            <div class="row">
+                <div class="panel">
+                    @{
+                        NoticeVo notice = ViewBag.notice;
+                    }
+                    <div class="panel-heading"></div>
+                    <div class="titleInfor">
+                        <div class="col-lg-12 col-md-12 col-sm-12">
+                            <span id="title">@notice.Title</span>
+                        </div>
+                        <div class="col-lg-12 col-md-12 col-sm-12">
+                            <div id="ReleaseTimeStr" class="col-md-6"><label class="col-md-4">发布时间：</label><span class="col-md-6">@notice.ReleaseTimeStr</span></div>
+                            <div id="noticeType" class="col-md-6"><label class="col-md-4">分类栏目：</label><span class="col-md-6">@notice.NoticeTypeName </span ></div >
+                        </div>
+                        <div class="col-lg-12 col-md-12 col-sm-12">
+                            <div id="NoticeStatusName" class="col-md-6"><label class="col-md-4">发布状态：</label><span class="col-md-6">@notice.NoticeStatusName</span></div>
+                            <div id="User" class="col-md-6"><label class="col-md-4">编辑者：</label><span class="col-md-6">@notice.User </span ></div >
+                        </div>
+                        <div class="col-lg-12 col-md-12 col-sm-12">
+                            <div class="col-md-6"><label class="col-md-4">文章标签：</label><span class="col-md-6">@notice.ArticleLabel</span></div>
+                        </div>
+                    </div>
+           
+                    <div class="panel-body">                       
+                        <hr />
+                        <p id="content">
+                            @Html.Raw(notice.NoticeContent)
+                        </p>
+                    </div>
+                  
+                </div>
+            </div>
+
+
+        }
+    </div>
+</body>
+</html>

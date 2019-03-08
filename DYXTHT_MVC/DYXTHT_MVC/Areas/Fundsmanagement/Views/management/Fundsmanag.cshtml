@@ -1,0 +1,338 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/jquery.bsgrid-1.37/merged/bsgrid.all.min.css" rel="stylesheet" />
+    <link href="~/Content/jquery.bsgrid-1.37/css/skins/grid_bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/jquery.bsgrid-1.37/css/skins/grid_sky_blue.min.css" rel="stylesheet" />
+    <title>Fundsmanag</title>
+    <style type="text/css">
+        .container {
+            width: 100%;
+            padding: 20px 40px 0 35px;
+            margin: 0;
+        }
+
+        .panel-heading span {
+          font-size:15px;font-weight:700;
+        }
+
+        .form-horizontal label {
+            font-weight: normal;
+        }
+
+        .reset {
+            padding-left: 5px;
+            padding-right: 5px;
+        }
+
+        .panel-body {
+            padding-left: 0;
+        }
+
+        span a:hover {
+            color: #ff0000;
+            font-size: 17px;
+            margin-right: 8px;
+        }
+
+        a, a:hover, a:active, a:visited, a:link {
+            color: white;
+            text-decoration: none;
+        }
+        th {
+            font-weight: normal;
+        }
+
+        .h4, td, th {
+            text-align: center;
+        }
+
+        .table tbody tr td {
+            padding: 4px;
+        }
+
+            .table tbody tr td button {
+                height: 24px;
+                padding: 2px 12px;
+            }
+    </style>
+
+</head>
+<body>
+    <div class="container" id="containerid">
+        <div class="row">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <div class="row">
+                        <span class="col-md-2">账号信息管理</span>                     
+                    </div>
+                </div>
+                <div class="panel-body" style="padding-left:15px;">
+                    <table id="tabfundmanagement">
+                        <tr>
+                            <th w_num="total_line" width="5%">序号</th>       
+                            <th w_index="UserID" w_hidden="true">ID</th>
+                            <th w_index="UserName"  width="10%">用户名</th>
+                            <th w_index="PropertyAmountsmoney" width="10%">资产总额</th>
+                            <th w_index="PropertyUsableMoney" width="10%">可用金额</th>
+                            <th w_index="PropertyFreezeMoney" width="10%">冻结金额</th>
+                            <th w_index="PropertyWaitMoney" width="10%">待收金额</th>
+                            <th w_index="PropertyCompensatoryMoney" width="10%">待还金额</th>   
+                            <th w_index="ToVoidNo" w_render="crearViewButton" width="30%">操作</th>                   
+                        </tr>
+                    </table>
+                    <div class="col-md-12">
+                        <label >总可用金额：</label><span id="countmoenyid"></span>
+                        <label class="col-md-offset-1">总冻结金额：</label><span id="countdongjiemoenyid"></span>
+                        <button type="button" class="btn btn-primary col-md-offset-9" id="exportBYExcel">导出当前</button>
+                        <button type="button" class="btn btn-primary" id="exportToExcel">导出全部</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @*充值记录*@
+        <div class="modal bs-example-modal-sm" id="modselect">
+            <div class="modal-dialog" style="width:1000px;">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <h4 class="modal-title">充值记录</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <table id="tabRechargeall">
+                                <tr>
+                                    <th w_num="total_line" width="5%">序号</th>       
+                                    <th w_index="RechargeRecordID" w_hidden="true">ID</th>
+                                    <th w_index="UserName" width="8%">用户名</th>
+                                    <th w_index="RechargeTypeName" width="8%">充值类型</th>
+                                    <th w_index="PayTypeName" width="8%">支付类型</th>
+                                    <th w_index="TradeNumber" width="8%">交易号</th>
+                                    <th w_index="strRechargeMoney" width="8%">充值金额</th>
+                                    <th w_index="strRechargePoundage" width="8%">充值手续费</th>
+                                    <th w_index="strRealityAccountMoney" width="10%">实际到账金额</th>
+                                    <th w_index="StatusName" width="8%">状态</th>
+                                    <th w_index="ReleaseTimeStr" width="8%">提交时间</th>
+                                    <th w_index="ExamineRemarks" width="8%">审核备注</th>
+                                    <th w_index="operateIP" width="8%">操作IP</th>                                   
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div>
+        @*提现记录*@
+        <div class="modal bs-example-modal-sm" id="modselectMoeny">
+            <div class="modal-dialog" style="width:1000px;">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <h4 class="modal-title">提现记录</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <table id="tabTixXianMoney">
+                                <tr>
+                                    <th w_num="total_line" width="5%">序号</th>       
+                                    <th w_index="UserCashID" w_hidden="true">ID</th>
+                                    <th w_index="UserName" width="5%">用户名</th>                                 
+                                    <th w_index="PayTypeName" width="8%">提现银行</th>
+                                    <th w_index="Subbranch" width="8%">支行</th>
+                                    <th w_index="ProNameCityName" width="8%">所在地</th>
+                                    <th w_index="CashAccountNumber" width="8%">提现账号</th>
+                                    <th w_index="strCashAmount" width="8%">提现总额</th>
+                                    <th w_index="strAccountMoney" width="8%">到账金额</th>
+                                    <th w_index="strPoundage" width="5%">手续费</th>
+                                    <th w_index="ReleaseTimeStr" width="8%">提现时间</th>
+                                    <th w_index="StatusName" width="5%">状态</th>
+                                    <th w_index="IP" width="5%">提现IP</th>
+                                    <th w_index="ExamineRemarks" width="5%">审核备注</th>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div>
+        @*资金记录*@
+        <div class="modal bs-example-modal-sm" id="modcountMoeny">
+            <div class="modal-dialog" style="width:1000px;">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <h4 class="modal-title">资金记录</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <table id="tabzijinMoney">
+                                <tr>
+                                    <th w_num="total_line" width="5%">序号</th>                 
+                                    <th w_index="CapitalrecordID"  w_hidden="true">ID</th>
+                                    <th w_index="UserName" width="10%">用户名</th>
+                                    <th w_index="OperateTypeName" width="10%">类型</th>
+                                    <th w_index="strOpFare" width="10%">操作金额</th>
+                                    <th w_index="strIncome" width="10%">收入</th>
+                                    <th w_index="strExpend" width="10%">支出</th>
+                                    <th w_index="strPropertyAmounts" width="10%">账户总额</th>
+                                    <th w_index="Remarks" width="20%">备注</th>
+                                    <th w_index="ReleaseTimeStr" width="15%">操作时间</th>  
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div>
+    </div>
+
+    <script src="~/Content/bootstrap-3.3.7-dist/js/jquery-2.0.3.min.js"></script>
+    <script src="~/Content/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <script src="~/Content/jquery.bsgrid-1.37/merged/bsgrid.all.min.js"></script>
+    <script src="~/Content/jquery.bsgrid-1.37/js/lang/grid.zh-CN.min.js"></script>
+    <script src="~/Content/layer/layer.js"></script>
+    <script src="~/Content/jss/customfunction.js"></script>
+    <script>
+        var tabfundmanagement;
+        var tabRechargeall;
+        var tabTixXianMoney;
+        $(document).ready(function () {
+        tabfundmanagement = $.fn.bsgrid.init('tabfundmanagement', {
+            url: '/Fundsmanagement/management/selectFunds',
+            autoLoad: true,//自动加载数据
+            stripeRows: true,//隔行变色
+            rowHoverColor: true,//划过行变色
+            rowSelectedColor: true,//是否显示选中行背景色
+            pageSize: 10,//默认页面大小
+            pageSizeSelect: true,//是否选择分页页数下拉框
+            pagingLittleToolbar: true,//精简的图标按钮分页工具条
+            pagingToolbarAlign: "left",//分页工具条的显示位置   
+        });      
+        $.post("/Fundsmanagement/management/countmoeny", function (data) {
+            $("#countmoenyid").html(data.dfs);
+            $("#countdongjiemoenyid").html(data.YY);
+        });
+      
+        $("#exportBYExcel").hide();
+        $("#exportToExcel").hide();
+        });
+
+        //权限访问
+        $("#containerid").mouseenter(function () {
+            $.post("/LoginMain/MoKuaiQuanXianOpTypeSelect", function (Data) {
+                for (var i = 0; i < Data.length; i++) {
+                    if (Data[i].Name == "资金账户管理" && Data[i].Optype == "导出全部") {
+                        $("#exportToExcel").show();
+                    }
+                    if (Data[i].Name == "资金账户管理" && Data[i].Optype == "导出当前") {
+                        $("#exportBYExcel").show();
+                    }
+                }
+            });
+        });
+        //自定义公告详情列
+        function crearViewButton(record, rowIndex, colIndex, options) {
+            return '<button type="button" class="btn btn-primary" onclick="Recharge(' + record.UserID + ')">充值记录</button>'
+               + "&emsp;"
+               + '<button type="button" style=display:compact; class="btn btn-primary" onclick="withdrawdeposit(' + record.UserID + ')">提现记录</button>'
+               + "&emsp;"
+               + '<button type="button" style=display:compact; class="btn btn-primary" onclick="fund(' + record.UserID + ')">资金记录</button>';
+        }
+
+        function Recharge(UserID) {
+            $("#tabRechargeall_pt").empty();
+            tabRechargeall = $.fn.bsgrid.init('tabRechargeall', {
+                    url: '/Fundsmanagement/management/selectchongzhijilu?UserID=' + UserID,
+                    autoLoad: true,//自动加载数据
+                    stripeRows: true,//隔行变色
+                    rowHoverColor: true,//划过行变色
+                    rowSelectedColor: true,//是否显示选中行背景色
+                    pageSize: 10,//默认页面大小
+                    pageSizeSelect: true,//是否选择分页页数下拉框
+                    pagingLittleToolbar: true,//精简的图标按钮分页工具条
+                    pagingToolbarAlign: "left"//分页工具条的显示位置              
+            });
+            $(".bsgridPagingOutTab").css("min-width", "98%");
+            $("#modselect").modal("show");
+                  
+        }
+
+        function withdrawdeposit(UserID) {
+
+            $("#tabTixXianMoney_pt").empty();
+            tabTixXianMoney = $.fn.bsgrid.init('tabTixXianMoney', {
+                url: '/Fundsmanagement/management/selectTixianjilu?UserID=' + UserID,
+                autoLoad: true,//自动加载数据
+                stripeRows: true,//隔行变色
+                rowHoverColor: true,//划过行变色
+                rowSelectedColor: true,//是否显示选中行背景色
+                pageSize: 10,//默认页面大小
+                pageSizeSelect: true,//是否选择分页页数下拉框
+                pagingLittleToolbar: true,//精简的图标按钮分页工具条
+                pagingToolbarAlign: "left"//分页工具条的显示位置              
+            });
+            $(".bsgridPagingOutTab").css("min-width", "98%");
+            $("#modselectMoeny").modal("show");
+        }
+     
+        function fund(UserID) {
+
+            $("#tabzijinMoney_pt").empty();
+            tabzijinMoney = $.fn.bsgrid.init('tabzijinMoney', {
+                url: '/Fundsmanagement/management/selectzujinjilu?UserID=' + UserID,
+                autoLoad: true,//自动加载数据
+                stripeRows: true,//隔行变色
+                rowHoverColor: true,//划过行变色
+                rowSelectedColor: true,//是否显示选中行背景色
+                pageSize: 10,//默认页面大小
+                pageSizeSelect: true,//是否选择分页页数下拉框
+                pagingLittleToolbar: true,//精简的图标按钮分页工具条
+                pagingToolbarAlign: "left"//分页工具条的显示位置              
+            });
+            $(".bsgridPagingOutTab").css("min-width", "98%");
+            $("#modcountMoeny").modal("show");
+        }
+        $(".bsgridPagingOutTab").css("min-width", "98%");
+        $("#exportToExcel").click(function () {                   
+            var a=1          
+            //检查当前列表是否是 当前的查询条件查询出来的
+            if (a == 1) {
+                layer.confirm("是否导出全部数据？", {
+                    icon: 3,
+                    btn: ['确定', '取消']
+                    //按钮
+                }, function (layerIndex) {
+                    layer.close(layerIndex);//关闭提示
+                    //打开下载链接
+                    window.open("/Fundsmanagement/management/ExExcel");
+                })
+            }          
+        });
+        $("#exportBYExcel").click(function () {
+            var a = 1
+            //检查当前列表是否是 当前的查询条件查询出来的
+            if (a == 1) {
+                layer.confirm("是否导出当前页的数据？", {
+                    icon: 3,
+                    btn: ['确定', '取消']
+                    //按钮
+                }, function (layerIndex) {
+                    layer.close(layerIndex);//关闭提示
+                    //打开下载链接
+                    window.open("/Fundsmanagement/management/ExExcel");
+                })
+            }
+        });
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,854 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/jquery.bsgrid-1.37/merged/bsgrid.all.min.css" rel="stylesheet" />
+    <link href="~/Content/jquery.bsgrid-1.37/css/skins/grid_bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/jquery.bsgrid-1.37/css/skins/grid_sky_blue.min.css" rel="stylesheet" />
+
+    <title>withdrawdeposit</title>
+    <style type="text/css">
+        .container {
+            width: 100%;
+            padding: 20px 40px 0 35px;
+            margin: 0;
+        }
+
+        .panel-heading span {
+            font-size: 18px;
+        }
+
+        .form-horizontal label {
+            font-weight: normal;
+        }
+
+        .reset {
+            padding-left: 5px;
+            padding-right: 5px;
+        }
+
+        .panel-body {
+            padding-left: 0;
+            background: #f4fcff;
+        }
+
+        td a {
+            color: blue !important;
+        }
+
+        th {
+            font-weight: normal;
+        }
+
+        .h4, td, th {
+            text-align: center;
+        }
+
+        .table tbody tr td {
+            padding: 4px;
+        }
+
+            .table tbody tr td button {
+                height: 24px;
+                padding: 2px 12px;
+            }
+
+        .modal-body {
+            background: #f4fcff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="countselects">
+        <div class="row">
+            <div class="panel panel-info">
+                <div class="panel-body" style="padding-left:15px;">
+                    <div class="tab" role="tabpanel">
+                        <ul id="myTab" class="nav nav-tabs">
+                            <li role="presentation" class="active"><a href="#bulletin" aria-controls="home" role="tab" data-toggle="tab">全部流转标</a></li>
+                            <li role="presentation"><a href="#rule" role="tab" aria-controls="profile" data-toggle="tab" onclick="binreview()">初审</a></li>
+                            <li role="presentation"><a href="#three" role="tab" aria-controls="messages" data-toggle="tab" onclick="rechargesuccessfully()">正在流转</a></li>
+                            <li role="presentation"><a href="#four" role="tab" data-toggle="tab" onclick="Rechargefailed()">回购中</a></li>
+                            <li role="presentation"><a href="#five" role="tab" data-toggle="tab" onclick="UserRechargefailed()">已回购借款</a></li>
+                            <li role="presentation"><a href="#seven" role="tab" data-toggle="tab" onclick="failborrowmoney()">失败借款</a></li>
+                        </ul>
+
+                        <div id="myTabContent" class="tab-content">
+                            <div class="tab-pane active" id="bulletin">                                
+                                <table id="wholewithdrawdeposit">
+                                    <tr>
+                                        <th w_index="LoanID" w_hidden="true">LoanID</th>
+                                        <th w_index="PaymentNumber" width="5%">贷款号</th>
+                                        <th w_index="UserName" width="8%">用户名称</th>
+                                        <th w_index="Loantitle" width="8%">借款标题</th>
+                                        <th w_index="LoanMoney" width="8%">流转金额</th>                                   
+                                        <th w_index="Rate" width="5%">利率</th>
+                                        <th w_index="LoanDeadlineName" width="8%">回购期限</th>
+                                        <th w_index="LowestTenderMoney" width="8%">最小单位</th>
+                                        <th w_index="Grossscore" width="8%">总流转份数</th>
+                                        <th w_index="AlreadyLoan" width="8%">已流转份数</th>
+                                        <th w_index="SurplusLoan" width="8%">待流转份数</th>
+                                        <th w_index="stopbuyback" width="8%">已回购份数</th>
+                                        <th w_index="AddTimeStr" width="13%">添加时间</th>
+                                        <th w_index="StatusName" width="5%">状态</th>
+                                        <th w_index="ToVoidNo" w_render="wholewithdrawdepositButton" width="8%">查看</th>
+                                    </tr>
+                                </table>
+                                <div class="row setPadding" style="background:#ffffff;margin-top:10px;" id="bulletinselectid">
+                                    <div class="col-lg-12 col-md-12 col-sm-12">
+                                        <form class="form-horizontal" role="form">
+                                            <div class="form-group" style="margin-bottom:0;">
+                                                <label class="col-md-1 col-sm-1 control-label reset">标题：</label>
+                                                <div class="col-md-1 col-sm-1 reset">
+                                                    <input type="text" class="form-control" name="Loantitle" id="LoantitleID">
+                                                </div>
+                                                <label class="col-md-1 col-sm-1 control-label reset">贷款号：</label>
+                                                <div class="col-md-1 col-sm-1 reset">
+                                                    <input type="text" class="form-control" name="PaymentNumber" id="PaymentNumberID">
+                                                </div>
+                                                <label class="col-md-1 col-sm-1 control-label reset">用户名：</label>
+                                                <div class="col-md-1 col-sm-1 reset">
+                                                    <input type="text" class="form-control" name="UserName" id="UserNameID">
+                                                </div>
+                                                <label class="col-md-1 col-sm-1 control-label reset">时间:</label>
+                                                <div class="col-md-2 col-sm-2 reset">
+                                                    <input type="date" class="form-control" name="ReleaseTimeStr" id="SReleaseTime">
+                                                </div>
+                                                <span class="col-md-1" style="width:20px;">到</span>
+                                                <div class="col-md-2 col-sm-2 reset">
+                                                    <input type="date" class="form-control" name="EneleaseTimeStr" id="EnReleaseTime">
+                                                </div>
+                                                <button class="btn btn-primary" type="button" id="btnSelect">查询</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="rule" style="visibility:hidden">                               
+                                <table id="tabinreview">
+                                    <tr>
+                                        <th w_index="LoanID" w_hidden="true">LoanID</th>
+                                        <th w_index="PaymentNumber" width="5%">贷款号</th>
+                                        <th w_index="UserName" width="8%">用户名称</th>
+                                        <th w_index="Loantitle" width="8%">借款标题</th>
+                                        <th w_index="LoanMoney" width="8%">流转金额</th>
+                                        <th w_index="Rate" width="5%">利率</th>
+                                        <th w_index="LoanDeadlineName" width="8%">回购期限</th>
+                                        <th w_index="LowestTenderMoney" width="8%">最小单位</th>
+                                        <th w_index="Grossscore" width="8%">总流转份数</th>
+                                        <th w_index="AlreadyLoan" width="8%">已流转份数</th>
+                                        <th w_index="SurplusLoan" width="8%">待流转份数</th>
+                                        <th w_index="stopbuyback" width="8%">已回购份数</th>
+                                        <th w_index="AddTimeStr" width="8%">添加时间</th>
+                                        <th w_index="StatusName" width="5%">状态</th>
+                                        <th w_index="ToVoidNo" w_render="selectViewButton" width="10%">查看</th>
+                                    </tr>
+                                </table>
+                                <div class="row setPadding" style="background:#ffffff;margin-top:10px;" id="ruleselectid">
+                                    <div class="col-lg-12 col-md-12 col-sm-12">
+                                        <form class="form-horizontal" role="form">
+                                            <div class="form-group" style="margin-bottom:0;">
+                                                <label class="col-md-1 col-sm-1 control-label reset">标题：</label>
+                                                <div class="col-md-1 col-sm-1 reset">
+                                                    <input type="text" class="form-control" name="Loantitle" id="ShLoantitleID">
+                                                </div>
+                                                <label class="col-md-1 col-sm-1 control-label reset">贷款号：</label>
+                                                <div class="col-md-1 col-sm-1 reset">
+                                                    <input type="text" class="form-control" name="PaymentNumber" id="ShPaymentNumberID">
+                                                </div>
+                                                <label class="col-md-1 col-sm-1 control-label reset">用户名：</label>
+                                                <div class="col-md-1 col-sm-1 reset">
+                                                    <input type="text" class="form-control" name="UserName" id="ShUserNameID">
+                                                </div>
+                                                <label class="col-md-1 col-sm-1 control-label reset">时间:</label>
+                                                <div class="col-md-2 col-sm-2 reset">
+                                                    <input type="date" class="form-control" name="ReleaseTimeStr" id="ShReleaseTime">
+                                                </div>
+                                                <span class="col-md-1" style="width:20px;">到</span>
+                                                <div class="col-md-2 col-sm-2 reset">
+                                                    <input type="date" class="form-control" name="EneleaseTimeStr" id="ShEnReleaseTime">
+                                                </div>
+                                                <button class="btn btn-primary" type="button" id="ShbtnSelect">查询</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="three" style="visibility:hidden">                                
+                                <table id="tabRechargesuccessfully">
+                                    <tr>
+                                        <th w_index="LoanID" w_hidden="true">LoanID</th>
+                                        <th w_index="PaymentNumber" width="5%">贷款号</th>
+                                        <th w_index="UserName" width="8%">用户名称</th>
+                                        <th w_index="Loantitle" width="8%">借款标题</th>
+                                        <th w_index="LoanMoney" width="8%">流转金额</th>
+                                        <th w_index="Rate" width="5%">利率</th>
+                                        <th w_index="LoanDeadlineName" width="8%">回购期限</th>
+                                        <th w_index="LowestTenderMoney" width="8%">最小单位</th>
+                                        <th w_index="Grossscore" width="8%">总流转份数</th>
+                                        <th w_index="AlreadyLoan" width="8%">已流转份数</th>
+                                        <th w_index="SurplusLoan" width="8%">待流转份数</th>
+                                        <th w_index="stopbuyback" width="8%">已回购份数</th>
+                                        <th w_index="AddTimeStr" width="8%">添加时间</th>
+                                        <th w_index="StatusName" width="5%">状态</th>
+                                        <th w_index="ToVoidNo" w_render="tabRecharViewButton" width="5%">查看</th>
+                                    </tr>
+                                </table>
+                                <div class="row setPadding" style="background:#ffffff;margin-top:10px;" id="threeselectid">
+                                    <div class="col-lg-12 col-md-12 col-sm-12">
+                                        <form class="form-horizontal" role="form">
+                                            <div class="form-group" style="margin-bottom:0;">
+                                                <label class="col-md-1 col-sm-1 control-label reset">标题：</label>
+                                                <div class="col-md-1 col-sm-1 reset">
+                                                    <input type="text" class="form-control" name="Loantitle" id="ZzLoantitleID">
+                                                </div>
+                                                <label class="col-md-1 col-sm-1 control-label reset">贷款号：</label>
+                                                <div class="col-md-1 col-sm-1 reset">
+                                                    <input type="text" class="form-control" name="PaymentNumber" id="ZzPaymentNumberID">
+                                                </div>
+                                                <label class="col-md-1 col-sm-1 control-label reset">用户名：</label>
+                                                <div class="col-md-1 col-sm-1 reset">
+                                                    <input type="text" class="form-control" name="UserName" id="ZzUserNameID">
+                                                </div>
+                                                <label class="col-md-1 col-sm-1 control-label reset">时间:</label>
+                                                <div class="col-md-2 col-sm-2 reset">
+                                                    <input type="date" class="form-control" name="ReleaseTimeStr" id="ZzReleaseTime">
+                                                </div>
+                                                <span class="col-md-1" style="width:20px;">到</span>
+                                                <div class="col-md-2 col-sm-2 reset">
+                                                    <input type="date" class="form-control" name="EneleaseTimeStr" id="ZzEnReleaseTime">
+                                                </div>
+                                                <button class="btn btn-primary" type="button" id="ZzbtnSelect">查询</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="four" style="visibility:hidden">                               
+                                <table id="tabRechargefailed">
+                                    <tr>
+                                        <th w_index="LoanID" w_hidden="true">LoanID</th>
+                                        <th w_index="PaymentNumber" width="5%">贷款号</th>
+                                        <th w_index="UserName" width="8%">用户名称</th>
+                                        <th w_index="Loantitle" width="8%">借款标题</th>
+                                        <th w_index="LoanMoney" width="8%">流转金额</th>
+                                        <th w_index="Rate" width="5%">利率</th>
+                                        <th w_index="LoanDeadlineName" width="8%">回购期限</th>
+                                        <th w_index="LowestTenderMoney" width="8%">最小单位</th>
+                                        <th w_index="Grossscore" width="8%">总流转份数</th>
+                                        <th w_index="AlreadyLoan" width="8%">已流转份数</th>
+                                        <th w_index="SurplusLoan" width="8%">待流转份数</th>
+                                        <th w_index="stopbuyback" width="8%">已回购份数</th>
+                                        <th w_index="AddTimeStr" width="8%">添加时间</th>
+                                        <th w_index="StatusName" width="5%">状态</th>
+                                        <th w_index="ToVoidNo" w_render="failedViewButton" width="5%">查看</th>
+                                    </tr>
+                                </table>
+                                <div class="row setPadding" style="background:#ffffff;margin-top:10px;" id="fourselectid">
+                                    <div class="col-lg-12 col-md-12 col-sm-12">
+                                        <form class="form-horizontal" role="form">
+                                            <div class="form-group" style="margin-bottom:0;">
+                                                <label class="col-md-1 col-sm-1 control-label reset">标题：</label>
+                                                <div class="col-md-1 col-sm-1 reset">
+                                                    <input type="text" class="form-control" name="Loantitle" id="HgLoantitleID">
+                                                </div>
+                                                <label class="col-md-1 col-sm-1 control-label reset">贷款号：</label>
+                                                <div class="col-md-1 col-sm-1 reset">
+                                                    <input type="text" class="form-control" name="PaymentNumber" id="HgPaymentNumberID">
+                                                </div>
+                                                <label class="col-md-1 col-sm-1 control-label reset">用户名：</label>
+                                                <div class="col-md-1 col-sm-1 reset">
+                                                    <input type="text" class="form-control" name="UserName" id="HgUserNameID">
+                                                </div>
+                                                <label class="col-md-1 col-sm-1 control-label reset">时间:</label>
+                                                <div class="col-md-2 col-sm-2 reset">
+                                                    <input type="date" class="form-control" name="ReleaseTimeStr" id="HgReleaseTime">
+                                                </div>
+                                                <span class="col-md-1" style="width:20px;">到</span>
+                                                <div class="col-md-2 col-sm-2 reset">
+                                                    <input type="date" class="form-control" name="EneleaseTimeStr" id="HgEnReleaseTime">
+                                                </div>
+                                                <button class="btn btn-primary" type="button" id="HgbtnSelect">查询</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="five" style="visibility:hidden">                               
+                                <table id="tabUserRechargefailed">
+                                    <tr>
+                                        <th w_index="LoanID" w_hidden="true">LoanID</th>
+                                        <th w_index="PaymentNumber" width="5%">贷款号</th>
+                                        <th w_index="UserName" width="8%">用户名称</th>
+                                        <th w_index="Loantitle" width="8%">借款标题</th>
+                                        <th w_index="LoanMoney" width="8%">流转金额</th>
+                                        <th w_index="Rate" width="5%">利率</th>
+                                        <th w_index="LoanDeadlineName" width="8%">回购期限</th>
+                                        <th w_index="LowestTenderMoney" width="8%">最小单位</th>
+                                        <th w_index="Grossscore" width="8%">总流转份数</th>
+                                        <th w_index="AlreadyLoan" width="8%">已流转份数</th>
+                                        <th w_index="SurplusLoan" width="8%">待流转份数</th>
+                                        <th w_index="stopbuyback" width="8%">已回购份数</th>
+                                        <th w_index="AddTimeStr" width="8%">添加时间</th>
+                                        <th w_index="StatusName" width="5%">状态</th>
+                                        <th w_index="ToVoidNo" w_render="tabUserViewButton" width="5%">查看</th>
+                                    </tr>
+                                </table>
+                                <div class="row setPadding" style="background:#ffffff;margin-top:10px;" id="fiveselectid">
+                                    <div class="col-lg-12 col-md-12 col-sm-12">
+                                        <form class="form-horizontal" role="form">
+                                            <div class="form-group" style="margin-bottom:0;">
+                                                <label class="col-md-1 col-sm-1 control-label reset">标题：</label>
+                                                <div class="col-md-1 col-sm-1 reset">
+                                                    <input type="text" class="form-control" name="Loantitle" id="YhgLoantitleID">
+                                                </div>
+                                                <label class="col-md-1 col-sm-1 control-label reset">贷款号：</label>
+                                                <div class="col-md-1 col-sm-1 reset">
+                                                    <input type="text" class="form-control" name="PaymentNumber" id="YhgPaymentNumberID">
+                                                </div>
+                                                <label class="col-md-1 col-sm-1 control-label reset">用户名：</label>
+                                                <div class="col-md-1 col-sm-1 reset">
+                                                    <input type="text" class="form-control" name="UserName" id="YhgUserNameID">
+                                                </div>
+                                                <label class="col-md-1 col-sm-1 control-label reset">时间:</label>
+                                                <div class="col-md-2 col-sm-2 reset">
+                                                    <input type="date" class="form-control" name="ReleaseTimeStr" id="YhgReleaseTime">
+                                                </div>
+                                                <span class="col-md-1" style="width:20px;">到</span>
+                                                <div class="col-md-2 col-sm-2 reset">
+                                                    <input type="date" class="form-control" name="EneleaseTimeStr" id="YhgEnReleaseTime">
+                                                </div>
+                                                <button class="btn btn-primary" type="button" id="YhgbtnSelect">查询</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="seven" style="visibility:hidden">
+                                <table id="tabfailborrowmoney">
+                                    <tr>
+                                        <th w_index="LoanID" w_hidden="true">LoanID</th>
+                                        <th w_index="PaymentNumber" width="5%">贷款号</th>
+                                        <th w_index="UserName" width="8%">用户名称</th>
+                                        <th w_index="Loantitle" width="8%">借款标题</th>
+                                        <th w_index="LoanMoney" width="8%">流转金额</th>
+                                        <th w_index="Rate" width="5%">利率</th>
+                                        <th w_index="LoanDeadlineName" width="8%">回购期限</th>
+                                        <th w_index="LowestTenderMoney" width="8%">最小单位</th>
+                                        <th w_index="Grossscore" width="8%">总流转份数</th>
+                                        <th w_index="AlreadyLoan" width="8%">已流转份数</th>
+                                        <th w_index="SurplusLoan" width="8%">待流转份数</th>
+                                        <th w_index="stopbuyback" width="8%">已回购份数</th>
+                                        <th w_index="AddTimeStr" width="8%">添加时间</th>
+                                        <th w_index="StatusName" width="5%">状态</th>
+                                        <th w_index="ToVoidNo" w_render="tabviewfailborrowmoney" width="5%">查看</th>
+                                    </tr>
+                                </table>
+                                <div class="row setPadding" style="background:#ffffff;margin-top:10px;" id="sevenselectid">
+                                    <div class="col-lg-12 col-md-12 col-sm-12">
+                                        <form class="form-horizontal" role="form">
+                                            <div class="form-group" style="margin-bottom:0;">
+                                                <label class="col-md-1 col-sm-1 control-label reset">标题：</label>
+                                                <div class="col-md-1 col-sm-1 reset">
+                                                    <input type="text" class="form-control" name="Loantitle" id="SbLoantitleID">
+                                                </div>
+                                                <label class="col-md-1 col-sm-1 control-label reset">贷款号：</label>
+                                                <div class="col-md-1 col-sm-1 reset">
+                                                    <input type="text" class="form-control" name="PaymentNumber" id="SbPaymentNumberID">
+                                                </div>
+                                                <label class="col-md-1 col-sm-1 control-label reset">用户名：</label>
+                                                <div class="col-md-1 col-sm-1 reset">
+                                                    <input type="text" class="form-control" name="UserName" id="SbUserNameID">
+                                                </div>
+                                                <label class="col-md-1 col-sm-1 control-label reset">时间:</label>
+                                                <div class="col-md-2 col-sm-2 reset">
+                                                    <input type="date" class="form-control" name="ReleaseTimeStr" id="SbReleaseTime">
+                                                </div>
+                                                <span class="col-md-1" style="width:20px;">到</span>
+                                                <div class="col-md-2 col-sm-2 reset">
+                                                    <input type="date" class="form-control" name="EneleaseTimeStr" id="SbEnReleaseTime">
+                                                </div>
+                                                <button class="btn btn-primary" type="button" id="SbbtnSelect">查询</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @*审核*@
+                <div class="modal fade bs-example-modal-sm" id="modChongzhi">
+                    <div class="modal-dialog" style="width:800px;">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                <h4 class="modal-title">审核流转标</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row">
+                                    <form class="form-horizontal" method="post" id="fromUpdatashenhe">
+                                        <input id="LoanID" name="LoanID" hidden />                                                                         
+                                        <div class="col-md-12">
+                                            <div class="form-group form-group-lg">
+                                                <label class="col-sm-5 control-label">审核状态：</label>
+                                                <div class="col-sm-4">
+                                                    <label class="control-label">
+                                                        <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1">
+                                                        审核通过
+                                                    </label>
+                                                    <label class="control-label">
+                                                        <input type="radio" class="control-label" name="optionsRadios" id="optionsRadios2" value="option2">
+                                                        审核不通过
+                                                    </label>
+                                                </div>
+                                            </div>                                        
+                                        </div>                                     
+                                        <div class="form-group form-group-lg">
+                                            <label class="col-sm-5 control-label">审核备注：</label>
+                                            <div class="col-sm-4">
+                                                <textarea class="form-control" rows="3" name="ManageRemark" id="ExamineRemarksID"></textarea>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="form-group form-group-lg">
+                                            <label for="validCode" class="col-md-5 control-label">
+                                                验证码:
+                                            </label>
+                                            <div class="col-sm-4">
+                                                <input type="text" name="validCode" id="validCode" value="" class="form-control col-md-5" style="width:160px;"/>
+                                                <span class="text col-md-2 control-label" style="padding:0;"><img src="/Fundsmanagement/management/validcode" id="ValidateCode" onclick="reloadValideImage()" style="height:45px;width:85px;"/></span>
+                                            </div>                                         
+                                        </div>
+                                        <button type="button" class="btn btn-info col-md-offset-5" id="updatapreserve">保存</button>
+                                        <button class="btn btn-danger" data-dismiss="modal">关闭</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal-dialog -->
+                </div>
+                @*查看*@
+                <div class="modal fade bs-example-modal-sm" id="modselect">
+                    <div class="modal-dialog" style="width:800px;">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                <h4 class="modal-title">查看流转标借款</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row">
+                                    <form class="form-inline" method="post" id="selectloan">
+                                        <input name="LoanID" hidden />
+                                        <div class="form-group col-lg-12 col-md-12 col-sm-12">
+                                            <div class="form-group col-lg-6 col-md-6 col-sm-6">
+                                                <label class="col-lg-5 col-md-5 col-sm-5 control-label">贷款号：</label>
+                                                <input class="form-control col-lg-4 col-md-4 col-sm-4" type="text" name="PaymentNumber" id="PaymentNumberid" readonly="readonly">
+                                            </div>
+
+                                            <div class="form-group col-lg-6 col-md-6 col-sm-6">
+                                                <label class="col-lg-5 col-md-5 col-sm-5 control-label">用户名称：</label>
+
+                                                <input class="form-control col-lg-4 col-md-4 col-sm-4" type="text" name="UserName" id="UserNameid" readonly="readonly">
+
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-lg-12 col-md-12 col-sm-12" style="margin-top:5px;">
+                                            <div class="form-group col-lg-6 col-md-6 col-sm-6">
+                                                <label class="col-lg-5 col-md-5 col-sm-5 control-label">借款标题：</label>
+
+                                                <input class="form-control col-lg-4 col-md-4 col-sm-4" type="text" name="Loantitle" id="Loantitleid" readonly="readonly">
+                                            </div>
+
+                                            <div class="form-group col-lg-6 col-md-6 col-sm-6">
+                                                <label class="col-lg-5 col-md-5 col-sm-5 control-label">流转金额：</label>
+
+                                                <input class="form-control col-lg-4 col-md-4 col-sm-4" type="text" name="LoanMoney" id="ExchangeMoneyid" readonly="readonly">
+
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-lg-12 col-md-12 col-sm-12" style="margin-top:5px;">
+                                            <div class="form-group col-lg-6 col-md-6 col-sm-6">
+                                                <label class="col-sm-5 control-label">利率：</label>
+
+                                                <input class="form-control col-lg-4 col-md-4 col-sm-4" type="text" name="Rate" id="Rateid" readonly="readonly">
+                                            </div>
+
+                                            <div class="form-group col-lg-6 col-md-6 col-sm-6">
+                                                <label class="col-lg-5 col-md-5 col-sm-5 control-label">回购期限：</label>
+
+                                                <input class="form-control col-lg-4 col-md-4 col-sm-4" type="text" name="LoanDeadlineName" id="LoanDeadlineNameid" readonly="readonly">
+
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-lg-12 col-md-12 col-sm-12" style="margin-top:5px;">
+                                            <div class="form-group col-lg-6 col-md-6 col-sm-6">
+                                                <label class="col-lg-5 col-md-5 col-sm-5 control-label">最小单位：</label>
+
+                                                <input class="form-control col-lg-4 col-md-4 col-sm-4" type="text" name="LowestTenderMoney" id="LeastUnitid" readonly="readonly">
+
+                                            </div>
+                                            <div class="form-group col-lg-6 col-md-6 col-sm-6">
+                                                <label class="col-lg-5 col-md-5 col-sm-5 control-label">总流转份数：</label>
+
+                                                <input class="form-control col-lg-4 col-md-4 col-sm-4" type="text" name="Grossscore" id="AllExchangePortionid" readonly="readonly">
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-lg-12 col-md-12 col-sm-12" style="margin-top:5px;">
+                                            <div class="form-group col-lg-6 col-md-6 col-sm-6">
+                                                <label class="col-lg-5 col-md-5 col-sm-5 control-label">已流转份数：</label>
+
+                                                <input class="form-control col-lg-4 col-md-4 col-sm-4" type="text" name="AlreadyLoan" id="stopExchangePortionid" readonly="readonly">
+                                            </div>
+
+                                            <div class="form-group col-lg-6 col-md-6 col-sm-6">
+                                                <label class="col-lg-5 col-md-5 col-sm-5 control-label">待流转份数：</label>
+
+                                                <input class="form-control col-lg-4 col-md-4 col-sm-4" type="text" name="SurplusLoan" id="WaitExchangePortionid" readonly="readonly">
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-lg-12 col-md-12 col-sm-12" style="margin-top:5px;">
+                                            <div class="form-group col-lg-6 col-md-6 col-sm-6">
+                                                <label class="col-lg-5 col-md-5 col-sm-5 control-label">已回购份数：</label>
+
+                                                <input class="form-control col-lg-4 col-md-4 col-sm-4" type="text" name="stopbuyback" id="AlreadyBuyBackPortionid" readonly="readonly">
+
+                                            </div>
+                                            <div class="form-group col-lg-6 col-md-6 col-sm-6">
+                                                <label class="col-lg-5 col-md-5 col-sm-5 control-label">添加时间：</label>
+
+                                                <input class="form-control col-lg-4 col-md-4 col-sm-4" type="text" name="AddTimeStr" id="AddTimeStrid" readonly="readonly">
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-lg-12 col-md-12 col-sm-12" style="margin-top:5px;">
+                                            <div class="form-group col-lg-6 col-md-6 col-sm-6">
+                                                <label class="col-lg-5 col-md-5 col-sm-5 control-label">状态：</label>
+                                            
+                                                    <input class="form-control col-lg-4 col-md-4 col-sm-4" type="text" name="StatusName" id="StatusName" readonly="readonly">
+                                                </div>
+                                            </div>
+                                            <button class="btn btn-danger col-md-offset-6" style="width:82px;" data-dismiss="modal">关闭</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal-dialog -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="~/Content/bootstrap-3.3.7-dist/js/jquery-2.0.3.min.js"></script>
+    <script src="~/Content/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <script src="~/Content/jquery.bsgrid-1.37/merged/bsgrid.all.min.js"></script>
+    <script src="~/Content/jquery.bsgrid-1.37/js/lang/grid.zh-CN.min.js"></script>
+    <script src="~/Content/layer/layer.js"></script>
+    <script src="~/Content/jss/customfunction.js"></script>
+    <script>
+        function reloadValideImage() {
+            $("#ValidateCode").attr("src", "/Fundsmanagement/management/validcode?ts=" + new Date().getTime());
+            // document.getElementById('ValidateCode').src = '/Main/validcode?ts=' + new Date().getTime();
+        }
+        var wholewithdrawdeposit;
+        var tabinreview;
+        var tabRechargesuccessfully;
+        var tabRechargefailed;
+        var tabUserRechargefailed;
+        var tabfailborrowmoney;
+        var releaseTime = "1017-08-08 00:00:00.000";
+        var EnReleaseTime = "4017-08-08 00:00:00.000";
+        var LoantitleID = "";
+        var PaymentNumberID = "";
+        var UserNameID = "";       
+        $(document).ready(function () {
+            $.post("/Fundsmanagement/management/SelctStatusType", function (jsonData) {
+                selectLoadData("StatusID", jsonData);
+            });
+            $.post("/Fundsmanagement/management/SelctType", function (jsonData) {
+                selectLoadData("selecttype", jsonData);
+            });
+
+            wholewithdrawdeposit = $.fn.bsgrid.init('wholewithdrawdeposit', {
+                url: '/BorroworlMoneymanage/BorroworlMoney/selectExchangeTreetopLoan',
+                autoLoad: true,//自动加载数据
+                stripeRows: true,//隔行变色
+                rowHoverColor: true,//划过行变色
+                rowSelectedColor: true,//是否显示选中行背景色
+                pageSize: 10,//默认页面大小
+                pageSizeSelect: true,//是否选择分页页数下拉框
+                pagingLittleToolbar: true,//精简的图标按钮分页工具条
+                pagingToolbarAlign: "left"//分页工具条的显示位置
+            });
+            wholewithdrawdeposit.search("LoantitleID=" + LoantitleID + "&PaymentNumberID=" + PaymentNumberID + "&UserNameID=" + UserNameID + "&releaseTime=" + releaseTime + "&EnReleaseTime=" + EnReleaseTime);
+
+            $("#bulletinselectid").hide();
+            $("#ruleselectid").hide();
+            $("#threeselectid").hide();
+            $("#fourselectid").hide();
+            $("#fiveselectid").hide();
+            $("#sevenselectid").hide();
+        });
+
+        //权限访问
+        $("#countselects").mouseenter(function () {
+            $.post("/LoginMain/MoKuaiQuanXianOpTypeSelect", function (Data) {
+                for (var i = 0; i < Data.length; i++) {
+                    if (Data[i].Name == "流转标借款" && Data[i].Optype == "修改") {
+                        $(".Updatashenhess").removeClass("hidden");
+                    }
+                    if (Data[i].Name == "流转标借款" && Data[i].Optype == "查询") {
+                        $("#bulletinselectid").show();
+                        $("#ruleselectid").show();
+                        $("#threeselectid").show();
+                        $("#fourselectid").show();
+                        $("#fiveselectid").show();
+                        $("#sevenselectid").show();
+
+                    }
+                }
+            });
+        });
+
+        //全部查询
+        $("#btnSelect").click(function () {
+            var LoantitleID = $("#LoantitleID").val();
+            var PaymentNumberID = $("#PaymentNumberID").val();
+            var UserNameID = $("#UserNameID").val();
+            releaseTime = $("#SReleaseTime").val() + " 00:00:00.000";
+            EnReleaseTime = $("#EnReleaseTime").val() + " 00:00:00.000";
+            wholewithdrawdeposit.search("LoantitleID=" + LoantitleID + "&PaymentNumberID=" + PaymentNumberID + "&UserNameID=" + UserNameID + "&releaseTime=" + releaseTime + "&EnReleaseTime=" + EnReleaseTime);
+        });
+
+        //审核查询
+        $("#ShbtnSelect").click(function () {
+            var LoantitleID = $("#ShLoantitleID").val();
+            var PaymentNumberID = $("#ShPaymentNumberID").val();
+            var UserNameID = $("#ShUserNameID").val();
+            releaseTime = $("#ShReleaseTime").val() + " 00:00:00.000";
+            EnReleaseTime = $("#ShEnReleaseTime").val() + " 00:00:00.000";
+            tabinreview.search("LoantitleID=" + LoantitleID + "&PaymentNumberID=" + PaymentNumberID + "&UserNameID=" + UserNameID + "&releaseTime=" + releaseTime + "&EnReleaseTime=" + EnReleaseTime);          
+        });
+        //流转中
+        $("#ZzbtnSelect").click(function () {
+            var LoantitleID = $("#ZzLoantitleID").val();
+            var PaymentNumberID = $("#ZzPaymentNumberID").val();
+            var UserNameID = $("#ZzUserNameID").val();
+            releaseTime = $("#ZzReleaseTime").val() + " 00:00:00.000";
+            EnReleaseTime = $("#ZzEnReleaseTime").val() + " 00:00:00.000";
+            tabRechargesuccessfully.search("LoantitleID=" + LoantitleID + "&PaymentNumberID=" + PaymentNumberID + "&UserNameID=" + UserNameID + "&releaseTime=" + releaseTime + "&EnReleaseTime=" + EnReleaseTime);        
+        });
+        //回购中
+        $("#HgbtnSelect").click(function () {
+            var LoantitleID = $("#HgLoantitleID").val();
+            var PaymentNumberID = $("#HgPaymentNumberID").val();
+            var UserNameID = $("#HgUserNameID").val();
+            releaseTime = $("#HgReleaseTime").val() + " 00:00:00.000";
+            EnReleaseTime = $("#HgEnReleaseTime").val() + " 00:00:00.000";
+            tabRechargefailed.search("LoantitleID=" + LoantitleID + "&PaymentNumberID=" + PaymentNumberID + "&UserNameID=" + UserNameID + "&releaseTime=" + releaseTime + "&EnReleaseTime=" + EnReleaseTime);          
+        });
+        //已回购借款
+        $("#YhgbtnSelect").click(function () {
+            var LoantitleID = $("#YhgLoantitleID").val();
+            var PaymentNumberID = $("#YhgPaymentNumberID").val();
+            var UserNameID = $("#YhgUserNameID").val();
+            releaseTime = $("#YhgReleaseTime").val() + " 00:00:00.000";
+            EnReleaseTime = $("#YhgEnReleaseTime").val() + " 00:00:00.000";
+            tabUserRechargefailed.search("LoantitleID=" + LoantitleID + "&PaymentNumberID=" + PaymentNumberID + "&UserNameID=" + UserNameID + "&releaseTime=" + releaseTime + "&EnReleaseTime=" + EnReleaseTime);           
+        });
+
+        //失败借款
+        $("#SbbtnSelect").click(function () {
+            var LoantitleID = $("#SbLoantitleID").val();
+            var PaymentNumberID = $("#SbPaymentNumberID").val();
+            var UserNameID = $("#SbUserNameID").val();
+            releaseTime = $("#SbReleaseTime").val() + " 00:00:00.000";
+            EnReleaseTime = $("#SbEnReleaseTime").val() + " 00:00:00.000";
+            tabfailborrowmoney.search("LoantitleID=" + LoantitleID + "&PaymentNumberID=" + PaymentNumberID + "&UserNameID=" + UserNameID + "&releaseTime=" + releaseTime + "&EnReleaseTime=" + EnReleaseTime);
+        });
+
+        function binreview() {
+            document.getElementById("rule").style.visibility = "visible"
+            if (tabinreview == null) {
+                tabinreview = $.fn.bsgrid.init('tabinreview', {
+                    url: '/BorroworlMoneymanage/BorroworlMoney/selectshenheExchangeTreetopLoan',
+                    autoLoad: true,//自动加载数据
+                    stripeRows: true,//隔行变色
+                    rowHoverColor: true,//划过行变色
+                    rowSelectedColor: true,//是否显示选中行背景色
+                    pageSize: 10,//默认页面大小
+                    pageSizeSelect: true,//是否选择分页页数下拉框
+                    pagingLittleToolbar: true,//精简的图标按钮分页工具条
+                    pagingToolbarAlign: "left"//分页工具条的显示位置
+                });
+               
+            }
+            else {
+                tabinreview = tabinreview;               
+            }
+            $(".bsgridPagingOutTab").css("min-width", "98%");
+            tabinreview.search("LoantitleID=" + LoantitleID + "&PaymentNumberID=" + PaymentNumberID + "&UserNameID=" + UserNameID + "&releaseTime=" + releaseTime + "&EnReleaseTime=" + EnReleaseTime);
+        }
+        function rechargesuccessfully() {
+            document.getElementById("three").style.visibility = "visible"
+            if (tabRechargesuccessfully==null) {
+                tabRechargesuccessfully = $.fn.bsgrid.init('tabRechargesuccessfully', {
+                    url: '/BorroworlMoneymanage/BorroworlMoney/selectliuzhaungzhongExchangeTreetopLoan',
+                    autoLoad: true,//自动加载数据
+                    stripeRows: true,//隔行变色
+                    rowHoverColor: true,//划过行变色
+                    rowSelectedColor: true,//是否显示选中行背景色
+                    pageSize: 10,//默认页面大小
+                    pageSizeSelect: true,//是否选择分页页数下拉框
+                    pagingLittleToolbar: true,//精简的图标按钮分页工具条
+                    pagingToolbarAlign: "left"//分页工具条的显示位置
+                });
+                tabRechargesuccessfully.refreshPage();
+            }
+            else {
+                tabRechargesuccessfully = tabRechargesuccessfully;
+                tabRechargesuccessfully.refreshPage();
+            }
+            $(".bsgridPagingOutTab").css("min-width", "98%");
+            tabRechargesuccessfully.search("LoantitleID=" + LoantitleID + "&PaymentNumberID=" + PaymentNumberID + "&UserNameID=" + UserNameID + "&releaseTime=" + releaseTime + "&EnReleaseTime=" + EnReleaseTime);
+        }
+        function Rechargefailed() {
+            document.getElementById("four").style.visibility = "visible"
+            if (tabRechargefailed==null) {
+                tabRechargefailed = $.fn.bsgrid.init('tabRechargefailed', {
+                    url: '/BorroworlMoneymanage/BorroworlMoney/selecthuigouExchangeTreetopLoan',
+                    autoLoad: true,//自动加载数据
+                    stripeRows: true,//隔行变色
+                    rowHoverColor: true,//划过行变色
+                    rowSelectedColor: true,//是否显示选中行背景色
+                    pageSize: 10,//默认页面大小
+                    pageSizeSelect: true,//是否选择分页页数下拉框
+                    pagingLittleToolbar: true,//精简的图标按钮分页工具条
+                    pagingToolbarAlign: "left"//分页工具条的显示位置
+                });
+            }
+            else {
+                tabRechargefailed = tabRechargefailed;
+            }
+            $(".bsgridPagingOutTab").css("min-width", "98%");
+            tabRechargefailed.search("LoantitleID=" + LoantitleID + "&PaymentNumberID=" + PaymentNumberID + "&UserNameID=" + UserNameID + "&releaseTime=" + releaseTime + "&EnReleaseTime=" + EnReleaseTime);
+        }
+        function UserRechargefailed() {
+            document.getElementById("five").style.visibility = "visible"
+            if (tabUserRechargefailed == null) {
+                tabUserRechargefailed = $.fn.bsgrid.init('tabUserRechargefailed', {
+                    url: '/BorroworlMoneymanage/BorroworlMoney/selectYihuigouExchangeTreetopLoan',
+                    autoLoad: true,//自动加载数据
+                    stripeRows: true,//隔行变色
+                    rowHoverColor: true,//划过行变色
+                    rowSelectedColor: true,//是否显示选中行背景色
+                    pageSize: 10,//默认页面大小
+                    pageSizeSelect: true,//是否选择分页页数下拉框
+                    pagingLittleToolbar: true,//精简的图标按钮分页工具条
+                    pagingToolbarAlign: "left"//分页工具条的显示位置
+                });
+            }
+            else {
+                tabUserRechargefailed = tabUserRechargefailed;
+            }
+            $(".bsgridPagingOutTab").css("min-width", "98%");
+            tabUserRechargefailed.search("LoantitleID=" + LoantitleID + "&PaymentNumberID=" + PaymentNumberID + "&UserNameID=" + UserNameID + "&releaseTime=" + releaseTime + "&EnReleaseTime=" + EnReleaseTime);
+        }
+        function failborrowmoney() {
+            document.getElementById("seven").style.visibility = "visible"
+            if (tabfailborrowmoney == null) {
+                tabfailborrowmoney = $.fn.bsgrid.init('tabfailborrowmoney', {
+                    url: '/BorroworlMoneymanage/BorroworlMoney/selectfailborrowmoney',
+                    autoLoad: true,//自动加载数据
+                    stripeRows: true,//隔行变色
+                    rowHoverColor: true,//划过行变色
+                    rowSelectedColor: true,//是否显示选中行背景色
+                    pageSize: 10,//默认页面大小
+                    pageSizeSelect: true,//是否选择分页页数下拉框
+                    pagingLittleToolbar: true,//精简的图标按钮分页工具条
+                    pagingToolbarAlign: "left"//分页工具条的显示位置
+                });
+                tabfailborrowmoney.refreshPage();
+            }
+            else {
+                tabfailborrowmoney = tabfailborrowmoney;
+                tabfailborrowmoney.refreshPage();
+            }
+            $(".bsgridPagingOutTab").css("min-width", "98%");
+            tabfailborrowmoney.search("LoantitleID=" + LoantitleID + "&PaymentNumberID=" + PaymentNumberID + "&UserNameID=" + UserNameID + "&releaseTime=" + releaseTime + "&EnReleaseTime=" + EnReleaseTime);
+        }
+        //自定义全部详情列
+        function wholewithdrawdepositButton(record, rowIndex, colIndex, options) {
+
+            return '<button type="button" class="btn btn-info" onclick="openselect(' + record.LoanID + ')">查看</button>'
+        }
+        //自定义初审详情列
+        function selectViewButton(record, rowIndex, colIndex, options) {
+            return '<button type="button" class="Updatashenhess btn btn-danger hidden" onclick="Updatashenhe(' + record.LoanID + ')">修改审核</button>'
+        }
+        //自定义流转中详情列
+        function tabRecharViewButton(record, rowIndex, colIndex, options) {
+            return '<button type="button" class="btn btn-info" onclick="openselect(' + record.LoanID + ')">查看</button>'
+        }
+        //自定义回购中详情列
+        function failedViewButton(record, rowIndex, colIndex, options) {
+            return '<button type="button" class="btn btn-info" onclick="openselect(' + record.LoanID + ')">查看</button>'
+        }
+        //自定义已回购详情列
+        function tabUserViewButton(record, rowIndex, colIndex, options) {
+            return '<button type="button" class="btn btn-info" onclick="openselect(' + record.LoanID + ')">查看</button>'
+        }
+        //自定义失败借款详情列
+        function tabviewfailborrowmoney(record, rowIndex, colIndex, options) {
+            return '<button type="button" class="btn btn-info" onclick="openselect(' + record.LoanID + ')">查看</button>'
+        }
+        //初审审核
+        function Updatashenhe(LoanID) {
+            $.post("/BorroworlMoneymanage/BorroworlMoney/selectExchangeTreetopID", { LoanID: LoanID }, function (data) {
+                loadDatatoForm("fromUpdatashenhe", data);
+            });
+           $("#ValidateCode").attr("src", "/Fundsmanagement/management/validcode?ts=" + new Date().getTime());
+            $("#validCode").val("");
+            $("#modChongzhi").modal("show");
+        }
+
+        //查看
+        function openselect(LoanID) {
+            $.post("/BorroworlMoneymanage/BorroworlMoney/selectExchangeTreetopXinxi", { LoanID: LoanID }, function (data) {
+                loadDatatoForm("selectloan", data);
+            });
+
+            $("#modselect").modal("show");
+        }
+
+        //审核
+        $("#updatapreserve").click(function () {
+            var formDate = $("#fromUpdatashenhe").serializeArray();
+            $.post("/BorroworlMoneymanage/BorroworlMoney/updataExchangeTreetoppreserve", formDate, function (msg) {
+                if (msg == "success") {
+                    layer.alert('审核成功', { icon: 6, title: '提示' });
+                    //关闭公告类型模态窗体
+                    $("#modChongzhi").modal("hide");
+                    //刷新table                  
+                    tabinreview.refreshPage();                 
+                    $("#validCode").val("");
+                }
+                else if (msg == "ValidCodeErro") {
+                    layer.alert('验证码错误！', { icon: 5, title: '提示' });
+                    $("#validCode").val("");
+                } else {
+                    layer.alert('审核失败！', { icon: 5, title: '提示' });
+                }
+            });
+        });
+       
+    </script>
+</body>
+</html>

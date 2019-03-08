@@ -1,0 +1,790 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/jquery.bsgrid-1.37/merged/bsgrid.all.min.css" rel="stylesheet" />
+    <link href="~/Content/jquery.bsgrid-1.37/css/skins/grid_bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/jquery.bsgrid-1.37/css/skins/grid_sky_blue.min.css" rel="stylesheet" />
+
+    <title>Rechargemanagement</title>
+    <style type="text/css">
+        .container {
+            width: 100%;
+            padding: 20px 40px 0 35px;
+            margin: 0;
+        }
+
+        .panel-heading span {
+            font-size: 18px;
+        }
+
+        .form-horizontal label {
+            font-weight: normal;
+        }
+
+        .reset {
+            padding-left: 5px;
+            padding-right: 5px;
+        }
+
+        .panel-body {
+            padding-left: 0;
+            background: #f4fcff;
+        }     
+        td a {
+            color: blue !important;
+        }      
+        th {
+            font-weight: normal;
+        }
+
+        .h4, td, th {
+            text-align: center;
+        }
+
+        .table tbody tr td {
+            padding: 4px;
+        }
+
+            .table tbody tr td button {
+                height: 24px;
+                padding: 2px 12px;
+            }
+  
+        .modal-body {
+            background: #f4fcff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="containerid">
+        <div class="row">
+            <div class="panel panel-info">             
+                <div class="panel-body" style="padding-left:15px;">                   
+                    <div class="tab" role="tabpanel">
+                        <ul id="myTab" class="nav nav-tabs">
+                            <li role="presentation" class="active"><a href="#bulletin" aria-controls="home" role="tab" data-toggle="tab">全部充值</a></li>
+                            <li role="presentation"><a href="#rule" role="tab" aria-controls="profile" data-toggle="tab" onclick="binreview()">审核中</a></li>
+                            <li role="presentation"><a href="#three" role="tab" aria-controls="messages" data-toggle="tab"  onclick="rechargesuccessfully()">充值成功</a></li>
+                            <li role="presentation"><a href="#four" role="tab"  data-toggle="tab"  onclick="Rechargefailed()">充值失败</a></li>
+                        </ul>
+                      
+                        <div id="myTabContent" class="tab-content">
+                            <div class="tab-pane active" id="bulletin">
+                                <div class="row setPadding" style="background:#ffffff;" id="bulletinIds">
+                                    <label class="col-md-2">充值管理</label>    
+                                    <div class="col-lg-12 col-md-12 col-sm-12" style="margin-right:5px;margin-bottom:15px;">
+                                        <form class="form-horizontal" role="form">
+                                            <div class="form-group" style="margin-bottom:0;">
+                                                <label class="col-md-1 col-sm-1 control-label reset">时间:</label>
+                                                <div class="col-md-2 col-sm-2 reset">
+                                                    <input type="date" class="form-control" name="ReleaseTimeStr" id="SReleaseTime">
+                                                </div>
+                                                <label class="col-md-1" style="width:5px;">到</label>
+                                                <div class="col-md-2 col-sm-2 reset">
+                                                    <input type="date" class="form-control" name="EneleaseTimeStr" id="EnReleaseTime">
+                                                </div>
+                                                <label class="col-md-1 col-sm-1 control-label reset">用户名：</label>
+                                                <div class="col-md-1 col-sm-1 reset">
+                                                    <input type="text" class="form-control" name="UserName" id="SNoticeName">
+                                                </div>
+                                                <label class="col-md-1 col-sm-1 control-label reset">类型：</label>
+                                                <div class="col-lg-2 col-md-2 col-sm-2 reset">
+                                                    <select class="form-control" id="selectAcademe" name="academeId"></select>
+                                                </div>
+                                                <button class="btn btn-primary" type="button" id="btnSelect"><span class="glyphicon glyphicon-search"></span> 查询</button>
+                                            </div>
+                                        </form>
+                                    </div>                                
+                                </div>
+                                <table id="tabRechargeall">
+                                    <tr>
+                                        <th w_num="total_line" width="5%">序号</th>
+                                        <th w_index="RechargeRecordID" w_hidden="true">ID</th>
+                                        <th w_index="UserName" width="8%">用户名</th>
+                                        <th w_index="TradeNumber" width="8%">交易号</th>
+                                        <th w_index="RechargeTypeName" width="8%">类型</th>
+                                        <th w_index="PayTypeName" width="8%">充值银行</th>
+                                        <th w_index="strRechargeMoney" width="8%">充值金额</th>
+                                        <th w_index="strRechargePoundage" width="8%">充值手续费</th>
+                                        <th w_index="strRealityAccountMoney" width="8%">实际到账金额</th>
+                                        <th w_index="StatusName" width="8%">状态</th>
+                                        <th w_index="ReleaseTimeStr" width="8%">提交时间</th>
+                                        <th w_index="operateIP" width="8%">操作IP</th>
+                                        <th w_index="ToVoidNo" w_render="crearViewButton" width="8%">管理</th>
+                                    </tr>
+                                </table>
+                                <div class="col-md-12" style="margin-top:5px;">
+                                    <label>充值总金额：</label><span id="countmoeny"></span>
+                                    <label class="col-md-offset-1">充值总手续费：</label><span id="countdshouxufeimoenyid"></span>
+                                    <button type="button" class="btn btn-primary col-md-offset-5" id="exportBYExcel">导出当前</button>
+                                    <button type="button" class="btn btn-primary" id="exportToExcel">导出全部</button>
+                                </div>
+                                <div class="row setPadding" style="background:#ffffff;" >
+                                    
+                                </div>
+                             </div>
+                            <div class="tab-pane" id="rule" style="visibility:hidden">
+                                <div class="row setPadding" style="background:#ffffff;" id="ruleID">
+                                    <label class="col-md-2">充值管理</label>
+                                    <div class="col-lg-12 col-md-12 col-sm-12" style="margin-right:5px;margin-bottom:15px;">
+                                        <form class="form-horizontal" role="form">
+                                            <div class="form-group" style="margin-bottom:0;">
+                                                <label class="col-md-1 col-sm-1 control-label reset">时间:</label>
+                                                <div class="col-md-2 col-sm-2 reset">
+                                                    <input type="date" class="form-control" name="ReleaseTimeStr" id="SReleaseTimerule">
+                                                </div>
+                                                <span class="col-md-1" style="width:20px;">到</span>
+                                                <div class="col-md-2 col-sm-2 reset">
+                                                    <input type="date" class="form-control" name="EneleaseTimeStr" id="EnReleaseTimerule">
+                                                </div>
+                                                <label class="col-md-1 col-sm-1 control-label reset">用户名：</label>
+                                                <div class="col-md-1 col-sm-1 reset">
+                                                    <input type="text" class="form-control" name="UserName" id="SNoticeNamerule">
+                                                </div>
+                                                <label class="col-md-1 col-sm-1 control-label reset">类型：</label>
+                                                <div class="col-lg-2 col-md-2 col-sm-2 reset">
+                                                    <select class="form-control" id="selecttwo" name="academeId"></select>
+                                                </div>
+                                                <button class="btn btn-primary" type="button" id="btnSelectrule"><span class="glyphicon glyphicon-search"></span> 查询</button>
+                                            </div>
+                                        </form>
+                                    </div>
+
+                                </div>
+                                <table id="tabinreview">
+                                    <tr>
+                                        <th w_num="total_line" width="5%">序号</th>
+                                        <th w_index="RechargeRecordID" w_hidden="true">ID</th>
+                                        <th w_index="UserName" width="8%">用户名</th>
+                                        <th w_index="TradeNumber" width="8%">交易号</th>
+                                        <th w_index="RechargeTypeName" width="8%">类型</th>
+                                        <th w_index="PayTypeName" width="8%">充值银行</th>
+                                        <th w_index="strRechargeMoney" width="8%">充值金额</th>
+                                        <th w_index="strRechargePoundage" width="8%">充值手续费</th>
+                                        <th w_index="strRealityAccountMoney" width="10%">实际到账金额</th>
+                                        <th w_index="StatusName" width="8%">状态</th>
+                                        <th w_index="ReleaseTimeStr" width="8%">提交时间</th>
+                                        <th w_index="operateIP" width="8%">操作IP</th>
+                                        <th w_index="ToVoidNo" w_render="chakanViewButton" width="8%">管理</th>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div class="tab-pane" id="three" style="visibility:hidden">   
+                                <div class="row setPadding" style="background:#ffffff;" id="threeid">
+                                    <label class="col-md-2">充值管理</label>
+                                    <div class="col-lg-12 col-md-12 col-sm-12" style="margin-right:5px;margin-bottom:15px;">
+                                        <form class="form-horizontal" role="form">
+                                            <div class="form-group" style="margin-bottom:0;">
+                                                <label class="col-md-1 col-sm-1 control-label reset">时间:</label>
+                                                <div class="col-md-2 col-sm-2 reset">
+                                                    <input type="date" class="form-control" name="ReleaseTimeStr" id="SReleaseTimethree">
+                                                </div>
+                                                <span class="col-md-1" style="width:20px;">到</span>
+                                                <div class="col-md-2 col-sm-2 reset">
+                                                    <input type="date" class="form-control" name="EneleaseTimeStr" id="EnReleaseTimethree">
+                                                </div>
+                                                <label class="col-md-1 col-sm-1 control-label reset">用户名：</label>
+                                                <div class="col-md-1 col-sm-1 reset">
+                                                    <input type="text" class="form-control" name="UserName" id="SNoticeNamethree">
+                                                </div>
+                                                <label class="col-md-1 col-sm-1 control-label reset">类型：</label>
+                                                <div class="col-lg-2 col-md-2 col-sm-2 reset">
+                                                    <select class="form-control" id="selectthree" name="academeId"></select>
+                                                </div>
+                                                <button class="btn btn-primary" type="button" id="btnSelectthree"><span class="glyphicon glyphicon-search"></span> 查询</button>
+                                            </div>
+                                        </form>
+                                    </div>
+
+                                </div>                       
+                                <table id="tabRechargesuccessfully" >
+                                    <tr>
+                                        <th w_num="total_line" width="5%">序号</th>
+                                        <th w_index="RechargeRecordID" w_hidden="true">ID</th>
+                                        <th w_index="UserName" width="8%">用户名</th>
+                                        <th w_index="TradeNumber" width="8%">交易号</th>
+                                        <th w_index="RechargeTypeName" width="8%">类型</th>
+                                        <th w_index="PayTypeName" width="8%">充值银行</th>
+                                        <th w_index="strRechargeMoney" width="8%">充值金额</th>
+                                        <th w_index="strRechargePoundage" width="8%">充值手续费</th>
+                                        <th w_index="strRealityAccountMoney" width="8%">实际到账金额</th>
+                                        <th w_index="StatusName" width="8%">状态</th>
+                                        <th w_index="ReleaseTimeStr" width="8%">提交时间</th>
+                                        <th w_index="operateIP" width="8%">操作IP</th>
+                                        <th w_index="ToVoidNo" w_render="selectViewButton" width="8%">管理</th>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div class="tab-pane" id="four" style="visibility:hidden">
+                                <div class="row setPadding" style="background:#ffffff;" id="fourid">
+                                    <label class="col-md-2">充值管理</label>
+                                    <div class="col-lg-12 col-md-12 col-sm-12" style="margin-right:5px;margin-bottom:15px;">
+                                        <form class="form-horizontal" role="form">
+                                            <div class="form-group" style="margin-bottom:0;">
+                                                <label class="col-md-1 col-sm-1 control-label reset">时间:</label>
+                                                <div class="col-md-2 col-sm-2 reset">
+                                                    <input type="date" class="form-control" name="ReleaseTimeStr" id="SReleaseTimefour">
+                                                </div>
+                                                <span class="col-md-1" style="width:20px;">到</span>
+                                                <div class="col-md-2 col-sm-2 reset">
+                                                    <input type="date" class="form-control" name="EneleaseTimeStr" id="EnReleaseTimefour">
+                                                </div>
+                                                <label class="col-md-1 col-sm-1 control-label reset">用户名：</label>
+                                                <div class="col-md-1 col-sm-1 reset">
+                                                    <input type="text" class="form-control" name="UserName" id="Userfour">
+                                                </div>
+                                                <label class="col-md-1 col-sm-1 control-label reset">类型：</label>
+                                                <div class="col-lg-2 col-md-2 col-sm-2 reset">
+                                                    <select class="form-control" id="selectfour" name="academeId"></select>
+                                                </div>
+                                                <button class="btn btn-primary" type="button" id="btnSelectfour"><span class="glyphicon glyphicon-search"></span> 查询</button>
+                                            </div>
+                                        </form>
+                                    </div>
+
+                                </div>
+                                <table id="tabRechargefailed">
+                                    <tr>
+                                        <th w_num="total_line" width="5%">序号</th>
+                                        <th w_index="RechargeRecordID" w_hidden="true">ID</th>
+                                        <th w_index="UserName" width="8%">用户名</th>
+                                        <th w_index="TradeNumber" width="8%">交易号</th>
+                                        <th w_index="RechargeTypeName" width="8%">类型</th>
+                                        <th w_index="PayTypeName" width="8%">充值银行</th>
+                                        <th w_index="strRechargeMoney" width="8%">充值金额</th>
+                                        <th w_index="strRechargePoundage" width="8%">充值手续费</th>
+                                        <th w_index="strRealityAccountMoney" width="8%">实际到账金额</th>
+                                        <th w_index="StatusName" width="8%">状态</th>
+                                        <th w_index="ReleaseTimeStr" width="8%">提交时间</th>
+                                        <th w_index="operateIP" width="8%">操作IP</th>
+                                        <th w_index="ToVoidNo" w_render="selctButton" width="8%">管理</th>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>                        
+                  </div>   
+                @*审核*@
+                <div class="modal bs-example-modal-sm" id="modChongzhi">
+                    <div class="modal-dialog" style="width:600px;">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                <h4 class="modal-title">充值查看</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row">
+                                    <form class="form-inline" method="post" id="Updatashenhe">
+                                        <input id="RechargeRecordID" name="RechargeRecordID" hidden />
+                                        <input id="UserID" name="UserID" hidden />
+                                        <input id="PayTypeID" name="PayTypeID" hidden />
+                                        <input id="RechargeTypeID" name="RechargeTypeID" hidden />
+                                        <input id="StatusID" name="StatusID" hidden />
+                                        <div class="form-group col-md-12">
+                                            <label class="col-md-4">用户名称：</label>                                          
+                                            <input type="text" class="btn form-control col-md-8" id="UserNameID" name="UserName" readonly = "readonly">
+                                        </div>
+                                        <div class="form-group col-md-12">
+                                            <label class="col-md-4">充值类型：</label>
+                                            <input type="text" class="form-control col-md-8" id="RechargeTypeNameID" name="RechargeTypeName" readonly = "readonly">
+                                        </div>
+                                        <div class="form-group col-md-12">
+                                            <label class="col-md-4">交易号：</label>
+                                            <input type="text" class="form-control col-md-8" id="TradeNumberID" name="TradeNumber" readonly = "readonly">
+                                        </div>
+                                        <div class="form-group col-md-12">
+                                            <label class="col-md-4">支付方式：</label>
+                                            <input type="text" class="form-control col-md-8" id="PayTypeNameID" name="PayTypeName" readonly = "readonly">
+                                        </div>
+                                        <div class="form-group col-md-12">
+                                            <label class="col-md-4">充值金额：</label>
+                                            <input type="text" class="form-control col-md-8" id="RechargeMoneyID" name="RechargeMoney" readonly = "readonly">
+                                        </div>
+                                        <div class="form-group col-md-12">
+                                            <label class="col-md-4">充值手续费：</label>
+                                            <input type="text" class="form-control col-md-8" id="RechargePoundageID" name="RechargePoundage" readonly = "readonly">
+                                        </div>
+                                        <div class="form-group col-md-12">
+                                            <label class="col-md-4">实际到账金额：</label>
+                                            <input type="text" class="form-control col-md-8" id="RealityAccountMoneyID" name="RealityAccountMoney" readonly = "readonly">
+                                        </div>
+                                        <div class="form-group col-md-12">
+                                            <label class="col-md-4">充值状态：</label>
+                                            <input type="text" class="form-control col-md-8" id="StatusNameID" name="StatusName" readonly = "readonly">
+                                        </div>
+                                        <div class="form-group col-md-12">
+                                            <label class="col-md-4">操作时间：</label>
+                                            <input type="text" class="form-control col-md-8" id="ReleaseTimeStrID" name="ReleaseTimeStr" readonly = "readonly">
+                                        </div>
+                                        <div class="form-group col-md-12">
+                                            <label class="col-md-4">操作IP：</label>
+                                            <input type="text" class="form-control col-md-8" id="operateIPID" name="operateIP" readonly = "readonly">
+                                        </div>
+                                        <h4 class="modal-title">审核此充值信息</h4>
+                                        <div class="col-md-12">
+                                            <label class="col-md-4">状态：</label>
+                                            <label>
+                                                <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1">
+                                                充值成功
+                                            </label>
+                                            <label>
+                                                <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+                                                充值失败
+                                            </label>
+                                        </div>
+                                        <div class="form-group col-md-12">
+                                            <label class="col-md-4">到账金额：</label>
+                                            <input type="text" class="form-control col-md-8" id="realityAccountMoneyID" name="RealityAccountMoney">
+                                        </div>
+                                        <div class="form-group col-md-12">
+                                            <label class="col-md-4">审核备注：</label>
+                                            <textarea class="form-control col-md-8" name="ExamineRemarks" ></textarea>
+                                        </div>
+                                        <button type="button" class="btn btn-info col-md-offset-5" id="updataShenhe" style="margin-top:30px;">审核此充值信息</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal-dialog -->
+                </div>      
+                @*查看*@      
+                <div class="modal bs-example-modal-sm" id="modselect">
+                    <div class="modal-dialog" style="width:800px;">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                <h4 class="modal-title">充值查看</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row">
+                                    <form class="form-inline" method="post" id="selectshuju">
+                                        <input id="RechargeRecordID" name="RechargeRecordID" hidden />
+                                        <input id="UserID" name="UserID" hidden />
+                                        <input id="PayTypeID" name="PayTypeID" hidden />
+                                        <input id="RechargeTypeID" name="RechargeTypeID" hidden />
+                                        <input id="StatusID" name="StatusID" hidden />
+                                        <div class="form-group col-lg-12 col-md-12 col-sm-12">
+                                            <div class="form-group col-lg-6 col-md-6 col-sm-6">
+                                                <label class="col-lg-5 col-md-5 col-sm-5 control-label">用户名称：</label>
+                                                <input type="text" class="form-control col-lg-4 col-md-4 col-sm-4" id="UserNameID" name="UserName" readonly="readonly">
+                                            </div>
+                                            <div class="form-group col-lg-6 col-md-6 col-sm-6">
+                                                <label class="col-lg-5 col-md-5 col-sm-5">充值类型：</label>
+                                                <input type="text" class="form-control col-lg-4 col-md-4 col-sm-4" id="RechargeTypeNameID" name="RechargeTypeName" readonly="readonly">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group col-lg-12 col-md-12 col-sm-12" style="margin-top:5px;">
+                                            <div class="form-group col-lg-6 col-md-6 col-sm-6">
+                                                <label class="col-lg-5 col-md-5 col-sm-5">交易号：</label>
+                                                <input type="text" class="form-control col-lg-4 col-md-4 col-sm-4" id="TradeNumberID" name="TradeNumber" readonly="readonly">
+                                            </div>
+
+                                            <div class="form-group col-lg-6 col-md-6 col-sm-6">
+                                                <label class="col-lg-5 col-md-5 col-sm-5">支付方式：</label>
+                                                <input type="text" class="form-control col-lg-4 col-md-4 col-sm-4" id="PayTypeNameID" name="PayTypeName" readonly="readonly">
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-lg-12 col-md-12 col-sm-12" style="margin-top:5px;">
+                                            <div class="form-group col-lg-6 col-md-6 col-sm-6">
+                                                <label class="col-lg-5 col-md-5 col-sm-5">充值金额：</label>
+                                                <input type="text" class="form-control col-lg-4 col-md-4 col-sm-4" id="RechargeMoneyID" name="RechargeMoney" readonly="readonly">
+                                            </div>
+
+                                            <div class="form-group col-lg-6 col-md-6 col-sm-6">
+                                                <label class="col-lg-5 col-md-5 col-sm-5">充值手续费：</label>
+                                                <input type="text" class="form-control col-lg-4 col-md-4 col-sm-4" id="RechargePoundageID" name="RechargePoundage" readonly="readonly">
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-lg-12 col-md-12 col-sm-12" style="margin-top:5px;">
+                                            <div class="form-group col-lg-6 col-md-6 col-sm-6">
+                                                <label class="col-lg-5 col-md-5 col-sm-5">实际到账金额：</label>
+                                                <input type="text" class="form-control col-lg-4 col-md-4 col-sm-4" id="RealityAccountMoneyID" name="RealityAccountMoney" readonly="readonly">
+                                            </div>
+                                            <div class="form-group col-lg-6 col-md-6 col-sm-6">
+                                                <label class="col-lg-5 col-md-5 col-sm-5">充值状态：</label>
+                                                <input type="text" class="form-control col-lg-4 col-md-4 col-sm-4" id="StatusNameID" name="StatusName" readonly="readonly">
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-lg-12 col-md-12 col-sm-12" style="margin-top:5px;">
+                                            <div class="form-group col-lg-6 col-md-6 col-sm-6">
+                                                <label class="col-lg-5 col-md-5 col-sm-5">操作时间：</label>
+                                                <input type="text" class="form-control col-lg-4 col-md-4 col-sm-4" id="ReleaseTimeStrID" name="ReleaseTimeStr" readonly="readonly">
+                                            </div>
+                                            <div class="form-group col-lg-6 col-md-6 col-sm-6">
+                                                <label class="col-lg-5 col-md-5 col-sm-5">操作IP：</label>
+                                                <input type="text" class="form-control col-lg-4 col-md-4 col-sm-4" id="operateIPID" name="operateIP" readonly="readonly">
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-lg-12 col-md-12 col-sm-12" style="margin-top:5px;">
+                                            <div class="form-group col-lg-6 col-md-6 col-sm-6">
+                                                <label class="col-lg-5 col-md-5 col-sm-5">审核备注：</label>
+                                                <textarea class="form-control col-lg-5 col-md-5 col-sm-5" style="width:196px;" name="ExamineRemarks" readonly="readonly"></textarea>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal-dialog -->
+                </div>         
+            </div>
+        </div>
+    </div>
+
+    <script src="~/Content/bootstrap-3.3.7-dist/js/jquery-2.0.3.min.js"></script>
+    <script src="~/Content/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <script src="~/Content/jquery.bsgrid-1.37/merged/bsgrid.all.min.js"></script>
+    <script src="~/Content/jquery.bsgrid-1.37/js/lang/grid.zh-CN.min.js"></script>
+    <script src="~/Content/layer/layer.js"></script>
+    <script src="~/Content/jss/customfunction.js"></script>
+    <script>
+        var tabRechargeall;
+        var tabinreview;
+        var tabRechargesuccessfully;
+        var tabRechargefailed;
+        var releaseTime = "1017-08-08 00:00:00.000";
+        var EnReleaseTime = "4017-08-08 00:00:00.000";
+        var noticeName = "";
+       
+        $(document).ready(function () {
+
+            $.post("/Fundsmanagement/management/SelctStatusType", function (jsonData) {
+                selectLoadData("StatusID", jsonData);
+            });
+            $.post("/Fundsmanagement/management/SelctType", function (jsonData) {
+                selectLoadData("selectAcademe", jsonData);
+            });
+            tabRechargeall = $.fn.bsgrid.init('tabRechargeall', {
+                url: '/Fundsmanagement/management/Rechargeall',
+                autoLoad: true,//自动加载数据
+                stripeRows: true,//隔行变色
+                rowHoverColor: true,//划过行变色
+                rowSelectedColor: true,//是否显示选中行背景色
+                pageSize: 9,//默认页面大小
+                pageSizeSelect: true,//是否选择分页页数下拉框
+                pagingLittleToolbar: true,//精简的图标按钮分页工具条
+                pagingToolbarAlign: "left"//分页工具条的显示位置              
+            });
+          
+            $.post("/Fundsmanagement/management/chognzhimoeny", function (data) {
+                $("#countmoeny").html(data.dfs);
+                $("#countdshouxufeimoenyid").html(data.YY);
+            });
+            var academeId = $("#selectAcademe").val();
+            if (academeId == "" || academeId == undefined) {
+                academeId = 0;
+            }
+            tabRechargeall.search("noticeName=" + noticeName + "&releaseTime=" + releaseTime + "&EnReleaseTime=" + EnReleaseTime + "&academeId=" + academeId);
+
+            $("#bulletinIds").hide();
+            $("#exportBYExcel").hide();
+            $("#exportToExcel").hide();
+            $("#ruleID").hide();
+            $("#threeid").hide();
+            $("#fourid").hide();           
+        });
+
+        //权限访问
+        $("#containerid").mouseenter(function () {
+            $.post("/LoginMain/MoKuaiQuanXianOpTypeSelect", function (Data) {
+                for (var i = 0; i < Data.length; i++) {
+                    if (Data[i].Name == "充值管理" && Data[i].Optype == "查询") {
+                        $("#bulletinIds").show();
+                        $("#ruleID").show();
+                        $("#threeid").show();
+                        $("#fourid").show();
+                    }
+                    if (Data[i].Name == "充值管理" && Data[i].Optype == "导出全部") {
+                        $("#exportToExcel").show();
+                    }
+                    if (Data[i].Name == "充值管理" && Data[i].Optype == "导出当前") {
+                        $("#exportBYExcel").show();
+                    }
+                    if (Data[i].Name == "充值管理" && Data[i].Optype == "审核") {
+                        $(".Updataid").removeClass("hidden");                       
+                    }
+                }
+            });
+        });
+
+        //全部查询
+        $("#btnSelect").click(function () {
+            noticeName = $("#SNoticeName").val();
+            releaseTime = $("#SReleaseTime").val() + " 00:00:00.000";
+            EnReleaseTime = $("#EnReleaseTime").val() + " 00:00:00.000";
+            //获取下拉框的值
+            var academeId = $("#selectAcademe").val();
+            if (academeId == "" || academeId == undefined) {
+                academeId = 0;
+            }
+            tabRechargeall.search("noticeName=" + noticeName + "&releaseTime=" + releaseTime + "&EnReleaseTime=" + EnReleaseTime + "&academeId=" + academeId);
+        });
+
+        //待审核查询
+        $("#btnSelectrule").click(function () {            
+            noticeName = $("#SNoticeNamerule").val();
+            releaseTime = $("#SReleaseTimerule").val() + " 00:00:00.000";
+            EnReleaseTime = $("#EnReleaseTimerule").val() + " 00:00:00.000";
+            //获取下拉框的值
+            var academeId = $("#selecttwo").val();
+            if (academeId == "" || academeId == undefined) {
+                academeId = 0;
+            }
+            tabinreview.search("noticeName=" + noticeName + "&releaseTime=" + releaseTime + "&EnReleaseTime=" + EnReleaseTime + "&academeId=" + academeId);
+        });
+
+        //审核通过
+        $("#btnSelectthree").click(function () {
+            noticeName = $("#SNoticeNamethree").val();
+            releaseTime = $("#SReleaseTimethree").val() + " 00:00:00.000";
+            EnReleaseTime = $("#EnReleaseTimethree").val() + " 00:00:00.000";
+            //获取下拉框的值
+            var academeId = $("#selectthree").val();
+            if (academeId == "" || academeId == undefined) {
+                academeId = 0;
+            }
+            tabRechargesuccessfully.search("noticeName=" + noticeName + "&releaseTime=" + releaseTime + "&EnReleaseTime=" + EnReleaseTime + "&academeId=" + academeId);
+        });
+     
+        //审核不通过
+        $("#btnSelectfour").click(function () {
+            noticeName = $("#Userfour").val();
+            releaseTime = $("#SReleaseTimefour").val() + " 00:00:00.000";
+            EnReleaseTime = $("#EnReleaseTimefour").val() + " 00:00:00.000";
+            //获取下拉框的值
+            var academeId = $("#selectfour").val();
+            if (academeId == "" || academeId == undefined) {
+                academeId = 0;
+            }
+            tabRechargefailed.search("noticeName=" + noticeName + "&releaseTime=" + releaseTime + "&EnReleaseTime=" + EnReleaseTime + "&academeId=" + academeId);
+           
+        });
+
+        function binreview() {
+            document.getElementById("rule").style.visibility = "visible"
+            $.post("/Fundsmanagement/management/SelctType", function (jsonData) {
+                selectLoadData("selecttwo", jsonData);
+            });
+            if (tabinreview == null) {
+                tabinreview = $.fn.bsgrid.init('tabinreview', {
+                    url: '/Fundsmanagement/management/binreview',
+                    autoLoad: true,//自动加载数据
+                    stripeRows: true,//隔行变色
+                    rowHoverColor: true,//划过行变色
+                    rowSelectedColor: true,//是否显示选中行背景色
+                    pageSize: 10,//默认页面大小
+                    pageSizeSelect: true,//是否选择分页页数下拉框
+                    pagingLittleToolbar: true,//精简的图标按钮分页工具条
+                    pagingToolbarAlign: "left"//分页工具条的显示位置
+                });
+            }
+            else {
+                tabinreview = tabinreview;
+            }
+            $(".bsgridPagingOutTab").css("min-width", "98%");
+            //获取下拉框的值
+            var academeId = $("#selecttwo").val();
+            if (academeId == "" || academeId == undefined) {
+                academeId = 0;
+            }
+            tabinreview.search("noticeName=" + noticeName + "&releaseTime=" + releaseTime + "&EnReleaseTime=" + EnReleaseTime + "&academeId=" + academeId);
+   
+        }
+
+        function rechargesuccessfully() {
+            $.post("/Fundsmanagement/management/SelctType", function (jsonData) {
+                selectLoadData("selectthree", jsonData);
+            });
+            document.getElementById("three").style.visibility = "visible"
+            if (tabRechargesuccessfully==null) {
+                tabRechargesuccessfully = $.fn.bsgrid.init('tabRechargesuccessfully', {
+                    url: '/Fundsmanagement/management/Rechargesuccessfully',
+                    autoLoad: true,//自动加载数据
+                    stripeRows: true,//隔行变色
+                    rowHoverColor: true,//划过行变色
+                    rowSelectedColor: true,//是否显示选中行背景色
+                    pageSize: 10,//默认页面大小
+                    pageSizeSelect: true,//是否选择分页页数下拉框
+                    pagingLittleToolbar: true,//精简的图标按钮分页工具条
+                    pagingToolbarAlign: "left"//分页工具条的显示位置
+                });
+
+            }
+            else {
+                tabRechargesuccessfully = tabRechargesuccessfully;
+            }
+            $(".bsgridPagingOutTab").css("min-width", "98%");
+            //获取下拉框的值
+            var academeId = $("#selectthree").val();
+            if (academeId == "" || academeId == undefined) {
+                academeId = 0;
+            }
+            tabRechargesuccessfully.search("noticeName=" + noticeName + "&releaseTime=" + releaseTime + "&EnReleaseTime=" + EnReleaseTime + "&academeId=" + academeId);
+           
+          
+        }
+        function Rechargefailed() {
+            $.post("/Fundsmanagement/management/SelctType", function (jsonData) {
+                selectLoadData("selectfour", jsonData);
+            });
+            document.getElementById("four").style.visibility = "visible"
+            if (tabRechargefailed==null) {
+                tabRechargefailed = $.fn.bsgrid.init('tabRechargefailed', {
+                    url: '/Fundsmanagement/management/Rechargefailed',
+                    autoLoad: true,//自动加载数据
+                    stripeRows: true,//隔行变色
+                    rowHoverColor: true,//划过行变色
+                    rowSelectedColor: true,//是否显示选中行背景色
+                    pageSize: 10,//默认页面大小
+                    pageSizeSelect: true,//是否选择分页页数下拉框
+                    pagingLittleToolbar: true,//精简的图标按钮分页工具条
+                    pagingToolbarAlign: "left"//分页工具条的显示位置
+                });               
+            }
+            else {
+                tabRechargefailed = tabRechargefailed;
+            }
+            $(".bsgridPagingOutTab").css("min-width", "98%");
+            //获取下拉框的值
+            var academeId = $("#selectfour").val();
+            if (academeId == "" || academeId == undefined) {
+                academeId = 0;
+            }
+            tabRechargefailed.search("noticeName=" + noticeName + "&releaseTime=" + releaseTime + "&EnReleaseTime=" + EnReleaseTime + "&academeId=" + academeId);         
+        }
+
+         //自定义公告详情列
+        function crearViewButton(record, rowIndex, colIndex, options) {
+            var shenghe = tabRechargeall.getColumnValue(rowIndex, "StatusName");
+            if (shenghe=="审核中") {
+                return '<button type="button" class="Updataid btn btn-danger hidden" onclick="openViewModal(' + record.RechargeRecordID + ')">审核</button>'
+            } else {
+                return '<button type="button" class="btn btn-primary" onclick="selectxinxi(' + record.RechargeRecordID + ')">查看</button>'
+            }                     
+        }
+        //自定义公告详情列
+        function chakanViewButton(record, rowIndex, colIndex, options) {
+            var shenghe = tabinreview.getColumnValue(rowIndex, "StatusName");
+            if (shenghe == "审核中") {
+                return '<button type="button" class="Updataid btn btn-danger hidden" onclick="openViewModal(' + record.RechargeRecordID + ')">审核</button>'
+            } else {
+                return '<button type="button" class="btn btn-primary" onclick="selectxinxi(' + record.RechargeRecordID + ')">查看</button>'
+            }
+        }
+        //自定义公告详情列
+        function selectViewButton(record, rowIndex, colIndex, options) {
+            var shenghe = tabRechargesuccessfully.getColumnValue(rowIndex, "StatusName");
+            if (shenghe == "审核中") {
+                return '<button type="button" class="Updataid btn btn-danger hidden" onclick="openViewModal(' + record.RechargeRecordID + ')">审核</button>'
+            } else {
+                return '<button type="button" class="btn btn-primary" onclick="selectxinxi(' + record.RechargeRecordID + ')">查看</button>'
+            }
+        }
+        //自定义公告详情列
+        function selctButton(record, rowIndex, colIndex, options) {
+            var shenghe = tabRechargefailed.getColumnValue(rowIndex, "StatusName");
+            if (shenghe == "审核中") {
+                return '<button type="button" class="Updataid btn btn-danger hidden" onclick="openViewModal(' + record.RechargeRecordID + ')">审核</button>'
+            } else {
+                return '<button type="button" class="btn btn-primary" onclick="selectxinxi(' + record.RechargeRecordID + ')">查看</button>'
+            }
+        }
+        //充值审核绑定
+        function openViewModal(RechargeRecordID) {          
+            $.post("/Fundsmanagement/management/updatabangding", { RechargeRecordID: RechargeRecordID }, function (data) {              
+                loadDatatoForm("Updatashenhe", data);
+            });            
+            $("#modChongzhi").modal("show");
+        }
+
+        //充值查看
+        function selectxinxi(RechargeRecordID) {
+            $.post("/Fundsmanagement/management/updatabangding", { RechargeRecordID: RechargeRecordID }, function (data) {
+                loadDatatoForm("selectshuju", data);
+            });
+            $("#modselect").modal("show");
+        }
+        //审核
+        $("#updataShenhe").click(function () {
+            if ($('#Updatashenhe [name="RealityAccountMoney"]').val().trim() != "") {
+            var formDate = $("#Updatashenhe").serializeArray();
+            $.post("/Fundsmanagement/management/updatachogzhi", formDate, function (msg) {
+                if (msg == "success") {
+                    layer.alert('审核成功', { icon: 6, title: '提示' });
+                    //关闭公告类型模态窗体
+                    $("#modChongzhi").modal("hide");
+                    //刷新table
+                    tabRechargeall.refreshPage();
+                    tabinreview.refreshPage();
+                    tabRechargesuccessfully.refreshPage();
+                    tabRechargefailed.refreshPage();
+                }                          
+                else {
+
+                    layer.alert('审核失败！', { icon: 5, title: '提示' });
+                }
+            });
+            } else {
+                layer.alert('到账金额不能为空！', { icon: 2, title: '提示' });
+            }
+        });
+
+        $("#exportToExcel").click(function () {
+            var a = 1
+            //检查当前列表是否是 当前的查询条件查询出来的
+            if (a == 1) {
+                layer.confirm("是否导出全部数据？", {
+                    icon: 3,
+                    btn: ['确定', '取消']
+                    //按钮
+                }, function (layerIndex) {
+                    layer.close(layerIndex);//关闭提示
+                    //打开下载链接
+                    window.open("/Fundsmanagement/management/selectExcel");
+                })
+            }
+        });
+        $("#exportBYExcel").click(function () {
+            noticeName = $("#SNoticeName").val();
+            releaseTime = $("#SReleaseTime").val() + " 00:00:00.000";
+            EnReleaseTime = $("#EnReleaseTime").val() + " 00:00:00.000";
+
+            var academeId = $("#selectAcademe").val();
+            if (academeId == "" || academeId == undefined) {
+                academeId = 0;
+            }
+            var str = 'noticeName=' + noticeName +
+                    '&releaseTime=' + releaseTime +
+                    '&EnReleaseTime=' + EnReleaseTime+
+                '&academeId=' + academeId;
+            //拼接查询条件
+            var oldStr = tabRechargeall.getPageCondition(tabRechargeall.getCurPage()); //getPageCondition()获取当前页请求条件  ;getCurPage()获取当前页码     
+            var a = 1
+            if (a == 1) {
+                layer.confirm("是否要导出当前的数据？", {
+                    icon: 3,
+                    btn: ['确定', '取消']
+                    //按钮
+                }, function (layerIndex) {
+                    layer.close(layerIndex);//关闭提示
+                    //打开下载链接
+                    window.open("/Fundsmanagement/management/withdrawdepositExcel?" + str);
+                })
+            }
+            else {
+                layer.alert("请先查询用户，预览是否是需要导出的用户", { icon: 0, title: '提示' });
+            }
+        })
+    </script>
+</body>
+</html>

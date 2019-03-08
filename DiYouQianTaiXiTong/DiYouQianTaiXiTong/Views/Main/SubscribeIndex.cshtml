@@ -1,0 +1,631 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>帝友P2P借贷系统</title>
+    <link href="~/Content/ShouYe/iconfont.css" rel="stylesheet" />
+    <link href="~/Content/ShouYe/public.css" rel="stylesheet" />
+    <link href="~/Content/ShouYe/style.css" rel="stylesheet" />
+    <link href="~/Content/ShouYe/index.css" rel="stylesheet" />
+    <link href="~/Content/ShouYe/user.css" rel="stylesheet" />
+    <link href="~/Content/ShouYe/mall.css" rel="stylesheet" />
+   
+    <script src="~/Content/ShouYe/jquery-1.8.2.min.js"></script>
+    <script src="~/Content/ShouYe/diyou.js"></script>
+    <script src="~/Content/ShouYe/base.js"></script>
+
+    <link href="~/Content/bootstrap-3.3.7-dist/css/style.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/jquery.bsgrid-1.37/merged/bsgrid.all.min.css" rel="stylesheet" />
+    <link href="~/Content/jquery.bsgrid-1.37/css/skins/grid_bootstrap.min.css" rel="stylesheet" />
+
+    <script>
+        var user_id = '';
+        var web_domain = "http://www.diyou.cc";
+        var js_web_name = "帝友P2P借贷系统V4.0演示站 - 中国最大最专业的借贷系统开发商";
+    </script>
+    @*[if IE 6]>*@
+    @*<script src="~/Content/ShouYe/diyou.js"></script>*@
+    @*<script src="/dyweb/dythemes/diyou/js/iepng.js" type="text/javascript"></script>*@
+    <script type="text/javascript">
+     //EvPNG.fix('div, ul, li , a , em , img, input,h1');
+    </script>
+    <![endif]
+</head>
+<body>
+    <div class="header">
+        <div class="header_top">
+            <div class="conbox fn_cle">
+                <div class="contact fn_left">
+                    <i class="telico"></i>
+                    <span class="tel">服务热线：<em>400-836-3969 </em></span>                				<a href="http://www.diyou.cc/app/index.html" target="_blank">手机端下载</a>
+                </div>
+                <div class="top_rig fn_rig">
+                    <ul>
+                        <li><a href="/Main/ZhuCe" class="bor_none reg">免费注册</a></li>
+                        <li><a href="/Mian/Login" class="login">立即登录</a></li>
+                        <li><a href="" class="helpico">帮助中心</a></li>
+                        <li><a href="/Main/CounterIndex">利息计算器</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="header_cont conbox fn_cle">
+            <h1 class="fn_left">
+              <a href="">
+                 <img src="~/Content/ShouYe/0_admin_upload_1407294921608.jpg" alt=""/>
+              </a>
+            </h1>
+            <div class="navbar fn_left">
+
+                <ul>
+                    <li class="ui_nav_item ">
+                        <a href="/Main/Index">首页</a>
+
+
+                    </li>
+                    <li class="ui_nav_item ">
+                        <a href="/Main/BorrowIndex">我要借款</a>
+                        @*<ul class="nav_dropdown">
+                            <li class="arrow"><span></span></li>
+                            <li><a href="">如何借入</a></li>
+                            <li><a href="">工具箱</a></li>
+                        </ul>*@
+                    </li>
+                    <li class="ui_nav_item  now ">
+                        <a href="/Main/InvestIndex">我要投资</a>
+                    </li>
+                    <li class="ui_nav_item ">
+                        <a href="/Main/MyAccountIndex1">我的账户</a>
+                    </li>
+                    <li class="ui_nav_item ">
+                        <a href="">关于我们</a>
+
+                        <ul class="nav_dropdown">
+                            <li class="arrow"><span></span></li>
+                            <li><a href="">证照资质</a></li>
+                            <li><a href="">顾问团队</a></li>
+                        </ul>
+
+                    </li>
+                    <li class="ui_nav_item ">
+                        <a href="">新手帮助</a>
+
+                        <ul class="nav_dropdown">
+                            <li class="arrow"><span></span></li>
+                            <li><a href="">网站公告</a></li>
+                            <li><a href="">安全保障</a></li>
+                            <li><a href="">工作原理</a></li>
+                            <li><a href="">法律政策</a></li>
+                            <li><a href="">资费说明</a></li>
+                        </ul>
+
+                    </li>
+
+                </ul>
+            </div>
+            <div class="follow fn_rig">
+                <a href="" target="_blank"><div class="follow_list follow_sina "></div></a>
+                <div class="follow_list follow_wx">
+                    <div class="wx_ewm">
+                        <span class="arrow"></span>
+                        <div class="arrow_img"><img src="~/Content/ShouYe/0_admin_upload_1420791797782.jpg" height="73" width="73" /></div>
+                    </div>
+
+                </div>
+                <div class="follow_list follow_qq">
+                    <div class="qq_info">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+   
+    <script type="text/javascript" src="~/Content/invest/jquery.fancybox.js"></script>
+    <script> var borrow_nid = '20150724007';var borrow_self = 0;var paypwd_status = 0;var borrow_type = 'roam';</script>
+    <input type="hidden" name="account_min" id="account_min" value="1000">
+    <div class="conbox mt20">
+        <div class="tender_detai">
+            <div class="tender_detai_tit">
+                <h2 style="margin-top:10px;">测试部——流转标01
+                 <img src="~/Content/ShouYe/roam.gif" />
+                 <i class="tender_reword">6.00元</i>
+                </h2>
+                <span>借款编号：20150724007</span>
+            </div>
+            <div class="tender_detai_cont">
+                <div class="tender_detai_lf">
+                    <ul>
+                        <li>
+                            <span class="basic_label">借款金额</span>
+                            <span class="basic_value"><em class="yellow">5000.00元</em></span>
+                            <span class="basic_label">年利率</span>
+                            <span class="basic_value"><em>10.00</em>%</span>
+                        </li>
+                        <li>
+                            <span class="basic_label">回购期限</span>
+                            <span class="basic_value"><em>5个月</em></span>
+                            <span class="basic_label">还款方式</span>
+                            <span class="basic_value">到期还本还息</span>
+                        </li>
+                        <li>
+                            <span class="basic_label">最小流转</span>
+                            <span class="basic_value"><em>1000</em>元</span>
+                            <span class="basic_label">已流转</span>
+                            <span class="basic_value"><em>3</em>份</span>
+                        </li>
+                        <li>
+                            <span class="basic_label">担保机构</span>
+                            <span class="basic_value">测试</span>
+                            <span class="basic_label">反担保方式</span>
+                            <span class="basic_value">测试</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="tender_detai_rig">
+                    <div class="item">可投份数<span class="avail_money">2</span>份</div>
+                    <div class="item">
+                        账户余额 <a href="javascript:void(0);" id="tender_login" class="f_c2" target="_blank">登录</a> 后可见
+                    </div>
+                    <form action="" name="" method="post" id="tender_form" novalidate="novalidate">
+                        <div class="item" id="add_Nums">
+                            <span class="decrease" id="decrease">-</span><input type="text" data-nid="20150724007" name="account" id="roam_account" value="1份" class="nums"><span class="increase" id="increase" data-nid="2">+</span>
+                        </div>
+                        <div class="item">
+                            <span class="f_s16">5</span>个月  预计收益(含奖励)：<span class="f_s16" id="tender_all">0.00</span>元
+                        </div>
+                        <div class="item">
+                            <input type="button" id="roam_tender" class="tender_sub2" value="认    购">
+                        </div>
+                    </form>
+                </div>
+                <div class="cle"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="conbox mt40">
+        <div class="tender_main">
+            <div class="tender_main_tit" id="tender_main_tit">
+                <ul class="nav nav-tabs" >
+                    <li class="active hover"><a href="#InvenstRecord" data-toggle="tab" style="background:#f7f7f7;">基本信息</a></li>
+                    <li><a href="#ChangeInvenstRecord" data-toggle="tab" style="margin-left:5px;background:#f7f7f7;">交易记录</a></li>
+                    <li><a href="#NowInvenstRecord" data-toggle="tab" style="margin-left:5px;background:#f7f7f7;">流转历史记录</a></li>
+                </ul>
+            </div>
+            <div class="tender_main_cont tab-content" style="margin-top:-6px;">
+                <div class="basic_infor j_tender_cont tab-pane active" id="InvenstRecord">
+                    <div class="personal_infor fn_cle">
+                        <div class="tend_left ver_top">
+                            <div>
+                                <div class="per_infor_detai">
+                                    <h3>认证信息</h3>
+                                    <ul>
+                                        <li>
+                                            <span class="basic_label">性别</span>
+                                            <span class="basic_value"><img src="~/Content/images/tend_pic1.png" alt="男"/>男</span>
+                                            <span class="basic_label">月收入</span>
+                                            <span class="basic_value">5000-10000元</span>
+                                        </li>
+                                        <li>
+                                            <span class="basic_label">出生日期</span>
+                                            <span class="basic_value">
+                                                <script>
+					   var card_id="330719196104050216";
+					   document.write(card_id.substring(6,10)+"年"+card_id.substring(10,12)+"月"+card_id.substring(12,14)+"日");
+                                                </script>@*1961年04月05日*@
+                                            </span>
+                                            <span class="basic_label">是否结婚</span>
+                                            <span class="basic_value">已婚</span>
+                                        </li>
+                                        <li>
+                                            <span class="basic_label">工作城市</span>
+                                            <span class="basic_value">辽宁省 抚顺 </span>
+                                            <span class="basic_label">学历</span>
+                                            <span class="basic_value">本科</span>
+                                        </li>
+                                        <li>
+
+                                            <span class="basic_label">工作年限</span>
+                                            <span class="basic_value">三年以内</span>
+                                            <span class="basic_label">公司性质</span>
+                                            <span class="basic_value">一般民营企业  </span>
+                                        </li>
+                                        <li>
+
+                                            <span class="basic_label">有无购房</span>
+                                            <span class="basic_value">有</span>
+                                            <span class="basic_label">公司规模</span>
+                                            <span class="basic_value">10-50人</span>
+                                        </li>
+                                        <li>
+
+                                            <span class="basic_label">有无购车</span>
+                                            <span class="basic_value">有</span>
+                                            <span class="basic_label">岗位职位</span>
+                                            <span class="basic_value">员工</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="cle"></div>
+                                @*<div class="mt30">
+                                    <h3>借款方商业描述</h3>
+                                    <div class="tend_con">测试</div>
+                                </div>
+                                <div class="mt30">
+                                    <h3>借款方资产状况</h3>
+                                    <div class="tend_con">测试</div>
+                                </div>
+                                <div class="mt30">
+                                    <h3>借款方资金用途</h3>
+                                    <div class="tend_con">测试</div>
+                                </div>
+                                <div class="mt30">
+                                    <h3>风险控制措施</h3>
+                                    <div class="tend_con">测试</div>
+                                </div>
+                                <div class="mt30">
+                                    <h3>项目材料</h3>
+                                    <div class="image_text">
+
+                                        <ul>
+                                            <li><a href=""><img src="~/Content/images/1098_admin_upload_1437725477875.jpg" /></a></li>
+                                        </ul>
+                                    </div>
+                                </div>*@
+                            </div>
+                        </div>
+                        <div class="tend_right ver_top">
+                            <div>
+                                <h3>认证信息</h3>
+                                <div class="borrow_infor">
+                                    <div class="borrow_infor_tit_lf">
+                                        <a href="javascript:void(0);" title="v4jk001"><img src="~/Content/images/2462.jpg" alt=""/></a>
+                                    </div>
+                                    <div class="borrow_infor_tit_rig">
+                                        <p class="user_name">v4jk001</p>
+                                        <ul class="user_name_ul">
+                                            <li class="sm yes">实名</li>
+                                            <li class="tel yes">手机</li>
+                                            <li class="mail yes">邮箱</li>
+                                            <li class="pay yes">支付</li>
+                                        </ul>
+                                    </div>
+                                    <div class="cle"></div>
+                                    <ul class="mt10">
+                                        <li><span>发布借款：10笔</span><span>成功借款：9笔</span></li>
+                                        <li><span>还清笔数：7笔</span><span>逾期笔数：9笔</span></li>
+                                        <li><span>严重逾期：9次</span><span>逾期金额：￥7474.00</span></li>
+                                        <li><span>总借入：￥46000.00</span><span>待还：￥7474.00</span></li>
+                                    </ul>
+                                </div>
+                                <div class="mt10">
+                                    <h3>审核记录</h3>
+                                    <table class="sh_tab" border="0">
+                                        <tbody>
+                                            <tr>
+                                                <td>信用卡</td>
+                                                <td>2015-07-24</td>
+                                                <td><span class="rz no"></span></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <p class="mt10">帝友P2P借贷系统V4.0演示站将以客观公正的原则，最大程度的核实用户的真实信息，确保用户的信息真实可靠，让投资人100%安全。</p>
+                                </div>
+                                <!--div class="mt10">
+                                            <h3>留言</h3>
+                                       <div class="comment">
+                                      <h4>咨询或评论：（字数在1-120之间）</h4>
+                                      <form action="" method="post" id="com_form">
+                                        <div class="item">
+                                          <textarea name="contents" id="contents" ></textarea>
+                                        </div>
+                                        <div class="item ">
+                                                </div>
+                                        </form>
+                                               <div id="content_list">
+                                      <div class="recent_comm">
+                                         <h5>最近留言</h5>
+                                                     <dl>
+
+                                                 </dl>
+                                                      </div>
+
+                                </div>
+
+                                         </div>
+                                           </div-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="trad_rec j_tender_cont fn_cle tab-pane " id="ChangeInvenstRecord">
+                    <table id="tabChangInvest" style="margin-left:10px;">
+                        <thead>
+                            <tr>
+                                <th w_index="InvestID" w_hidden="true" width="10%">投资ID</th>
+                                <th w_index="UserID" w_hidden="true" width="10%">用户ID</th>
+                                <th w_index="UserName" width="12%">借款者</th>
+                                <th w_index="LoanPurpose" width="12%">标题</th>
+                                <th w_index="InvestMoney" width="12%">投标金额</th>
+                                <th w_index="LoanTreetop" width="12%">投资标题</th>
+                                <th w_index="StartTime" width="20%">投标时间</th>
+                                <th w_index="StatusName" width="20%">投标状态</th>
+                            </tr>
+                        </thead>
+                    </table>
+                    <div class="trad_rec_rig">
+                        <div class="trad_rig_item">
+                            <h4>投资总额：</h4>
+                            <p>3000.00<span>元</span></p>
+                        </div>
+                        <div class="trad_rig_item">
+                            <h4>加入人次：</h4>
+                            <p>3<span>人次</span></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="trad_rec j_tender_cont tab-pane" id="NowInvenstRecord">
+                    <div class="roam_rec">
+                        <div class="roam_rec_cont">
+                            <table class="lz_trad_rec" border="0" cellspacing="0" cellpadding="0">
+                                <thead>
+                                    <tr>
+                                        <th>项目</th>
+                                        <th>最近一个月</th>
+                                        <th>最近半年</th>
+                                        <th>最近一年</th>
+                                        <th>历史合计</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>成功流转：</td>
+                                        <td>￥0</td>
+                                        <td>￥0</td>
+                                        <td>￥0</td>
+                                        <td>￥10400</td>
+                                    </tr>
+                                    <tr>
+                                        <td>成功回购：</td>
+                                        <td>￥0</td>
+                                        <td>￥0</td>
+                                        <td>￥0</td>
+                                        <td>￥3000</td>
+                                    </tr>
+                                    <tr>
+                                        <td>逾期违约：</td>
+                                        <td>￥0</td>
+                                        <td>￥0</td>
+                                        <td>￥0</td>
+                                        <td>￥7474.00</td>
+                                    </tr>
+                                    <tr>
+                                        <td>累计利息成本：</td>
+                                        <td>￥0</td>
+                                        <td>￥0</td>
+                                        <td>￥0</td>
+                                        <td>￥199.01</td>
+                                    </tr>
+                                    <tr>
+                                        <td>逾期还款率：</td>
+                                        <td>0%</td>
+                                        <td>0%</td>
+                                        <td>0%</td>
+                                        <td>71.87%</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+   
+   
+
+    <!-- footer start -->
+    <div class="footer">
+        <div class="conbox footer_top fn_cle">
+            <div class="fn_left f_top_left">
+                <div class="f_map">
+                    <ul class="fn_cle">
+                        <li><a href="" target="_blank">关于我们</a></li>
+                        <li><a href="" target="_blank">安全保障</a></li>
+                        <li><a href="" target="_blank">媒体报道</a></li>
+                        <li><a href="" target="_blank">帮助中心</a></li>
+                        <li><a href="" target="_blank">联系我们</a></li>
+                    </ul>
+                </div>
+                <div class="f_firends">
+                    <ul>
+                        <li>友情链接：</li>
+                        <li><a href="" target="_blank">帝友官网</a></li>
+                        <li><em>|</em></li>
+                        <li><a href="" target="_blank">网贷天眼</a></li>
+                        <li><em>|</em></li>
+                        <li><a href="" target="_blank">禹州启惠</a></li>
+                        <li><em>|</em></li>
+                        <li><a href="http:" target="_blank">汇付天下</a></li>
+                        <li><em>|</em></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="fn_rig f_top_rig">
+                <h3>合作伙伴</h3>
+                <ul class="parther fn_cle">
+                    <li><a href="" class="huifu" target="_blank"><img src="~/Content/ShouYe/0_admin_upload_1407294921608.jpg" title="帝友系统" width="100" height="60"/>
+                       </a></li>
+                    <li><a href="" class="huifu" target="_blank">
+                            <img src="~/Content/ShouYe/1_admin_upload_1425105669802.png" title="测试合作伙伴" width="100" height="60"/>
+                        </a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer_bot">
+            <div class="conbox fn_cle">
+                <div class="verification fn_left">
+                    <a href="" title="诚信网站认证" target="_blank" class="credit"></a>				<a href="" title="诺顿安全认证" target="_blank" class="norton"></a>				<a href="http://www.diyou.cc/" title="公安网警平台" target="_blank" class="police"></a>				<a href="http://www.diyou.cc/" title="工商网监" target="_blank" class="gongshang"></a>
+                </div>
+                <div class="fn_rig copyright">Copyright@2012-2014 闽ICP备12013734号-24 厦门帝网信息科技有限公司旗下 帝友系统</div>
+                <div class="fn_rig">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- footer end -->
+    <!-- 右侧联系我们 -->
+    <div style="right:-230px;" class="contactusdiyou">
+        <div class="hoverbtn">
+            <span>联</span><span>系</span><span>我</span><span>们</span>
+            <img src="~/Content/ShouYe/hoverbtnbg.png" height="9" width="13"/>
+        </div>
+
+        <div class="conter">
+            <div class="con1">
+                <dl class="fn_cle">
+                    <dt><img src="~/Content/ShouYe/contactusdiyou_1.png" height="31" width="31"/></dt>
+                    <dd class="f1">财富热线：</dd>
+                    <dd><span class="ph_num">400-836-3969 </span></dd>
+                </dl>
+            </div>
+
+            <div class="qqcall">
+                <dl class="fn_cle">
+                    <dt><img src="~/Content/ShouYe/contactusdiyou_2.png" /></dt>
+                    <dd class="f1 f_s14">在线客服：</dd>
+                </dl>
+            </div>
+
+            <div class="weixincall">
+                <dl class="fn_cle">
+                    <dt>
+                        <img src="~/Content/ShouYe/contactusdiyou_5.png" height="31" width="31"/></dt>
+                    <dd class="f1">微信订阅号：</dd>
+                    <dd>dyou</dd>
+                    <dd class="f3">
+                        <img src="~/Content/ShouYe/0_admin_upload_1420791797782.jpg" height="73" width="73"/></dd>
+                </dl>
+            </div>
+
+            <p class="con2 fn_cle">
+                <a class="a1" href="">
+                    <img src="~/Content/ShouYe/contactusdiyou_3.png" /></a>		 <span>新浪微博：</span>
+                <a href="" target="_blank">点击关注</a>
+            </p>
+            <div class="dytimer diyou">
+                <span style="font-weight: bold;">服务时间：</span>
+                <span>10:10-10:1111</span>
+            </div>
+        </div>
+
+    </div>
+    <div class="diyoumask"></div>
+    <!-- 右侧联系我们 -->
+    <!-- 返回顶部 -->
+    <div class="back_right_box">
+        <a id="gotobtn" class="t_b_bor" title="返回顶部" style="display: block;"></a>
+    </div>
+    <!-- 返回顶部 -->
+    @*<script type="text/javascript">
+        diyou.use('footer', function(f) {
+            f.back_top();
+            f.aboutus();
+        })
+        </script>*@
+
+    @*//投资流转标模态窗体*@
+    <div class="modal fade" id="MyInfor" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+        <div class="modal-dialog" style="width:900px;">
+            <div class="modal-content">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <div class="panel panel-primary">
+                    <div class="panel-heading">我要购买</div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <form class="form-horizontal" method="post" id="InsertForm">
+                                <input type="hidden" id="ZLoanID" name="LoanID" class="hidden" />
+                                <div class="form-group">
+
+                                    <label class="control-label col-md-3">流转标标题</label>
+                                    <div class="col-md-3">
+                                        <input type="text" class="form-control" name="Loantitle" id="ZLoantitle" readonly="readonly" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">最小流转单位</label>
+                                    <div class="col-md-3">
+                                        <input class="form-control" name="LowestTenderMoney" id="ZLowestTenderMoney" readonly="readonly" />
+                                    </div>
+                                    <label class="control-label" style="margin-top:2px;">元</label>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">还剩份数</label>
+                                    <div class="col-md-3">
+                                        <input class="form-control" name="SurplusLoan" id="ZSurplusLoan" readonly="readonly" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">年利率</label>
+                                    <div class="col-md-3">
+                                        <input class="form-control" name="Rate" id="ZRate" readonly="readonly" />
+                                    </div>
+                                    <label class="control-label" style="margin-top:2px;">%</label>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">购买份数</label>
+                                    <div class="col-md-3">
+                                        <input class="form-control" name="fenshu" id="Zfenshu" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3">购买理由</label>
+                                    <div class="col-md-3">
+                                        <input class="form-control" name="InvestReason" id="ZInvestReason" />
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-2 col-md-offset-1 control-label no-padding-right" for="validCode">
+                                        验证码
+                                    </label>
+                                    <div class="col-sm-3" style="margin-left:15px;">
+                                        <div class="input-group">
+                                            <input type="text" name="validCode" id="validCode1" value="" class="form-control" />
+                                            <div class="input-group-addon" style="padding:0"><img src="/Main/ValideCode" id="ValidateCode1" onclick="reloadImage1()" /></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                            <button class="btn btn-primary" style="margin-left:300px;" id="ZSubmit">提交</button>
+                            <button class="btn btn-primary" style="margin-left:5px;" id="ZReturn">取消</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="~/Content/ShouYe/js/tender.js"></script>
+    <script src="~/Content/bootstrap-3.3.7-dist/js/jquery-1.11.2.min.js"></script>
+    <script src="~/Content/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <script src="~/Content/bootstrap-3.3.7-dist/js/bootstrap-table.js"></script>
+    <script src="~/Content/jquery.bsgrid-1.37/merged/bsgrid.all.min.js"></script>
+    <script src="~/Content/jquery.bsgrid-1.37/js/lang/grid.zh-CN.min.js"></script>
+    <script src="~/Content/js/customfunction.js"></script>
+    <script src="~/Content/layer/layer.js"></script>@*对话框*@
+    <script type="text/javascript">
+      $("#roam_tender").click(function () {
+          $("#MyInfor").modal('show');
+      });
+  </script>
+</body>
+</html>

@@ -1,0 +1,509 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/jquery.bsgrid-1.37/merged/bsgrid.all.min.css" rel="stylesheet" />
+    <link href="~/Content/jquery.bsgrid-1.37/css/skins/grid_bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/jquery.bsgrid-1.37/css/skins/grid_sky_blue.min.css" rel="stylesheet" />
+    <title>selectMaterialAttestation</title>
+    <style type="text/css">
+        .container {
+            width: 100%;
+            padding: 20px 40px 0 35px;
+            margin: 0;
+        }
+
+        .panel-heading span {
+          font-size:15px;font-weight:700;
+        }
+
+        .reset {
+            padding-left: 5px;
+            padding-right: 5px;
+        }
+
+        .panel-body {
+            padding-left: 0;
+            background: #f4fcff;
+        }
+
+       
+
+        a, a:hover, a:active, a:visited, a:link {
+            color: white;
+            text-decoration: none;
+        }
+
+        td a {
+            color: blue !important;
+        }
+
+        .h4 {
+            margin: 0 0 4px 0;
+        }
+
+        th {
+            font-weight: normal;
+        }
+
+        .h4, td, th {
+            text-align: center;
+        }
+
+        .table tbody tr td {
+            padding: 4px;
+        }
+
+            .table tbody tr td button {
+                height: 24px;
+                padding: 2px 12px;
+            }
+
+        .titleInfor {
+            border: 1px ridge #e5dfdf;
+            background: #f4fcff;
+            /*width: 300px;*/
+            height: 500px;
+            float: left;
+        }
+
+        .Baseinfor {
+            float: left;
+            background: #f4fcff;
+            /*width: 1000px;
+            height: 650px;
+            margin-left: 15px;*/
+        }
+
+        .modal-body {
+            background: #f4fcff;
+        }
+    </style>
+</head>
+<body style="height:100%;">
+    <div class="container" id="containerid">
+        <div class="row">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <div class="row">
+                        <span class="col-md-2">材料认证</span>
+                    </div>
+                </div>
+                <div class="panel-body" style="padding-left:15px;">
+                    <div class="titleInfor col-sm-3 col-md-3 col-lg-3">
+                        <div class="col-md-12" style="background-color:white;"><span>查找用户</span></div>
+                        <form class="form-horizontal" id="Userfrom">
+                            <div style="margin-top:30px;">
+                                <div class="form-group">
+                                    <label class="col-sm-5 col-md-5 control-label">用户名：</label>
+                                    <div class="col-sm-7">
+                                        <input class="form-control" type="text" name="UserName" id="Usernameid">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-5 col-md-5 control-label">用户ID：</label>
+                                    <div class="col-sm-7">
+                                        <input class="form-control" type="text" name="UserID" id="SEUserID">
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="btn btn-info col-md-offset-4" type="button" id="btnselect" style="margin-top:20px;">确认提交</button>
+                        </form>
+                    </div>
+                    <div class="Baseinfor col-sm-9 col-md-9 col-lg-9">
+                        <div class="col-md-12" style="background-color:white;">
+                            <div class="col-md-2"><span>图片列表</span></div>
+                            <div class="col-lg-10 col-md-10 col-sm-10" style="margin-bottom:15px;" id="Baseinforid">
+                                <form class="form-horizontal" role="form">
+                                    <div class="form-group" style="margin-bottom:0;">
+                                        <label class="col-md-1 col-sm-1 control-label reset">类型</label>
+                                        <div class="col-md-2 col-sm-2 reset">
+                                            <select class="form-control" id="ItemTypeID" name="ItemTypeID"></select>
+                                        </div>
+                                        <label class="col-md-1 col-sm-1 control-label reset">状态</label>
+                                        <div class="col-md-2 col-sm-2 reset">
+                                            <select class="form-control" id="StatusID" name="StatusID"></select>
+                                        </div>
+              
+                                        <label class="col-md-2 col-sm-2 control-label">用户名</label>
+                                        <div class="col-md-2 col-sm-2 reset">
+                                            <input type="text" class="form-control" name="UserName" id="SUserNameID">
+                                        </div>
+                                      
+                                        <button class="btn btn-primary" type="button" id="btnSelectcelll"><span class="glyphicon glyphicon-search"></span> 搜索</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <table id="tabNoticeType">
+                            <tr>
+                                <th w_num="total_line" width="5%">序号</th>
+                                <th w_index="MaterialAttestationID" w_hidden="true">ID</th>                   
+                                <th w_index="UserName" w_align="left" width="10%">用户</th>
+                                <th w_index="ItemTypeName" width="10%">类型</th>
+                                <th w_index="Viewlogo" w_render="Viewlogo" id="UnimgPicture">缩略图</th>                   
+                                <th w_index="Integral" width="10%">积分</th>
+                                <th w_index="StatusName" width="10%">状态</th>
+                                <th w_index="ReleaseTimeStr" width="10%">添加时间</th>
+                                <th w_index="ToVoidNo" w_render="crearViewButton" width="25%">操作</th>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                @* 审核 *@
+                <div class="modal fade bs-example-modal-sm" id="modUpdatashenhe">
+                    <div class="modal-dialog" style="width:800px;">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                <h3 class="modal-title">材料认证人工审核</h3>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row">
+                                    <label style="color:#ff0000;">温馨提示：材料如审核通过，填写的积分值一定要大于0，否则系统视为不通过</label>
+                                    <form class="form-inline" method="post" id="Updatashenhe">
+                                        <input id="MaterialAttestationID" name="MaterialAttestationID" hidden />
+                                        <div class="form-group col-lg-12 col-md-12 col-sm-12">
+                                            <div class="form-group col-lg-6 col-md-6 col-sm-6">
+                                                <label class="col-lg-4 col-md-4 col-sm-4 control-label">用户：</label>
+                                                <input class="form-control col-lg-4 col-md-4 col-sm-4 control-label" type="text" name="UserName" readonly="readonly">
+                                            </div>                                   
+                                            <div class="form-group col-lg-6 col-md-6 col-sm-6">
+                                                <label class="col-lg-4 col-md-4 col-sm-4 control-label">类型：</label>
+                                                <input class="form-control" type="text" name="ItemTypeName" readonly="readonly">
+                                            </div>
+                                        </div>                                      
+                                         
+                                        <div class="form-group col-lg-12 col-md-12 col-sm-12" style="margin-top:5px;">
+                                            <div class="form-group col-lg-6 col-md-6 col-sm-6">
+                                                <label class="col-lg-4 col-md-4 col-sm-4 control-label">备注：</label>
+                                                <input class="form-control col-lg-4 col-md-4 col-sm-4 control-label" type="text" name="Remarks" readonly="readonly">
+                                            </div>                                    
+                                        <div class="form-group col-lg-6 col-md-6 col-sm-6">
+                                            <label class="col-lg-4 col-md-4 col-sm-4 control-label">审核备注：</label>                                         
+                                            <input class="form-control" type="text" name="ReviewRemarks">
+                                        </div>
+                                      </div>   
+                                                                           
+                                   <div class="form-group col-lg-12 col-md-12 col-sm-12" style="margin-top:5px;">                                           
+                                        <div class="form-group col-lg-6 col-md-6 col-sm-6">
+                                            <label class="col-lg-4 col-md-4 col-sm-4 control-label">积分：</label>
+                                            <input class="form-control col-lg-4 col-md-4 col-sm-4 control-label" type="text" name="Integral" id="Integralid">
+                                        </div>
+                                        <div class="form-group col-lg-6 col-md-6 col-sm-6">
+                                            <label class="col-lg-4 col-md-4 col-sm-4 control-label">添加时间：</label>                                          
+                                            <input class="form-control" type="text" name="ReleaseTimeStr" readonly="readonly">
+                                        </div>
+                                  </div>    
+                                        <div class="form-group col-lg-12 col-md-12 col-sm-12" style="margin-top:5px;">
+                                            <div class="img-box form-group col-lg-6 col-md-6 col-sm-6">
+                                                <label class="col-lg-4 col-md-4 col-sm-4 control-label">缩略图:</label>
+                                                <img src="" alt="" width="200" height="100" id="UimgStudentPicture" />
+                                            </div>
+                                            <div class="form-group col-lg-6 col-md-6 col-sm-6">
+                                                <label class="col-lg-4 col-md-4 col-sm-4 control-label">审核状态：</label>
+                                                <label>
+                                                    <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1">
+                                                    待审核
+                                                </label>
+                                                <label>
+                                                    <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+                                                    审核通过
+                                                </label>
+                                                <label>
+                                                    <input type="radio" name="optionsRadios" id="optionsRadios3" value="option3">
+                                                    审核不通过
+                                                </label>
+                                            </div>
+                                        </div>                                                                                                               
+                                        <button type="button" class="btn btn-info col-md-offset-5" id="updataShenhe" style="margin-top:30px;">提交审核</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal-dialog -->
+                </div>
+                @*修改*@
+                <div class="modal fade bs-example-modal-sm" id="Updatamodal">
+                    <div class="modal-dialog" style="width:700px;">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                <h4 class="modal-title">修改材料认证</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row">
+                                    <label style="color:#ff0000;">温馨提示：填写的积分值一定要大于0，否则系统视为审核失败</label>
+                                    <form class="form-inline" id="UpdataMaterialAttestation" action="/AuthenticationManagement/Authentication/UpdateconservationMaterialAttestation" method="post">
+                                        <input id="MaterialAttestationID" name="MaterialAttestationID" hidden />
+                                        <div class="form-group col-lg-12 col-md-12 col-sm-12" >
+                                            <div class="form-group col-lg-6 col-md-6 col-sm-6">
+                                                <label class="col-lg-4 col-md-4 col-sm-4 control-label">用户：</label>                                             
+                                                 <input class="form-control col-lg-4 col-md-4 col-sm-4 control-label" type="text" name="UserName" readonly="readonly">
+                                             </div>
+                                        <div class="form-group col-lg-6 col-md-6 col-sm-6">
+                                            <label class="col-lg-4 col-md-4 col-sm-4 control-label">类型：</label>                                        
+                                            <select class="form-control" style="width:196px;" id="UpItemTypeID" name="ItemTypeID"></select>
+                                        </div>
+                                     </div>
+                                        
+                                        <div class="form-group col-lg-12 col-md-12 col-sm-12" style="margin-top:5px;">
+                                            <div class="form-group col-lg-6 col-md-6 col-sm-6">
+                                               <label class="col-lg-4 col-md-4 col-sm-4 control-label">备注：</label>
+                                                <input class="form-control col-lg-4 col-md-4 col-sm-4 control-label" type="text" name="Remarks" readonly="readonly">
+                                            </div>                                      
+                                            <div class="form-group col-lg-6 col-md-6 col-sm-6">
+                                                <label class="col-lg-4 col-md-4 col-sm-4 control-label">审核备注：</label>
+                                                <input class="form-control" type="text" name="ReviewRemarks">
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-lg-12 col-md-12 col-sm-12" style="margin-top:5px;">
+                                            <div class="form-group col-lg-6 col-md-6 col-sm-6">
+                                                <label class="col-lg-4 col-md-4 col-sm-4 control-label">状态：</label>
+                                                <select class="form-control col-lg-4 col-md-4 col-sm-4 control-label" style="width:196px;" id="UpStatusID" name="StatusID"></select>
+                                            </div>
+                                     
+                                            <div class="form-group col-lg-6 col-md-6 col-sm-6">
+                                                <label class="col-lg-4 col-md-4 col-sm-4 control-label">添加时间：</label>
+                                                <input class="form-control" type="text" name="ReleaseTimeStr" readonly="readonly">
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-lg-12 col-md-12 col-sm-12" style="margin-top:5px;">
+                                            <div class="img-box form-group col-lg-6 col-md-6 col-sm-6">
+                                                <label class="col-lg-4 col-md-4 col-sm-4 control-label">缩略图:</label>
+                                                <img src="" alt="" width="200" height="100" id="UimgPicture" />
+                                                <input type="file" class="col-md-offset-4" name="fileStudentImage" id="UpPicture" />
+                                            </div>
+
+                                            <div class="img-box form-group col-lg-6 col-md-6 col-sm-6">
+                                                <label class="col-lg-4 col-md-4 col-sm-4 control-label">积分：</label>
+                                                <input class="form-control" type="text" name="Integral" id="Integralid">
+                                            </div>
+                                        </div>
+                                            <button type="button" class="btn btn-info col-md-offset-5" id="QueRenupdata" style="margin-top:30px;">确认修改</button>
+                                  </form>
+                                </div>
+                            </div>
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal-dialog -->
+                </div>
+            </div>
+        </div>
+    </div>
+   
+    <script src="~/Content/bootstrap-3.3.7-dist/js/jquery-2.0.3.min.js"></script>
+    <script src="~/Content/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <script src="~/Content/jquery.bsgrid-1.37/merged/bsgrid.all.min.js"></script>
+    <script src="~/Content/jquery.bsgrid-1.37/js/lang/grid.zh-CN.min.js"></script>
+    <script src="~/Content/layer/layer.js"></script>
+    <script src="~/Content/jss/jquery.form.js"></script>@*异步自动提交*@
+    <script src="~/Content/jss/customfunction.js"></script>
+    
+    <script>       
+        var tabNoticeType;
+        $(document).ready(function () {
+            tabNoticeType = $.fn.bsgrid.init('tabNoticeType', {
+                url: '/AuthenticationManagement/Authentication/selctB_MaterialAttestationTable',
+                autoLoad: true,//自动加载数据
+                stripeRows: true,//隔行变色
+                rowHoverColor: true,//划过行变色
+                rowSelectedColor: true,//是否显示选中行背景色
+                pageSize: 10,//默认页面大小
+                pageSizeSelect: true,//是否选择分页页数下拉框
+                pagingLittleToolbar: true,//精简的图标按钮分页工具条
+                pagingToolbarAlign: "left"//分页工具条的显示位置
+
+            });
+            $.post("/AuthenticationManagement/Authentication/SelctS_ItemTypeTable", function (jsonData) {
+                selectLoadData("ItemTypeID", jsonData);
+            });
+            $.post("/AuthenticationManagement/Authentication/SelctStatustype", function (jsonData) {
+                selectLoadData("StatusID", jsonData);
+            });
+            $.post("/AuthenticationManagement/Authentication/SelctS_ItemTypeTable", function (jsonData) {
+                selectLoadData("UpItemTypeID", jsonData);
+            });
+            $.post("/AuthenticationManagement/Authentication/SelctStatus", function (jsonData) {
+                selectLoadData("UpStatusID", jsonData);
+            });
+            tabNoticeSearch();
+            $("#btnselect").hide();
+            $("#Baseinforid").hide();
+        });
+        //权限访问
+        $("#containerid").mouseenter(function () {
+            $.post("/LoginMain/MoKuaiQuanXianOpTypeSelect", function (Data) {
+                for (var i = 0; i < Data.length; i++) {
+                    if (Data[i].Name == "材料审核" && Data[i].Optype == "查询") {
+                        $("#btnselect").show();
+                        $("#Baseinforid").show();
+                    }
+                    if (Data[i].Name == "材料审核" && Data[i].Optype == "审核") {
+                        $(".strShenHe").removeClass("hidden");
+
+                    }
+                    if (Data[i].Name == "材料审核" && Data[i].Optype == "修改") {
+
+                        $(".strUpdata").removeClass("hidden");
+
+                    }
+                    if (Data[i].Name == "材料审核" && Data[i].Optype == "删除") {
+
+                        $(".strDelete").removeClass("hidden");
+
+                    }
+                }
+            });
+        });
+
+        //材料审核绑定图片
+        function Viewlogo(record, rowIndex, colIndex, options) {
+            var MaterialAttestationID = tabNoticeType.getColumnValue(rowIndex, "MaterialAttestationID");
+            $("#UnimgPicture").attr("src", "/AuthenticationManagement/Authentication/GetPictureImage");
+            return '<img src="/AuthenticationManagement/Authentication/GetPictureImage?MaterialAttestationID=' + MaterialAttestationID + '" alt="" width="60" height="30"/>';
+        }  
+        //自定义公告详情列
+        function crearViewButton(record, rowIndex, colIndex, options) {
+            var shenghe = tabNoticeType.getColumnValue(rowIndex, "StatusName");
+            if (shenghe == "待审核") {
+                return '<button type="button" style=display:compact; class="strShenHe btn btn-danger hidden" onclick="ShenHe(' + record.MaterialAttestationID + ')">审核</button>'           
+                + "&emsp;"
+              + '<button type="button" style=display:compact; class="strDelete btn btn-warning hidden" onclick="Delete(' + record.MaterialAttestationID + ')">删除</button>';
+            } else {
+                return '<button type="button" style=display:compact; class="strUpdata btn btn-info hidden" onclick="Updata(' + record.MaterialAttestationID + ')">修改</button>'
+                + "&emsp;"
+                + '<button type="button" style=display:compact; class="strDelete btn btn-warning hidden" onclick="Delete(' + record.MaterialAttestationID + ')">删除</button>';
+            }
+        }
+
+        //多条件查询
+        function tabNoticeSearch() {
+            var Usernameid = $("#Usernameid").val();
+            var SUserNameID = $("#SUserNameID").val();
+
+            var ItemTypeID = $("#ItemTypeID").val();
+            if (ItemTypeID == undefined || ItemTypeID == "") {
+                ItemTypeID = 0;
+            }
+            var SEUserID = $("#SEUserID").val();
+            if (SEUserID == undefined || SEUserID == "") {
+                SEUserID = 0;
+            }
+            var StatusID = $("#StatusID").val();
+            if (StatusID == undefined || StatusID == "") {
+                StatusID = 0;
+            }
+            tabNoticeType.search("Usernameid=" + Usernameid + "&SUserNameID=" + SUserNameID + "&ItemTypeID=" + ItemTypeID + "&SEUserID=" + SEUserID + "&StatusID=" + StatusID);
+        }
+        $("#btnselect").click(function () {
+            tabNoticeSearch();
+        });
+        $("#btnSelectcelll").click(function () {
+            tabNoticeSearch();
+        });
+        //审核按钮
+        function ShenHe(MaterialAttestationID) {
+            $.post("/AuthenticationManagement/Authentication/shenheMaterialAttestation", { MaterialAttestationID: MaterialAttestationID }, function (data) {
+                loadDatatoForm("Updatashenhe", data);
+            });
+            //绑定图片
+            $("#UimgStudentPicture").attr("src", "");
+            $("#UimgStudentPicture").attr("src", "/AuthenticationManagement/Authentication/GetMaterialAttestationImage?MaterialAttestationID=" + MaterialAttestationID);
+            $("#modUpdatashenhe").modal("show");
+        }
+        //审核保存
+        $("#updataShenhe").click(function () {
+            if ($("input[name='optionsRadios'][type='radio']:checked").val() != undefined) {
+                var formDate = $("#Updatashenhe").serializeArray();
+                $.post("/AuthenticationManagement/Authentication/UpdataMaterialAttestationbaocun", formDate, function (msg) {
+                    if (msg == "success") {
+                        layer.alert('审核成功', { icon: 6, title: '提示' });
+                        //关闭公告类型模态窗体
+                        $("#modUpdatashenhe").modal("hide");
+                        //刷新table
+                        tabNoticeType.refreshPage();
+                    }                  
+                    else {
+
+                        layer.alert('审核失败！', { icon: 5, title: '提示' });
+                    }
+                });
+            }
+            else {
+                layer.alert('审核状态和积分不能为空！', { icon: 2, title: '提示' });
+            }
+        });
+        //修改
+        function Updata(MaterialAttestationID) {
+            $.post("/AuthenticationManagement/Authentication/shenheMaterialAttestation", { MaterialAttestationID: MaterialAttestationID }, function (data) {
+                loadDatatoForm("UpdataMaterialAttestation", data);
+            });
+            //绑定图片
+            $("#UimgPicture").attr("src", "");
+            $("#UimgPicture").attr("src", "/AuthenticationManagement/Authentication/GetMaterialAttestationImage?MaterialAttestationID=" + MaterialAttestationID);
+            $("#Updatamodal").modal("show");
+        }
+        //编辑选择照片
+        var imgReaderU = new FileReader();
+        regexImageFilter = /^(?:image\/bmp|image\/png|image\/jpeg|image\/jpg)$/i;
+        //文件读取 onload事件
+        imgReaderU.onload = function (evt) {
+            $("#UimgPicture").attr("src", evt.target.result);
+        }
+        $("#UpPicture").change(function () {
+            //选取选择图片
+            var imgfFile = $("#UpPicture").prop('files')[0];
+            //加载image标签中
+            if (!regexImageFilter.test(imgfFile.type)) {
+                //alert("选择的不是一个有效的图片文件");
+                layer.msg('选择的不是一个有效的图片文件', { icon: 0 });
+            }
+            imgReaderU.readAsDataURL(imgfFile);
+        }); 
+        //修改保存按钮
+        $("#QueRenupdata").click(function () {           
+                var layerIndex = layer.load(0);//显示 加载层
+                //提交表单
+                $("#UpdataMaterialAttestation").ajaxSubmit(function (msg) {
+                    layer.close(layerIndex);//关闭 加载层                 
+                    if (msg == "success") {
+                        layer.alert('修改成功', { icon: 1, title: '提示' });
+                        tabNoticeType.refreshPage();
+                        location.reload();
+                        $("#Updatamodal").modal("hide");//关闭 modal 
+                    }else {
+                        layer.alert('修改失败！', { icon: 6, title: '提示' });
+                    }
+                });          
+        })
+    
+        //删除
+        function Delete(MaterialAttestationID) {//通过主键删除角色
+            layer.confirm("确定删除？", {
+                icon: 3,
+                btn: ['确定', '取消']
+                //按钮
+            }, function (layerIndex) {
+                var layerIndex = layer.load(0);//显示 加载层
+                $.post("/AuthenticationManagement/Authentication/deleteMaterialAttestation", { MaterialAttestationID: MaterialAttestationID }, function (data) {
+                    if (data == "success") {
+                        layer.alert('删除成功！', { icon: 6, title: '提示' });
+                        tabNoticeType.refreshPage();
+                    } else {
+                        layer.alert('删除失败！', { icon: 5, title: '提示' });
+                    }
+                    layer.close(layerIndex);//关闭 加载层
+                });
+            });
+        };
+    </script>
+</body>
+</html>
